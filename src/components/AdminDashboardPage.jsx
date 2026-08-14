@@ -5,7 +5,7 @@ import {
   Lock, Mail, MessageSquare, Trash2, CheckCircle2, Search, Filter, 
   LogOut, Edit3, Image as ImageIcon, Key, Plus, ArrowLeft, Building, 
   MapPin, Phone, Video, Layers, Sparkles, Sliders, Briefcase, FileText, 
-  Play, Eye, HelpCircle, Check, Upload, FolderOpen, X, CheckCircle
+  Play, Eye, HelpCircle, Check, Upload, FolderOpen, X, CheckCircle, AlertTriangle
 } from 'lucide-react';
 
 export const AdminDashboardPage = ({ onReturnToWeb }) => {
@@ -23,7 +23,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
-  const [activeTab, setActiveTab] = useState('hero');
+  const [activeTab, setActiveTab] = useState('partners');
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [saveToast, setSaveToast] = useState(false);
@@ -32,7 +32,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
   const [mediaPickerTarget, setMediaPickerTarget] = useState(null); // { callback: (url) => void, filterType?: 'image' | 'video' }
   const [mediaFilter, setMediaFilter] = useState('all');
-  const fileInputRef = useRef(null);
+
+  // Confirmation Modal for Deletions
+  const [deleteConfirm, setDeleteConfirm] = useState(null); // { type: 'media'|'partner'|'library'|'message', id: string, title: string }
 
   // Helper to trigger a visual saved confirmation
   const triggerSaveNotification = () => {
@@ -76,7 +78,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     }
   };
 
-  // Handle uploading a file from PC directly to Media Library
+  // Handle uploading a file from PC directly to Media Library and assigning it
   const handleFileUpload = (e, targetCallback = null) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
@@ -85,7 +87,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     const reader = new FileReader();
     reader.onload = (uploadEvent) => {
       const dataUrl = uploadEvent.target.result;
-      const createdItem = addMediaToLibrary({
+      addMediaToLibrary({
         name: file.name,
         type: isVideo ? 'video' : 'image',
         url: dataUrl,
@@ -110,6 +112,22 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       mediaPickerTarget.callback(url);
     }
     setMediaPickerOpen(false);
+    triggerSaveNotification();
+  };
+
+  const confirmDelete = () => {
+    if (!deleteConfirm) return;
+    const { type, id } = deleteConfirm;
+    if (type === 'partner') {
+      deletePartner(id);
+    } else if (type === 'media') {
+      deleteMediaItem(id);
+    } else if (type === 'library') {
+      deleteMediaFromLibrary(id);
+    } else if (type === 'message') {
+      deleteMessage(id);
+    }
+    setDeleteConfirm(null);
     triggerSaveNotification();
   };
 
@@ -224,9 +242,45 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       
       {/* SUCCESS TOAST NOTIFICATION */}
       {saveToast && (
-        <div className="fixed bottom-6 right-6 z-[100] bg-emerald-600 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-fadeIn border border-emerald-400">
+        <div className="fixed bottom-6 right-6 z-[130] bg-emerald-600 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-fadeIn border border-emerald-400">
           <Check className="w-5 h-5" />
           <span className="text-xs font-extrabold">¡Cambio guardado y sincronizado con la web pública!</span>
+        </div>
+      )}
+
+      {/* CONFIRMATION MODAL FOR DELETIONS */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 z-[140] flex items-center justify-center p-4 bg-navy-950/90 backdrop-blur-xl animate-fadeIn">
+          <div className="luxury-glass w-full max-w-md rounded-3xl border border-red-500/40 p-6 sm:p-8 text-center space-y-5 shadow-2xl">
+            <div className="w-14 h-14 rounded-2xl bg-red-500/15 text-red-400 flex items-center justify-center mx-auto border border-red-500/30">
+              <AlertTriangle className="w-7 h-7" />
+            </div>
+            
+            <div className="space-y-2">
+              <h3 className="text-lg font-extrabold text-white">¿Deseas eliminar este elemento?</h3>
+              <p className="text-xs text-slate-300 font-light">
+                Estás a punto de quitar <strong className="text-white">"{deleteConfirm.title}"</strong>.
+              </p>
+            </div>
+
+            <div className="flex items-center justify-center gap-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setDeleteConfirm(null)}
+                className="px-5 py-2.5 rounded-xl bg-navy-900 text-slate-300 hover:text-white text-xs font-bold border border-slate-800"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                onClick={confirmDelete}
+                className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-extrabold shadow-lg flex items-center gap-1.5"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Sí, Eliminar</span>
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
@@ -278,7 +332,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       mediaFilter === f ? 'bg-gold-metallic text-navy-950' : 'bg-navy-900 text-slate-400'
                     }`}
                   >
-                    {f === 'all' ? 'Todos' : f === 'image' ? 'Fotos' : 'Videos'}
+                    {f === 'all' ? 'Todos' : f === 'image' ? 'Fotos/Logos' : 'Videos'}
                   </button>
                 ))}
               </div>
@@ -297,13 +351,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     {item.type === 'video' ? (
                       <video src={item.url} muted className="absolute inset-0 w-full h-full object-cover" />
                     ) : (
-                      <img src={item.url} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
+                      <img src={item.url} alt={item.name} className="absolute inset-0 w-full h-full object-contain p-2 bg-navy-900/50" />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent group-hover:from-flame-950/80 transition-colors" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent group-hover:from-flame-950/80 transition-colors pointer-events-none" />
 
-                    <div className="relative z-10">
+                    <div className="relative z-10 pointer-events-none">
                       <span className="text-[9px] font-mono text-gold-400 bg-black/70 px-1.5 py-0.5 rounded">
-                        {item.type === 'video' ? '🎥 Video' : '📷 Foto'}
+                        {item.type === 'video' ? '🎥 Video' : '🖼️ Imagen'}
                       </span>
                       <p className="text-[11px] font-bold text-white truncate mt-1">{item.name}</p>
                     </div>
@@ -398,16 +452,6 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               );
             })}
           </div>
-
-          <div className="bg-navy-900/80 p-4 rounded-2xl border border-slate-800 text-xs text-slate-400 space-y-1 font-light">
-            <span className="font-bold text-gold-400 block flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-flame-500" />
-              <span>Carga Fácil Tipo WordPress</span>
-            </span>
-            <p className="leading-relaxed text-[11px]">
-              Haz clic en "Subir desde mi PC" o "Elegir de la Biblioteca" para cambiar cualquier foto o video sin escribir rutas.
-            </p>
-          </div>
         </aside>
 
         {/* MAIN WORKSPACE CONTENT AREA */}
@@ -498,13 +542,6 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       </label>
                     </div>
                   </div>
-
-                  <div className="p-3 rounded-xl bg-navy-950 border border-slate-800 flex items-center justify-between">
-                    <span className="text-xs font-mono text-gold-400 font-bold truncate max-w-md">
-                      {heroContent.videoUrl || 'Ningún video seleccionado'}
-                    </span>
-                    <span className="text-[10px] text-slate-500">Video Activo</span>
-                  </div>
                 </div>
 
                 {/* POSTER PHOTO SELECTOR BOX */}
@@ -545,7 +582,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       <img src={heroContent.posterUrl} alt="Poster" className="w-full h-full object-cover" />
                     </div>
                     <span className="text-xs font-mono text-slate-300 truncate flex-1">
-                      {heroContent.posterUrl}
+                      Foto de Portada Actual
                     </span>
                   </div>
                 </div>
@@ -677,7 +714,6 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           {activeTab === 'library' && (
             <div className="space-y-6 animate-fadeIn">
               
-              {/* Upload Card */}
               <div className="luxury-glass p-8 rounded-3xl border border-gold-metallic/40 text-center space-y-4">
                 <div className="w-16 h-16 rounded-2xl bg-gold-metallic/15 text-gold-400 flex items-center justify-center mx-auto border border-gold-metallic/30">
                   <Upload className="w-8 h-8" />
@@ -702,7 +738,6 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </label>
               </div>
 
-              {/* Library Grid */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-base font-extrabold font-heading text-white">Todos los Archivos Guardados ({safeMediaLibrary.length})</h3>
@@ -715,10 +750,10 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         {item.type === 'video' ? (
                           <video src={item.url} muted className="w-full h-full object-cover" />
                         ) : (
-                          <img src={item.url} alt={item.name} className="w-full h-full object-cover" />
+                          <img src={item.url} alt={item.name} className="w-full h-full object-contain p-2 bg-navy-900/50" />
                         )}
                         <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded bg-black/80 text-[9px] font-mono text-gold-400">
-                          {item.type === 'video' ? '🎥 Video' : '📷 Foto'}
+                          {item.type === 'video' ? '🎥 Video' : '🖼️ Imagen'}
                         </span>
                       </div>
 
@@ -728,14 +763,11 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       </div>
 
                       <button
-                        onClick={() => {
-                          deleteMediaFromLibrary(item.id);
-                          triggerSaveNotification();
-                        }}
+                        onClick={() => setDeleteConfirm({ type: 'library', id: item.id, title: item.name })}
                         className="w-full py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-slate-800 text-[10px] font-bold flex items-center justify-center gap-1 transition-colors"
                       >
                         <Trash2 className="w-3 h-3" />
-                        <span>Eliminar</span>
+                        <span>Eliminar Archivo</span>
                       </button>
                     </div>
                   ))}
@@ -745,10 +777,11 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
           )}
 
-          {/* TAB 3: PARTNERS & CLIENT CAROUSEL */}
+          {/* TAB 3: PARTNERS & CLIENT CAROUSEL (WITH PROMINENT LOGO UPLOADERS) */}
           {activeTab === 'partners' && (
             <div className="space-y-6 animate-fadeIn">
               
+              {/* Add New Partner Form */}
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 space-y-5">
                 <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                   <h3 className="text-base font-extrabold font-heading text-white flex items-center gap-2">
@@ -792,20 +825,21 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     />
                   </div>
 
+                  {/* Logo Selector Box */}
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1">Logo del Cliente</label>
-                    <div className="flex gap-2">
+                    <label className="text-xs font-bold text-gold-400 block mb-1">Logo del Cliente (PNG / SVG):</label>
+                    <div className="flex items-center gap-2">
                       <button
                         type="button"
                         onClick={() => openMediaPicker((url) => setNewPartner((p) => ({ ...p, logoUrl: url })), 'image')}
-                        className="px-3 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 text-xs font-bold border border-slate-700 flex items-center gap-1"
+                        className="px-3.5 py-2.5 rounded-xl bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1.5 shadow-sm"
                       >
-                        <FolderOpen className="w-3.5 h-3.5" />
+                        <FolderOpen className="w-4 h-4" />
                         <span>Elegir Logo</span>
                       </button>
-                      <label className="cursor-pointer px-3 py-2 rounded-xl bg-flame-600 text-white text-xs font-bold flex items-center gap-1">
-                        <Upload className="w-3.5 h-3.5" />
-                        <span>Subir</span>
+                      <label className="cursor-pointer px-3.5 py-2.5 rounded-xl bg-flame-600 hover:bg-flame-500 text-white text-xs font-extrabold flex items-center gap-1.5 shadow-flame-glow">
+                        <Upload className="w-4 h-4" />
+                        <span>Subir de PC</span>
                         <input
                           type="file"
                           accept="image/*"
@@ -841,7 +875,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
               {/* Current Partners List */}
               <div className="space-y-4">
-                <h3 className="text-base font-extrabold font-heading text-white">Clientes Registrados ({safePartners.length})</h3>
+                <h3 className="text-base font-extrabold font-heading text-white">Clientes Registrados en el Carrusel ({safePartners.length})</h3>
                 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {safePartners.map((partner) => (
@@ -871,10 +905,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         </div>
 
                         <button
-                          onClick={() => {
-                            deletePartner(partner.id);
-                            triggerSaveNotification();
-                          }}
+                          onClick={() => setDeleteConfirm({ type: 'partner', id: partner.id, title: partner.name })}
                           className="p-2 rounded-xl bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-slate-800 transition-colors"
                           title="Eliminar cliente"
                         >
@@ -882,17 +913,20 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         </button>
                       </div>
 
-                      <div className="space-y-2 text-xs">
+                      {/* Prominent Logo Changer Box */}
+                      <div className="p-3 rounded-xl bg-navy-900 border border-slate-800 space-y-2">
+                        <span className="text-[11px] font-bold text-slate-300 block">🖼️ Logo del Cliente:</span>
                         <div className="flex items-center gap-2">
                           <button
                             type="button"
                             onClick={() => openMediaPicker((url) => updatePartner(partner.id, 'logoUrl', url), 'image')}
-                            className="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-bold border border-slate-800 flex items-center gap-1"
+                            className="flex-1 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center justify-center gap-1.5 transition-all"
                           >
                             <FolderOpen className="w-3.5 h-3.5" />
-                            <span>Cambiar Logo</span>
+                            <span>Elegir Logo</span>
                           </button>
-                          <label className="cursor-pointer px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-bold border border-slate-800 flex items-center gap-1">
+                          
+                          <label className="cursor-pointer flex-1 py-2 rounded-xl bg-flame-600 hover:bg-flame-500 text-white text-xs font-extrabold flex items-center justify-center gap-1.5 shadow-flame-glow transition-all">
                             <Upload className="w-3.5 h-3.5" />
                             <span>Subir de PC</span>
                             <input
@@ -903,7 +937,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                             />
                           </label>
                         </div>
+                      </div>
 
+                      <div className="space-y-2 text-xs">
                         <div>
                           <label className="text-[10px] text-slate-400 block mb-0.5">Subtítulo:</label>
                           <input
@@ -968,14 +1004,14 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       <button
                         type="button"
                         onClick={() => openMediaPicker((url) => setNewMedia((prev) => ({ ...prev, url })), 'image')}
-                        className="px-3 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-bold border border-slate-700 flex items-center gap-1"
+                        className="px-3.5 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1"
                       >
                         <FolderOpen className="w-3.5 h-3.5" />
                         <span>Elegir Foto</span>
                       </button>
-                      <label className="cursor-pointer px-3 py-2 rounded-xl bg-flame-600 text-white text-xs font-bold flex items-center gap-1">
+                      <label className="cursor-pointer px-3.5 py-2 rounded-xl bg-flame-600 text-white text-xs font-extrabold flex items-center gap-1 shadow-flame-glow">
                         <Upload className="w-3.5 h-3.5" />
-                        <span>Subir</span>
+                        <span>Subir de PC</span>
                         <input
                           type="file"
                           accept="image/*"
@@ -1005,14 +1041,14 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         <button
                           type="button"
                           onClick={() => openMediaPicker((url) => setNewMedia((prev) => ({ ...prev, videoUrl: url })), 'video')}
-                          className="px-3 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-bold border border-slate-700 flex items-center gap-1"
+                          className="px-3.5 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1"
                         >
                           <FolderOpen className="w-3.5 h-3.5" />
                           <span>Elegir Video</span>
                         </button>
-                        <label className="cursor-pointer px-3 py-2 rounded-xl bg-flame-600 text-white text-xs font-bold flex items-center gap-1">
+                        <label className="cursor-pointer px-3.5 py-2 rounded-xl bg-flame-600 text-white text-xs font-extrabold flex items-center gap-1 shadow-flame-glow">
                           <Upload className="w-3.5 h-3.5" />
-                          <span>Subir</span>
+                          <span>Subir de PC</span>
                           <input
                             type="file"
                             accept="video/*"
@@ -1075,12 +1111,12 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         <button
                           type="button"
                           onClick={() => openMediaPicker((url) => updateMediaItem(item.id, 'url', url), 'image')}
-                          className="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-bold border border-slate-800 flex items-center gap-1"
+                          className="flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-slate-800 flex items-center justify-center gap-1"
                         >
                           <FolderOpen className="w-3.5 h-3.5" />
                           <span>Cambiar Imagen</span>
                         </button>
-                        <label className="cursor-pointer px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-bold border border-slate-800 flex items-center gap-1">
+                        <label className="cursor-pointer flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-extrabold border border-slate-800 flex items-center justify-center gap-1">
                           <Upload className="w-3.5 h-3.5" />
                           <span>Subir de PC</span>
                           <input
@@ -1108,14 +1144,11 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                     <div className="pt-1 flex justify-end">
                       <button
-                        onClick={() => {
-                          deleteMediaItem(item.id);
-                          triggerSaveNotification();
-                        }}
+                        onClick={() => setDeleteConfirm({ type: 'media', id: item.id, title: item.title })}
                         className="px-3 py-1 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 text-xs font-bold border border-slate-800 flex items-center gap-1"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
-                        <span>Eliminar</span>
+                        <span>Eliminar de la Web</span>
                       </button>
                     </div>
                   </div>
@@ -1470,10 +1503,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           </button>
 
                           <button
-                            onClick={() => {
-                              deleteMessage(msg.id);
-                              triggerSaveNotification();
-                            }}
+                            onClick={() => setDeleteConfirm({ type: 'message', id: msg.id, title: `Mensaje de ${msg.name}` })}
                             className="p-2 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-500 hover:text-red-400 border border-slate-800 transition-colors"
                             title="Eliminar registro"
                           >
