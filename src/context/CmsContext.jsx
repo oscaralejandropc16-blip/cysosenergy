@@ -2,6 +2,113 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const CmsContext = createContext();
 
+const INITIAL_MEDIA_LIBRARY = [
+  {
+    id: 'lib-1',
+    name: 'Video Oficial de Operaciones en Campo (MP4)',
+    type: 'video',
+    url: '/videos/IMG_7557.mp4',
+    date: '2026-08-14',
+    tag: 'Video Portada'
+  },
+  {
+    id: 'lib-2',
+    name: 'Planta de Inyección y Manifold',
+    type: 'image',
+    url: '/images/IMG_7549.jpg',
+    date: '2026-08-14',
+    tag: 'Portada / Poster'
+  },
+  {
+    id: 'lib-3',
+    name: 'Equipo de Ingenieros en Yacimiento',
+    type: 'image',
+    url: '/images/IMG_7701.jpg',
+    date: '2026-08-14',
+    tag: 'Operaciones'
+  },
+  {
+    id: 'lib-4',
+    name: 'Operaciones de Izamiento y Taladro',
+    type: 'image',
+    url: '/images/IMG_7702.jpg',
+    date: '2026-08-14',
+    tag: 'Logística'
+  },
+  {
+    id: 'lib-5',
+    name: 'Unidad de Well Testing en Campo',
+    type: 'image',
+    url: '/images/ig_well_testing.png',
+    date: '2026-08-14',
+    tag: 'Pruebas'
+  },
+  {
+    id: 'lib-6',
+    name: 'Manifold de Seguridad y Válvulas',
+    type: 'image',
+    url: '/images/ig_valve_safety.png',
+    date: '2026-08-14',
+    tag: 'Seguridad'
+  },
+  {
+    id: 'lib-7',
+    name: 'Muestra Reológica de Crudo Pesado',
+    type: 'image',
+    url: '/images/ig_crude_sample.png',
+    date: '2026-08-14',
+    tag: 'Química EOR'
+  },
+  {
+    id: 'lib-8',
+    name: 'Múltiple de Producción en Faja del Orinoco',
+    type: 'image',
+    url: '/images/ig_manifold.png',
+    date: '2026-08-14',
+    tag: 'Producción'
+  },
+  {
+    id: 'lib-9',
+    name: 'Flota de Transporte Pesado y Volquetas',
+    type: 'image',
+    url: '/images/logistics_trucks.png',
+    date: '2026-08-14',
+    tag: 'Transporte'
+  },
+  {
+    id: 'lib-10',
+    name: 'Unidad de Coiled Tubing',
+    type: 'image',
+    url: '/images/coiled_tubing.png',
+    date: '2026-08-14',
+    tag: 'Pozos'
+  },
+  {
+    id: 'lib-11',
+    name: 'Logo Oficial Halliburton',
+    type: 'image',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Halliburton_logo.svg/320px-Halliburton_logo.svg.png',
+    date: '2026-08-14',
+    tag: 'Logo Cliente'
+  },
+  {
+    id: 'lib-12',
+    name: 'Logo Oficial SLB Schlumberger',
+    type: 'image',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/SLB_Logo_2022.svg/320px-SLB_Logo_2022.svg.png',
+    date: '2026-08-14',
+    tag: 'Logo Cliente'
+  },
+  {
+    id: 'lib-13',
+    name: 'Logo Oficial PDVSA',
+    type: 'image',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/PDVSA_Logo.svg/320px-PDVSA_Logo.svg.png',
+    date: '2026-08-14',
+    tag: 'Logo Cliente'
+  }
+];
+
 const INITIAL_HERO_CONTENT = {
   videoUrl: '/videos/IMG_7557.mp4',
   posterUrl: '/images/IMG_7549.jpg',
@@ -46,38 +153,6 @@ const INITIAL_PARTNERS = [
     name: 'PDVSA PETROMIRANDA',
     sub: 'Alianza Rosneft • División Junín',
     contract: 'Saneamiento de Suelos y Cuerpos de Agua Afectados por Derrame de DCO.',
-    type: 'Empresa Mixta PDVSA',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/PDVSA_Logo.svg/320px-PDVSA_Logo.svg.png'
-  },
-  {
-    id: 'mtt',
-    name: 'MINISTERIO DE TRANSPORTE',
-    sub: 'Importación & Flota Cummins',
-    contract: 'Importación e Instalación de 45 Motores Cummins para Flota de Autobuses.',
-    type: 'Gobierno Bolivariano',
-    logoUrl: ''
-  },
-  {
-    id: 'minec',
-    name: 'MINEC (ECOSOCIALISMO)',
-    sub: 'Infraestructura & Ascensores',
-    contract: 'Importación e Instalación de Ascensores DZ-J01 y Estabilizadores 150KVA.',
-    type: 'Gestión Ambiental',
-    logoUrl: ''
-  },
-  {
-    id: 'hidrocapital',
-    name: 'HIDROCAPITAL',
-    sub: 'Sistemas de Bombeo',
-    contract: 'Reparación y Mantenimiento de Motores de Bombeo para Sistema Hídrico.',
-    type: 'Servicios Públicos',
-    logoUrl: ''
-  },
-  {
-    id: 'petromonagas',
-    name: 'PDVSA PETROMONAGAS',
-    sub: 'Faja del Orinoco • Carabobo',
-    contract: 'Suministro de Química EOR y Transporte Especializado de Fluidos.',
     type: 'Empresa Mixta PDVSA',
     logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/PDVSA_Logo.svg/320px-PDVSA_Logo.svg.png'
   }
@@ -216,6 +291,15 @@ const INITIAL_SERVICES = [
 ];
 
 export const CmsProvider = ({ children }) => {
+  const [mediaLibrary, setMediaLibrary] = useState(() => {
+    try {
+      const saved = localStorage.getItem('cysos_cms_media_library');
+      return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_MEDIA_LIBRARY;
+    } catch {
+      return INITIAL_MEDIA_LIBRARY;
+    }
+  });
+
   const [heroContent, setHeroContent] = useState(() => {
     try {
       const saved = localStorage.getItem('cysos_cms_hero');
@@ -287,6 +371,14 @@ export const CmsProvider = ({ children }) => {
       return false;
     }
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('cysos_cms_media_library', JSON.stringify(mediaLibrary));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [mediaLibrary]);
 
   useEffect(() => {
     try {
@@ -364,6 +456,20 @@ export const CmsProvider = ({ children }) => {
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const addMediaToLibrary = (fileData) => {
+    const item = {
+      id: `lib-${Date.now()}`,
+      date: new Date().toISOString().slice(0, 10),
+      ...fileData
+    };
+    setMediaLibrary((prev) => [item, ...prev]);
+    return item;
+  };
+
+  const deleteMediaFromLibrary = (id) => {
+    setMediaLibrary((prev) => prev.filter((item) => item.id !== id));
   };
 
   const updateHeroContent = (field, value) => {
@@ -446,6 +552,9 @@ export const CmsProvider = ({ children }) => {
   return (
     <CmsContext.Provider
       value={{
+        mediaLibrary: mediaLibrary || INITIAL_MEDIA_LIBRARY,
+        addMediaToLibrary,
+        deleteMediaFromLibrary,
         heroContent: heroContent || INITIAL_HERO_CONTENT,
         updateHeroContent,
         partners: partners || INITIAL_PARTNERS,

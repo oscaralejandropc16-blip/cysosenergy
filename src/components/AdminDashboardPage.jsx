@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
 import { 
   Lock, Mail, MessageSquare, Trash2, CheckCircle2, Search, Filter, 
   LogOut, Edit3, Image as ImageIcon, Key, Plus, ArrowLeft, Building, 
   MapPin, Phone, Video, Layers, Sparkles, Sliders, Briefcase, FileText, 
-  Play, Eye, HelpCircle, Check, RefreshCw
+  Play, Eye, HelpCircle, Check, Upload, FolderOpen, X, CheckCircle
 } from 'lucide-react';
 
 export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const { 
     isLoggedIn, loginAdmin, logoutAdmin,
+    mediaLibrary = [], addMediaToLibrary, deleteMediaFromLibrary,
     heroContent = {}, updateHeroContent,
     partners = [], updatePartner, addPartner, deletePartner,
     messages = [], updateMessageStatus, deleteMessage,
@@ -26,6 +27,12 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [saveToast, setSaveToast] = useState(false);
+
+  // WordPress-like Media Library Selector Modal State
+  const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
+  const [mediaPickerTarget, setMediaPickerTarget] = useState(null); // { callback: (url) => void, filterType?: 'image' | 'video' }
+  const [mediaFilter, setMediaFilter] = useState('all');
+  const fileInputRef = useRef(null);
 
   // Helper to trigger a visual saved confirmation
   const triggerSaveNotification = () => {
@@ -52,6 +59,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     logoUrl: ''
   });
 
+  const safeMediaLibrary = Array.isArray(mediaLibrary) ? mediaLibrary : [];
   const safeMediaItems = Array.isArray(mediaItems) ? mediaItems : [];
   const safePartners = Array.isArray(partners) ? partners : [];
   const safeMessages = Array.isArray(messages) ? messages : [];
@@ -66,6 +74,43 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     } else {
       setLoginError('');
     }
+  };
+
+  // Handle uploading a file from PC directly to Media Library
+  const handleFileUpload = (e, targetCallback = null) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    const isVideo = file.type.startsWith('video/');
+    const reader = new FileReader();
+    reader.onload = (uploadEvent) => {
+      const dataUrl = uploadEvent.target.result;
+      const createdItem = addMediaToLibrary({
+        name: file.name,
+        type: isVideo ? 'video' : 'image',
+        url: dataUrl,
+        tag: 'Subido desde PC'
+      });
+
+      if (targetCallback) {
+        targetCallback(dataUrl);
+      }
+      triggerSaveNotification();
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const openMediaPicker = (callback, filterType = 'all') => {
+    setMediaPickerTarget({ callback, filterType });
+    setMediaPickerOpen(true);
+  };
+
+  const selectMediaItem = (url) => {
+    if (mediaPickerTarget && mediaPickerTarget.callback) {
+      mediaPickerTarget.callback(url);
+    }
+    setMediaPickerOpen(false);
+    triggerSaveNotification();
   };
 
   const handleAddMedia = (e) => {
@@ -185,6 +230,91 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
         </div>
       )}
 
+      {/* WORDPRESS-STYLE MEDIA LIBRARY SELECTOR MODAL */}
+      {mediaPickerOpen && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-navy-950/90 backdrop-blur-xl animate-fadeIn">
+          <div className="luxury-glass w-full max-w-4xl max-h-[85vh] rounded-3xl border border-gold-metallic/40 p-6 sm:p-8 flex flex-col shadow-2xl space-y-5">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-gold-metallic/20 text-gold-400">
+                  <FolderOpen className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-extrabold font-heading text-white">Biblioteca de Medios</h3>
+                  <p className="text-xs text-slate-400">Selecciona un archivo existente o sube uno nuevo desde tu computadora</p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setMediaPickerOpen(false)}
+                className="p-2 rounded-xl bg-navy-900 text-slate-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Upload Zone & Filter */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <label className="cursor-pointer px-5 py-2.5 rounded-xl bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 text-white text-xs font-extrabold flex items-center gap-2 shadow-flame-glow transition-transform hover:scale-105">
+                <Upload className="w-4 h-4" />
+                <span>Subir Foto o Video desde mi PC</span>
+                <input
+                  type="file"
+                  accept="image/*,video/*"
+                  onChange={(e) => handleFileUpload(e, selectMediaItem)}
+                  className="hidden"
+                />
+              </label>
+
+              <div className="flex items-center gap-2 text-xs">
+                <span className="text-slate-400">Filtrar:</span>
+                {['all', 'image', 'video'].map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setMediaFilter(f)}
+                    className={`px-3 py-1 rounded-lg font-bold text-xs capitalize ${
+                      mediaFilter === f ? 'bg-gold-metallic text-navy-950' : 'bg-navy-900 text-slate-400'
+                    }`}
+                  >
+                    {f === 'all' ? 'Todos' : f === 'image' ? 'Fotos' : 'Videos'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Media Grid */}
+            <div className="flex-1 overflow-y-auto pr-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[50vh]">
+              {safeMediaLibrary
+                .filter((item) => mediaFilter === 'all' || item.type === mediaFilter)
+                .map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => selectMediaItem(item.url)}
+                    className="group relative aspect-video rounded-2xl overflow-hidden bg-navy-950 border border-slate-800 hover:border-gold-metallic cursor-pointer transition-all hover:scale-105 shadow-md flex flex-col justify-end p-2"
+                  >
+                    {item.type === 'video' ? (
+                      <video src={item.url} muted className="absolute inset-0 w-full h-full object-cover" />
+                    ) : (
+                      <img src={item.url} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent group-hover:from-flame-950/80 transition-colors" />
+
+                    <div className="relative z-10">
+                      <span className="text-[9px] font-mono text-gold-400 bg-black/70 px-1.5 py-0.5 rounded">
+                        {item.type === 'video' ? '🎥 Video' : '📷 Foto'}
+                      </span>
+                      <p className="text-[11px] font-bold text-white truncate mt-1">{item.name}</p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+
+          </div>
+        </div>
+      )}
+
       {/* FULL PAGE HEADER */}
       <header className="bg-navy-900 border-b border-slate-800 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -228,12 +358,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           <div className="luxury-glass p-3 rounded-2xl border border-slate-800 space-y-1">
             {[
               { id: 'hero', label: '1. Portada & Video Inicial', icon: Video, count: null, help: 'El video y textos que abren la web' },
-              { id: 'partners', label: '2. Clientes & Logos', icon: Layers, count: safePartners.length, help: 'Carrusel de empresas asociadas' },
-              { id: 'media', label: '3. Fotos & Videos de Campo', icon: ImageIcon, count: safeMediaItems.length, help: 'Galería de fotos de Instagram' },
-              { id: 'services', label: '4. Servicios & Divisiones', icon: Briefcase, count: safeServices.length, help: 'Las 4 divisiones operativas' },
-              { id: 'kpis', label: '5. Cifras & Métricas (+450)', icon: Sliders, count: safeKpis.length, help: 'Números que se mueven en la web' },
-              { id: 'empresa', label: '6. Misión, Visión & Contacto', icon: FileText, count: null, help: 'Teléfonos, emails y dirección' },
-              { id: 'inbox', label: '7. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Mensajes enviados por clientes' }
+              { id: 'library', label: '2. 📁 Biblioteca de Medios', icon: FolderOpen, count: safeMediaLibrary.length, help: 'Fotos y videos guardados' },
+              { id: 'partners', label: '3. Clientes & Logos', icon: Layers, count: safePartners.length, help: 'Carrusel de empresas asociadas' },
+              { id: 'media', label: '4. Fotos & Videos de Campo', icon: ImageIcon, count: safeMediaItems.length, help: 'Galería de fotos de Instagram' },
+              { id: 'services', label: '5. Servicios & Divisiones', icon: Briefcase, count: safeServices.length, help: 'Las 4 divisiones operativas' },
+              { id: 'kpis', label: '6. Cifras & Métricas (+450)', icon: Sliders, count: safeKpis.length, help: 'Números que se mueven en la web' },
+              { id: 'empresa', label: '7. Misión, Visión & Contacto', icon: FileText, count: null, help: 'Teléfonos, emails y dirección' },
+              { id: 'inbox', label: '8. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Mensajes enviados por clientes' }
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -271,10 +402,10 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           <div className="bg-navy-900/80 p-4 rounded-2xl border border-slate-800 text-xs text-slate-400 space-y-1 font-light">
             <span className="font-bold text-gold-400 block flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-flame-500" />
-              <span>¿Cómo funciona?</span>
+              <span>Carga Fácil Tipo WordPress</span>
             </span>
             <p className="leading-relaxed text-[11px]">
-              Escribe en cualquier casilla y los cambios se guardan y reflejan automáticamente en la página web pública.
+              Haz clic en "Subir desde mi PC" o "Elegir de la Biblioteca" para cambiar cualquier foto o video sin escribir rutas.
             </p>
           </div>
         </aside>
@@ -282,29 +413,26 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
         {/* MAIN WORKSPACE CONTENT AREA */}
         <main className="lg:col-span-9 space-y-6">
           
-          {/* TAB 1: HERO & VIDEO MANAGER (CLEAR & INTUITIVE) */}
+          {/* TAB 1: HERO & VIDEO MANAGER */}
           {activeTab === 'hero' && (
             <div className="space-y-6 animate-fadeIn">
               
-              {/* EXPLANATORY HEADER */}
               <div className="p-5 rounded-2xl bg-navy-900/90 border border-gold-metallic/30 flex items-start gap-3">
                 <HelpCircle className="w-5 h-5 text-gold-400 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1 text-xs">
-                  <h4 className="font-bold text-white text-sm">¿Qué es esta sección?</h4>
+                  <h4 className="font-bold text-white text-sm">Editor Visual de Portada</h4>
                   <p className="text-slate-300 font-light leading-relaxed">
-                    Aquí controlas el **video de fondo de operaciones**, la **foto de portada** y los **textos principales** que las personas ven al entrar a la página web de CYSOS ENERGY.
+                    Cambia el video de fondo y la foto de portada simplemente seleccionándolos de tu biblioteca o subiéndolos directo desde tu computadora.
                   </p>
                 </div>
               </div>
 
               {/* LIVE INTERACTIVE VISUAL PREVIEW */}
               <div className="luxury-glass p-6 rounded-3xl border border-slate-800 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-gold-400 uppercase tracking-wider flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-flame-500" />
-                    <span>Así se ve tu portada en la página web en este momento:</span>
-                  </span>
-                </div>
+                <span className="text-xs font-extrabold text-gold-400 uppercase tracking-wider flex items-center gap-2">
+                  <Eye className="w-4 h-4 text-flame-500" />
+                  <span>Así se ve tu portada en vivo en la página web:</span>
+                </span>
 
                 <div className="aspect-video sm:aspect-[21/9] rounded-2xl overflow-hidden bg-black border border-slate-800 relative shadow-2xl flex flex-col justify-center items-center text-center p-6">
                   <video
@@ -321,7 +449,6 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </video>
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-navy-950/60 pointer-events-none" />
 
-                  {/* Dynamic Headline Preview on top of video */}
                   <div className="relative z-10 max-w-xl space-y-2 pointer-events-none">
                     <span className="px-3 py-1 rounded-full bg-navy-900/90 text-gold-400 text-[10px] font-bold border border-gold-metallic/40 inline-block">
                       {heroContent.badgeText || 'Soluciones Integrales para la Industria Energética'}
@@ -336,195 +463,292 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </div>
               </div>
 
-              {/* CLEAR & EASY FORM FIELDS */}
+              {/* WORDPRESS-LIKE MEDIA ATTACHMENT BOXES */}
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-                  <h3 className="text-base font-extrabold font-heading text-white flex items-center gap-2">
-                    <Edit3 className="w-4 h-4 text-flame-500" />
-                    <span>Editar Video y Textos de la Portada</span>
-                  </h3>
+                
+                {/* VIDEO SELECTOR BOX */}
+                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <label className="text-xs font-extrabold text-white block">
+                        📹 Video de Fondo de la Portada:
+                      </label>
+                      <span className="text-[11px] text-slate-400 font-light">Archivo de video MP4 que se reproduce automáticamente</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => openMediaPicker((url) => updateHeroContent('videoUrl', url), 'video')}
+                        className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 hover:text-white border border-gold-metallic/30 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition-all"
+                      >
+                        <FolderOpen className="w-3.5 h-3.5" />
+                        <span>Elegir de la Biblioteca</span>
+                      </button>
+
+                      <label className="cursor-pointer px-3.5 py-2 rounded-xl bg-flame-600 hover:bg-flame-500 text-white text-xs font-extrabold flex items-center gap-1.5 shadow-flame-glow transition-all">
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>Subir desde mi PC</span>
+                        <input
+                          type="file"
+                          accept="video/*"
+                          onChange={(e) => handleFileUpload(e, (url) => updateHeroContent('videoUrl', url))}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-navy-950 border border-slate-800 flex items-center justify-between">
+                    <span className="text-xs font-mono text-gold-400 font-bold truncate max-w-md">
+                      {heroContent.videoUrl || 'Ningún video seleccionado'}
+                    </span>
+                    <span className="text-[10px] text-slate-500">Video Activo</span>
+                  </div>
                 </div>
 
-                <div className="space-y-4">
+                {/* POSTER PHOTO SELECTOR BOX */}
+                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <label className="text-xs font-extrabold text-white block">
+                        🖼️ Foto de Portada / Respaldo:
+                      </label>
+                      <span className="text-[11px] text-slate-400 font-light">Imagen que se muestra mientras carga el video</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => openMediaPicker((url) => updateHeroContent('posterUrl', url), 'image')}
+                        className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 hover:text-white border border-gold-metallic/30 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition-all"
+                      >
+                        <FolderOpen className="w-3.5 h-3.5" />
+                        <span>Elegir de la Biblioteca</span>
+                      </button>
+
+                      <label className="cursor-pointer px-3.5 py-2 rounded-xl bg-flame-600 hover:bg-flame-500 text-white text-xs font-extrabold flex items-center gap-1.5 shadow-flame-glow transition-all">
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>Subir desde mi PC</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleFileUpload(e, (url) => updateHeroContent('posterUrl', url))}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-navy-950 border border-slate-800 flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-lg bg-black overflow-hidden flex-shrink-0 border border-slate-800">
+                      <img src={heroContent.posterUrl} alt="Poster" className="w-full h-full object-cover" />
+                    </div>
+                    <span className="text-xs font-mono text-slate-300 truncate flex-1">
+                      {heroContent.posterUrl}
+                    </span>
+                  </div>
+                </div>
+
+                {/* TEXT FIELDS */}
+                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                  <label className="text-xs font-extrabold text-white block">
+                    ✍️ Título Principal de la Portada:
+                  </label>
                   
-                  {/* Field 1: Video */}
-                  <div className="p-4 rounded-2xl bg-navy-900 border border-slate-800 space-y-2">
-                    <label className="text-xs font-extrabold text-white block">
-                      📹 Video de Fondo (Ruta o URL del archivo MP4):
-                    </label>
-                    <input
-                      type="text"
-                      value={heroContent.videoUrl || ''}
-                      onChange={(e) => {
-                        updateHeroContent('videoUrl', e.target.value);
-                        triggerSaveNotification();
-                      }}
-                      placeholder="Ej. /videos/IMG_7557.mp4 o https://..."
-                      className="w-full modern-input rounded-xl p-3 text-xs font-mono text-gold-400 font-bold"
-                    />
-                    <p className="text-[11px] text-slate-400 font-light">
-                      💡 El video oficial grabado en campo se encuentra en: <code className="text-gold-400">/videos/IMG_7557.mp4</code>.
-                    </p>
-                  </div>
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Inicio de la frase:</span>
+                      <input
+                        type="text"
+                        value={heroContent.titlePart1 || ''}
+                        onChange={(e) => {
+                          updateHeroContent('titlePart1', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold"
+                      />
+                    </div>
 
-                  {/* Field 2: Static Cover Photo */}
-                  <div className="p-4 rounded-2xl bg-navy-900 border border-slate-800 space-y-2">
-                    <label className="text-xs font-extrabold text-white block">
-                      🖼️ Foto de Portada (Imagen estática previa al video):
-                    </label>
-                    <input
-                      type="text"
-                      value={heroContent.posterUrl || ''}
-                      onChange={(e) => {
-                        updateHeroContent('posterUrl', e.target.value);
-                        triggerSaveNotification();
-                      }}
-                      placeholder="/images/IMG_7549.jpg"
-                      className="w-full modern-input rounded-xl p-3 text-xs font-mono text-slate-300"
-                    />
-                  </div>
+                    <div>
+                      <span className="text-[10px] text-flame-400 block mb-1">Palabras en dorado/naranja:</span>
+                      <input
+                        type="text"
+                        value={heroContent.titleGradient || ''}
+                        onChange={(e) => {
+                          updateHeroContent('titleGradient', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-xl p-2.5 text-xs text-flame-400 font-extrabold"
+                      />
+                    </div>
 
-                  {/* Field 3: Title */}
-                  <div className="p-4 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
-                    <label className="text-xs font-extrabold text-white block">
-                      ✍️ Título Principal de la Portada:
-                    </label>
-                    
-                    <div className="grid sm:grid-cols-3 gap-3">
-                      <div>
-                        <span className="text-[10px] text-slate-400 block mb-1">Inicio de la frase:</span>
-                        <input
-                          type="text"
-                          value={heroContent.titlePart1 || ''}
-                          onChange={(e) => {
-                            updateHeroContent('titlePart1', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold"
-                        />
-                      </div>
-
-                      <div>
-                        <span className="text-[10px] text-flame-400 block mb-1">Palabras en dorado/naranja:</span>
-                        <input
-                          type="text"
-                          value={heroContent.titleGradient || ''}
-                          onChange={(e) => {
-                            updateHeroContent('titleGradient', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-xl p-2.5 text-xs text-flame-400 font-extrabold"
-                        />
-                      </div>
-
-                      <div>
-                        <span className="text-[10px] text-slate-400 block mb-1">Final de la frase:</span>
-                        <input
-                          type="text"
-                          value={heroContent.titlePart2 || ''}
-                          onChange={(e) => {
-                            updateHeroContent('titlePart2', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold"
-                        />
-                      </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Final de la frase:</span>
+                      <input
+                        type="text"
+                        value={heroContent.titlePart2 || ''}
+                        onChange={(e) => {
+                          updateHeroContent('titlePart2', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold"
+                      />
                     </div>
                   </div>
-
-                  {/* Field 4: Subtitle */}
-                  <div className="p-4 rounded-2xl bg-navy-900 border border-slate-800 space-y-2">
-                    <label className="text-xs font-extrabold text-white block">
-                      📝 Subtítulo / Párrafo Explicativo:
-                    </label>
-                    <textarea
-                      rows="2"
-                      value={heroContent.subtitle || ''}
-                      onChange={(e) => {
-                        updateHeroContent('subtitle', e.target.value);
-                        triggerSaveNotification();
-                      }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-slate-200"
-                    ></textarea>
-                  </div>
-
-                  {/* Field 5: 4 Pillars */}
-                  <div className="p-4 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
-                    <label className="text-xs font-extrabold text-white block">
-                      🏛️ Los 4 Botones / Especialidades que aparecen debajo del título:
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      <div>
-                        <span className="text-[10px] text-slate-400 block mb-1">Botón 1:</span>
-                        <input
-                          type="text"
-                          value={heroContent.pillar1 || ''}
-                          onChange={(e) => {
-                            updateHeroContent('pillar1', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-lg p-2 text-xs font-bold"
-                        />
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-slate-400 block mb-1">Botón 2:</span>
-                        <input
-                          type="text"
-                          value={heroContent.pillar2 || ''}
-                          onChange={(e) => {
-                            updateHeroContent('pillar2', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-lg p-2 text-xs font-bold"
-                        />
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-slate-400 block mb-1">Botón 3:</span>
-                        <input
-                          type="text"
-                          value={heroContent.pillar3 || ''}
-                          onChange={(e) => {
-                            updateHeroContent('pillar3', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-lg p-2 text-xs font-bold"
-                        />
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-slate-400 block mb-1">Botón 4:</span>
-                        <input
-                          type="text"
-                          value={heroContent.pillar4 || ''}
-                          onChange={(e) => {
-                            updateHeroContent('pillar4', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-lg p-2 text-xs font-bold"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
+
+                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-2">
+                  <label className="text-xs font-extrabold text-white block">
+                    📝 Subtítulo / Párrafo Explicativo:
+                  </label>
+                  <textarea
+                    rows="2"
+                    value={heroContent.subtitle || ''}
+                    onChange={(e) => {
+                      updateHeroContent('subtitle', e.target.value);
+                      triggerSaveNotification();
+                    }}
+                    className="w-full modern-input rounded-xl p-3 text-xs text-slate-200"
+                  ></textarea>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                  <label className="text-xs font-extrabold text-white block">
+                    🏛️ Los 4 Botones / Especialidades de la Portada:
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Botón 1:</span>
+                      <input
+                        type="text"
+                        value={heroContent.pillar1 || ''}
+                        onChange={(e) => {
+                          updateHeroContent('pillar1', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Botón 2:</span>
+                      <input
+                        type="text"
+                        value={heroContent.pillar2 || ''}
+                        onChange={(e) => {
+                          updateHeroContent('pillar2', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Botón 3:</span>
+                      <input
+                        type="text"
+                        value={heroContent.pillar3 || ''}
+                        onChange={(e) => {
+                          updateHeroContent('pillar3', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Botón 4:</span>
+                      <input
+                        type="text"
+                        value={heroContent.pillar4 || ''}
+                        onChange={(e) => {
+                          updateHeroContent('pillar4', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                      />
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           )}
 
-          {/* TAB 2: PARTNERS & CLIENT CAROUSEL */}
-          {activeTab === 'partners' && (
+          {/* TAB 2: DEDICATED MEDIA LIBRARY TAB */}
+          {activeTab === 'library' && (
             <div className="space-y-6 animate-fadeIn">
               
-              <div className="p-5 rounded-2xl bg-navy-900/90 border border-gold-metallic/30 flex items-start gap-3">
-                <HelpCircle className="w-5 h-5 text-gold-400 flex-shrink-0 mt-0.5" />
-                <div className="space-y-1 text-xs">
-                  <h4 className="font-bold text-white text-sm">¿Qué es esta sección?</h4>
-                  <p className="text-slate-300 font-light leading-relaxed">
-                    Aquí puedes modificar, agregar o eliminar los clientes del **carrusel infinito en movimiento** (Halliburton, SLB, PDVSA, etc.).
+              {/* Upload Card */}
+              <div className="luxury-glass p-8 rounded-3xl border border-gold-metallic/40 text-center space-y-4">
+                <div className="w-16 h-16 rounded-2xl bg-gold-metallic/15 text-gold-400 flex items-center justify-center mx-auto border border-gold-metallic/30">
+                  <Upload className="w-8 h-8" />
+                </div>
+
+                <div className="space-y-1 max-w-md mx-auto">
+                  <h3 className="text-lg font-extrabold font-heading text-white">Subir Nuevas Fotos o Videos</h3>
+                  <p className="text-xs text-slate-300 font-light">
+                    Sube cualquier imagen o video desde tu computadora para usarlo en la portada, carrusel o galería.
                   </p>
+                </div>
+
+                <label className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 text-white font-extrabold text-xs shadow-flame-glow transition-all transform hover:scale-105">
+                  <Upload className="w-4 h-4" />
+                  <span>Seleccionar Archivos de mi PC</span>
+                  <input
+                    type="file"
+                    accept="image/*,video/*"
+                    onChange={(e) => handleFileUpload(e)}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+
+              {/* Library Grid */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-base font-extrabold font-heading text-white">Todos los Archivos Guardados ({safeMediaLibrary.length})</h3>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                  {safeMediaLibrary.map((item) => (
+                    <div key={item.id} className="luxury-glass p-3 rounded-2xl border border-slate-800 space-y-2 group relative">
+                      <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-slate-800">
+                        {item.type === 'video' ? (
+                          <video src={item.url} muted className="w-full h-full object-cover" />
+                        ) : (
+                          <img src={item.url} alt={item.name} className="w-full h-full object-cover" />
+                        )}
+                        <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded bg-black/80 text-[9px] font-mono text-gold-400">
+                          {item.type === 'video' ? '🎥 Video' : '📷 Foto'}
+                        </span>
+                      </div>
+
+                      <div className="text-xs">
+                        <p className="font-bold text-white truncate text-[11px]">{item.name}</p>
+                        <span className="text-[10px] text-slate-400 block">{item.date} • {item.tag}</span>
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          deleteMediaFromLibrary(item.id);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-slate-800 text-[10px] font-bold flex items-center justify-center gap-1 transition-colors"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        <span>Eliminar</span>
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Add New Partner */}
+            </div>
+          )}
+
+          {/* TAB 3: PARTNERS & CLIENT CAROUSEL */}
+          {activeTab === 'partners' && (
+            <div className="space-y-6 animate-fadeIn">
+              
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 space-y-5">
                 <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                   <h3 className="text-base font-extrabold font-heading text-white flex items-center gap-2">
@@ -569,14 +793,27 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1">URL o Ruta del Logo (PNG / SVG)</label>
-                    <input
-                      type="text"
-                      placeholder="https://... o /images/logo.png"
-                      value={newPartner.logoUrl}
-                      onChange={(e) => setNewPartner((p) => ({ ...p, logoUrl: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs font-mono text-gold-400"
-                    />
+                    <label className="text-xs font-bold text-slate-300 block mb-1">Logo del Cliente</label>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => openMediaPicker((url) => setNewPartner((p) => ({ ...p, logoUrl: url })), 'image')}
+                        className="px-3 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 text-xs font-bold border border-slate-700 flex items-center gap-1"
+                      >
+                        <FolderOpen className="w-3.5 h-3.5" />
+                        <span>Elegir Logo</span>
+                      </button>
+                      <label className="cursor-pointer px-3 py-2 rounded-xl bg-flame-600 text-white text-xs font-bold flex items-center gap-1">
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>Subir</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleFileUpload(e, (url) => setNewPartner((p) => ({ ...p, logoUrl: url })))}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
                   </div>
 
                   <div className="sm:col-span-2">
@@ -604,7 +841,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
               {/* Current Partners List */}
               <div className="space-y-4">
-                <h3 className="text-base font-extrabold font-heading text-white">Clientes Registrados con Vista Previa ({safePartners.length})</h3>
+                <h3 className="text-base font-extrabold font-heading text-white">Clientes Registrados ({safePartners.length})</h3>
                 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {safePartners.map((partner) => (
@@ -646,17 +883,25 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       </div>
 
                       <div className="space-y-2 text-xs">
-                        <div>
-                          <label className="text-[10px] text-slate-400 block mb-0.5">Ruta / URL del Logo:</label>
-                          <input
-                            type="text"
-                            value={partner.logoUrl || ''}
-                            onChange={(e) => {
-                              updatePartner(partner.id, 'logoUrl', e.target.value);
-                              triggerSaveNotification();
-                            }}
-                            className="w-full modern-input rounded-lg p-2 text-xs font-mono text-gold-400"
-                          />
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => openMediaPicker((url) => updatePartner(partner.id, 'logoUrl', url), 'image')}
+                            className="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-bold border border-slate-800 flex items-center gap-1"
+                          >
+                            <FolderOpen className="w-3.5 h-3.5" />
+                            <span>Cambiar Logo</span>
+                          </button>
+                          <label className="cursor-pointer px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-bold border border-slate-800 flex items-center gap-1">
+                            <Upload className="w-3.5 h-3.5" />
+                            <span>Subir de PC</span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handleFileUpload(e, (url) => updatePartner(partner.id, 'logoUrl', url))}
+                              className="hidden"
+                            />
+                          </label>
                         </div>
 
                         <div>
@@ -693,7 +938,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
           )}
 
-          {/* TAB 3: MEDIA & GALLERY */}
+          {/* TAB 4: MEDIA & GALLERY */}
           {activeTab === 'media' && (
             <div className="space-y-6 animate-fadeIn">
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 space-y-5">
@@ -718,15 +963,27 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-300 block mb-1">Ruta de la Imagen / Poster *</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="/images/IMG_7701.jpg o URL..."
-                      value={newMedia.url}
-                      onChange={(e) => setNewMedia((prev) => ({ ...prev, url: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs"
-                    />
+                    <label className="text-xs font-bold text-slate-300 block mb-1">Foto / Portada *</label>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => openMediaPicker((url) => setNewMedia((prev) => ({ ...prev, url })), 'image')}
+                        className="px-3 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-bold border border-slate-700 flex items-center gap-1"
+                      >
+                        <FolderOpen className="w-3.5 h-3.5" />
+                        <span>Elegir Foto</span>
+                      </button>
+                      <label className="cursor-pointer px-3 py-2 rounded-xl bg-flame-600 text-white text-xs font-bold flex items-center gap-1">
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>Subir</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleFileUpload(e, (url) => setNewMedia((prev) => ({ ...prev, url })))}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
                   </div>
 
                   <div>
@@ -743,14 +1000,27 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                   {newMedia.type === 'video' && (
                     <div>
-                      <label className="text-xs font-bold text-slate-300 block mb-1">Ruta de Video MP4</label>
-                      <input
-                        type="text"
-                        placeholder="/videos/IMG_7557.mp4"
-                        value={newMedia.videoUrl}
-                        onChange={(e) => setNewMedia((prev) => ({ ...prev, videoUrl: e.target.value }))}
-                        className="w-full modern-input rounded-xl p-3 text-xs"
-                      />
+                      <label className="text-xs font-bold text-slate-300 block mb-1">Video MP4</label>
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => openMediaPicker((url) => setNewMedia((prev) => ({ ...prev, videoUrl: url })), 'video')}
+                          className="px-3 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-bold border border-slate-700 flex items-center gap-1"
+                        >
+                          <FolderOpen className="w-3.5 h-3.5" />
+                          <span>Elegir Video</span>
+                        </button>
+                        <label className="cursor-pointer px-3 py-2 rounded-xl bg-flame-600 text-white text-xs font-bold flex items-center gap-1">
+                          <Upload className="w-3.5 h-3.5" />
+                          <span>Subir</span>
+                          <input
+                            type="file"
+                            accept="video/*"
+                            onChange={(e) => handleFileUpload(e, (url) => setNewMedia((prev) => ({ ...prev, videoUrl: url })))}
+                            className="hidden"
+                          />
+                        </label>
+                      </div>
                     </div>
                   )}
 
@@ -800,18 +1070,28 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           className="w-full modern-input rounded-lg p-2 text-xs font-bold text-white"
                         />
                       </div>
-                      <div>
-                        <label className="text-[10px] text-slate-400 block mb-0.5">Ruta de Imagen:</label>
-                        <input
-                          type="text"
-                          value={item.url}
-                          onChange={(e) => {
-                            updateMediaItem(item.id, 'url', e.target.value);
-                            triggerSaveNotification();
-                          }}
-                          className="w-full modern-input rounded-lg p-2 text-xs font-mono text-gold-400"
-                        />
+                      
+                      <div className="flex items-center gap-2 pt-1">
+                        <button
+                          type="button"
+                          onClick={() => openMediaPicker((url) => updateMediaItem(item.id, 'url', url), 'image')}
+                          className="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-bold border border-slate-800 flex items-center gap-1"
+                        >
+                          <FolderOpen className="w-3.5 h-3.5" />
+                          <span>Cambiar Imagen</span>
+                        </button>
+                        <label className="cursor-pointer px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-bold border border-slate-800 flex items-center gap-1">
+                          <Upload className="w-3.5 h-3.5" />
+                          <span>Subir de PC</span>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleFileUpload(e, (url) => updateMediaItem(item.id, 'url', url))}
+                            className="hidden"
+                          />
+                        </label>
                       </div>
+
                       <div>
                         <label className="text-[10px] text-slate-400 block mb-0.5">Leyenda:</label>
                         <textarea
@@ -844,7 +1124,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
           )}
 
-          {/* TAB 4: SERVICES & DIVISIONS */}
+          {/* TAB 5: SERVICES & DIVISIONS */}
           {activeTab === 'services' && (
             <div className="space-y-6 animate-fadeIn">
               <div className="grid gap-6">
@@ -892,7 +1172,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
           )}
 
-          {/* TAB 5: KPIS & METRICS */}
+          {/* TAB 6: KPIS & METRICS */}
           {activeTab === 'kpis' && (
             <div className="space-y-6 animate-fadeIn">
               <div className="grid sm:grid-cols-2 gap-5">
@@ -965,7 +1245,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
           )}
 
-          {/* TAB 6: COMPANY & CONTACT INFO */}
+          {/* TAB 7: COMPANY & CONTACT INFO */}
           {activeTab === 'empresa' && (
             <div className="space-y-6 animate-fadeIn">
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-5">
@@ -1056,7 +1336,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
           )}
 
-          {/* TAB 7: INBOX (CALM, MINIMALIST & EYE-FRIENDLY) */}
+          {/* TAB 8: INBOX */}
           {activeTab === 'inbox' && (
             <div className="space-y-6 animate-fadeIn">
               
@@ -1170,7 +1450,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                           <a
                             href={`mailto:${msg.email}?subject=Cotización%20CYSOS%20ENERGY%20-%20${msg.service}`}
-                            className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-navy-800 text-slate-300 text-xs font-medium flex items-center gap-2 border border-slate-700 transition-colors"
+                            className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-medium flex items-center gap-2 border border-slate-700 transition-colors"
                           >
                             <Mail className="w-3.5 h-3.5 text-slate-400" />
                             <span>Enviar Email</span>
