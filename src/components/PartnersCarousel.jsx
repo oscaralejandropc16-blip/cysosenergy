@@ -68,7 +68,7 @@ export const PartnersCarousel = () => {
       </div>
 
       {/* CONTINUOUS INFINITE TICKER MARQUEE */}
-      <div className="relative w-full overflow-hidden py-4 border-y border-slate-800/80 bg-navy-900/60 backdrop-blur-md">
+      <div className="relative w-full overflow-hidden py-6 border-y border-slate-800/80 bg-navy-900/60 backdrop-blur-md">
         
         {/* Left and Right Fade Masks for smooth edge blending */}
         <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-36 bg-gradient-to-r from-navy-950 to-transparent z-20 pointer-events-none" />
@@ -79,13 +79,18 @@ export const PartnersCarousel = () => {
             <div
               key={`${partner.id}-${index}`}
               onClick={() => setSelectedClient(partner)}
-              className="flex-shrink-0 group/card bg-navy-900/90 hover:bg-navy-850 p-4 sm:p-5 rounded-2xl border border-slate-800 hover:border-gold-metallic/60 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-gold-glow flex items-center gap-4 min-w-[280px] sm:min-w-[320px]"
+              className="flex-shrink-0 group/card bg-navy-900/90 hover:bg-navy-850 p-4 sm:p-5 rounded-2xl border border-slate-800 hover:border-gold-metallic/60 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-gold-glow flex items-center gap-4 min-w-[320px] sm:min-w-[360px]"
             >
-              <div className="w-14 h-14 rounded-xl bg-navy-950 border border-slate-800 flex items-center justify-center p-2 flex-shrink-0 group-hover/card:border-gold-metallic/40 transition-colors">
+              {/* HIGH-CONTRAST WHITE BADGE FOR ALL BRAND LOGOS */}
+              <div className="w-24 sm:w-28 h-14 sm:h-16 rounded-xl bg-white/95 border border-white/90 flex items-center justify-center p-2.5 flex-shrink-0 shadow-lg group-hover/card:scale-105 group-hover/card:bg-white transition-all">
                 {partner.logoUrl ? (
-                  <img src={partner.logoUrl} alt={partner.name} className="max-w-full max-h-full object-contain filter brightness-110" />
+                  <img
+                    src={partner.logoUrl}
+                    alt={partner.name}
+                    className="w-full h-full object-contain filter drop-shadow-sm"
+                  />
                 ) : (
-                  <Building2 className="w-7 h-7 text-gold-400" />
+                  <Building2 className="w-7 h-7 text-navy-900" />
                 )}
               </div>
 
@@ -96,7 +101,7 @@ export const PartnersCarousel = () => {
                   </h4>
                 </div>
                 <p className="text-[11px] text-slate-300 truncate font-medium mt-0.5">{partner.sub}</p>
-                <span className="inline-block text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-gold-metallic/15 text-gold-400 border border-gold-metallic/30 mt-1">
+                <span className="inline-block text-[9px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-gold-metallic/15 text-gold-400 border border-gold-metallic/30 mt-1">
                   {partner.type}
                 </span>
               </div>
@@ -111,11 +116,11 @@ export const PartnersCarousel = () => {
           <div className="luxury-glass w-full max-w-lg rounded-3xl border border-gold-metallic/40 p-6 sm:p-8 space-y-6 shadow-2xl relative">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-navy-950 border border-gold-metallic/30 p-2 flex items-center justify-center">
+                <div className="w-24 h-16 rounded-2xl bg-white border border-white/80 p-2.5 flex items-center justify-center shadow-lg">
                   {selectedClient.logoUrl ? (
-                    <img src={selectedClient.logoUrl} alt={selectedClient.name} className="max-w-full max-h-full object-contain" />
+                    <img src={selectedClient.logoUrl} alt={selectedClient.name} className="w-full h-full object-contain" />
                   ) : (
-                    <Building2 className="w-8 h-8 text-gold-400" />
+                    <Building2 className="w-8 h-8 text-navy-900" />
                   )}
                 </div>
                 <div>

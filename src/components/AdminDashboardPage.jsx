@@ -883,11 +883,11 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       
                       <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                         <div className="flex items-center gap-3">
-                          <div className="w-16 h-12 rounded-xl bg-navy-950 border border-slate-700 flex items-center justify-center p-1.5 overflow-hidden flex-shrink-0 shadow-inner">
+                          <div className="w-24 h-14 rounded-xl bg-white/95 border border-white/90 flex items-center justify-center p-2 overflow-hidden flex-shrink-0 shadow-md">
                             {partner.logoUrl ? (
-                              <img src={partner.logoUrl} alt={partner.name} className="max-w-full max-h-full object-contain filter brightness-110" />
+                              <img src={partner.logoUrl} alt={partner.name} className="max-w-full max-h-full object-contain" />
                             ) : (
-                              <Building className="w-6 h-6 text-gold-400" />
+                              <Building className="w-6 h-6 text-navy-900" />
                             )}
                           </div>
                           <div>
