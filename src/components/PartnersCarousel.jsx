@@ -45,63 +45,61 @@ export const PartnersCarousel = () => {
   const marqueeItems = [...safePartners, ...safePartners, ...safePartners];
 
   return (
-    <section className="py-20 relative bg-navy-950 overflow-hidden border-b border-slate-800">
+    <section className="py-24 relative bg-navy-950 overflow-hidden border-b border-slate-800">
       
       {/* Background Decorative Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gold-metallic/5 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-navy-900 border border-gold-metallic/30 text-gold-400 text-xs font-extrabold uppercase tracking-wider mb-3 shadow-gold-glow">
-              <Award className="w-3.5 h-3.5 text-flame-500" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/30 text-gold-400 text-xs font-extrabold uppercase tracking-wider mb-3 shadow-gold-glow">
+              <Award className="w-4 h-4 text-flame-500" />
               <span>Clientes & Aliados Estratégicos</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
               Empresas que Confían en <span className="animate-gradient-text">CYSOS ENERGY</span>
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-300 font-light max-w-md">
+          <p className="text-sm text-slate-300 font-light max-w-md leading-relaxed">
             Trayectoria comprobada con corporaciones multinacionales, empresas mixtas y entes estatales de Venezuela.
           </p>
         </div>
       </div>
 
       {/* CONTINUOUS INFINITE TICKER MARQUEE */}
-      <div className="relative w-full overflow-hidden py-6 border-y border-slate-800/80 bg-navy-900/60 backdrop-blur-md">
+      <div className="relative w-full overflow-hidden py-8 border-y border-slate-800/80 bg-navy-900/60 backdrop-blur-md">
         
         {/* Left and Right Fade Masks for smooth edge blending */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-36 bg-gradient-to-r from-navy-950 to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-36 bg-gradient-to-l from-navy-950 to-transparent z-20 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-28 sm:w-44 bg-gradient-to-r from-navy-950 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-28 sm:w-44 bg-gradient-to-l from-navy-950 to-transparent z-20 pointer-events-none" />
 
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-5 items-center cursor-pointer">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 items-center cursor-pointer">
           {marqueeItems.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
               onClick={() => setSelectedClient(partner)}
-              className="flex-shrink-0 group/card bg-navy-900/90 hover:bg-navy-850 p-4 sm:p-5 rounded-2xl border border-slate-800 hover:border-gold-metallic/60 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-gold-glow flex items-center gap-4 min-w-[320px] sm:min-w-[360px]"
+              className="flex-shrink-0 group/card bg-navy-900/95 hover:bg-navy-850 p-5 sm:p-6 rounded-3xl border border-slate-800 hover:border-gold-metallic/60 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl flex items-center gap-5 min-w-[360px] sm:min-w-[420px]"
             >
-              {/* HIGH-CONTRAST WHITE BADGE FOR ALL BRAND LOGOS */}
-              <div className="w-24 sm:w-28 h-14 sm:h-16 rounded-xl bg-white/95 border border-white/90 flex items-center justify-center p-2.5 flex-shrink-0 shadow-lg group-hover/card:scale-105 group-hover/card:bg-white transition-all">
+              {/* EXTRA-LARGE HIGH-CONTRAST WHITE LOGO BADGE */}
+              <div className="w-32 sm:w-36 h-20 sm:h-24 rounded-2xl bg-white border border-white/90 flex items-center justify-center p-3 flex-shrink-0 shadow-xl group-hover/card:scale-105 transition-all">
                 {partner.logoUrl ? (
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
-                    className="w-full h-full object-contain filter drop-shadow-sm"
+                    className="w-full h-full object-contain filter drop-shadow-sm max-h-16"
                   />
                 ) : (
-                  <Building2 className="w-7 h-7 text-navy-900" />
+                  <Building2 className="w-10 h-10 text-navy-900" />
                 )}
               </div>
 
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h4 className="text-sm font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors">
-                    {partner.name}
-                  </h4>
-                </div>
-                <p className="text-[11px] text-slate-300 truncate font-medium mt-0.5">{partner.sub}</p>
-                <span className="inline-block text-[9px] font-extrabold uppercase px-2.5 py-0.5 rounded-full bg-gold-metallic/15 text-gold-400 border border-gold-metallic/30 mt-1">
+                <h4 className="text-base sm:text-lg font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors">
+                  {partner.name}
+                </h4>
+                <p className="text-xs text-slate-300 truncate font-medium mt-1">{partner.sub}</p>
+                <span className="inline-block text-[10px] font-extrabold uppercase px-3 py-1 rounded-full bg-gold-metallic/15 text-gold-400 border border-gold-metallic/30 mt-2">
                   {partner.type}
                 </span>
               </div>
@@ -116,11 +114,11 @@ export const PartnersCarousel = () => {
           <div className="luxury-glass w-full max-w-lg rounded-3xl border border-gold-metallic/40 p-6 sm:p-8 space-y-6 shadow-2xl relative">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
-                <div className="w-24 h-16 rounded-2xl bg-white border border-white/80 p-2.5 flex items-center justify-center shadow-lg">
+                <div className="w-32 h-20 rounded-2xl bg-white border border-white/90 p-3 flex items-center justify-center shadow-xl">
                   {selectedClient.logoUrl ? (
                     <img src={selectedClient.logoUrl} alt={selectedClient.name} className="w-full h-full object-contain" />
                   ) : (
-                    <Building2 className="w-8 h-8 text-navy-900" />
+                    <Building2 className="w-10 h-10 text-navy-900" />
                   )}
                 </div>
                 <div>
