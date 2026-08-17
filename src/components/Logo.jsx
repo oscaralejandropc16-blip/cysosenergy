@@ -1,6 +1,30 @@
 import React from 'react';
+import { useCms } from '../context/CmsContext';
 
 export const Logo = ({ className = "h-10", showText = true, isDark = true }) => {
+  let companyInfo = {};
+  try {
+    const cms = useCms();
+    if (cms && cms.companyInfo) {
+      companyInfo = cms.companyInfo;
+    }
+  } catch {
+    // If rendered outside CmsProvider fallback smoothly
+  }
+
+  // If user uploaded a custom logo image file in the CMS
+  if (companyInfo && companyInfo.logoUrl) {
+    return (
+      <div className={`flex items-center gap-3 select-none cursor-pointer group ${className}`}>
+        <img
+          src={companyInfo.logoUrl}
+          alt="CYSOS ENERGY"
+          className="h-10 w-auto object-contain max-w-[180px] filter drop-shadow-[0_4px_12px_rgba(249,115,22,0.3)] transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={`flex items-center gap-3 select-none cursor-pointer group ${className}`}>
       {/* SVG Icon matching CYSOS ENERGY Teardrop & Flame Logo */}
@@ -86,3 +110,5 @@ export const Logo = ({ className = "h-10", showText = true, isDark = true }) => 
     </div>
   );
 };
+
+export default Logo;

@@ -1281,6 +1281,70 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           {/* TAB 7: COMPANY & CONTACT INFO */}
           {activeTab === 'empresa' && (
             <div className="space-y-6 animate-fadeIn">
+              
+              {/* CYSOS ENERGY OFFICIAL LOGO CHANGER */}
+              <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/40 space-y-4 shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                  <div>
+                    <h3 className="text-base font-extrabold font-heading text-white flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-gold-400" />
+                      <span>Logo Oficial de CYSOS ENERGY (Barra Superior & Pie de Página)</span>
+                    </h3>
+                    <p className="text-xs text-slate-300 font-light mt-0.5">
+                      Cambia el logotipo principal de la empresa que aparece en el encabezado de toda la página web.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => openMediaPicker((url) => updateCompanyInfoText('logoUrl', url), 'image')}
+                      className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1.5"
+                    >
+                      <FolderOpen className="w-3.5 h-3.5" />
+                      <span>Elegir de la Biblioteca</span>
+                    </button>
+                    <label className="cursor-pointer px-3.5 py-2 rounded-xl bg-flame-600 hover:bg-flame-500 text-white text-xs font-extrabold flex items-center gap-1.5 shadow-flame-glow">
+                      <Upload className="w-3.5 h-3.5" />
+                      <span>Subir Logo desde mi PC</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload(e, (url) => updateCompanyInfoText('logoUrl', url))}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between p-4 bg-navy-950 rounded-2xl border border-slate-800">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-navy-900 rounded-xl border border-slate-700 flex items-center justify-center">
+                      <Logo showText={true} isDark={true} />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-white block">Vista Previa del Logo Actual</span>
+                      <span className="text-[11px] text-slate-400">
+                        {companyInfo.logoUrl ? 'Logo personalizado cargado' : 'Logo vectorial predeterminado'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {companyInfo.logoUrl && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        updateCompanyInfoText('logoUrl', '');
+                        triggerSaveNotification();
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 text-xs font-bold border border-slate-800"
+                    >
+                      Restaurar Logo Original
+                    </button>
+                  )}
+                </div>
+              </div>
+
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-5">
                 <h3 className="text-base font-extrabold font-heading text-white">Datos de Contacto & Corporativos</h3>
 
