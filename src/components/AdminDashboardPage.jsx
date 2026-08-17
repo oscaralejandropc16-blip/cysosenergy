@@ -8,6 +8,8 @@ import {
   Play, Eye, HelpCircle, Check, Upload, FolderOpen, X, CheckCircle, AlertTriangle
 } from 'lucide-react';
 
+import { uploadToCloudinary, CLOUDINARY_CONFIG } from '../services/cloudinaryService';
+
 export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const { 
     isLoggedIn, loginAdmin, logoutAdmin,
@@ -27,6 +29,10 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [saveToast, setSaveToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('¡Cambio guardado y sincronizado con la web pública!');
+
+  // Cloudinary Upload Progress State
+  const [uploadingStatus, setUploadingStatus] = useState({ isUploading: false, progress: 0, fileName: '' });
 
   // WordPress-like Media Library Selector Modal State
   const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
@@ -37,9 +43,12 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const [deleteConfirm, setDeleteConfirm] = useState(null); // { type: 'media'|'partner'|'library'|'message', id: string, title: string }
 
   // Helper to trigger a visual saved confirmation
-  const triggerSaveNotification = () => {
+  const triggerSaveNotification = (customMsg = '¡Cambio guardado y sincronizado con la web pública!') => {
+    setToastMessage(customMsg);
     setSaveToast(true);
-    setTimeout(() => setSaveToast(false), 2500);
+    setTimeout(() => {
+      setSaveToast(false);
+    }, 3500);
   };
 
   // New Media Form State
@@ -78,28 +87,57 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     }
   };
 
-  // Handle uploading a file from PC directly to Media Library and assigning it
-  const handleFileUpload = (e, targetCallback = null) => {
+  // Handle uploading a file directly to Cloudinary (25 GB Cloud Storage)
+  const handleFileUpload = async (e, targetCallback = null) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
 
     const isVideo = file.type.startsWith('video/');
-    const reader = new FileReader();
-    reader.onload = (uploadEvent) => {
-      const dataUrl = uploadEvent.target.result;
+    setUploadingStatus({ isUploading: true, progress: 5, fileName: file.name });
+
+    try {
+      // 1. Upload directly to Cloudinary Cloud CDN (25 GB permanent storage)
+      const cloudinaryResult = await uploadToCloudinary(file, (percent) => {
+        setUploadingStatus({ isUploading: true, progress: percent, fileName: file.name });
+      });
+
+      const permanentCloudUrl = cloudinaryResult.secure_url || cloudinaryResult.url;
+
+      // 2. Add to CMS Media Library with the permanent Cloudinary CDN URL
       addMediaToLibrary({
         name: file.name,
         type: isVideo ? 'video' : 'image',
-        url: dataUrl,
-        tag: 'Subido desde PC'
+        url: permanentCloudUrl,
+        tag: 'Nube Cloudinary 25GB'
       });
 
+      // 3. Assign to the requested element (hero, partner, gallery, etc.)
       if (targetCallback) {
-        targetCallback(dataUrl);
+        targetCallback(permanentCloudUrl);
       }
-      triggerSaveNotification();
-    };
-    reader.readAsDataURL(file);
+
+      setUploadingStatus({ isUploading: false, progress: 100, fileName: '' });
+      triggerSaveNotification(`✅ ¡${isVideo ? 'Video' : 'Foto'} subido y optimizado en la Nube de Cloudinary!`);
+    } catch (error) {
+      console.warn('Fallo en Cloudinary, usando respaldo local:', error);
+      // Fallback to local DataURL if offline
+      const reader = new FileReader();
+      reader.onload = (uploadEvent) => {
+        const dataUrl = uploadEvent.target.result;
+        addMediaToLibrary({
+          name: file.name,
+          type: isVideo ? 'video' : 'image',
+          url: dataUrl,
+          tag: 'Respaldo Local'
+        });
+        if (targetCallback) {
+          targetCallback(dataUrl);
+        }
+        setUploadingStatus({ isUploading: false, progress: 100, fileName: '' });
+        triggerSaveNotification('¡Archivo cargado localmente!');
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const openMediaPicker = (callback, filterType = 'all') => {
@@ -240,11 +278,46 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
   return (
     <div className="min-h-screen bg-navy-950 text-white flex flex-col font-sans relative">
       
+      {/* CLOUDINARY UPLOADING PROGRESS OVERLAY */}
+      {uploadingStatus.isUploading && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn">
+          <div className="luxury-glass w-full max-w-md rounded-3xl border border-gold-metallic/50 p-6 sm:p-8 text-center space-y-6 shadow-2xl">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-flame-500 via-orange-600 to-gold-600 text-white flex items-center justify-center mx-auto shadow-flame-glow animate-pulse">
+              <Upload className="w-8 h-8 animate-bounce" />
+            </div>
+
+            <div className="space-y-2">
+              <h3 className="text-lg font-extrabold font-heading text-white">Subiendo a la Nube (Cloudinary 25 GB)</h3>
+              <p className="text-xs text-gold-400 font-bold truncate max-w-xs mx-auto">
+                {uploadingStatus.fileName}
+              </p>
+              <p className="text-[11px] text-slate-300 font-light">
+                Comprimiendo y optimizando archivo para carga instantánea en teléfonos y computadoras...
+              </p>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="space-y-2">
+              <div className="w-full h-3 bg-navy-900 rounded-full overflow-hidden border border-slate-800 p-0.5">
+                <div 
+                  className="h-full bg-gradient-to-r from-flame-500 via-orange-500 to-gold-500 rounded-full transition-all duration-300 shadow-flame-glow"
+                  style={{ width: `${uploadingStatus.progress}%` }}
+                />
+              </div>
+              <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                <span>Almacenamiento Cloudinary CDN</span>
+                <span className="font-bold text-white">{uploadingStatus.progress}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* SUCCESS TOAST NOTIFICATION */}
       {saveToast && (
         <div className="fixed bottom-6 right-6 z-[130] bg-emerald-600 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 animate-fadeIn border border-emerald-400">
           <Check className="w-5 h-5" />
-          <span className="text-xs font-extrabold">¡Cambio guardado y sincronizado con la web pública!</span>
+          <span className="text-xs font-extrabold">{toastMessage}</span>
         </div>
       )}
 
