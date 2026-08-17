@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo';
-import { Menu, X, PhoneCall, ChevronRight } from 'lucide-react';
+import { Menu, X, PhoneCall, ChevronRight, Sparkles } from 'lucide-react';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,9 +8,9 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 30);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -25,28 +25,28 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-4 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 py-3 sm:py-4 transition-all duration-500">
       <div
-        className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 ${
+        className={`max-w-7xl mx-auto rounded-2xl sm:rounded-3xl transition-all duration-500 relative ${
           isScrolled
-            ? 'luxury-glass py-3 px-6 shadow-luxury'
-            : 'bg-navy-900/80 backdrop-blur-md py-4 px-6 border border-white/10'
+            ? 'bg-navy-950/75 backdrop-blur-2xl py-2.5 px-5 sm:px-7 border border-gold-metallic/30 shadow-[0_16px_40px_rgba(0,0,0,0.6)]'
+            : 'bg-navy-950/20 backdrop-blur-xl py-3.5 px-5 sm:px-7 border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:bg-navy-950/35 hover:border-white/25'
         }`}
       >
         <div className="flex items-center justify-between">
           
           {/* Logo */}
-          <a href="#inicio">
+          <a href="#inicio" className="flex-shrink-0 transition-transform duration-300 hover:scale-102">
             <Logo isDark={true} />
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-1.5">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-2 text-xs xl:text-sm font-semibold text-slate-300 hover:text-gold-400 hover:bg-white/5 rounded-xl transition-all duration-200"
+                className="px-3 py-1.5 text-xs xl:text-[13px] font-semibold text-slate-200 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 tracking-wide"
               >
                 {link.name}
               </a>
@@ -57,7 +57,7 @@ export const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-3">
             <a
               href="#contacto"
-              className="px-5 py-2.5 text-xs font-bold text-white rounded-xl bg-gradient-to-r from-flame-500 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2"
+              className="px-5 py-2.5 text-xs font-extrabold text-white rounded-xl bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-102 flex items-center gap-2"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span>Solicitar Cotización</span>
@@ -68,10 +68,10 @@ export const Navbar = () => {
           <div className="flex lg:hidden items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl bg-navy-800 text-slate-300 hover:text-white border border-slate-700"
+              className="p-2 rounded-xl bg-white/10 backdrop-blur-md text-slate-200 hover:text-white border border-white/15 transition-colors"
               aria-label="Abrir menú"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
@@ -79,25 +79,25 @@ export const Navbar = () => {
 
         {/* Mobile Dropdown Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pt-4 border-t border-slate-800 flex flex-col space-y-2 animate-fadeIn">
+          <div className="lg:hidden mt-3 pt-3 border-t border-white/10 flex flex-col space-y-1.5 animate-fadeIn">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="px-4 py-2.5 text-sm font-medium text-slate-300 hover:text-gold-400 hover:bg-white/5 rounded-xl flex items-center justify-between"
+                className="px-4 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/10 rounded-xl flex items-center justify-between transition-colors"
               >
                 <span>{link.name}</span>
-                <ChevronRight className="w-4 h-4 text-slate-500" />
+                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
               </a>
             ))}
             <div className="pt-2">
               <a
                 href="#contacto"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full py-3 text-center text-xs font-bold text-white bg-gradient-to-r from-flame-500 to-gold-600 rounded-xl shadow-flame-glow flex items-center justify-center gap-2"
+                className="w-full py-2.5 text-center text-xs font-extrabold text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 rounded-xl shadow-flame-glow flex items-center justify-center gap-2"
               >
-                <PhoneCall className="w-4 h-4" />
+                <PhoneCall className="w-3.5 h-3.5" />
                 <span>Solicitar Cotización Técnica</span>
               </a>
             </div>
@@ -107,3 +107,5 @@ export const Navbar = () => {
     </header>
   );
 };
+
+export default Navbar;
