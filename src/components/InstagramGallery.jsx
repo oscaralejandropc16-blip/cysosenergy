@@ -81,10 +81,10 @@ export const InstagramGallery = () => {
                 href="https://instagram.com/cysosenergy/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-br from-flame-500 via-orange-500 to-gold-500 shadow-gold-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center"
+                className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-br from-flame-500 via-orange-500 to-gold-500 shadow-gold-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center overflow-hidden"
               >
-                <div className="w-full h-full rounded-full bg-navy-950 flex items-center justify-center p-2 border border-navy-900">
-                  <Logo showText={false} className="w-10 h-10" />
+                <div className="w-full h-full rounded-full bg-navy-950 flex items-center justify-center p-2.5 border border-navy-900 overflow-hidden">
+                  <Logo showText={false} className="w-10 h-10 flex items-center justify-center" />
                 </div>
               </a>
 

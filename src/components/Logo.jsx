@@ -12,8 +12,8 @@ export const Logo = ({ className = "h-12 sm:h-14", showText = true, isDark = tru
     // If rendered outside CmsProvider fallback smoothly
   }
 
-  // If user uploaded a custom logo image file in the CMS
-  if (companyInfo && companyInfo.logoUrl) {
+  // If user uploaded a custom logo image file AND we need to show the full horizontal logo
+  if (companyInfo && companyInfo.logoUrl && showText) {
     return (
       <div className={`flex items-center gap-3 select-none cursor-pointer group ${className}`}>
         <img
@@ -25,10 +25,11 @@ export const Logo = ({ className = "h-12 sm:h-14", showText = true, isDark = tru
     );
   }
 
+  // If only showing the icon/avatar (showText: false) or default full vector logo
   return (
     <div className={`flex items-center gap-3 select-none cursor-pointer group ${className}`}>
       {/* SVG Icon matching CYSOS ENERGY Teardrop & Flame Logo with High-Contrast Chrome Sheen */}
-      <div className="relative w-11 h-11 sm:w-12 sm:h-12 flex-shrink-0">
+      <div className="relative w-11 h-11 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
         <svg
           viewBox="0 0 120 140"
           fill="none"
