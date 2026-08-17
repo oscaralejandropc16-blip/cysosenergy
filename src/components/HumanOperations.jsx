@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Users, ShieldCheck, Award, Sparkles, Play, X } from 'lucide-react';
 
 export const HumanOperations = () => {
   const [activePhoto, setActivePhoto] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsVideoOpen(false);
+      }
+    };
+    if (isVideoOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isVideoOpen]);
 
   const gallery = [
     {
@@ -58,67 +74,69 @@ export const HumanOperations = () => {
                 alt={gallery[activePhoto].title}
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-[0.9]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-transparent" />
-              
-              <div className="absolute bottom-6 left-6 right-6 space-y-2">
-                <span className="px-3 py-1 rounded-full bg-flame-500 text-white text-[10px] font-extrabold uppercase tracking-wider">
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent pointer-events-none" />
+
+              {/* Tag Badge */}
+              <div className="absolute top-4 left-4 z-10">
+                <span className="px-3.5 py-1.5 rounded-full bg-navy-950/80 backdrop-blur-md border border-gold-metallic/40 text-gold-400 text-xs font-bold uppercase tracking-wider shadow-lg">
                   {gallery[activePhoto].category}
                 </span>
-                <h3 className="text-2xl font-extrabold font-heading text-white">
+              </div>
+
+              {/* Play Video Trigger Button */}
+              <button
+                onClick={() => setIsVideoOpen(true)}
+                className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-gradient-to-r from-flame-500 to-gold-600 text-white flex items-center justify-center shadow-flame-glow hover:scale-110 transition-transform duration-300 group/btn z-10"
+                aria-label="Reproducir video de operaciones"
+              >
+                <Play className="w-7 h-7 fill-current translate-x-0.5" />
+              </button>
+
+              {/* Caption Overlay */}
+              <div className="absolute bottom-6 left-6 right-6 z-10 space-y-2">
+                <h3 className="text-xl font-bold font-heading text-white">
                   {gallery[activePhoto].title}
                 </h3>
-                <p className="text-xs text-slate-300 font-light leading-relaxed max-w-xl">
+                <p className="text-xs sm:text-sm text-slate-300 font-light max-w-xl">
                   {gallery[activePhoto].desc}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Thumbnails & Video Selector */}
+          {/* Interactive Thumbnails Selector List */}
           <div className="lg:col-span-5 space-y-4">
-            <h3 className="text-base font-bold font-heading text-white mb-2 flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-gold-400" />
-              <span>Imágenes y Video Registrados en Campo</span>
-            </h3>
-
-            {/* Video Special Card Trigger */}
-            <div
-              onClick={() => setIsVideoOpen(true)}
-              className="p-4 rounded-2xl cursor-pointer transition-all duration-300 flex items-center gap-4 border bg-gradient-to-r from-flame-500/20 to-gold-600/20 border-flame-500/40 hover:border-gold-400 shadow-flame-glow group"
-            >
-              <div className="relative w-20 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-black">
-                <img src="/images/IMG_7549.jpg" alt="Video thumb" className="w-full h-full object-cover opacity-75" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Play className="w-6 h-6 fill-white text-white group-hover:scale-110 transition-transform" />
-                </div>
-              </div>
-              <div className="space-y-1">
-                <span className="text-[10px] font-extrabold text-gold-400 uppercase tracking-wider">🎥 Video Registrado en Campo</span>
-                <h4 className="text-xs font-bold text-white">Ver Maniobra de Operación en Video</h4>
-                <p className="text-[11px] text-slate-300 font-light">Grabación real de inyección y bombeo de fluidos.</p>
-              </div>
-            </div>
-
-            {/* Photo Cards */}
-            {gallery.map((item, idx) => (
+            {gallery.map((item, index) => (
               <div
-                key={idx}
-                onClick={() => setActivePhoto(idx)}
-                className={`p-3.5 rounded-2xl cursor-pointer transition-all duration-300 flex items-center gap-4 border ${
-                  activePhoto === idx
-                    ? 'luxury-glass border-gold-metallic shadow-gold-glow scale-[1.02]'
-                    : 'bg-navy-900/60 border-slate-800 hover:border-slate-700 hover:bg-navy-900'
+                key={index}
+                onClick={() => setActivePhoto(index)}
+                className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center gap-4 ${
+                  activePhoto === index
+                    ? 'bg-navy-900 border-gold-metallic/60 shadow-gold-glow translate-x-2'
+                    : 'bg-navy-900/40 border-slate-800 hover:border-slate-700 hover:bg-navy-900/70'
                 }`}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-20 h-16 rounded-xl object-cover flex-shrink-0"
-                />
-                <div className="space-y-1">
-                  <span className="text-[10px] font-bold text-gold-400 uppercase">{item.category}</span>
-                  <h4 className="text-xs font-bold text-white line-clamp-1">{item.title}</h4>
-                  <p className="text-[11px] text-slate-400 line-clamp-1 font-light">{item.desc}</p>
+                <div className="relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border border-slate-700">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                  {activePhoto === index && (
+                    <div className="absolute inset-0 bg-gold-500/20" />
+                  )}
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-gold-400 block mb-1">
+                    {item.category}
+                  </span>
+                  <h4 className="text-sm font-bold text-white truncate">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-slate-400 font-light truncate mt-1">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -126,54 +144,56 @@ export const HumanOperations = () => {
 
         </div>
 
-        {/* Corporate Values Pillars */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="luxury-card p-6 rounded-2xl border border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-flame-500/20 border border-flame-500/40 flex items-center justify-center text-flame-500">
-              <Users className="w-5 h-5" />
+        {/* Operational Highlights Metrics */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Especialistas Certificados', value: '100%', sub: 'Ingenieros & Técnicos' },
+            { label: 'Normas SI-HO-S', value: 'ISO 9001', sub: 'Certificación HSE' },
+            { label: 'Disponibilidad de Flota', value: '24/7/365', sub: 'Respuesta Inmediata' },
+            { label: 'Cobertura Nacional', value: '3 Cuencas', sub: 'Oriente, Occidente y Sur' }
+          ].map((stat, idx) => (
+            <div key={idx} className="luxury-glass p-5 rounded-2xl border border-slate-800 text-center space-y-1">
+              <div className="text-xl sm:text-2xl font-black font-heading text-white">
+                {stat.value}
+              </div>
+              <div className="text-xs font-bold text-gold-400">{stat.label}</div>
+              <div className="text-[10px] text-slate-400">{stat.sub}</div>
             </div>
-            <h4 className="text-base font-bold font-heading text-white">Formación Técnica Continua</h4>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">
-              Capacitación constante en reología de crudos, normativas de pozo y estándares de calidad para todo el equipo operativo.
-            </p>
-          </div>
-
-          <div className="luxury-card p-6 rounded-2xl border border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-gold-metallic/20 border border-gold-metallic/40 flex items-center justify-center text-gold-400">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <h4 className="text-base font-bold font-heading text-white">Cultura HSE en Campo</h4>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">
-              Prioridad absoluta en el cuidado de la salud, seguridad del trabajador y preservación del entorno ambiental en cada maniobra.
-            </p>
-          </div>
-
-          <div className="luxury-card p-6 rounded-2xl border border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
-              <Award className="w-5 h-5" />
-            </div>
-            <h4 className="text-base font-bold font-heading text-white">Desarrollo Sostenible</h4>
-            <p className="text-xs text-slate-300 font-light leading-relaxed">
-              Compromiso técnico y social en las áreas de influencia directa de las cuencas petroleras donde prestamos servicios.
-            </p>
-          </div>
+          ))}
         </div>
 
       </div>
 
-      {/* GALLERY VIDEO MODAL */}
+      {/* GALLERY VIDEO MODAL WITH HIGH-Z-INDEX BACKDROP AND EASY CLOSE BUTTON */}
       {isVideoOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy-950/95 backdrop-blur-xl animate-fadeIn">
-          <div className="luxury-glass w-full max-w-4xl rounded-3xl border border-gold-metallic/40 overflow-hidden relative shadow-2xl">
-            
+        <div 
+          onClick={() => setIsVideoOpen(false)}
+          className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
+        >
+          {/* Floating Close Button Top Right */}
+          <button
+            onClick={() => setIsVideoOpen(false)}
+            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-extrabold text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
+            title="Cerrar Video (Esc)"
+          >
+            <X className="w-5 h-5" />
+            <span className="hidden sm:inline">Cerrar Video (Esc)</span>
+          </button>
+
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="luxury-glass w-full max-w-4xl rounded-3xl border border-gold-metallic/40 overflow-hidden relative shadow-2xl cursor-default"
+          >
             <div className="flex items-center justify-between p-4 bg-navy-950 border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <Play className="w-5 h-5 text-flame-500 fill-flame-500" />
-                <h3 className="font-heading font-bold text-white text-base">CYSOS ENERGY - Video de Maniobra Operativa</h3>
+                <h3 className="font-heading font-bold text-white text-sm sm:text-base">
+                  CYSOS ENERGY - Video de Maniobra Operativa en Campo
+                </h3>
               </div>
               <button
                 onClick={() => setIsVideoOpen(false)}
-                className="p-2 rounded-xl bg-navy-850 text-slate-400 hover:text-white"
+                className="p-2 rounded-xl bg-navy-850 hover:bg-red-950 text-slate-300 hover:text-white transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -189,7 +209,6 @@ export const HumanOperations = () => {
                 <source src="/videos/IMG_7557.mp4" type="video/mp4" />
               </video>
             </div>
-
           </div>
         </div>
       )}
@@ -197,3 +216,5 @@ export const HumanOperations = () => {
     </section>
   );
 };
+
+export default HumanOperations;

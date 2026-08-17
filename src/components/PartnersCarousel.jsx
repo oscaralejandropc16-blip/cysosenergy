@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Award, ShieldCheck, Sparkles, ChevronRight, X, ExternalLink, Building2 } from 'lucide-react';
 
 export const PartnersCarousel = () => {
   const { partners } = useCms();
   const [selectedClient, setSelectedClient] = useState(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedClient(null);
+      }
+    };
+    if (selectedClient) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedClient]);
 
   const safePartners = Array.isArray(partners) && partners.length > 0 ? partners : [
     {
@@ -110,8 +126,24 @@ export const PartnersCarousel = () => {
 
       {/* INTERACTIVE CLIENT DETAIL MODAL */}
       {selectedClient && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy-950/90 backdrop-blur-xl animate-fadeIn">
-          <div className="luxury-glass w-full max-w-lg rounded-3xl border border-gold-metallic/40 p-6 sm:p-8 space-y-6 shadow-2xl relative">
+        <div 
+          onClick={() => setSelectedClient(null)}
+          className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
+        >
+          {/* Floating Close Button Top Right */}
+          <button
+            onClick={() => setSelectedClient(null)}
+            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-extrabold text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
+            title="Cerrar (Esc)"
+          >
+            <X className="w-5 h-5" />
+            <span className="hidden sm:inline">Cerrar (Esc)</span>
+          </button>
+
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="luxury-glass w-full max-w-lg rounded-3xl border border-gold-metallic/40 p-6 sm:p-8 space-y-6 shadow-2xl relative cursor-default"
+          >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-4">
                 <div className="w-32 h-20 rounded-2xl bg-white border border-white/90 p-3 flex items-center justify-center shadow-xl">
@@ -128,7 +160,7 @@ export const PartnersCarousel = () => {
               </div>
               <button
                 onClick={() => setSelectedClient(null)}
-                className="p-2 rounded-xl bg-navy-900 text-slate-400 hover:text-white"
+                className="p-2 rounded-xl bg-navy-900 hover:bg-red-950 text-slate-300 hover:text-white transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>

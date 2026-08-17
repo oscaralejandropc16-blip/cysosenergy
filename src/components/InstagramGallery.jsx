@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
 import { Instagram, ExternalLink, Heart, MessageCircle, Play, X } from 'lucide-react';
@@ -6,6 +6,22 @@ import { Instagram, ExternalLink, Heart, MessageCircle, Play, X } from 'lucide-r
 export const InstagramGallery = () => {
   const { mediaItems } = useCms();
   const [activeVideoModal, setActiveVideoModal] = useState(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveVideoModal(null);
+      }
+    };
+    if (activeVideoModal) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [activeVideoModal]);
 
   const displayedPosts = mediaItems && mediaItems.length > 0 ? mediaItems : [
     {
@@ -188,16 +204,34 @@ export const InstagramGallery = () => {
 
       {/* Real Video Player Modal */}
       {activeVideoModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy-950/95 backdrop-blur-xl animate-fadeIn">
-          <div className="luxury-glass w-full max-w-4xl rounded-3xl border border-gold-metallic/40 overflow-hidden relative shadow-2xl">
+        <div 
+          onClick={() => setActiveVideoModal(null)}
+          className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
+        >
+          {/* Floating Close Button Top Right */}
+          <button
+            onClick={() => setActiveVideoModal(null)}
+            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-extrabold text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
+            title="Cerrar Video (Esc)"
+          >
+            <X className="w-5 h-5" />
+            <span className="hidden sm:inline">Cerrar Video (Esc)</span>
+          </button>
+
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="luxury-glass w-full max-w-4xl rounded-3xl border border-gold-metallic/40 overflow-hidden relative shadow-2xl cursor-default"
+          >
             <div className="flex items-center justify-between p-4 bg-navy-950 border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <Play className="w-5 h-5 text-flame-500 fill-flame-500" />
-                <h3 className="font-heading font-bold text-white text-base">{activeVideoModal.title || 'CYSOS ENERGY - Operaciones en Campo @cysosenergy'}</h3>
+                <h3 className="font-heading font-bold text-white text-sm sm:text-base">
+                  {activeVideoModal.title || 'CYSOS ENERGY - Operaciones en Campo @cysosenergy'}
+                </h3>
               </div>
               <button
                 onClick={() => setActiveVideoModal(null)}
-                className="p-2 rounded-xl bg-navy-850 text-slate-400 hover:text-white"
+                className="p-2 rounded-xl bg-navy-850 hover:bg-red-950 text-slate-300 hover:text-white transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
