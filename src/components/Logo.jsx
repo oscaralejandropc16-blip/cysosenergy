@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCms } from '../context/CmsContext';
 
-export const Logo = ({ className = "h-10", showText = true, isDark = true }) => {
+export const Logo = ({ className = "h-12 sm:h-14", showText = true, isDark = true, imageClassName = "h-12 sm:h-14 max-h-16" }) => {
   let companyInfo = {};
   try {
     const cms = useCms();
@@ -19,7 +19,7 @@ export const Logo = ({ className = "h-10", showText = true, isDark = true }) => 
         <img
           src={companyInfo.logoUrl}
           alt="CYSOS ENERGY"
-          className="h-10 w-auto object-contain max-w-[180px] filter drop-shadow-[0_4px_12px_rgba(249,115,22,0.3)] transition-transform duration-300 group-hover:scale-105"
+          className={`${imageClassName} w-auto object-contain max-w-[320px] filter drop-shadow-[0_4px_16px_rgba(249,115,22,0.35)] transition-transform duration-300 group-hover:scale-105`}
         />
       </div>
     );
@@ -28,7 +28,7 @@ export const Logo = ({ className = "h-10", showText = true, isDark = true }) => 
   return (
     <div className={`flex items-center gap-3 select-none cursor-pointer group ${className}`}>
       {/* SVG Icon matching CYSOS ENERGY Teardrop & Flame Logo */}
-      <div className="relative w-10 h-10 flex-shrink-0">
+      <div className="relative w-11 h-11 sm:w-12 sm:h-12 flex-shrink-0">
         <svg
           viewBox="0 0 120 140"
           fill="none"
@@ -99,10 +99,10 @@ export const Logo = ({ className = "h-10", showText = true, isDark = true }) => 
       {/* Corporate Typography */}
       {showText && (
         <div className="flex flex-col leading-none">
-          <span className={`font-heading font-black tracking-wider text-xl ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-gold-metallic transition-colors duration-200`}>
+          <span className={`font-heading font-black tracking-wider text-xl sm:text-2xl ${isDark ? 'text-white' : 'text-slate-900'} group-hover:text-gold-metallic transition-colors duration-200`}>
             CYSOS
           </span>
-          <span className="font-heading font-extrabold text-[11px] tracking-[0.22em] text-flame-500">
+          <span className="font-heading font-extrabold text-[11px] sm:text-xs tracking-[0.22em] text-flame-500">
             ENERGY, C.A.
           </span>
         </div>

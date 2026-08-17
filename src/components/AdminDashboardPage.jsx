@@ -1317,15 +1317,15 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-navy-950 rounded-2xl border border-slate-800">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-navy-900 rounded-xl border border-slate-700 flex items-center justify-center">
-                      <Logo showText={true} isDark={true} />
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-navy-950 rounded-2xl border border-slate-800 gap-4">
+                  <div className="flex items-center gap-5">
+                    <div className="p-4 bg-navy-900 rounded-2xl border border-gold-metallic/30 flex items-center justify-center min-w-[220px] min-h-[70px] shadow-inner">
+                      <Logo showText={true} isDark={true} className="h-14 sm:h-16" imageClassName="h-14 sm:h-16 max-h-20" />
                     </div>
                     <div>
-                      <span className="text-xs font-bold text-white block">Vista Previa del Logo Actual</span>
-                      <span className="text-[11px] text-slate-400">
-                        {companyInfo.logoUrl ? 'Logo personalizado cargado' : 'Logo vectorial predeterminado'}
+                      <span className="text-sm font-bold text-white block">Vista Previa del Logo Actual</span>
+                      <span className="text-xs text-slate-400">
+                        {companyInfo.logoUrl ? '✅ Logo personalizado activo' : '✨ Logo vectorial prémium predeterminado'}
                       </span>
                     </div>
                   </div>
