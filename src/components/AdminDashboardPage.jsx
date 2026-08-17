@@ -485,13 +485,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           <div className="luxury-glass p-3 rounded-2xl border border-slate-800 space-y-1">
             {[
               { id: 'hero', label: '1. Portada & Video Inicial', icon: Video, count: null, help: 'El video y textos que abren la web' },
-              { id: 'library', label: '2. 📁 Biblioteca de Medios', icon: FolderOpen, count: safeMediaLibrary.length, help: 'Fotos y videos guardados' },
+              { id: 'library', label: '2. Biblioteca de Medios', icon: FolderOpen, count: safeMediaLibrary.length, help: 'Fotos y videos guardados en la nube' },
               { id: 'partners', label: '3. Clientes & Logos', icon: Layers, count: safePartners.length, help: 'Carrusel de empresas asociadas' },
-              { id: 'media', label: '4. Fotos & Videos de Campo', icon: ImageIcon, count: safeMediaItems.length, help: 'Galería de fotos de Instagram' },
+              { id: 'media', label: '4. Galería de Operaciones', icon: ImageIcon, count: safeMediaItems.length, help: 'Registro fotográfico y audiovisual' },
               { id: 'services', label: '5. Servicios & Divisiones', icon: Briefcase, count: safeServices.length, help: 'Las 4 divisiones operativas' },
-              { id: 'kpis', label: '6. Cifras & Métricas (+450)', icon: Sliders, count: safeKpis.length, help: 'Números que se mueven en la web' },
-              { id: 'empresa', label: '7. Misión, Visión & Contacto', icon: FileText, count: null, help: 'Teléfonos, emails y dirección' },
-              { id: 'inbox', label: '8. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Mensajes enviados por clientes' }
+              { id: 'kpis', label: '6. Cifras & Métricas (+450)', icon: Sliders, count: safeKpis.length, help: 'Indicadores operacionales clave' },
+              { id: 'empresa', label: '7. Misión, Visión & Contacto', icon: FileText, count: null, help: 'Teléfonos, correos y dirección fiscal' },
+              { id: 'inbox', label: '8. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Solicitudes recibidas de clientes' }
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -587,8 +587,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                      <label className="text-xs font-extrabold text-white block">
-                        📹 Video de Fondo de la Portada:
+                      <label className="text-xs font-extrabold text-white flex items-center gap-1.5 mb-0.5">
+                        <Video className="w-3.5 h-3.5 text-flame-500" />
+                        <span>Video de Fondo de la Portada:</span>
                       </label>
                       <span className="text-[11px] text-slate-400 font-light">Archivo de video MP4 que se reproduce automáticamente</span>
                     </div>
@@ -621,8 +622,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                      <label className="text-xs font-extrabold text-white block">
-                        🖼️ Foto de Portada / Respaldo:
+                      <label className="text-xs font-extrabold text-white flex items-center gap-1.5 mb-0.5">
+                        <ImageIcon className="w-3.5 h-3.5 text-gold-400" />
+                        <span>Foto de Portada / Respaldo:</span>
                       </label>
                       <span className="text-[11px] text-slate-400 font-light">Imagen que se muestra mientras carga el video</span>
                     </div>
@@ -662,8 +664,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                 {/* TEXT FIELDS */}
                 <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
-                  <label className="text-xs font-extrabold text-white block">
-                    ✍️ Título Principal de la Portada:
+                  <label className="text-xs font-extrabold text-white flex items-center gap-1.5">
+                    <Edit3 className="w-3.5 h-3.5 text-flame-500" />
+                    <span>Título Principal de la Portada:</span>
                   </label>
                   
                   <div className="grid sm:grid-cols-3 gap-3">
@@ -709,8 +712,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </div>
 
                 <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-2">
-                  <label className="text-xs font-extrabold text-white block">
-                    📝 Subtítulo / Párrafo Explicativo:
+                  <label className="text-xs font-extrabold text-white flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5 text-gold-400" />
+                    <span>Subtítulo / Párrafo Explicativo:</span>
                   </label>
                   <textarea
                     rows="2"
@@ -724,8 +728,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </div>
 
                 <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
-                  <label className="text-xs font-extrabold text-white block">
-                    🏛️ Los 4 Botones / Especialidades de la Portada:
+                  <label className="text-xs font-extrabold text-white flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-flame-500" />
+                    <span>Pilares Estratégicos de la Portada:</span>
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <div>
@@ -825,8 +830,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         ) : (
                           <img src={item.url} alt={item.name} className="w-full h-full object-contain p-2 bg-navy-900/50" />
                         )}
-                        <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded bg-black/80 text-[9px] font-mono text-gold-400">
-                          {item.type === 'video' ? '🎥 Video' : '🖼️ Imagen'}
+                        <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded bg-black/80 text-[9px] font-mono text-gold-400 flex items-center gap-1">
+                          {item.type === 'video' ? <Video className="w-2.5 h-2.5" /> : <ImageIcon className="w-2.5 h-2.5" />}
+                          <span>{item.type === 'video' ? 'Video' : 'Imagen'}</span>
                         </span>
                       </div>
 
@@ -986,9 +992,11 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         </button>
                       </div>
 
-                      {/* Prominent Logo Changer Box */}
                       <div className="p-3 rounded-xl bg-navy-900 border border-slate-800 space-y-2">
-                        <span className="text-[11px] font-bold text-slate-300 block">🖼️ Logo del Cliente:</span>
+                        <span className="text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
+                          <ImageIcon className="w-3.5 h-3.5 text-gold-400" />
+                          <span>Logo del Cliente:</span>
+                        </span>
                         <div className="flex items-center gap-2">
                           <button
                             type="button"
@@ -1161,8 +1169,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   <div key={item.id} className="luxury-glass p-4 rounded-2xl border border-slate-800 space-y-3">
                     <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-slate-800 shadow-md">
                       <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
-                      <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-400">
-                        {item.type === 'video' ? '🎥 Video' : '📷 Foto'}
+                      <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-400 flex items-center gap-1">
+                        {item.type === 'video' ? <Video className="w-3 h-3" /> : <ImageIcon className="w-3 h-3" />}
+                        <span>{item.type === 'video' ? 'Video' : 'Fotografía'}</span>
                       </span>
                     </div>
 
@@ -1397,8 +1406,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     </div>
                     <div>
                       <span className="text-sm font-bold text-white block">Vista Previa del Logo Actual</span>
-                      <span className="text-xs text-slate-400">
-                        {companyInfo.logoUrl ? '✅ Logo personalizado activo' : '✨ Logo vectorial prémium predeterminado'}
+                      <span className="text-xs text-slate-400 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>{companyInfo.logoUrl ? 'Logo corporativo activo' : 'Logo vectorial prémium'}</span>
                       </span>
                     </div>
                   </div>

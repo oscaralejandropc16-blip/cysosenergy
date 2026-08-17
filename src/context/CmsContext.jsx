@@ -198,7 +198,7 @@ const INITIAL_MEDIA = [
     title: 'Well Testing & Pruebas de Pozo',
     type: 'photo',
     url: '/images/ig_well_testing.png',
-    caption: 'SERVICIO CON EQUIPOS DE WELL TESTING A POZOS PETROLEROS EN VENEZUELA ⛽⚡',
+    caption: 'Servicio especializado con equipos de Well Testing a pozos petroleros en Venezuela.',
     category: 'operaciones'
   },
   {
@@ -207,7 +207,7 @@ const INITIAL_MEDIA = [
     type: 'video',
     url: '/images/ig_valve_safety.png',
     videoUrl: '/videos/IMG_7557.mp4',
-    caption: 'MANIOBRAS DE SEGURIDAD Y VÁLVULA DE CONTROL EN MANIFOLD DE PRUEBAS.',
+    caption: 'Maniobras de seguridad y válvula de control en manifold de pruebas de producción.',
     category: 'operaciones'
   },
   {
@@ -215,7 +215,7 @@ const INITIAL_MEDIA = [
     title: 'Muestra Reológica de Crudo Pesado',
     type: 'photo',
     url: '/images/ig_crude_sample.png',
-    caption: 'Muestra reológica de crudo pesado previo a la dosificación de reductor CYSOS EOR System. 🛢️',
+    caption: 'Muestra reológica de crudo pesado previo a la dosificación de reductor CYSOS EOR System.',
     category: 'laboratorio'
   },
   {

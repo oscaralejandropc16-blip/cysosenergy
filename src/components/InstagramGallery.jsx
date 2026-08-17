@@ -28,20 +28,20 @@ export const InstagramGallery = () => {
       id: 1,
       url: '/images/ig_well_testing.png',
       type: 'photo',
-      caption: 'SERVICIO CON EQUIPOS DE WELL TESTING A POZOS PETROLEROS EN VENEZUELA ⛽⚡'
+      caption: 'Servicio especializado con equipos de Well Testing a pozos petroleros en Venezuela.'
     },
     {
       id: 2,
       url: '/images/ig_valve_safety.png',
       type: 'video',
       videoUrl: '/videos/IMG_7557.mp4',
-      caption: 'MANIOBRAS DE SEGURIDAD Y VÁLVULA DE CONTROL EN MANIFOLD DE PRUEBAS.'
+      caption: 'Maniobras de seguridad y válvula de control en manifold de pruebas de producción.'
     },
     {
       id: 3,
       url: '/images/ig_crude_sample.png',
       type: 'photo',
-      caption: 'Muestra reológica de crudo pesado previo a la dosificación de reductor CYSOS EOR System. 🛢️'
+      caption: 'Muestra reológica de crudo pesado previo a la dosificación de reductor CYSOS EOR System.'
     },
     {
       id: 4,

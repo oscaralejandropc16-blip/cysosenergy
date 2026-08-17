@@ -160,10 +160,12 @@ export const Services = () => {
 
             <button
               onClick={() => setActiveVideoModal(true)}
-              className="absolute bottom-6 left-6 px-4 py-2 rounded-xl bg-flame-500/90 hover:bg-flame-500 text-white text-xs font-bold flex items-center gap-2 shadow-flame-glow backdrop-blur-md"
+              className="absolute bottom-6 left-6 px-4 py-2.5 rounded-xl bg-navy-950/85 hover:bg-navy-900 text-white text-xs font-extrabold flex items-center gap-2.5 border border-gold-metallic/40 shadow-xl backdrop-blur-md transition-all group/vbtn hover:border-gold-metallic hover:scale-102"
             >
-              <Play className="w-4 h-4 fill-white" />
-              <span>Ver Operaciones en Campo 🎥</span>
+              <div className="w-6 h-6 rounded-full bg-gradient-to-r from-flame-500 to-gold-600 flex items-center justify-center shadow-flame-glow group-hover/vbtn:scale-110 transition-transform">
+                <Play className="w-3 h-3 fill-white translate-x-0.5 text-white" />
+              </div>
+              <span className="tracking-wide">Registro Operativo en Video</span>
             </button>
           </div>
 
