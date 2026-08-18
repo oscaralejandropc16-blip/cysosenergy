@@ -62,29 +62,31 @@ export const InstagramGallery = () => {
           </p>
         </div>
 
-        {/* High-End Official Profile Card Banner */}
+        {/* High-End Official Profile Card Banner - EXACT INSTAGRAM REPLICA */}
         <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 mb-8 shadow-2xl max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             
             <div className="flex items-center gap-5">
+              {/* EXACT Profile Avatar Replica from Instagram: Crisp White Circle with Full CYSOS Logo */}
               <a
                 href="https://instagram.com/cysosenergy/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-1 bg-gradient-to-br from-flame-500 via-orange-500 to-gold-500 shadow-gold-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center overflow-hidden"
+                className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-flame-500 via-rose-500 to-amber-400 shadow-gold-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center"
+                title="Ver perfil oficial en Instagram"
               >
-                <div className="w-full h-full rounded-full bg-navy-950 flex items-center justify-center p-2.5 border border-navy-900 overflow-hidden">
-                  <Logo showText={false} className="w-10 h-10 flex items-center justify-center" />
+                <div className="w-full h-full rounded-full bg-white flex items-center justify-center p-2.5 shadow-inner overflow-hidden">
+                  <Logo showText={true} isDark={false} className="w-full h-auto scale-95" />
                 </div>
               </a>
 
-              <div>
+              <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <a
                     href="https://instagram.com/cysosenergy/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl font-extrabold font-heading text-white hover:text-gold-400 transition-colors"
+                    className="text-2xl font-black font-heading text-white hover:text-gold-400 transition-colors"
                   >
                     cysosenergy
                   </a>
@@ -92,43 +94,22 @@ export const InstagramGallery = () => {
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
                 </div>
-                <p className="text-xs font-bold text-gold-400 mt-0.5">Cysos Energy • Servicios petroleros</p>
-                <p className="text-xs text-slate-300 font-light max-w-md mt-1">
-                  {companyInfo?.instagramBio || 'Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.'}
+                <p className="text-xs font-extrabold text-gold-400">Cysos Energy • Servicios petroleros</p>
+                <p className="text-xs text-slate-300 font-light max-w-md leading-relaxed">
+                  Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col items-center sm:items-end gap-3 w-full sm:w-auto">
-              <div className="flex items-center gap-6 text-center">
-                <div>
-                  <span className="text-base font-extrabold text-white block font-mono">
-                    {companyInfo?.instagramPosts || '18'}
-                  </span>
-                  <span className="text-[10px] text-slate-400 uppercase font-bold">publicaciones</span>
-                </div>
-                <div>
-                  <span className="text-base font-extrabold text-white block font-mono text-gold-400">
-                    {companyInfo?.instagramFollowers || '3,573'}
-                  </span>
-                  <span className="text-[10px] text-slate-400 uppercase font-bold">seguidores</span>
-                </div>
-                <div>
-                  <span className="text-base font-extrabold text-white block font-mono">
-                    {companyInfo?.instagramFollowing || '20'}
-                  </span>
-                  <span className="text-[10px] text-slate-400 uppercase font-bold">seguidos</span>
-                </div>
-              </div>
-
+            <div className="flex items-center gap-3 w-full sm:w-auto justify-center">
               <a
                 href="https://instagram.com/cysosenergy/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-extrabold text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto px-7 py-3 rounded-2xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5"
               >
                 <Instagram className="w-4 h-4" />
-                <span>Seguir @cysosenergy</span>
+                <span>Seguir en Instagram</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
