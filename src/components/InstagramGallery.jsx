@@ -92,9 +92,9 @@ export const InstagramGallery = () => {
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
                 </div>
-                <p className="text-xs font-bold text-gold-400 mt-0.5">CYSOS ENERGY C.A. • Servicios Petroleros</p>
+                <p className="text-xs font-bold text-gold-400 mt-0.5">Cysos Energy • Servicios petroleros</p>
                 <p className="text-xs text-slate-300 font-light max-w-md mt-1">
-                  Soluciones integrales de ingeniería, química de producción y servicios IPC para la industria energética en Venezuela.
+                  {companyInfo?.instagramBio || 'Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.'}
                 </p>
               </div>
             </div>
@@ -102,16 +102,22 @@ export const InstagramGallery = () => {
             <div className="flex flex-col items-center sm:items-end gap-3 w-full sm:w-auto">
               <div className="flex items-center gap-6 text-center">
                 <div>
-                  <span className="text-base font-extrabold text-white block font-mono">18</span>
-                  <span className="text-[10px] text-slate-400 uppercase font-bold">Publicaciones</span>
+                  <span className="text-base font-extrabold text-white block font-mono">
+                    {companyInfo?.instagramPosts || '18'}
+                  </span>
+                  <span className="text-[10px] text-slate-400 uppercase font-bold">publicaciones</span>
                 </div>
                 <div>
-                  <span className="text-base font-extrabold text-white block font-mono">3,073</span>
-                  <span className="text-[10px] text-slate-400 uppercase font-bold">Seguidores</span>
+                  <span className="text-base font-extrabold text-white block font-mono text-gold-400">
+                    {companyInfo?.instagramFollowers || '3,573'}
+                  </span>
+                  <span className="text-[10px] text-slate-400 uppercase font-bold">seguidores</span>
                 </div>
                 <div>
-                  <span className="text-base font-extrabold text-white block font-mono">20</span>
-                  <span className="text-[10px] text-slate-400 uppercase font-bold">Seguidos</span>
+                  <span className="text-base font-extrabold text-white block font-mono">
+                    {companyInfo?.instagramFollowing || '20'}
+                  </span>
+                  <span className="text-[10px] text-slate-400 uppercase font-bold">seguidos</span>
                 </div>
               </div>
 
@@ -122,7 +128,7 @@ export const InstagramGallery = () => {
                 className="w-full sm:w-auto px-6 py-2.5 rounded-xl text-xs font-extrabold text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5"
               >
                 <Instagram className="w-4 h-4" />
-                <span>Ver Perfil Oficial @cysosenergy</span>
+                <span>Seguir @cysosenergy</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>

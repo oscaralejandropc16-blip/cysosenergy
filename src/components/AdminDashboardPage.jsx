@@ -1485,6 +1485,68 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </div>
                 </div>
 
+                {/* EDITABLE INSTAGRAM STATS & BIO */}
+                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-extrabold text-white">
+                    <Instagram className="w-4 h-4 text-flame-500" />
+                    <span>Datos del Perfil de Instagram (@cysosenergy):</span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Publicaciones:</span>
+                      <input
+                        type="text"
+                        value={companyInfo.instagramPosts || '18'}
+                        onChange={(e) => {
+                          updateCompanyInfoText('instagramPosts', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold text-center"
+                      />
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] text-gold-400 font-bold block mb-1">Seguidores:</span>
+                      <input
+                        type="text"
+                        value={companyInfo.instagramFollowers || '3,573'}
+                        onChange={(e) => {
+                          updateCompanyInfoText('instagramFollowers', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-xl p-2.5 text-xs text-gold-400 font-extrabold text-center"
+                      />
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] text-slate-400 block mb-1">Seguidos:</span>
+                      <input
+                        type="text"
+                        value={companyInfo.instagramFollowing || '20'}
+                        onChange={(e) => {
+                          updateCompanyInfoText('instagramFollowing', e.target.value);
+                          triggerSaveNotification();
+                        }}
+                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold text-center"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] text-slate-400 block mb-1">Biografía Oficial de Instagram:</label>
+                    <textarea
+                      rows="2"
+                      value={companyInfo.instagramBio || 'Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.'}
+                      onChange={(e) => {
+                        updateCompanyInfoText('instagramBio', e.target.value);
+                        triggerSaveNotification();
+                      }}
+                      className="w-full modern-input rounded-xl p-3 text-xs text-slate-200"
+                    ></textarea>
+                  </div>
+                </div>
+
                 <div className="space-y-4 pt-4 border-t border-slate-800">
                   <div>
                     <label className="text-xs font-bold text-slate-300 block mb-1">Misión Corporativa:</label>
