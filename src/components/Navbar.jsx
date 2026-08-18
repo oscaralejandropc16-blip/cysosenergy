@@ -25,9 +25,10 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] px-3 sm:px-6 lg:px-8 py-3 sm:py-4 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-[999] px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
       <div
-        className="max-w-7xl mx-auto rounded-2xl sm:rounded-3xl transition-all duration-300 relative bg-[#070D18] backdrop-blur-2xl py-3 px-5 sm:px-7 border border-gold-metallic/40 shadow-[0_12px_40px_rgba(0,0,0,0.85)]"
+        style={{ backgroundColor: '#07101E', border: '1px solid rgba(212,175,55,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.9)' }}
+        className="max-w-7xl mx-auto rounded-2xl sm:rounded-3xl relative backdrop-blur-2xl py-3 px-5 sm:px-7"
       >
         <div className="flex items-center justify-between">
           
@@ -42,7 +43,8 @@ export const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3 py-1.5 text-xs xl:text-[13px] font-semibold text-slate-200 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 tracking-wide"
+                style={{ color: '#E2E8F0', fontFamily: 'Outfit, system-ui, sans-serif' }}
+                className="px-3 py-1.5 text-xs xl:text-[13px] font-semibold hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 tracking-wide"
               >
                 {link.name}
               </a>
