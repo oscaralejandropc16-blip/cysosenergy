@@ -301,7 +301,7 @@ export const ContactForm = () => {
                     <line x1="536" y1="312" x2="496" y2="264" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 3" opacity="0.7" />
                     <line x1="496" y1="264" x2="200" y2="192" stroke="#F59E0B" strokeWidth="2" strokeDasharray="3 3" opacity="0.5" />
 
-                    {/* INTERACTIVE RADAR BEACONS THAT OPEN GOOGLE MAPS */}
+                    {/* INTERACTIVE RADAR BEACONS THAT OPEN GOOGLE MAPS - 100% STABLE & ZERO FLICKER */}
                     {Object.entries(operationalHubs).map(([key, hub]) => {
                       const isSelected = selectedHub === key;
                       const posX = (hub.coords.x * 800) / 100;
@@ -314,56 +314,68 @@ export const ContactForm = () => {
                             handleSelectHub(key);
                             window.open(hub.googleMapsUrl, '_blank');
                           }}
-                          className="cursor-pointer group/pin"
+                          className="cursor-pointer group"
                         >
-                          {/* Animated Radar Ping */}
+                          {/* Invisible Solid Hit Target to prevent any mouse flickering */}
                           <circle
                             cx={posX}
                             cy={posY}
-                            r={isSelected ? 26 : 16}
+                            r={32}
+                            fill="transparent"
+                            className="cursor-pointer"
+                          />
+
+                          {/* Animated Radar Ping (Pointer Events None to avoid hover thrashing) */}
+                          <circle
+                            cx={posX}
+                            cy={posY}
+                            r={isSelected ? 24 : 14}
                             fill={isSelected ? '#F97316' : '#F59E0B'}
                             opacity={isSelected ? 0.4 : 0.2}
-                            className="animate-ping"
+                            className="animate-ping pointer-events-none"
                           />
 
-                          {/* Outer Pin Body */}
+                          {/* Outer Pin Body (Solid, Stable, No Jitter) */}
                           <circle
                             cx={posX}
                             cy={posY}
-                            r={isSelected ? 16 : 10}
+                            r={isSelected ? 14 : 9}
                             fill={isSelected ? '#EA580C' : '#D97706'}
                             stroke="#FFFFFF"
-                            strokeWidth={isSelected ? 3 : 2}
-                            className="transition-all duration-300 group-hover/pin:scale-125"
+                            strokeWidth={isSelected ? 2.5 : 1.5}
+                            className="transition-colors duration-200 group-hover:fill-flame-400 pointer-events-none"
                           />
 
-                          {/* Pin Core */}
+                          {/* Pin Core Dot */}
                           <circle
                             cx={posX}
                             cy={posY}
-                            r={isSelected ? 6 : 4}
+                            r={isSelected ? 5 : 3.5}
                             fill="#FFFFFF"
+                            className="pointer-events-none"
                           />
 
-                          {/* Interactive Pin Tag */}
+                          {/* Interactive Pin Tag (Clickable & Stable) */}
                           <rect
                             x={posX + 14}
-                            y={posY - 15}
+                            y={posY - 14}
                             width={hub.name.length * 7.5 + 24}
                             height="24"
                             rx="8"
                             fill="#050A14"
-                            stroke={isSelected ? '#F97316' : '#64748B'}
+                            stroke={isSelected ? '#F97316' : '#475569'}
                             strokeWidth="1.5"
+                            className="transition-colors duration-200 group-hover:stroke-gold-400 pointer-events-none"
                             opacity="0.95"
                           />
                           <text
                             x={posX + 22}
-                            y={posY + 1.5}
+                            y={posY + 2}
                             fill={isSelected ? '#FACC15' : '#FFFFFF'}
                             fontSize="11.5"
                             fontFamily="sans-serif"
                             fontWeight="bold"
+                            className="pointer-events-none select-none"
                           >
                             📍 {hub.name}
                           </text>
