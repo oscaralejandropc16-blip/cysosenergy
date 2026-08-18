@@ -130,12 +130,19 @@ export const InstagramGallery = () => {
           </div>
         </div>
 
-        {/* REAL LIVE INSTAGRAM FEED - CLEANED & WATERMARK CROPPED */}
-        <div className="luxury-glass rounded-3xl border border-gold-metallic/30 shadow-2xl overflow-hidden p-2 sm:p-4 relative">
-          <div className="overflow-hidden -mt-10 sm:-mt-12 rounded-2xl">
+        {/* REAL LIVE INSTAGRAM FEED - DOUBLE PRECISION CROP TO ERADICATE WATERMARK AND SHARE BUTTON */}
+        <div className="luxury-glass rounded-3xl border border-gold-metallic/30 shadow-2xl overflow-hidden p-0 relative">
+          <div className="w-full overflow-hidden" style={{ maxHeight: '545px' }}>
             <div 
               className="tagembed-widget" 
-              style={{ width: '100%', height: '100%', minHeight: '620px', overflow: 'hidden' }} 
+              style={{ 
+                width: '100%', 
+                height: '675px', 
+                marginTop: '-52px', 
+                marginBottom: '-80px', 
+                overflow: 'hidden',
+                background: 'transparent'
+              }} 
               data-widget-id="332601" 
               data-website="1"
             />
