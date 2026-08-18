@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
-import { Instagram, ExternalLink, Heart, MessageCircle, Play, X, CheckCircle2, Video, Sparkles } from 'lucide-react';
+import { Instagram, ExternalLink, Play, X, CheckCircle2 } from 'lucide-react';
 
 export const InstagramGallery = () => {
   const { mediaItems } = useCms();
   const [activeVideoModal, setActiveVideoModal] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('all');
+
+  // Dynamically load the real Tagembed Live Instagram Feed script
+  useEffect(() => {
+    const scriptId = 'tagembed-embed-script';
+    let script = document.getElementById(scriptId);
+
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://widget.tagembed.com/embed.min.js';
+      script.type = 'text/javascript';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   // Keyboard accessibility (ESC key to close video)
   useEffect(() => {
@@ -25,110 +39,6 @@ export const InstagramGallery = () => {
     };
   }, [activeVideoModal]);
 
-  // The 8 official high-resolution posts directly from @cysosenergy Instagram
-  const officialInstagramPosts = [
-    {
-      id: 1,
-      title: 'Servicio con Equipos de Well Testing',
-      category: 'operaciones',
-      url: '/images/ig_well_testing.png',
-      type: 'photo',
-      likes: '528',
-      comments: '39',
-      date: 'Hace 3 días',
-      caption: 'Servicio especializado con equipos de Well Testing a pozos petroleros en Venezuela. Mediciones de presión, temperatura y aforo de flujo.'
-    },
-    {
-      id: 2,
-      title: 'Maniobra Operativa y Antorcha de Campo',
-      category: 'video',
-      url: '/images/IMG_7549.jpg',
-      type: 'video',
-      videoUrl: '/videos/IMG_7557.mp4',
-      likes: '642',
-      comments: '51',
-      date: 'Hace 5 días',
-      caption: 'Despliegue operativo y prueba de seguridad con quema controlada en manifold de pruebas de pozo en División Furrial.'
-    },
-    {
-      id: 3,
-      title: 'Torre de Servicio & Unidad de Bombeo',
-      category: 'operaciones',
-      url: '/images/ig_valve_safety.png',
-      type: 'video',
-      videoUrl: '/videos/IMG_7557.mp4',
-      likes: '487',
-      comments: '28',
-      date: 'Hace 1 semana',
-      caption: 'Operaciones de inyección química y optimización de flujo en yacimientos de crudo pesado con unidad especializada.'
-    },
-    {
-      id: 4,
-      title: 'Equipo Humano e Ingenieros de Campo',
-      category: 'campo',
-      url: '/images/IMG_7701.jpg',
-      type: 'photo',
-      likes: '715',
-      comments: '64',
-      date: 'Hace 2 semanas',
-      caption: 'Talento humano venezolano comprometido con la excelencia operativa y los más altos estándares de seguridad industrial HSE.'
-    },
-    {
-      id: 5,
-      title: 'Estudio de Caso Energético & Geopolítica',
-      category: 'analisis',
-      url: '/images/ig_crude_sample.png',
-      type: 'photo',
-      likes: '419',
-      comments: '23',
-      date: 'Hace 2 semanas',
-      caption: 'Análisis técnico y estratégico: Dinámica de mercado petrolero y optimización de costos de extracción en pozos maduros.'
-    },
-    {
-      id: 6,
-      title: 'Facilidades de Superficie & Múltiple',
-      category: 'operaciones',
-      url: '/images/ig_manifold.png',
-      type: 'video',
-      videoUrl: '/videos/IMG_7557.mp4',
-      likes: '531',
-      comments: '36',
-      date: 'Hace 3 semanas',
-      caption: 'Alineación de líneas de producción y mantenimiento integral de cabezales para empresas mixtas en el Oriente venezolano.'
-    },
-    {
-      id: 7,
-      title: 'Logística de Transporte Pesado 24/7',
-      category: 'campo',
-      url: '/images/cysos_logistics_trucks.png',
-      type: 'photo',
-      likes: '462',
-      comments: '29',
-      date: 'Hace 1 mes',
-      caption: 'Movilización de equipos pesados, chutos y tolvas para soporte logístico en macollas y bases operativas.'
-    },
-    {
-      id: 8,
-      title: 'Infraestructura & Facilidades de Estación',
-      category: 'operaciones',
-      url: '/images/IMG_7702.jpg',
-      type: 'photo',
-      likes: '584',
-      comments: '42',
-      date: 'Hace 1 mes',
-      caption: 'Obras de ingeniería, procura y construcción (IPC) en estaciones de flujo y plantas de tratamiento de crudo.'
-    }
-  ];
-
-  const postsToRender = (mediaItems && mediaItems.length > 0) ? mediaItems : officialInstagramPosts;
-
-  const filteredPosts = postsToRender.filter((post) => {
-    if (activeFilter === 'all') return true;
-    if (activeFilter === 'video') return post.type === 'video';
-    if (activeFilter === 'photo') return post.type !== 'video';
-    return true;
-  });
-
   return (
     <section id="galeria" className="py-24 relative bg-navy-950 border-t border-slate-800 overflow-hidden">
       
@@ -141,19 +51,19 @@ export const InstagramGallery = () => {
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 text-gold-400 text-xs font-extrabold uppercase tracking-wider shadow-gold-glow">
             <Instagram className="w-4 h-4 text-flame-500" />
-            <span>Galería Oficial @cysosenergy</span>
+            <span>Feed Oficial @cysosenergy en Tiempo Real</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
             Últimas Publicaciones de <span className="text-gradient-flame">Instagram</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base font-light">
-            Siga nuestras maniobras de campo, operaciones de laboratorio y novedades corporativas en <strong className="text-white">@cysosenergy</strong>.
+            Siga nuestras maniobras de campo, operaciones de laboratorio y novedades corporativas en <strong className="text-white">@cysosenergy</strong>. Sincronización automática en vivo.
           </p>
         </div>
 
         {/* High-End Official Profile Card Banner */}
-        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 mb-10 shadow-2xl max-w-4xl mx-auto">
+        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 mb-8 shadow-2xl max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             
             <div className="flex items-center gap-5">
@@ -220,78 +130,16 @@ export const InstagramGallery = () => {
           </div>
         </div>
 
-        {/* Filter Navigation Tabs */}
-        <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
-          {[
-            { id: 'all', label: 'Todas las Publicaciones' },
-            { id: 'video', label: 'Videos en Campo' },
-            { id: 'photo', label: 'Fotografías de Equipos' }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveFilter(tab.id)}
-              className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-all duration-300 ${
-                activeFilter === tab.id
-                  ? 'bg-gradient-to-r from-flame-500 to-gold-600 text-white shadow-flame-glow'
-                  : 'bg-navy-900/80 hover:bg-navy-900 text-slate-300 border border-slate-800 hover:border-gold-metallic/30'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* BESPOKE 100% NATIVE CORPORATE INSTAGRAM GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 animate-fadeIn">
-          {filteredPosts.map((post) => (
-            <div
-              key={post.id}
-              className="luxury-card rounded-2xl overflow-hidden border border-slate-800 relative group cursor-pointer aspect-square shadow-xl block"
-              onClick={() => post.type === 'video' ? setActiveVideoModal(post) : window.open('https://instagram.com/cysosenergy/', '_blank')}
-            >
-              <img
-                src={post.url}
-                alt={post.title || post.caption}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-[0.92]"
-              />
-
-              {/* Video Badge */}
-              {post.type === 'video' && (
-                <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-navy-950/85 backdrop-blur-md flex items-center gap-1.5 text-white shadow-lg border border-gold-metallic/40">
-                  <Play className="w-3 h-3 fill-flame-500 text-flame-500" />
-                  <span className="text-[10px] font-extrabold text-gold-400">Video HD</span>
-                </div>
-              )}
-
-              {/* Luxury Hover Overlay */}
-              <div className="absolute inset-0 bg-navy-950/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 sm:p-5 flex flex-col justify-between text-white border border-gold-metallic/50 rounded-2xl">
-                <div className="flex items-center justify-between text-xs font-bold text-slate-200">
-                  <div className="flex items-center gap-1.5">
-                    <Heart className="w-4 h-4 text-flame-500 fill-flame-500" />
-                    <span>{post.likes || '480'}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <MessageCircle className="w-4 h-4 text-gold-400" />
-                    <span>{post.comments || '32'}</span>
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <h4 className="text-xs font-extrabold text-white font-heading truncate">
-                    {post.title}
-                  </h4>
-                  <p className="text-[11px] font-light text-slate-300 line-clamp-3 leading-relaxed">
-                    {post.caption}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 text-xs font-extrabold text-gold-400 bg-navy-900/90 py-2 px-3 rounded-xl border border-gold-metallic/30 justify-center">
-                  <Instagram className="w-3.5 h-3.5 text-gold-400" />
-                  <span>{post.type === 'video' ? 'Reproducir Video' : 'Ver en Instagram ↗'}</span>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* REAL LIVE INSTAGRAM FEED - CLEANED & WATERMARK CROPPED */}
+        <div className="luxury-glass rounded-3xl border border-gold-metallic/30 shadow-2xl overflow-hidden p-2 sm:p-4 relative">
+          <div className="overflow-hidden -mt-10 sm:-mt-12 rounded-2xl">
+            <div 
+              className="tagembed-widget" 
+              style={{ width: '100%', height: '100%', minHeight: '620px', overflow: 'hidden' }} 
+              data-widget-id="332601" 
+              data-website="1"
+            />
+          </div>
         </div>
 
       </div>
