@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Logo } from './Logo';
-import { Menu, X, PhoneCall, ChevronRight, Sparkles } from 'lucide-react';
+import { Menu, X, PhoneCall, ChevronRight } from 'lucide-react';
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
@@ -25,83 +16,183 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[999] px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
+    <header
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999,
+        padding: '12px 16px',
+      }}
+    >
       <div
-        style={{ backgroundColor: '#07101E', border: '1px solid rgba(212,175,55,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.9)' }}
-        className="max-w-7xl mx-auto rounded-2xl sm:rounded-3xl relative backdrop-blur-2xl py-3 px-5 sm:px-7"
+        style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          backgroundColor: '#0A1220',
+          border: '1px solid rgba(212,175,55,0.45)',
+          borderRadius: '16px',
+          boxShadow: '0 8px 40px rgba(0,0,0,0.95)',
+          padding: '10px 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
       >
-        <div className="flex items-center justify-between">
-          
-          {/* Logo */}
-          <a href="#inicio" className="flex-shrink-0 transition-transform duration-300 hover:scale-102">
-            <Logo isDark={true} />
-          </a>
+        {/* Logo */}
+        <a href="#inicio" style={{ flexShrink: 0 }}>
+          <Logo isDark={true} />
+        </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-1.5">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                style={{ color: '#E2E8F0', fontFamily: 'Outfit, system-ui, sans-serif' }}
-                className="px-3 py-1.5 text-xs xl:text-[13px] font-semibold hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 tracking-wide"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          {/* Desktop Primary Action */}
-          <div className="hidden lg:flex items-center space-x-3">
+        {/* Desktop Nav Links */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="hidden lg:flex">
+          {navLinks.map((link) => (
             <a
-              href="#contacto"
-              className="px-5 py-2.5 text-xs font-extrabold text-white rounded-xl bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-102 flex items-center gap-2"
+              key={link.name}
+              href={link.href}
+              style={{
+                color: '#CBD5E1',
+                fontSize: '13px',
+                fontWeight: 600,
+                fontFamily: 'Outfit, system-ui, sans-serif',
+                padding: '6px 12px',
+                borderRadius: '10px',
+                textDecoration: 'none',
+                transition: 'color 0.2s, background 0.2s',
+                letterSpacing: '0.02em',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = '#FFFFFF';
+                e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = '#CBD5E1';
+                e.currentTarget.style.background = 'transparent';
+              }}
             >
-              <PhoneCall className="w-3.5 h-3.5" />
-              <span>Solicitar Cotización</span>
+              {link.name}
             </a>
-          </div>
+          ))}
+        </nav>
 
-          {/* Mobile Menu Trigger */}
-          <div className="flex lg:hidden items-center">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/10 backdrop-blur-md text-slate-200 hover:text-white border border-white/15 transition-colors"
-              aria-label="Abrir menú"
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-
+        {/* Desktop CTA Button */}
+        <div className="hidden lg:block">
+          <a
+            href="#contacto"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '9px 20px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #F97316, #EA580C)',
+              color: '#FFFFFF',
+              fontSize: '12px',
+              fontWeight: 800,
+              fontFamily: 'Outfit, system-ui, sans-serif',
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(249,115,22,0.4)',
+              letterSpacing: '0.03em',
+            }}
+          >
+            <PhoneCall style={{ width: '14px', height: '14px' }} />
+            <span>Solicitar Cotización</span>
+          </a>
         </div>
 
-        {/* Mobile Dropdown Drawer */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden mt-3 pt-3 border-t border-white/10 flex flex-col space-y-1.5 animate-fadeIn">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="px-4 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/10 rounded-xl flex items-center justify-between transition-colors"
-              >
-                <span>{link.name}</span>
-                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-              </a>
-            ))}
-            <div className="pt-2">
-              <a
-                href="#contacto"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full py-2.5 text-center text-xs font-extrabold text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 rounded-xl shadow-flame-glow flex items-center justify-center gap-2"
-              >
-                <PhoneCall className="w-3.5 h-3.5" />
-                <span>Solicitar Cotización Técnica</span>
-              </a>
-            </div>
-          </div>
-        )}
+        {/* Mobile Hamburger */}
+        <div className="flex lg:hidden">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              padding: '8px',
+              borderRadius: '10px',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              color: '#E2E8F0',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            aria-label="Abrir menú"
+          >
+            {isMobileMenuOpen ? <X style={{ width: '20px', height: '20px' }} /> : <Menu style={{ width: '20px', height: '20px' }} />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Dropdown */}
+      {isMobileMenuOpen && (
+        <div
+          style={{
+            maxWidth: '1280px',
+            margin: '8px auto 0',
+            backgroundColor: '#0A1220',
+            border: '1px solid rgba(212,175,55,0.3)',
+            borderRadius: '16px',
+            padding: '12px',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.9)',
+          }}
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '10px 14px',
+                borderRadius: '10px',
+                color: '#CBD5E1',
+                fontSize: '13px',
+                fontWeight: 600,
+                fontFamily: 'Outfit, system-ui, sans-serif',
+                textDecoration: 'none',
+                marginBottom: '2px',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.07)';
+                e.currentTarget.style.color = '#FFFFFF';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = '#CBD5E1';
+              }}
+            >
+              <span>{link.name}</span>
+              <ChevronRight style={{ width: '14px', height: '14px', color: '#64748B' }} />
+            </a>
+          ))}
+
+          <a
+            href="#contacto"
+            onClick={() => setIsMobileMenuOpen(false)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              marginTop: '8px',
+              padding: '11px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #F97316, #EA580C)',
+              color: '#FFFFFF',
+              fontSize: '12px',
+              fontWeight: 800,
+              fontFamily: 'Outfit, system-ui, sans-serif',
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(249,115,22,0.35)',
+            }}
+          >
+            <PhoneCall style={{ width: '14px', height: '14px' }} />
+            <span>Solicitar Cotización Técnica</span>
+          </a>
+        </div>
+      )}
     </header>
   );
 };
