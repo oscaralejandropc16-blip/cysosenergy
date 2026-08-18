@@ -30,8 +30,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Outfit', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'luxury-gradient': 'linear-gradient(135deg, #070F1E 0%, #101F38 50%, #0A1628 100%)',
