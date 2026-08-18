@@ -2,15 +2,8 @@ import React from 'react';
 import { useCms } from '../context/CmsContext';
 
 export const Logo = ({ className = "h-12 sm:h-14", showText = true, isDark = true, imageClassName = "h-12 sm:h-14 max-h-16" }) => {
-  let companyInfo = {};
-  try {
-    const cms = useCms();
-    if (cms && cms.companyInfo) {
-      companyInfo = cms.companyInfo;
-    }
-  } catch {
-    // If rendered outside CmsProvider fallback smoothly
-  }
+  const cms = useCms();
+  const companyInfo = cms?.companyInfo || {};
 
   // If user uploaded a custom logo image file in the CMS, ALWAYS use the user's uploaded logo
   if (companyInfo && companyInfo.logoUrl) {
