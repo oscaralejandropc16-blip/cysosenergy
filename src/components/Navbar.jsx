@@ -25,12 +25,12 @@ export const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 lg:px-8 py-3 sm:py-4 transition-all duration-500">
+    <header className="fixed top-0 left-0 right-0 z-[100] px-3 sm:px-6 lg:px-8 py-3 sm:py-4 transition-all duration-300">
       <div
-        className={`max-w-7xl mx-auto rounded-2xl sm:rounded-3xl transition-all duration-500 relative ${
+        className={`max-w-7xl mx-auto rounded-2xl sm:rounded-3xl transition-all duration-300 relative ${
           isScrolled
-            ? 'bg-navy-950/75 backdrop-blur-2xl py-2.5 px-5 sm:px-7 border border-gold-metallic/30 shadow-[0_16px_40px_rgba(0,0,0,0.6)]'
-            : 'bg-navy-950/20 backdrop-blur-xl py-3.5 px-5 sm:px-7 border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:bg-navy-950/35 hover:border-white/25'
+            ? 'bg-navy-950/95 backdrop-blur-2xl py-2.5 px-5 sm:px-7 border border-gold-metallic/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)]'
+            : 'bg-navy-950/90 backdrop-blur-2xl py-3.5 px-5 sm:px-7 border border-gold-metallic/30 shadow-[0_12px_36px_rgba(0,0,0,0.6)]'
         }`}
       >
         <div className="flex items-center justify-between">
