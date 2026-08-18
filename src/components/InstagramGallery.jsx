@@ -67,7 +67,7 @@ export const InstagramGallery = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             
             <div className="flex items-center gap-5">
-              {/* EXACT Profile Avatar Replica from Instagram: Crisp White Circle with Full CYSOS Logo */}
+              {/* EXACT Profile Avatar Replica from Instagram: Crisp White Circle with Full CYSOS Logo Centered */}
               <a
                 href="https://instagram.com/cysosenergy/"
                 target="_blank"
@@ -75,8 +75,45 @@ export const InstagramGallery = () => {
                 className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-flame-500 via-rose-500 to-amber-400 shadow-gold-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center"
                 title="Ver perfil oficial en Instagram"
               >
-                <div className="w-full h-full rounded-full bg-white flex items-center justify-center p-2.5 shadow-inner overflow-hidden">
-                  <Logo showText={true} isDark={false} className="w-full h-auto scale-95" />
+                <div className="w-full h-full rounded-full bg-white flex items-center justify-center p-2 shadow-inner overflow-hidden">
+                  {companyInfo?.logoUrl ? (
+                    <img 
+                      src={companyInfo.logoUrl} 
+                      alt="Cysos Energy" 
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center gap-1.5 w-full">
+                      {/* Exact Droplet Flame Icon */}
+                      <svg viewBox="0 0 120 140" fill="none" className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0">
+                        <path
+                          d="M 58 10 C 30 45 10 75 10 98 C 10 120 28 135 55 135 C 40 130 25 115 25 95 C 25 75 42 50 60 20 Z"
+                          fill="#334155"
+                        />
+                        <path
+                          d="M 60 25 C 85 55 110 78 110 100 C 110 122 92 135 65 135 C 85 130 96 115 96 97 C 96 78 78 52 60 25 Z"
+                          fill="#EA580C"
+                        />
+                        <path
+                          d="M 60 38 C 78 62 95 82 95 102 C 95 120 80 132 60 135 C 75 128 83 115 83 100 C 83 83 69 60 60 38 Z"
+                          fill="#F59E0B"
+                        />
+                        <path
+                          d="M 60 52 C 72 70 82 86 82 103 C 82 118 72 130 58 134 C 68 126 73 115 73 102 C 73 88 63 68 60 52 Z"
+                          fill="#FACC15"
+                        />
+                      </svg>
+                      {/* Exact CYSOS ENERGY Text Proportioned */}
+                      <div className="flex flex-col leading-none text-left">
+                        <span className="font-heading font-black tracking-tight text-[11px] sm:text-xs text-slate-950">
+                          CYSOS
+                        </span>
+                        <span className="font-heading font-black text-[6px] sm:text-[7px] tracking-[0.14em] text-flame-600">
+                          ENERGY, C.A.
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </a>
 
