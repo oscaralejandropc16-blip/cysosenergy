@@ -170,3 +170,37 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Ocultar botones invasivos, marcas de agua y branding de Tagembed */
+.tagembed-widget .tagembed-share-btn,
+.tagembed-widget [class*="share-experience"],
+.tagembed-widget [class*="share_experience"],
+.tagembed-widget [class*="powered"],
+.tagembed-widget [class*="branding"],
+.tagembed-widget .tagembed-powered-by,
+.tagembed-widget .tagembed-header,
+.tagembed-widget [class*="widget-header"],
+div[class*="tagembed-share"],
+button[class*="share-experience"],
+.tagembed-container [class*="powered"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Contenedor Limpio y Elegante para el Widget */
+.clean-instagram-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+/* Recortar cualquier barra inferior invasiva de Tagembed */
+.clean-instagram-wrapper iframe {
+  border-radius: 1.5rem !important;
+  background: transparent !important;
+}
