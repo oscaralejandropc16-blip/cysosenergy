@@ -1,12 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
-import { Instagram, ExternalLink, Heart, MessageCircle, Play, X } from 'lucide-react';
+import { Instagram, ExternalLink, Heart, MessageCircle, Play, X, Sparkles, RefreshCw } from 'lucide-react';
 
 export const InstagramGallery = () => {
   const { mediaItems } = useCms();
   const [activeVideoModal, setActiveVideoModal] = useState(null);
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
 
+  // Dynamically load the real Tagembed Live Instagram Feed script
+  useEffect(() => {
+    const scriptId = 'tagembed-script';
+    let script = document.getElementById(scriptId);
+
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://widget.tagembed.com/embed.min.js';
+      script.type = 'text/javascript';
+      script.async = true;
+      script.onload = () => setWidgetLoaded(true);
+      document.body.appendChild(script);
+    } else {
+      setWidgetLoaded(true);
+    }
+
+    return () => {
+      // Keep script cached
+    };
+  }, []);
+
+  // Keyboard accessibility (ESC key to close video)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -77,19 +101,19 @@ export const InstagramGallery = () => {
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 text-gold-400 text-xs font-extrabold uppercase tracking-wider shadow-gold-glow">
             <Instagram className="w-4 h-4 text-flame-500" />
-            <span>Feed Oficial @cysosenergy</span>
+            <span>Feed Oficial @cysosenergy en Tiempo Real</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
             Últimas Publicaciones de <span className="text-gradient-flame">Instagram</span>
           </h2>
           <p className="text-slate-300 text-sm sm:text-base font-light">
-            Siga nuestras maniobras de campo, operaciones de laboratorio y novedades corporativas en <strong className="text-white">@cysosenergy</strong>.
+            Siga nuestras maniobras de campo, operaciones de laboratorio y novedades corporativas en <strong className="text-white">@cysosenergy</strong>. Sincronización automática en vivo.
           </p>
         </div>
 
         {/* Profile Card Banner */}
-        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 mb-12 shadow-2xl max-w-4xl mx-auto">
+        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 mb-10 shadow-2xl max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             
             <div className="flex items-center gap-5">
@@ -154,50 +178,14 @@ export const InstagramGallery = () => {
           </div>
         </div>
 
-        {/* 6-Grid High-Definition Photographic Media Showcase */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 animate-fadeIn">
-          {displayedPosts.map((post) => (
-            <div
-              key={post.id}
-              className="luxury-card rounded-2xl overflow-hidden border border-slate-800 relative group cursor-pointer aspect-square shadow-xl block"
-              onClick={() => post.type === 'video' ? setActiveVideoModal(post) : window.open('https://instagram.com/cysosenergy/', '_blank')}
-            >
-              <img
-                src={post.url}
-                alt={post.caption}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-[0.9]"
-              />
-
-              {post.type === 'video' && (
-                <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/75 backdrop-blur-md flex items-center justify-center text-white shadow-lg border border-white/20">
-                  <Play className="w-4 h-4 fill-white ml-0.5" />
-                </div>
-              )}
-
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-navy-950/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-5 flex flex-col justify-between text-white">
-                <div className="flex items-center justify-between text-xs font-bold text-slate-200">
-                  <div className="flex items-center gap-1.5">
-                    <Heart className="w-4 h-4 text-flame-500 fill-flame-500" />
-                    <span>340</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <MessageCircle className="w-4 h-4 text-gold-400" />
-                    <span>18</span>
-                  </div>
-                </div>
-
-                <p className="text-xs font-light text-slate-200 line-clamp-3 leading-relaxed">
-                  {post.caption}
-                </p>
-
-                <div className="flex items-center gap-2 text-xs font-extrabold text-gold-400 bg-navy-900/90 py-2.5 px-3.5 rounded-xl border border-gold-metallic/30 justify-center">
-                  <Instagram className="w-4 h-4 text-gold-400" />
-                  <span>Ver en Instagram ↗</span>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* REAL LIVE TAGEMBED INSTAGRAM WIDGET */}
+        <div className="luxury-glass p-4 sm:p-6 rounded-3xl border border-gold-metallic/30 shadow-2xl min-h-[480px] relative overflow-hidden">
+          <div 
+            className="tagembed-widget" 
+            style={{ width: '100%', height: '100%', minHeight: '480px', overflow: 'auto' }} 
+            data-widget-id="332601" 
+            data-website="1"
+          />
         </div>
 
       </div>
