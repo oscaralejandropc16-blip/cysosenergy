@@ -4,7 +4,7 @@ import { Logo } from './Logo';
 import { Instagram, ExternalLink, Play, X, CheckCircle2 } from 'lucide-react';
 
 export const InstagramGallery = () => {
-  const { mediaItems } = useCms();
+  const { mediaItems = [], companyInfo = {} } = useCms();
   const [activeVideoModal, setActiveVideoModal] = useState(null);
 
   // Dynamically load the real Tagembed Live Instagram Feed script
