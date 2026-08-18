@@ -78,7 +78,7 @@ export const Hero = () => {
   const safeKpis = Array.isArray(kpis) ? kpis : [];
 
   return (
-    <section id="inicio" className="relative pt-36 pb-20 md:pt-44 md:pb-28 bg-navy-950 overflow-hidden min-h-[90vh] flex flex-col justify-between">
+    <section id="inicio" className="relative pt-36 pb-20 md:pt-44 md:pb-28 bg-navy-950 min-h-[90vh] flex flex-col justify-between">
       
       {/* DYNAMIC CMS VIDEO BACKGROUND */}
       <div className="absolute inset-0 z-0 overflow-hidden">

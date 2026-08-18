@@ -30,10 +30,10 @@ export const Navbar = () => {
         style={{
           maxWidth: '1280px',
           margin: '0 auto',
-          backgroundColor: '#0A1220',
-          border: '1px solid rgba(212,175,55,0.45)',
+          backgroundColor: 'rgba(15, 25, 45, 0.97)',
+          border: '1.5px solid rgba(212,175,55,0.7)',
           borderRadius: '16px',
-          boxShadow: '0 8px 40px rgba(0,0,0,0.95)',
+          boxShadow: '0 2px 0 rgba(212,175,55,0.4), 0 12px 48px rgba(0,0,0,0.85)',
           padding: '10px 24px',
           display: 'flex',
           alignItems: 'center',
