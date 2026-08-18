@@ -4,73 +4,77 @@
 
 @layer base {
   body {
-    font-family: 'Inter', sans-serif;
-    background-color: #050A14;
-    color: #F8FAFC;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #070D18;
+    color: #F1F5F9;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Sleek and subtle */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050A14;
+  background: #070D18;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1A2C4E;
-  border-radius: 4px;
+  background: #1E293B;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: #D97706;
 }
 
-/* Ultra Luxury Glassmorphism */
+/* Executive Oilfield Glassmorphism - Soothing, Calm & High-End */
 .luxury-glass {
-  background: linear-gradient(135deg, rgba(16, 31, 56, 0.85) 0%, rgba(7, 15, 30, 0.95) 100%);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 16, 30, 0.92) 100%);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  box-shadow: 0 20px 40px -15px rgba(5, 10, 20, 0.7);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .luxury-glass:hover {
-  border-color: rgba(249, 115, 22, 0.5);
-  box-shadow: 0 30px 60px -15px rgba(249, 115, 22, 0.3);
+  border-color: rgba(245, 158, 11, 0.3);
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.8);
 }
 
 .luxury-card {
-  background: linear-gradient(135deg, rgba(26, 44, 78, 0.6) 0%, rgba(10, 22, 40, 0.9) 100%);
+  background: linear-gradient(180deg, rgba(17, 27, 49, 0.75) 0%, rgba(11, 18, 33, 0.88) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .luxury-card:hover {
-  border-color: rgba(212, 175, 55, 0.5);
-  transform: translateY(-8px) scale(1.015);
-  box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.3);
+  border-color: rgba(245, 158, 11, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.6);
 }
 
 /* Input Fields Modern Style */
 .modern-input {
-  background-color: rgba(7, 15, 30, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: rgba(10, 16, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #FFFFFF;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .modern-input:focus {
   outline: none;
-  border-color: #F97316;
-  box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
-  background-color: rgba(10, 22, 40, 1);
+  border-color: #EA580C;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
+  background-color: rgba(15, 23, 42, 1);
 }
 
 /* Infinite Marquee Animation for Client Logos Band */
@@ -94,31 +98,20 @@
   animation-play-state: paused;
 }
 
-/* Keyframe Animations */
+/* Subtle, Soothing Animations - Zero Motion Sickness */
 @keyframes float {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-12px) rotate(0.5deg);
+    transform: translateY(-6px);
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.08);
-  }
-}
-
-@keyframes slideUp {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -126,52 +119,28 @@
   }
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
 }
 
-.animate-pulse-glow {
-  animation: pulseGlow 6s ease-in-out infinite;
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
-.animate-slide-up {
-  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-gradient-text {
-  background: linear-gradient(270deg, #FACC15, #F97316, #EAB308, #FF7A00);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s ease infinite;
-}
-
-/* Text Gradients */
+/* Refined, Elegant Text Gradients (Warm & Balanced) */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #FFFFFF 10%, #FACC15 50%, #D4AF37 100%);
+  background: linear-gradient(135deg, #FFFFFF 20%, #F59E0B 70%, #D97706 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-flame {
-  background: linear-gradient(135deg, #FACC15 0%, #F97316 50%, #EA580C 100%);
+  background: linear-gradient(135deg, #F59E0B 0%, #EA580C 70%, #C2410C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Ocultar botones invasivos, marcas de agua y branding de Tagembed */
+/* Clean Tagembed Integration */
 .tagembed-widget .tagembed-share-btn,
 .tagembed-widget [class*="share-experience"],
 .tagembed-widget [class*="share_experience"],
@@ -190,17 +159,4 @@ button[class*="share-experience"],
   height: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
-}
-
-/* Contenedor Limpio y Elegante para el Widget */
-.clean-instagram-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1.5rem;
-}
-
-/* Recortar cualquier barra inferior invasiva de Tagembed */
-.clean-instagram-wrapper iframe {
-  border-radius: 1.5rem !important;
-  background: transparent !important;
 }
