@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
-import { Instagram, ExternalLink, Play, X, CheckCircle2 } from 'lucide-react';
+import { Instagram, ExternalLink, Play, X, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 
 export const InstagramGallery = () => {
   const { mediaItems = [], companyInfo = {} } = useCms();
@@ -40,7 +40,7 @@ export const InstagramGallery = () => {
   }, [activeVideoModal]);
 
   return (
-    <section id="galeria" className="py-24 relative bg-navy-950 border-t border-slate-800 overflow-hidden">
+    <section id="galeria" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
       {/* Background Decorative Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gold-metallic/10 rounded-full blur-[200px] pointer-events-none" />
@@ -48,26 +48,26 @@ export const InstagramGallery = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 text-gold-400 text-xs font-extrabold uppercase tracking-wider shadow-gold-glow">
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 text-gold-400 text-xs font-black uppercase tracking-wider shadow-gold-glow font-heading">
             <Instagram className="w-4 h-4 text-flame-500" />
             <span>Feed Oficial @cysosenergy en Tiempo Real</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
-            Últimas Publicaciones de <span className="text-gradient-flame">Instagram</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
+            Últimas Publicaciones de <span className="animate-gradient-text">Instagram</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base font-light">
-            Siga nuestras maniobras de campo, operaciones de laboratorio y novedades corporativas en <strong className="text-white">@cysosenergy</strong>. Sincronización automática en vivo.
+          <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
+            Siga nuestras maniobras de campo, operaciones de laboratorio y novedades corporativas en <strong className="text-white font-semibold">@cysosenergy</strong>. Sincronización automática en vivo.
           </p>
         </div>
 
         {/* High-End Official Profile Card Banner - EXACT INSTAGRAM REPLICA */}
-        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 mb-8 shadow-2xl max-w-4xl mx-auto">
+        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 mb-8 shadow-2xl max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             
-            <div className="flex items-center gap-5">
-              {/* EXACT Profile Avatar Replica from Instagram: Crisp White Circle with Full CYSOS Logo */}
+            <div className="flex items-center gap-4 sm:gap-5">
+              {/* Profile Avatar Replica: Crisp White Circle with Full CYSOS Logo */}
               <a
                 href="https://instagram.com/cysosenergy/"
                 target="_blank"
@@ -75,22 +75,22 @@ export const InstagramGallery = () => {
                 className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-flame-500 via-rose-500 to-amber-400 shadow-gold-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center"
                 title="Ver perfil oficial en Instagram"
               >
-                <div className="w-full h-full rounded-full bg-white flex items-center justify-center p-1 shadow-inner overflow-hidden">
+                <div className="w-full h-full rounded-full bg-[#050A14] flex items-center justify-center p-1 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] overflow-hidden">
                   <img 
                     src={companyInfo?.logoUrl || '/images/cysos_instagram_avatar.svg'} 
                     alt="Cysos Energy Instagram" 
-                    className="w-full h-full object-contain"
+                    className="w-[85%] h-[85%] object-contain"
                   />
                 </div>
               </a>
 
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
+              <div className="space-y-1 text-center sm:text-left">
+                <div className="flex items-center justify-center sm:justify-start gap-2">
                   <a
                     href="https://instagram.com/cysosenergy/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-2xl font-black font-heading text-white hover:text-gold-400 transition-colors"
+                    className="text-xl sm:text-2xl font-black font-heading text-white hover:text-gold-400 transition-colors"
                   >
                     cysosenergy
                   </a>
@@ -98,7 +98,7 @@ export const InstagramGallery = () => {
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
                 </div>
-                <p className="text-xs font-extrabold text-gold-400">Cysos Energy • Servicios petroleros</p>
+                <p className="text-xs font-black text-gold-400 font-heading">Cysos Energy • Servicios petroleros</p>
                 <p className="text-xs text-slate-300 font-light max-w-md leading-relaxed">
                   Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.
                 </p>
@@ -110,7 +110,7 @@ export const InstagramGallery = () => {
                 href="https://instagram.com/cysosenergy/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-7 py-3 rounded-2xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto px-6 sm:px-7 py-3 rounded-2xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 font-heading tracking-wide"
               >
                 <Instagram className="w-4 h-4" />
                 <span>Seguir en Instagram</span>
@@ -121,8 +121,8 @@ export const InstagramGallery = () => {
           </div>
         </div>
 
-        {/* REAL LIVE INSTAGRAM FEED - DOUBLE PRECISION CROP TO ERADICATE WATERMARK AND SHARE BUTTON */}
-        <div className="luxury-glass rounded-3xl border border-gold-metallic/30 shadow-2xl overflow-hidden p-0 relative">
+        {/* REAL LIVE INSTAGRAM FEED CONTAINER */}
+        <div className="luxury-glass rounded-3xl border border-gold-metallic/35 shadow-2xl overflow-hidden p-0 relative">
           <div className="w-full overflow-hidden" style={{ maxHeight: '545px' }}>
             <div 
               className="tagembed-widget" 
@@ -142,7 +142,7 @@ export const InstagramGallery = () => {
 
       </div>
 
-      {/* Real Video Player Modal */}
+      {/* Video Player Modal */}
       {activeVideoModal && (
         <div 
           onClick={() => setActiveVideoModal(null)}
@@ -151,7 +151,7 @@ export const InstagramGallery = () => {
           {/* Floating Close Button Top Right */}
           <button
             onClick={() => setActiveVideoModal(null)}
-            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-extrabold text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
+            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-black text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
             title="Cerrar Video (Esc)"
           >
             <X className="w-5 h-5" />
@@ -165,7 +165,7 @@ export const InstagramGallery = () => {
             <div className="flex items-center justify-between p-4 bg-navy-950 border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <Play className="w-5 h-5 text-flame-500 fill-flame-500" />
-                <h3 className="font-heading font-bold text-white text-sm sm:text-base">
+                <h3 className="font-heading font-black text-white text-sm sm:text-base">
                   {activeVideoModal.title || activeVideoModal.caption || 'CYSOS ENERGY - Operaciones en Campo @cysosenergy'}
                 </h3>
               </div>

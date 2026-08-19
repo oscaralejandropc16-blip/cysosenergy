@@ -77,23 +77,25 @@ function MainAppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-navy-950 text-slate-100 font-sans selection:bg-flame-500 selection:text-white">
+    <>
       <Navbar />
-      <main>
-        <Hero />
-        <PartnersCarousel />
-        <MissionVision />
-        <HumanOperations />
-        <Services />
-        <ViscosityCalculator />
-        <VenezuelaMap />
-        <HSECommitment />
-        <InstagramGallery />
-        <ContactForm />
-      </main>
-      <Footer />
-      <ScrollToTop />
-    </div>
+      <div className="min-h-screen bg-navy-950 text-slate-100 font-sans selection:bg-flame-500 selection:text-white">
+        <main>
+          <Hero />
+          <PartnersCarousel />
+          <MissionVision />
+          <HumanOperations />
+          <Services />
+          <ViscosityCalculator />
+          <VenezuelaMap />
+          <HSECommitment />
+          <InstagramGallery />
+          <ContactForm />
+        </main>
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </>
   );
 }
 

@@ -5,7 +5,7 @@ import {
   Lock, Mail, MessageSquare, Trash2, CheckCircle2, Search, Filter, 
   LogOut, Edit3, Image as ImageIcon, Key, Plus, ArrowLeft, Building, 
   MapPin, Phone, Video, Layers, Sparkles, Sliders, Briefcase, FileText, 
-  Play, Eye, HelpCircle, Check, Upload, FolderOpen, X, CheckCircle, AlertTriangle
+  Play, Eye, HelpCircle, Check, Upload, FolderOpen, X, CheckCircle, AlertTriangle, AtSign
 } from 'lucide-react';
 
 import { uploadToCloudinary, CLOUDINARY_CONFIG } from '../services/cloudinaryService';
@@ -1488,7 +1488,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 {/* EDITABLE INSTAGRAM STATS & BIO */}
                 <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-4">
                   <div className="flex items-center gap-2 text-xs font-extrabold text-white">
-                    <Instagram className="w-4 h-4 text-flame-500" />
+                    <AtSign className="w-4 h-4 text-flame-500" />
                     <span>Datos del Perfil de Instagram (@cysosenergy):</span>
                   </div>
 

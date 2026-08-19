@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== NAVBAR SCROLL FIX ===== */
+/* Evita que las secciones queden ocultas detrás del navbar fijo */
+html {
+  scroll-padding-top: 90px;
+}
+
+section[id] {
+  scroll-margin-top: 90px;
+}
+
 @layer base {
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #070D18;
+    background-color: #050A14;
     color: #F1F5F9;
     letter-spacing: -0.01em;
     -webkit-font-smoothing: antialiased;
@@ -21,9 +31,10 @@
 /* Custom Scrollbar - Sleek and subtle */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #070D18;
+  background: #050A14;
 }
 ::-webkit-scrollbar-thumb {
   background: #1E293B;
@@ -35,37 +46,37 @@
 
 /* Executive Oilfield Glassmorphism - Soothing, Calm & High-End */
 .luxury-glass {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 16, 30, 0.92) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(180deg, rgba(10, 19, 38, 0.88) 0%, rgba(6, 12, 26, 0.94) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.8), 0 0 15px rgba(245, 158, 11, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .luxury-glass:hover {
-  border-color: rgba(245, 158, 11, 0.3);
-  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.8);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 25px 55px -15px rgba(0, 0, 0, 0.9), 0 0 25px rgba(245, 158, 11, 0.12);
 }
 
 .luxury-card {
-  background: linear-gradient(180deg, rgba(17, 27, 49, 0.75) 0%, rgba(11, 18, 33, 0.88) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, rgba(13, 23, 44, 0.8) 0%, rgba(8, 14, 28, 0.9) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .luxury-card:hover {
-  border-color: rgba(245, 158, 11, 0.35);
+  border-color: rgba(245, 158, 11, 0.4);
   transform: translateY(-4px);
-  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 18px 36px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(245, 158, 11, 0.1);
 }
 
 /* Input Fields Modern Style */
 .modern-input {
-  background-color: rgba(10, 16, 30, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(6, 12, 24, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #FFFFFF;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -73,8 +84,8 @@
 .modern-input:focus {
   outline: none;
   border-color: #EA580C;
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.2);
-  background-color: rgba(15, 23, 42, 1);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.25);
+  background-color: rgba(10, 18, 36, 1);
 }
 
 /* Infinite Marquee Animation for Client Logos Band */
@@ -90,7 +101,7 @@
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 65s linear infinite;
+  animation: marquee 55s linear infinite;
   will-change: transform;
 }
 
@@ -98,7 +109,7 @@
   animation-play-state: paused;
 }
 
-/* Subtle, Soothing Animations - Zero Motion Sickness */
+/* Subtle Animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -119,6 +130,17 @@
   }
 }
 
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
@@ -127,17 +149,35 @@
   animation: fadeIn 0.4s ease-out forwards;
 }
 
-/* Refined, Elegant Text Gradients (Warm & Balanced) */
+.animate-pulse-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* Refined, Elegant Text Gradients */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #FFFFFF 20%, #F59E0B 70%, #D97706 100%);
+  background: linear-gradient(135deg, #FFFFFF 15%, #FACC15 65%, #D97706 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-flame {
-  background: linear-gradient(135deg, #F59E0B 0%, #EA580C 70%, #C2410C 100%);
+  background: linear-gradient(135deg, #FACC15 0%, #F97316 50%, #EA580C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.animate-gradient-text {
+  background: linear-gradient(135deg, #FFE500 0%, #F97316 50%, #FFB703 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Clean Tagembed Integration */
@@ -160,3 +200,4 @@ button[class*="share-experience"],
   margin: 0 !important;
   padding: 0 !important;
 }
+

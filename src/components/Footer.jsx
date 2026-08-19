@@ -1,151 +1,170 @@
 import React from 'react';
+import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
-import { Mail, Phone, MapPin, Instagram, ShieldCheck, ExternalLink, ArrowUp, ChevronRight } from 'lucide-react';
+import { 
+  Phone, Mail, Instagram, Shield, 
+  Lock 
+} from 'lucide-react';
 
 export const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const { companyInfo } = useCms();
+  const currentYear = new Date().getFullYear();
+
+  // Ensure default values are used if companyInfo is empty or missing fields
+  const defaults = {
+    name: 'CYSOS ENERGY, C.A.',
+    rif: 'J-50346383-1',
+    address: 'C.C. Terrazas del Norte II, Nivel Mezzanina, Local M-12, Maturín, Estado Monagas, Venezuela.',
+    phone1: '0414-0596012',
+    phone2: '0412-4817113',
+    email1: 'MANAGER@CYSOS.ENERGY',
+    email2: 'OPERACIONES@CYSOS.ENERGY'
   };
 
+  const safeInfo = { ...defaults };
+  if (companyInfo) {
+    Object.keys(companyInfo).forEach(key => {
+      if (companyInfo[key]) safeInfo[key] = companyInfo[key];
+    });
+  }
+
   return (
-    <footer className="bg-navy-950 text-slate-400 relative border-t border-slate-800/80 pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-[#050A14] border-t border-slate-800/60 pt-20 pb-8 overflow-hidden font-sans">
       
-      {/* Subtle Ambient Light (Static & Soft) */}
-      <div className="absolute top-0 left-1/3 w-[600px] h-[300px] bg-gold-metallic/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* Dynamic Background Glow & Top Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-gold-500/30 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-gold-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        {/* Main 4-Column Clean Architecture */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800/70">
+        {/* Main 4-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-slate-800/60">
           
-          {/* Col 1 (4 cols): Company Identity & RIF */}
-          <div className="lg:col-span-4 space-y-4">
-            <a href="#inicio" className="inline-block transition-transform hover:scale-102">
-              <Logo isDark={true} />
-            </a>
-            
-            <p className="text-xs text-slate-400 leading-relaxed font-light max-w-sm">
-              Soluciones integrales en ingeniería IPC, procura internacional, logística pesada, intervención de pozos y química de producción petrolera en Venezuela.
-            </p>
-
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-navy-900 border border-slate-800 text-[11px] text-slate-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-              <span>Normativas ISO 9001 & Seguridad SI-HO-S</span>
+          {/* Col 1: Corporate Branding & RIF */}
+          <div className="md:col-span-12 lg:col-span-4 space-y-6">
+            <div className="flex flex-col items-start gap-5">
+              <Logo className="h-16 w-auto" />
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_15px_rgba(250,204,21,0.05)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
+                <span className="text-[11px] text-gold-400 font-bold uppercase tracking-widest font-heading">
+                  RIF: {safeInfo.rif}
+                </span>
+              </div>
             </div>
 
-            <div className="text-[11px] text-slate-500 font-mono">
-              RIF: J-50478054-4 • Maturín, Venezuela
+            <p className="text-sm text-slate-400 leading-relaxed font-light pr-4">
+              Empresa venezolana de ingeniería, procura, construcción y servicios petroleros especializados en optimización reológica EOR, estimulación de pozos y logística pesada de izamiento.
+            </p>
+
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-navy-900/40 border border-emerald-500/20">
+              <Shield className="w-4 h-4 text-emerald-400" />
+              <span className="text-[11px] text-emerald-400 font-bold uppercase tracking-widest font-heading">
+                Normas ISO 9001 & SI-HO-S
+              </span>
             </div>
           </div>
 
-          {/* Col 2 (2 cols): Clean Navigation */}
-          <div className="lg:col-span-2 space-y-3.5">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Navegación
+          {/* Col 2: Quick Links / Divisions */}
+          <div className="md:col-span-4 lg:col-span-3 space-y-6">
+            <h4 className="text-xs font-black text-white uppercase tracking-widest font-heading flex items-center gap-3">
+              Divisiones
+              <div className="h-px bg-slate-800 flex-1" />
             </h4>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-4">
               {[
-                { name: 'Inicio', href: '#inicio' },
-                { name: 'Misión & Visión', href: '#mision-vision' },
-                { name: 'Operaciones de Campo', href: '#operaciones' },
-                { name: 'Portafolio de Servicios', href: '#servicios' },
-                { name: 'Calculadora EOR', href: '#calculadora' },
-                { name: 'Cuencas Petroleras', href: '#cobertura' },
-                { name: 'Contacto & Cotización', href: '#contacto' }
-              ].map((item, idx) => (
+                { label: 'Química de Producción EOR', href: '#servicios' },
+                { label: 'Intervención de Pozos & Flush By', href: '#servicios' },
+                { label: 'Logística Pesada & Grúas', href: '#servicios' },
+                { label: 'Ingeniería & Procura API', href: '#servicios' },
+                { label: 'Calculadora Reológica', href: '#calculadora' },
+                { label: 'Galería de Operaciones', href: '#operaciones' }
+              ].map((link, idx) => (
                 <li key={idx}>
-                  <a 
-                    href={item.href} 
-                    className="text-slate-400 hover:text-gold-400 transition-colors flex items-center gap-1.5"
-                  >
-                    <ChevronRight className="w-3 h-3 text-slate-600" />
-                    <span>{item.name}</span>
+                  <a href={link.href} className="group flex items-center gap-3 text-sm text-slate-400 hover:text-gold-400 transition-all">
+                    <div className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-gold-400 group-hover:scale-125 transition-all" />
+                    <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3 (3 cols): Clean Services List */}
-          <div className="lg:col-span-3 space-y-3.5">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Divisiones IPC
+          {/* Col 3: Bases Operativas */}
+          <div className="md:col-span-4 lg:col-span-2 space-y-6">
+            <h4 className="text-xs font-black text-white uppercase tracking-widest font-heading flex items-center gap-3">
+              Bases
+              <div className="h-px bg-slate-800 flex-1" />
             </h4>
-            <ul className="space-y-2.5 text-xs">
+            <ul className="space-y-5">
               {[
-                { title: 'Química de Producción EOR', desc: 'Reductores permanentes y desmulsificantes' },
-                { title: 'Well Testing & Aforo de Flujo', desc: 'Medición de presión y temperatura' },
-                { title: 'Workover & Flush By 24/7', desc: 'Mantenimiento y estimulación sin taladro' },
-                { title: 'Izamiento Pesado 110 Ton', desc: 'Grúas telescópicas y cisternas' },
-                { title: 'Procura Internacional USA', desc: 'Tuberías ERW/RTP y válvulas API' }
-              ].map((srv, idx) => (
-                <li key={idx} className="space-y-0.5">
-                  <span className="text-slate-200 font-semibold block">{srv.title}</span>
-                  <span className="text-[11px] text-slate-500 font-light block">{srv.desc}</span>
+                { city: 'Maturín', state: 'Monagas (HQ)' },
+                { city: 'FPO', state: 'Junín / Carabobo' },
+                { city: 'El Tigre', state: 'Anzoátegui' },
+                { city: 'Costa Oriental', state: 'Zulia' }
+              ].map((loc, idx) => (
+                <li key={idx} className="flex flex-col gap-0.5">
+                  <span className="text-sm font-bold text-slate-200">{loc.city}</span>
+                  <span className="text-[11px] text-slate-500 font-medium tracking-wide uppercase">{loc.state}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4 (3 cols): HQ & Contact Channels */}
-          <div className="lg:col-span-3 space-y-3.5">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-              Sede Principal & Contacto
+          {/* Col 4: Hotline & Direct Channels */}
+          <div className="md:col-span-4 lg:col-span-3 space-y-6">
+            <h4 className="text-xs font-black text-white uppercase tracking-widest font-heading flex items-center gap-3">
+              Contacto 24/7
+              <div className="h-px bg-slate-800 flex-1" />
             </h4>
             
-            <div className="space-y-3 text-xs">
-              <div className="flex items-start gap-2.5 text-slate-400">
-                <MapPin className="w-4 h-4 text-flame-500 flex-shrink-0 mt-0.5" />
-                <span className="leading-relaxed">
-                  C.C. Terrazas del Norte II, Maturín, Edo. Monagas, Venezuela.
-                </span>
-              </div>
+            <div className="flex flex-col gap-2">
+              <a href={`https://wa.me/${safeInfo.phone1.replace(/\D/g,'')}`} target="_blank" rel="noopener noreferrer" 
+                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-emerald-500/5 transition-colors border border-transparent hover:border-emerald-500/20">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Despacho Inmediato</span>
+                  <span className="block text-sm font-bold text-slate-200 group-hover:text-emerald-400 transition-colors">{safeInfo.phone1}</span>
+                </div>
+              </a>
 
-              <div className="flex items-center gap-2.5 text-slate-400">
-                <Phone className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <a href="tel:+584140596012" className="text-slate-200 hover:text-gold-400 transition-colors font-medium">
-                  0414-0596012 / 0412-4817113
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-slate-400">
-                <Mail className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <a href="mailto:MANAGER@CYSOS.ENERGY" className="text-gold-400 hover:underline font-mono font-medium">
-                  MANAGER@CYSOS.ENERGY
-                </a>
-              </div>
-
-              {/* Sleek Instagram Channel Link */}
-              <div className="pt-2">
-                <a
-                  href="https://instagram.com/cysosenergy/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-navy-900 border border-slate-800 text-xs font-semibold text-slate-200 hover:text-white hover:border-flame-500 transition-all"
-                >
-                  <Instagram className="w-4 h-4 text-flame-500" />
-                  <span>@cysosenergy</span>
-                  <ExternalLink className="w-3 h-3 text-slate-500" />
-                </a>
-              </div>
+              <a href={`mailto:${safeInfo.email1}`} 
+                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-gold-400/5 transition-colors border border-transparent hover:border-gold-400/20">
+                <div className="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center text-gold-400 group-hover:scale-110 group-hover:bg-gold-400/20 transition-all">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Gerencia & RFQ</span>
+                  <span className="block text-sm font-bold text-slate-200 group-hover:text-gold-400 transition-colors truncate">{safeInfo.email1}</span>
+                </div>
+              </a>
+              
+              <a href="https://instagram.com/cysosenergy" target="_blank" rel="noopener noreferrer"
+                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-flame-500/5 transition-colors border border-transparent hover:border-flame-500/20">
+                <div className="w-10 h-10 rounded-full bg-flame-500/10 flex items-center justify-center text-flame-400 group-hover:scale-110 group-hover:bg-flame-500/20 transition-all">
+                  <Instagram className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Operaciones en Vivo</span>
+                  <span className="block text-sm font-bold text-slate-200 group-hover:text-flame-400 transition-colors">@cysosenergy</span>
+                </div>
+              </a>
             </div>
           </div>
-
         </div>
 
         {/* Bottom Legal Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-light">
-          <p>© {new Date().getFullYear()} CYSOS ENERGY, C.A. Todos los derechos reservados.</p>
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-xs text-slate-500 font-medium text-center md:text-left">
+            © {currentYear} <span className="text-slate-300 font-bold">CYSOS ENERGY, C.A.</span> Todos los derechos reservados.
+          </p>
           
           <div className="flex items-center gap-6">
-            <span>Venezuela • Faja del Orinoco • Monagas • Zulia</span>
-            <button
-              onClick={scrollToTop}
-              className="p-2 rounded-lg bg-navy-900 border border-slate-800 text-slate-400 hover:text-gold-400 hover:border-gold-metallic/40 transition-colors"
-              title="Volver arriba"
-            >
-              <ArrowUp className="w-4 h-4" />
-            </button>
+            <a href="#cysos-panel" className="group flex items-center gap-2 text-[11px] font-bold text-slate-500 hover:text-gold-400 transition-colors uppercase tracking-widest">
+              <Lock className="w-3.5 h-3.5" />
+              <span>Portal Empleados</span>
+            </a>
           </div>
         </div>
 

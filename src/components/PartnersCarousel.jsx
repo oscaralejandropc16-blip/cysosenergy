@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
-import { Award, ShieldCheck, Sparkles, ChevronRight, X, ExternalLink, Building2 } from 'lucide-react';
+import { Award, ShieldCheck, Sparkles, ChevronRight, X, ExternalLink, Building2, FileCheck2, ArrowUpRight } from 'lucide-react';
 
 export const PartnersCarousel = () => {
   const { partners } = useCms();
@@ -26,16 +26,16 @@ export const PartnersCarousel = () => {
     {
       id: 'halliburton',
       name: 'HALLIBURTON',
-      sub: 'Servicios de Yacimiento',
-      contract: 'Alquiler de Equipos Livianos y Pesados en Base Maturín.',
+      sub: 'Servicios de Yacimiento & Wellbore',
+      contract: 'Alquiler y suministro de equipos pesados, unidades de transporte y soporte técnico de superficie en Base Maturín.',
       type: 'Multinacional USA',
       logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Halliburton_logo.svg/320px-Halliburton_logo.svg.png'
     },
     {
       id: 'slb',
       name: 'SLB (Schlumberger)',
-      sub: 'Líder Mundial en Tecnología',
-      contract: 'Servicio de Transporte Pesado de Chutos, Bateas y Tolvas (3 años).',
+      sub: 'Líder Mundial en Tecnología Petrolera',
+      contract: 'Servicio integral de transporte pesado con chutos, tolvas y cisternas para lodos y químicos en pozos de exploración y desarrollo (3 años continuos).',
       type: 'Multinacional USA',
       logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/SLB_Logo_2022.svg/320px-SLB_Logo_2022.svg.png'
     },
@@ -43,7 +43,7 @@ export const PartnersCarousel = () => {
       id: 'pdvsa-petrojunin',
       name: 'PDVSA PETROJUNÍN',
       sub: 'Alianza ENI • Faja del Orinoco',
-      contract: 'Servicios de Asfaltado, Inyección de Reductor de Viscosidad y Equipos Misceláneos.',
+      contract: 'Servicios de asfaltado, inyección continua de reductores de viscosidad EOR y suministro de equipos misceláneos de pozo en División Junín.',
       type: 'Empresa Mixta PDVSA',
       logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/PDVSA_Logo.svg/320px-PDVSA_Logo.svg.png'
     },
@@ -51,7 +51,7 @@ export const PartnersCarousel = () => {
       id: 'pdvsa-petromiranda',
       name: 'PDVSA PETROMIRANDA',
       sub: 'Alianza Rosneft • División Junín',
-      contract: 'Saneamiento de Suelos y Cuerpos de Agua Afectados por Derrame de DCO.',
+      contract: 'Saneamiento ambiental integral de suelos y cuerpos de agua, succión con unidades vacuum y manejo de fluidos en macollas petroleras.',
       type: 'Empresa Mixta PDVSA',
       logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/PDVSA_Logo.svg/320px-PDVSA_Logo.svg.png'
     }
@@ -61,63 +61,83 @@ export const PartnersCarousel = () => {
   const marqueeItems = [...safePartners, ...safePartners, ...safePartners];
 
   return (
-    <section className="py-24 relative bg-navy-950 overflow-hidden border-b border-slate-800">
+    <section className="py-20 md:py-24 relative bg-navy-950 overflow-hidden border-b border-slate-800/80">
       
       {/* Background Decorative Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gold-metallic/5 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/30 text-gold-400 text-xs font-extrabold uppercase tracking-wider mb-3 shadow-gold-glow">
-              <Award className="w-4 h-4 text-flame-500" />
-              <span>Clientes & Aliados Estratégicos</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
+              <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
+              <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
+                Clientes & Aliados
+              </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
-              Empresas que Confían en <span className="animate-gradient-text">CYSOS ENERGY</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
+              Empresas que confían en <span className="animate-gradient-text bg-gradient-to-r from-gold-400 via-orange-400 to-flame-500 bg-clip-text text-transparent block mt-1 sm:inline sm:mt-0">CYSOS ENERGY</span>
             </h2>
           </div>
-          <p className="text-sm text-slate-300 font-light max-w-md leading-relaxed">
-            Trayectoria comprobada con corporaciones multinacionales, empresas mixtas y entes estatales de Venezuela.
+          <p className="text-sm text-slate-400 font-light max-w-md leading-relaxed md:text-right border-l md:border-l-0 md:border-r-2 border-gold-400/30 pl-4 md:pl-0 md:pr-6">
+            Trayectoria comprobada operando junto a corporaciones multinacionales y empresas mixtas del sector hidrocarburos.
           </p>
         </div>
       </div>
 
       {/* CONTINUOUS INFINITE TICKER MARQUEE */}
-      <div className="relative w-full overflow-hidden py-8 border-y border-slate-800/80 bg-navy-900/60 backdrop-blur-md">
+      <div className="relative w-full overflow-hidden py-12 border-y border-slate-800/40 bg-gradient-to-b from-[#050A14] via-[#081020] to-[#050A14] backdrop-blur-xl">
         
-        {/* Left and Right Fade Masks for smooth edge blending */}
-        <div className="absolute left-0 top-0 bottom-0 w-28 sm:w-44 bg-gradient-to-r from-navy-950 to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-28 sm:w-44 bg-gradient-to-l from-navy-950 to-transparent z-20 pointer-events-none" />
+        {/* Massive Fade Masks for cinematic edge blending */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-64 bg-gradient-to-r from-navy-950 via-navy-950/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-64 bg-gradient-to-l from-navy-950 via-navy-950/80 to-transparent z-20 pointer-events-none" />
 
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 items-center cursor-pointer">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 sm:gap-8 items-center cursor-pointer px-4">
           {marqueeItems.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
               onClick={() => setSelectedClient(partner)}
-              className="flex-shrink-0 group/card bg-navy-900/95 hover:bg-navy-850 p-5 sm:p-6 rounded-3xl border border-slate-800 hover:border-gold-metallic/60 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl flex items-center gap-5 min-w-[360px] sm:min-w-[420px]"
+              className="flex-shrink-0 group/card relative p-5 sm:p-6 rounded-[2rem] bg-[#0a1224]/80 backdrop-blur-xl border border-slate-800/80 hover:border-gold-400/50 transition-all duration-500 overflow-hidden flex items-center gap-5 min-w-[360px] sm:min-w-[440px]"
             >
-              {/* EXTRA-LARGE HIGH-CONTRAST WHITE LOGO BADGE */}
-              <div className="w-32 sm:w-36 h-20 sm:h-24 rounded-2xl bg-white border border-white/90 flex items-center justify-center p-3 flex-shrink-0 shadow-xl group-hover/card:scale-105 transition-all">
+              {/* Premium Background Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gold-400/0 to-gold-400/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -inset-x-10 -bottom-10 h-24 bg-gold-400/20 blur-[40px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+              {/* Glass Floating Logo Orb */}
+              <div className="relative w-28 h-20 sm:w-32 sm:h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 flex-shrink-0 shadow-2xl group-hover/card:scale-105 group-hover/card:-rotate-3 transition-transform duration-500 backdrop-blur-sm overflow-hidden">
+                <div className="absolute inset-0 bg-white rounded-2xl opacity-90 group-hover/card:opacity-100 transition-opacity duration-300 shadow-[inset_0_0_15px_rgba(0,0,0,0.1)]" />
                 {partner.logoUrl ? (
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
-                    className="w-full h-full object-contain filter drop-shadow-sm max-h-16"
+                    className="w-[115%] h-[115%] object-contain filter drop-shadow-md relative z-10 group-hover/card:scale-[1.25] transition-transform duration-500"
                   />
                 ) : (
-                  <Building2 className="w-10 h-10 text-navy-900" />
+                  <Building2 className="w-10 h-10 text-slate-800 relative z-10" />
                 )}
               </div>
 
-              <div className="flex-1 min-w-0">
-                <h4 className="text-base sm:text-lg font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors">
-                  {partner.name}
-                </h4>
-                <p className="text-xs text-slate-300 truncate font-medium mt-1">{partner.sub}</p>
-                <span className="inline-block text-[10px] font-extrabold uppercase px-3 py-1 rounded-full bg-gold-metallic/15 text-gold-400 border border-gold-metallic/30 mt-2">
-                  {partner.type}
-                </span>
+              {/* Text & Meta */}
+              <div className="flex-1 min-w-0 relative z-10">
+                <div className="flex items-center justify-between gap-2 mb-1.5">
+                  <h4 className="text-base sm:text-lg font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors">
+                    {partner.name}
+                  </h4>
+                  <div className="w-7 h-7 rounded-full bg-slate-800/60 flex items-center justify-center group-hover/card:bg-gold-400 group-hover/card:text-navy-950 transition-colors text-slate-400 flex-shrink-0 transform group-hover/card:rotate-12">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+                
+                <p className="text-[11px] sm:text-xs text-slate-400 truncate font-medium mb-3">
+                  {partner.sub}
+                </p>
+                
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-950/90 border border-slate-700/50 group-hover/card:border-gold-400/30 transition-colors shadow-inner">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                  <span className="text-[9px] font-black uppercase text-slate-300 group-hover/card:text-gold-400 font-heading tracking-widest">
+                    {partner.type}
+                  </span>
+                </div>
               </div>
             </div>
           ))}
@@ -128,59 +148,68 @@ export const PartnersCarousel = () => {
       {selectedClient && (
         <div 
           onClick={() => setSelectedClient(null)}
-          className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
+          className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 bg-[#050A14]/90 backdrop-blur-3xl animate-fadeIn cursor-pointer"
         >
           {/* Floating Close Button Top Right */}
           <button
             onClick={() => setSelectedClient(null)}
-            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-extrabold text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
+            className="fixed top-6 right-6 sm:top-10 sm:right-10 z-[130] w-12 h-12 rounded-full bg-slate-800/50 hover:bg-gold-400 hover:text-navy-950 text-white flex items-center justify-center transition-all transform hover:scale-110 shadow-xl backdrop-blur-md border border-white/10 hover:border-gold-400"
             title="Cerrar (Esc)"
           >
             <X className="w-5 h-5" />
-            <span className="hidden sm:inline">Cerrar (Esc)</span>
           </button>
 
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="luxury-glass w-full max-w-lg rounded-3xl border border-gold-metallic/40 p-6 sm:p-8 space-y-6 shadow-2xl relative cursor-default"
+            className="w-full max-w-xl rounded-[2.5rem] bg-[#0a1224]/90 backdrop-blur-xl border border-slate-800/80 p-8 sm:p-10 space-y-8 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative cursor-default overflow-hidden"
           >
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-32 h-20 rounded-2xl bg-white border border-white/90 p-3 flex items-center justify-center shadow-xl">
-                  {selectedClient.logoUrl ? (
-                    <img src={selectedClient.logoUrl} alt={selectedClient.name} className="w-full h-full object-contain" />
-                  ) : (
-                    <Building2 className="w-10 h-10 text-navy-900" />
-                  )}
-                </div>
-                <div>
-                  <h3 className="text-xl font-extrabold font-heading text-white">{selectedClient.name}</h3>
-                  <span className="text-xs text-gold-400 font-bold">{selectedClient.type}</span>
+            {/* Modal Internal Glow */}
+            <div className="absolute -top-32 -right-32 w-64 h-64 bg-gold-400/10 rounded-full blur-[60px] pointer-events-none" />
+
+            {/* Header: Logo and Title */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-6 relative z-10">
+              <div className="w-28 h-20 sm:w-32 sm:h-24 rounded-2xl bg-white/5 border border-white/10 p-2 flex items-center justify-center shadow-2xl flex-shrink-0 backdrop-blur-sm relative overflow-hidden">
+                <div className="absolute inset-0 bg-white rounded-2xl opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.1)]" />
+                {selectedClient.logoUrl ? (
+                  <img src={selectedClient.logoUrl} alt={selectedClient.name} className="w-[115%] h-[115%] object-contain filter drop-shadow-md relative z-10" />
+                ) : (
+                  <Building2 className="w-10 h-10 text-slate-800 relative z-10" />
+                )}
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">{selectedClient.name}</h3>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase text-gold-400 tracking-widest font-heading">{selectedClient.type}</span>
                 </div>
               </div>
-              <button
-                onClick={() => setSelectedClient(null)}
-                className="p-2 rounded-xl bg-navy-900 hover:bg-red-950 text-slate-300 hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
             </div>
 
-            <div className="space-y-3 bg-navy-900/80 p-5 rounded-2xl border border-slate-800">
-              <span className="text-[10px] text-gold-400 uppercase font-extrabold tracking-wider block">
-                Alcance y Objeto del Contrato:
-              </span>
-              <p className="text-sm text-slate-200 leading-relaxed font-light">
+            {/* Contract Details */}
+            <div className="relative z-10 border-l-2 border-gold-400/50 pl-5 sm:pl-6 space-y-3">
+              <div className="flex items-center gap-2.5">
+                <FileCheck2 className="w-5 h-5 text-gold-400" />
+                <span className="text-xs uppercase font-black tracking-widest text-white font-heading">
+                  Alcance Operativo del Contrato
+                </span>
+              </div>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-light">
                 {selectedClient.contract}
               </p>
             </div>
 
-            <div className="flex justify-end">
+            {/* Footer */}
+            <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-slate-800/80">
+              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest font-heading">Normas SI-HO-S & ISO 9001</span>
+              </div>
+
               <button
                 onClick={() => setSelectedClient(null)}
-                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 text-white font-extrabold text-xs shadow-flame-glow"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gold-400 hover:bg-gold-300 text-navy-950 font-black text-[11px] uppercase tracking-widest font-heading transition-colors shadow-lg hover:shadow-gold-400/20"
               >
-                Cerrar
+                Cerrar Panel
               </button>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sliders, CheckCircle2, FileSpreadsheet, Sparkles, Activity } from 'lucide-react';
+import { Sliders, CheckCircle2, FileSpreadsheet, Sparkles, Activity, Gauge, TrendingDown, ArrowRight } from 'lucide-react';
 
 export const ViscosityCalculator = () => {
   const [apiGravity, setApiGravity] = useState(8.5);
@@ -14,36 +14,36 @@ export const ViscosityCalculator = () => {
   const naphthaSavingsPct = (reductionFactor * 42).toFixed(1);
 
   return (
-    <section id="calculadora" className="py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
+    <section id="calculadora" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
       {/* Background Decorative Glows */}
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-flame-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[160px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-flame-500/10 rounded-full blur-[160px] pointer-events-none animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 shadow-gold-glow">
             <Sliders className="w-4 h-4 text-gold-400" />
-            <span className="text-xs font-extrabold uppercase tracking-wider text-gold-400">
+            <span className="text-xs font-black uppercase tracking-wider text-gold-400 font-heading">
               Simulador de Ingeniería EOR CYSOS
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-heading text-white tracking-tight">
-            Calculadora de <span className="text-gradient-flame">Reducción de Viscosidad</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
+            Calculadora de <span className="animate-gradient-text">Reducción de Viscosidad</span>
           </h2>
-          <p className="text-slate-300 text-sm sm:text-base font-light">
+          <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
             Estime el impacto en la reología del crudo pesado y extrapesado al aplicar los aditivos reductores de viscosidad de CYSOS ENERGY.
           </p>
         </div>
 
         {/* Interactive Tool Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           
           {/* Controls Column */}
-          <div className="lg:col-span-7 luxury-glass p-8 rounded-3xl border border-gold-metallic/30 shadow-2xl space-y-6">
-            <h3 className="text-xl font-extrabold font-heading text-white flex items-center gap-2">
+          <div className="lg:col-span-7 luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 shadow-2xl space-y-6">
+            <h3 className="text-lg sm:text-xl font-black font-heading text-white flex items-center gap-2">
               <Sliders className="w-5 h-5 text-flame-500" />
               <span>Parámetros de Operación del Pozo / Oleoducto</span>
             </h3>
@@ -52,7 +52,7 @@ export const ViscosityCalculator = () => {
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs">
                 <label className="text-slate-200 font-bold">Gravedad API del Crudo:</label>
-                <span className="text-gold-400 font-extrabold font-mono bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
+                <span className="text-gold-400 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
                   {apiGravity.toFixed(1)}° API ({apiGravity < 10 ? 'Extrapesado Faja' : 'Pesado'})
                 </span>
               </div>
@@ -76,7 +76,7 @@ export const ViscosityCalculator = () => {
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs">
                 <label className="text-slate-200 font-bold">Viscosidad Inicial del Crudo (cPs):</label>
-                <span className="text-gold-400 font-extrabold font-mono bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
+                <span className="text-gold-400 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
                   {initialViscosity.toLocaleString('es-VE')} cPs
                 </span>
               </div>
@@ -100,7 +100,7 @@ export const ViscosityCalculator = () => {
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs">
                 <label className="text-slate-200 font-bold">Dosis de Aditivo Reductor CYSOS (PPM):</label>
-                <span className="text-flame-500 font-extrabold font-mono bg-navy-950 px-3 py-1 rounded-lg border border-flame-500/40">
+                <span className="text-flame-500 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-flame-500/40">
                   {dosagePpm} PPM
                 </span>
               </div>
@@ -113,13 +113,18 @@ export const ViscosityCalculator = () => {
                 onChange={(e) => setDosagePpm(parseInt(e.target.value))}
                 className="w-full h-2.5 bg-navy-900 rounded-lg appearance-none cursor-pointer accent-flame-500"
               />
+              <div className="flex justify-between text-[10px] text-slate-400 font-medium">
+                <span>200 PPM</span>
+                <span>1,000 PPM (Estándar)</span>
+                <span>2,000 PPM</span>
+              </div>
             </div>
 
             {/* Slider 4: Temperature */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs">
                 <label className="text-slate-200 font-bold">Temperatura de Bombeo (°C):</label>
-                <span className="text-white font-extrabold font-mono bg-navy-950 px-3 py-1 rounded-lg border border-slate-700">
+                <span className="text-white font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-slate-700">
                   {pipeTemp}°C ({(pipeTemp * 1.8 + 32).toFixed(0)}°F)
                 </span>
               </div>
@@ -136,80 +141,81 @@ export const ViscosityCalculator = () => {
 
             <div className="p-4 rounded-2xl bg-navy-950/90 border border-slate-800 text-xs text-slate-300 flex items-center gap-3">
               <Sparkles className="w-5 h-5 text-gold-400 flex-shrink-0" />
-              <span>
-                Simulación preliminar basada en reometría de laboratorio. Para pruebas específicas con muestra de crudo de su pozo, contacte a nuestro equipo técnico.
+              <span className="font-light">
+                Simulación preliminar basada en reometría de laboratorio. Para ensayos específicos con muestra de crudo de su pozo, solicite un estudio reológico sin costo.
               </span>
             </div>
           </div>
 
           {/* Results Column */}
-          <div className="lg:col-span-5 luxury-glass p-8 rounded-3xl border border-gold-metallic/30 shadow-2xl flex flex-col justify-between">
-            <div className="space-y-6">
+          <div className="lg:col-span-5 luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 shadow-2xl flex flex-col justify-between">
+            <div className="space-y-5">
               
               <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-                <h3 className="text-lg font-extrabold font-heading text-white">Resultados de Simulación EOR</h3>
-                <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-extrabold uppercase tracking-wider">
+                <h3 className="text-base sm:text-lg font-black font-heading text-white">Resultados de Simulación EOR</h3>
+                <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-black uppercase tracking-wider font-heading">
                   Optimización Fluida
                 </span>
               </div>
 
               {/* Result Card 1: Viscosity Comparison */}
               <div className="bg-navy-950/90 p-5 rounded-2xl border border-slate-800 space-y-3">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block font-heading">
                   Viscosidad Post-Tratamiento CYSOS:
                 </span>
                 <div className="flex items-baseline gap-3">
-                  <span className="text-4xl sm:text-5xl font-black font-heading text-emerald-400">
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-black font-heading text-emerald-400">
                     {finalViscosity.toLocaleString('es-VE')}
                   </span>
                   <span className="text-sm font-bold text-slate-400">cPs</span>
-                  <span className="ml-auto text-xs font-extrabold text-white bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-1 rounded-lg border border-emerald-400/30">
+                  <span className="ml-auto text-xs font-black text-white bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-1 rounded-lg border border-emerald-400/30 font-heading">
                     -{reductionPercentage}%
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400">
-                  De {initialViscosity.toLocaleString('es-VE')} cPs a solo {finalViscosity.toLocaleString('es-VE')} cPs.
+                <p className="text-[11px] text-slate-400 font-light">
+                  Reducción drástica de {initialViscosity.toLocaleString('es-VE')} cPs a solo {finalViscosity.toLocaleString('es-VE')} cPs.
                 </p>
               </div>
 
               {/* Metrics Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="bg-navy-950/90 p-4 rounded-2xl border border-slate-800">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">Aumento en Tasa de Flujo</span>
-                  <span className="text-xl font-extrabold text-gold-400 font-mono">+{flowRateGain}% BPD</span>
-                  <span className="text-[10px] text-slate-400 block mt-1">Mayor capacidad de bombeo</span>
+                  <span className="text-[10px] uppercase font-black text-slate-400 block mb-1 font-heading">Aumento en Caudal</span>
+                  <span className="text-lg sm:text-xl font-black text-gold-400 font-sans tracking-wide">+{flowRateGain}% BPD</span>
+                  <span className="text-[10px] text-slate-400 block mt-1 font-light">Mayor capacidad de bombeo</span>
                 </div>
 
                 <div className="bg-navy-950/90 p-4 rounded-2xl border border-slate-800">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">Ahorro en Diluyente</span>
-                  <span className="text-xl font-extrabold text-flame-500 font-mono">-{naphthaSavingsPct}% Nafta</span>
-                  <span className="text-[10px] text-slate-400 block mt-1">Menor costo operativo</span>
+                  <span className="text-[10px] uppercase font-black text-slate-400 block mb-1 font-heading">Ahorro en Diluyente</span>
+                  <span className="text-lg sm:text-xl font-black text-flame-500 font-sans tracking-wide">-{naphthaSavingsPct}% Nafta</span>
+                  <span className="text-[10px] text-slate-400 block mt-1 font-light">Menor costo operacional</span>
                 </div>
               </div>
 
               {/* Advantages List */}
               <div className="space-y-2">
                 {[
-                  'Menor pérdida de carga en oleoductos y líneas de flujo',
-                  'Permite transporte a temperatura ambiente',
-                  'Disminución del desgaste mecánico en bombas de cavidad progresiva (BCP)'
+                  'Menor pérdida de carga en oleoductos y líneas de recolección',
+                  'Permite transporte eficiente a temperatura ambiente',
+                  'Disminución del desgaste mecánico en bombas BCP y ESP'
                 ].map((text, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs text-slate-200 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                    <span>{text}</span>
+                    <span className="font-light">{text}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Request Full Analysis CTA */}
-            <div className="pt-6 mt-6 border-t border-slate-800">
+            <div className="pt-5 mt-5 border-t border-slate-800">
               <a
                 href="#contacto"
-                className="w-full py-4 rounded-xl text-xs font-extrabold text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5"
+                className="w-full py-3.5 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5 font-heading tracking-wide"
               >
                 <FileSpreadsheet className="w-4 h-4" />
-                <span>Solicitar Estudio de Laboratorio Gratuito</span>
+                <span>Solicitar Ensayo de Laboratorio Gratuito</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
 
@@ -221,3 +227,5 @@ export const ViscosityCalculator = () => {
     </section>
   );
 };
+
+export default ViscosityCalculator;

@@ -353,7 +353,15 @@ export const CmsProvider = ({ children }) => {
   const [companyInfo, setCompanyInfo] = useState(() => {
     try {
       const saved = localStorage.getItem('cysos_cms_company_info');
-      return saved ? JSON.parse(saved) : INITIAL_COMPANY_INFO;
+      const parsed = saved ? JSON.parse(saved) : INITIAL_COMPANY_INFO;
+      // Recuperar logoUrl del respaldo si el objeto principal no lo tiene
+      if (!parsed.logoUrl) {
+        const logoFallback = localStorage.getItem('cysos_cms_logo_url');
+        if (logoFallback) {
+          parsed.logoUrl = logoFallback;
+        }
+      }
+      return parsed;
     } catch {
       return INITIAL_COMPANY_INFO;
     }
@@ -428,8 +436,12 @@ export const CmsProvider = ({ children }) => {
   useEffect(() => {
     try {
       localStorage.setItem('cysos_cms_company_info', JSON.stringify(companyInfo));
+      // Guardar el logoUrl por separado como respaldo adicional
+      if (companyInfo.logoUrl) {
+        localStorage.setItem('cysos_cms_logo_url', companyInfo.logoUrl);
+      }
     } catch (e) {
-      console.error(e);
+      console.warn('⚠️ CYSOS CMS: No se pudo guardar en localStorage (cuota llena). El logo puede perderse si recargas.', e);
     }
   }, [companyInfo]);
 
