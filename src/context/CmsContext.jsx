@@ -97,64 +97,15 @@ export const CmsProvider = ({ children }) => {
   const [isDbLoaded, setIsDbLoaded] = useState(false);
   const [dbSyncStatus, setDbSyncStatus] = useState('idle');
 
-  // Fallback inicial a localStorage para que la página cargue instantáneo
-  const [mediaLibrary, setMediaLibrary] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_media_library'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_MEDIA_LIBRARY; } catch { return INITIAL_MEDIA_LIBRARY; } });
-  const [heroContent, setHeroContent] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_hero'); return saved ? JSON.parse(saved) : INITIAL_HERO_CONTENT; } catch { return INITIAL_HERO_CONTENT; } });
-  const [partners, setPartners] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_partners'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_PARTNERS; } catch { return INITIAL_PARTNERS; } });
-  const [messages, setMessages] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_messages'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_MESSAGES; } catch { return INITIAL_MESSAGES; } });
-  const [kpis, setKpis] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_kpis'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_KPIS; } catch { return INITIAL_KPIS; } });
-  const [mediaItems, setMediaItems] = useState(() => { 
-    try { 
-      let savedItems = null;
-      const keysToTry = ['cysos_cms_media_v3', 'cysos_cms_media_v2', 'cysos_cms_media_v1', 'cysos_cms_media'];
-      
-      for (const key of keysToTry) {
-        const saved = localStorage.getItem(key);
-        if (saved) {
-          try {
-            const parsed = JSON.parse(saved);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-              const hasUserUploads = parsed.some(item => item.url && item.url.startsWith('data:image') || item.url.includes('cloudinary'));
-              if (hasUserUploads || !savedItems) {
-                savedItems = parsed;
-                if (hasUserUploads) break; 
-              }
-            }
-          } catch (e) {
-            console.error('Error parsing CMS key:', key);
-          }
-        }
-      }
-
-      savedItems = savedItems || [];
-
-      if (savedItems.length > 0) {
-        const missingItems = INITIAL_MEDIA.filter(
-          initialItem => !savedItems.some(savedItem => savedItem.id === initialItem.id)
-        );
-        return [...savedItems, ...missingItems];
-      }
-      return INITIAL_MEDIA;
-    } catch { 
-      return INITIAL_MEDIA; 
-    } 
-  });
-  const [companyInfo, setCompanyInfo] = useState(() => { 
-    try { 
-      const saved = localStorage.getItem('cysos_cms_company_info'); 
-      const parsed = saved ? JSON.parse(saved) : INITIAL_COMPANY_INFO; 
-      if (!parsed.logoUrl) {
-        const logoFallback = localStorage.getItem('cysos_cms_logo_url');
-        if (logoFallback) {
-          parsed.logoUrl = logoFallback;
-        }
-      }
-      return parsed;
-    } catch { 
-      return INITIAL_COMPANY_INFO; 
-    } 
-  });
-  const [services, setServices] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_services'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_SERVICES; } catch { return INITIAL_SERVICES; } });
+  // Inicializar todo estrictamente con los defaults (100% cloud, 0 local)
+  const [mediaLibrary, setMediaLibrary] = useState(INITIAL_MEDIA_LIBRARY);
+  const [heroContent, setHeroContent] = useState(INITIAL_HERO_CONTENT);
+  const [partners, setPartners] = useState(INITIAL_PARTNERS);
+  const [messages, setMessages] = useState(INITIAL_MESSAGES);
+  const [kpis, setKpis] = useState(INITIAL_KPIS);
+  const [mediaItems, setMediaItems] = useState(INITIAL_MEDIA);
+  const [companyInfo, setCompanyInfo] = useState(INITIAL_COMPANY_INFO);
+  const [services, setServices] = useState(INITIAL_SERVICES);
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(() => { try { return localStorage.getItem('cysos_admin_session') === 'true'; } catch { return false; } });
@@ -182,49 +133,36 @@ export const CmsProvider = ({ children }) => {
     initDatabase();
   }, []);
 
-  // 2. Efectos de sincronización que guardan tanto en LocalStorage como en Supabase
+  // 2. Efectos de sincronización (SOLO a Supabase)
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_media_library', JSON.stringify(mediaLibrary)); } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_media_library', mediaLibrary);
   }, [mediaLibrary, isDbLoaded]);
 
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_hero', JSON.stringify(heroContent)); } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_hero', heroContent);
   }, [heroContent, isDbLoaded]);
 
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_partners', JSON.stringify(partners)); } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_partners', partners);
   }, [partners, isDbLoaded]);
 
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_messages', JSON.stringify(messages)); } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_messages', messages);
   }, [messages, isDbLoaded]);
 
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_kpis', JSON.stringify(kpis)); } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_kpis', kpis);
   }, [kpis, isDbLoaded]);
 
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_media_v3', JSON.stringify(mediaItems)); } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_media_v3', mediaItems);
   }, [mediaItems, isDbLoaded]);
 
   useEffect(() => {
-    try { 
-      localStorage.setItem('cysos_cms_company_info', JSON.stringify(companyInfo)); 
-      if (companyInfo.logoUrl) {
-        localStorage.setItem('cysos_cms_logo_url', companyInfo.logoUrl);
-      }
-    } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_company_info', companyInfo);
   }, [companyInfo, isDbLoaded]);
 
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_services', JSON.stringify(services)); } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_services', services);
   }, [services, isDbLoaded]);
 
