@@ -222,7 +222,15 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-[#03050A] text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <div 
+        className="min-h-screen text-white flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[#03050A]"
+        style={{
+          backgroundImage: "linear-gradient(rgba(3, 5, 10, 0.65), rgba(3, 5, 10, 0.95)), url('/images/cysos_card_mockup.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold-metallic/10 rounded-full blur-[180px] pointer-events-none" />
 
         <div className="bg-white/[0.02] backdrop-blur-2xl w-full max-w-md p-8 sm:p-10 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] relative z-10 text-center space-y-6">
