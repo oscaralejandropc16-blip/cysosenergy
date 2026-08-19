@@ -98,7 +98,6 @@ export const CmsProvider = ({ children }) => {
   const [dbSyncStatus, setDbSyncStatus] = useState('idle');
 
   // Inicializar todo estrictamente con los defaults (100% cloud, 0 local)
-  const [mediaLibrary, setMediaLibrary] = useState(INITIAL_MEDIA_LIBRARY);
   const [heroContent, setHeroContent] = useState(INITIAL_HERO_CONTENT);
   const [partners, setPartners] = useState(INITIAL_PARTNERS);
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
@@ -116,7 +115,6 @@ export const CmsProvider = ({ children }) => {
       setDbSyncStatus('syncing');
       const data = await loadAllFromSupabase();
       if (data) {
-        if (data['cysos_cms_media_library']) setMediaLibrary(data['cysos_cms_media_library']);
         if (data['cysos_cms_hero']) setHeroContent(data['cysos_cms_hero']);
         if (data['cysos_cms_partners']) setPartners(data['cysos_cms_partners']);
         if (data['cysos_cms_messages']) setMessages(data['cysos_cms_messages']);
@@ -134,10 +132,6 @@ export const CmsProvider = ({ children }) => {
   }, []);
 
   // 2. Efectos de sincronización (SOLO a Supabase)
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_media_library', mediaLibrary);
-  }, [mediaLibrary, isDbLoaded]);
-
   useEffect(() => {
     if (isDbLoaded) saveToSupabase('cysos_cms_hero', heroContent);
   }, [heroContent, isDbLoaded]);
@@ -182,12 +176,6 @@ export const CmsProvider = ({ children }) => {
   };
 
   // Funciones de Mutación
-  const addMediaToLibrary = (fileData) => {
-    const item = { id: `lib-${Date.now()}`, date: new Date().toISOString().slice(0, 10), ...fileData };
-    setMediaLibrary((prev) => [item, ...prev]);
-    return item;
-  };
-  const deleteMediaFromLibrary = (id) => setMediaLibrary((prev) => prev.filter((item) => item.id !== id));
   const updateHeroContent = (field, value) => setHeroContent((prev) => ({ ...prev, [field]: value }));
   const updatePartner = (id, field, value) => setPartners((prev) => prev.map((p) => (p.id === id ? { ...p, [field]: value } : p)));
   const addPartner = (newPartnerData) => setPartners((prev) => [...prev, { id: `partner-${Date.now()}`, ...newPartnerData }]);
@@ -209,7 +197,6 @@ export const CmsProvider = ({ children }) => {
   return (
     <CmsContext.Provider
       value={{
-        mediaLibrary, addMediaToLibrary, deleteMediaFromLibrary,
         heroContent, updateHeroContent,
         partners, updatePartner, addPartner, deletePartner,
         messages, kpis, mediaItems, companyInfo, services,

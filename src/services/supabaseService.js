@@ -53,3 +53,88 @@ export const loadAllFromSupabase = async () => {
     return null;
   }
 };
+
+/**
+ * STORAGE FUNCTIONS
+ */
+
+export const uploadToSupabaseStorage = async (file) => {
+  try {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+    const filePath = `${fileName}`;
+
+    const { data, error } = await supabase.storage
+      .from('media')
+      .upload(filePath, file, { upsert: false });
+
+    if (error) throw error;
+
+    const { data: { publicUrl } } = supabase.storage
+      .from('media')
+      .getPublicUrl(filePath);
+
+    return { success: true, url: publicUrl, name: file.name, path: filePath };
+  } catch (error) {
+    console.error('Error uploading to Supabase Storage:', error);
+    return { success: false, error };
+  }
+};
+
+export const deleteFromSupabaseStorage = async (pathOrUrl) => {
+  try {
+    let path = pathOrUrl;
+    if (pathOrUrl.includes('supabase.co')) {
+      // Extract path from public URL
+      const parts = pathOrUrl.split('/media/');
+      if (parts.length > 1) {
+        path = parts[1];
+      }
+    }
+
+    const { error } = await supabase.storage
+      .from('media')
+      .remove([path]);
+
+    if (error) throw error;
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting from Supabase Storage:', error);
+    return { success: false, error };
+  }
+};
+
+export const listSupabaseStorage = async () => {
+  try {
+    const { data, error } = await supabase.storage
+      .from('media')
+      .list('', {
+        limit: 100,
+        sortBy: { column: 'created_at', order: 'desc' }
+      });
+
+    if (error) throw error;
+
+    // Map to the format expected by the frontend
+    return data.filter(file => file.name !== '.emptyFolderPlaceholder').map(file => {
+      const { data: { publicUrl } } = supabase.storage
+        .from('media')
+        .getPublicUrl(file.name);
+        
+      const isVideo = file.metadata?.mimetype?.includes('video') || file.name.match(/\.(mp4|webm|ogg)$/i);
+
+      return {
+        id: file.id || file.name,
+        name: file.name,
+        type: isVideo ? 'video' : 'image',
+        url: publicUrl,
+        path: file.name,
+        date: file.created_at ? new Date(file.created_at).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10),
+        tag: 'Supabase Storage'
+      };
+    });
+  } catch (error) {
+    console.error('Error listing Supabase Storage:', error);
+    return [];
+  }
+};

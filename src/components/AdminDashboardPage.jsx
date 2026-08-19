@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
 import { 
@@ -8,12 +8,11 @@ import {
   Play, Eye, HelpCircle, Check, Upload, FolderOpen, X, CheckCircle, AlertTriangle, AtSign
 } from 'lucide-react';
 
-import { uploadToCloudinary, CLOUDINARY_CONFIG } from '../services/cloudinaryService';
+import { uploadToSupabaseStorage, deleteFromSupabaseStorage, listSupabaseStorage } from '../services/supabaseService';
 
 export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const { 
     isLoggedIn, loginAdmin, logoutAdmin,
-    mediaLibrary = [], addMediaToLibrary, deleteMediaFromLibrary,
     heroContent = {}, updateHeroContent,
     partners = [], updatePartner, addPartner, deletePartner,
     messages = [], updateMessageStatus, deleteMessage,
@@ -70,7 +69,15 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     logoUrl: ''
   });
 
-  const safeMediaLibrary = Array.isArray(mediaLibrary) ? mediaLibrary : [];
+  const [storageItems, setStorageItems] = useState([]);
+
+  useEffect(() => {
+    if (activeTab === 'library' || mediaPickerOpen) {
+      listSupabaseStorage().then(items => setStorageItems(items));
+    }
+  }, [activeTab, mediaPickerOpen]);
+
+  const safeMediaLibrary = storageItems;
   const safeMediaItems = Array.isArray(mediaItems) ? mediaItems : [];
   const safePartners = Array.isArray(partners) ? partners : [];
   const safeMessages = Array.isArray(messages) ? messages : [];
@@ -87,56 +94,28 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     }
   };
 
-  // Handle uploading a file directly to Cloudinary (25 GB Cloud Storage)
+  // Handle uploading a file directly to Supabase Storage
   const handleFileUpload = async (e, targetCallback = null) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
 
-    const isVideo = file.type.startsWith('video/');
-    setUploadingStatus({ isUploading: true, progress: 5, fileName: file.name });
+    setUploadingStatus({ isUploading: true, progress: 50, fileName: file.name });
 
     try {
-      // 1. Upload directly to Cloudinary Cloud CDN (25 GB permanent storage)
-      const cloudinaryResult = await uploadToCloudinary(file, (percent) => {
-        setUploadingStatus({ isUploading: true, progress: percent, fileName: file.name });
-      });
-
-      const permanentCloudUrl = cloudinaryResult.secure_url || cloudinaryResult.url;
-
-      // 2. Add to CMS Media Library with the permanent Cloudinary CDN URL
-      addMediaToLibrary({
-        name: file.name,
-        type: isVideo ? 'video' : 'image',
-        url: permanentCloudUrl,
-        tag: 'Nube Cloudinary 25GB'
-      });
-
-      // 3. Assign to the requested element (hero, partner, gallery, etc.)
-      if (targetCallback) {
-        targetCallback(permanentCloudUrl);
+      const result = await uploadToSupabaseStorage(file);
+      if (result.success) {
+        listSupabaseStorage().then(items => setStorageItems(items));
+        if (targetCallback) targetCallback(result.url);
+        triggerSaveNotification(`✅ ¡Archivo subido exitosamente a la Nube!`);
+      } else {
+        throw new Error('Upload failed');
       }
-
-      setUploadingStatus({ isUploading: false, progress: 100, fileName: '' });
-      triggerSaveNotification(`✅ ¡${isVideo ? 'Video' : 'Foto'} subido y optimizado en la Nube de Cloudinary!`);
     } catch (error) {
-      console.warn('Fallo en Cloudinary, usando respaldo local:', error);
-      // Fallback to local DataURL if offline
-      const reader = new FileReader();
-      reader.onload = (uploadEvent) => {
-        const dataUrl = uploadEvent.target.result;
-        addMediaToLibrary({
-          name: file.name,
-          type: isVideo ? 'video' : 'image',
-          url: dataUrl,
-          tag: 'Respaldo Local'
-        });
-        if (targetCallback) {
-          targetCallback(dataUrl);
-        }
-        setUploadingStatus({ isUploading: false, progress: 100, fileName: '' });
-        triggerSaveNotification('¡Archivo cargado localmente!');
-      };
-      reader.readAsDataURL(file);
+      console.error('Upload error', error);
+      triggerSaveNotification('❌ Error al subir el archivo');
+    } finally {
+      setUploadingStatus({ isUploading: false, progress: 100, fileName: '' });
+      e.target.value = null; // reset input
     }
   };
 
@@ -153,7 +132,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     triggerSaveNotification();
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (!deleteConfirm) return;
     const { type, id } = deleteConfirm;
     if (type === 'partner') {
@@ -161,7 +140,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     } else if (type === 'media') {
       deleteMediaItem(id);
     } else if (type === 'library') {
-      deleteMediaFromLibrary(id);
+      await deleteFromSupabaseStorage(id);
+      listSupabaseStorage().then(items => setStorageItems(items));
     } else if (type === 'message') {
       deleteMessage(id);
     }
