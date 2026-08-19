@@ -37,7 +37,7 @@ export const Services = () => {
     quimica: {
       category: 'División 1: Química de Producción & Optimización EOR',
       title: 'Formulación, Suministro e Inyección de Químicos Especializados',
-      image: '/images/lab_tech.png',
+      image: '/images/ig_crude_sample.png',
       icon: FlaskConical,
       summary: 'Servicio integral de suministro e inyección continua de especialidades químicas diseñadas para maximizar la tasa de producción (BPD), recuperar pozos y proteger activos bajo norma ISO 9001.',
       items: [
