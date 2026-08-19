@@ -69,6 +69,7 @@ export const Services = () => {
       category: 'División 3: Logística, Izamiento y Transporte Pesado',
       title: 'Grúas Telescópicas hasta 110 Toneladas y Maquinaria Pesada',
       image: '/images/logistics_trucks.png',
+      videoUrl: 'https://www.youtube.com/embed/gyQT5aQS8_8?autoplay=1&mute=1&loop=1&playlist=gyQT5aQS8_8',
       icon: Truck,
       summary: 'Flota especializada para transporte pesado de fluidos, lodos y químicos, grúas telescópicas de gran tonelaje y maquinaria pesada CAT para movimiento de tierra.',
       items: [
@@ -169,7 +170,7 @@ export const Services = () => {
             </div>
 
             <button
-              onClick={() => setActiveVideoModal(true)}
+              onClick={() => setActiveVideoModal(currentDivision.videoUrl || '/videos/IMG_7557.mp4')}
               className="absolute bottom-6 left-6 px-4 py-2.5 rounded-xl bg-navy-950/90 hover:bg-navy-900 text-white text-xs font-black flex items-center gap-2.5 border border-gold-metallic/40 shadow-xl backdrop-blur-md transition-all group/vbtn hover:border-gold-metallic hover:scale-102 font-heading"
             >
               <div className="w-6 h-6 rounded-full bg-gradient-to-r from-flame-500 to-gold-600 flex items-center justify-center shadow-flame-glow group-hover/vbtn:scale-110 transition-transform">
@@ -240,18 +241,10 @@ export const Services = () => {
         {/* Video Player Modal via Portal */}
         {activeVideoModal && createPortal(
           <div 
-            onClick={() => setActiveVideoModal(false)}
+            onClick={() => setActiveVideoModal(null)}
             className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
           >
-            {/* Floating Close Button Top Right */}
-            <button
-              onClick={() => setActiveVideoModal(false)}
-              className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-black text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
-              title="Cerrar Video (Esc)"
-            >
-              <X className="w-5 h-5" />
-              <span className="hidden sm:inline">Cerrar Video (Esc)</span>
-            </button>
+            {/* Floating Close Button Top Right (Removed to avoid redundancy) */}
 
             <div 
               onClick={(e) => e.stopPropagation()}
@@ -261,11 +254,11 @@ export const Services = () => {
                 <div className="flex items-center gap-2">
                   <Play className="w-5 h-5 text-flame-500 fill-flame-500" />
                   <h3 className="font-heading font-black text-white text-sm sm:text-base">
-                    CYSOS ENERGY - Video Real de Servicios en Campo
+                    CYSOS ENERGY - Registro Operativo
                   </h3>
                 </div>
                 <button
-                  onClick={() => setActiveVideoModal(false)}
+                  onClick={() => setActiveVideoModal(null)}
                   className="p-2 rounded-xl bg-navy-850 hover:bg-red-950 text-slate-300 hover:text-white transition-colors"
                 >
                   <X className="w-5 h-5" />
@@ -273,9 +266,20 @@ export const Services = () => {
               </div>
 
               <div className="relative aspect-video bg-black flex items-center justify-center overflow-hidden">
-                <video controls autoPlay className="w-full h-full object-contain" poster="/images/IMG_7549.jpg">
-                  <source src="/videos/IMG_7557.mp4" type="video/mp4" />
-                </video>
+                {activeVideoModal.includes('youtube') || activeVideoModal.includes('youtu.be') ? (
+                  <iframe 
+                    src={activeVideoModal}
+                    title="Video Operativo" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    className="w-full h-full"
+                  />
+                ) : (
+                  <video controls autoPlay className="w-full h-full object-contain" poster="/images/IMG_7549.jpg">
+                    <source src={activeVideoModal} type="video/mp4" />
+                  </video>
+                )}
               </div>
             </div>
           </div>,
@@ -288,15 +292,7 @@ export const Services = () => {
             onClick={() => setIsFleetModalOpen(false)}
             className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
           >
-            {/* Floating Close Button Top Right */}
-            <button
-              onClick={() => setIsFleetModalOpen(false)}
-              className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-black text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
-              title="Cerrar Catálogo (Esc)"
-            >
-              <X className="w-5 h-5" />
-              <span className="hidden sm:inline">Cerrar Catálogo (Esc)</span>
-            </button>
+            {/* Floating Close Button Top Right (Removed to avoid redundancy) */}
 
             <div 
               onClick={(e) => e.stopPropagation()}

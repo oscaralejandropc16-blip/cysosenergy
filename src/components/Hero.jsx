@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useCms } from '../context/CmsContext';
-import { Activity, FlaskConical, Truck, Globe, Flame, ShieldCheck, ArrowRight, Sparkles, ChevronDown } from 'lucide-react';
+import { Activity, FlaskConical, Truck, Globe, Flame, ShieldCheck, ArrowRight, Settings, ChevronDown } from 'lucide-react';
 
 // Robust Animated Counter Component triggering smooth counting up from 0
 const AnimatedCounter = ({ targetValue, decimals = 0, duration = 2000 }) => {
@@ -167,7 +167,7 @@ export const Hero = () => {
               href="#calculadora"
               className="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold text-slate-200 hover:text-white bg-navy-900/90 hover:bg-navy-800 border border-slate-700 hover:border-gold-metallic/50 backdrop-blur-md transition-all duration-300 flex items-center gap-2 font-heading"
             >
-              <Sparkles className="w-4 h-4 text-gold-400" />
+              <Settings className="w-4 h-4 text-gold-400" />
               <span>Simulador EOR</span>
             </a>
           </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Logo } from './Logo';
-import { PhoneCall, ChevronRight, Sparkles, Instagram, Linkedin } from 'lucide-react';
+import { PhoneCall, ChevronRight, Send, Instagram, Linkedin } from 'lucide-react';
 
 const WhatsAppIcon = ({ size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -162,7 +162,7 @@ export const Navbar = () => {
             href="#contacto"
             className="cysos-cta btn-modern"
           >
-            <Sparkles size={16} className="btn-icon" />
+            <Send size={16} className="btn-icon" />
             <span>Cotizar Proyecto</span>
           </a>
 
