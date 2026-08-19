@@ -39,7 +39,7 @@ export const MissionVision = () => {
 
         {/* Tab Selector Buttons */}
         <div className="flex justify-center mb-10 sm:mb-12">
-          <div className="inline-flex p-1.5 bg-navy-900/90 rounded-2xl border border-slate-700 shadow-2xl backdrop-blur-xl gap-1">
+          <div className="flex flex-col sm:flex-row p-1.5 bg-navy-900/90 rounded-2xl border border-slate-700 shadow-2xl backdrop-blur-xl gap-1 w-full sm:w-auto mx-4 sm:mx-0">
             {[
               { id: 'mision', label: 'Nuestra Misión', icon: Target },
               { id: 'vision', label: 'Nuestra Visión', icon: Compass },

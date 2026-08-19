@@ -98,7 +98,7 @@ export const HumanOperations = () => {
 
               {/* Caption Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white mb-3 leading-tight drop-shadow-md">
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white mb-3 leading-tight drop-shadow-md break-words">
                   {gallery[activePhoto].title}
                 </h3>
                 <p className="text-sm text-slate-300 font-light max-w-xl leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-500">

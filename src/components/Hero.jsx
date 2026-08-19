@@ -60,6 +60,15 @@ const AnimatedCounter = ({ targetValue, decimals = 0, duration = 2000 }) => {
 
 export const Hero = () => {
   const { kpis, heroContent } = useCms();
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
+    }
+  }, [heroContent]);
 
   const currentHero = heroContent || {
     videoUrl: '/videos/IMG_7557.mp4',
@@ -88,6 +97,7 @@ export const Hero = () => {
       {/* DYNAMIC CMS CINEMATIC VIDEO BACKGROUND */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
+          ref={videoRef}
           key={currentHero.videoUrl}
           autoPlay
           loop
@@ -132,7 +142,7 @@ export const Hero = () => {
           </p>
 
           {/* 4 Interactive Pillars Horizontal Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 w-full max-w-3xl pt-2">
+          <div className="hidden sm:grid sm:grid-cols-4 gap-2.5 sm:gap-3.5 w-full max-w-3xl pt-2">
             {[
               { title: currentHero.pillar1 || 'Química de Producción', icon: FlaskConical, href: '#servicios' },
               { title: currentHero.pillar2 || 'Intervención de Pozos', icon: Flame, href: '#servicios' },

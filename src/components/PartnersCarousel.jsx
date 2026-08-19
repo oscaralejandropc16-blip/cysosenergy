@@ -110,7 +110,7 @@ export const PartnersCarousel = () => {
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
-                    className="w-[115%] h-[115%] object-contain filter drop-shadow-md relative z-10 group-hover/card:scale-[1.25] transition-transform duration-500"
+                    className="w-full h-full object-contain filter drop-shadow-md relative z-10 scale-110 group-hover/card:scale-125 transition-transform duration-500"
                   />
                 ) : (
                   <Building2 className="w-10 h-10 text-slate-800 relative z-10" />
@@ -171,7 +171,7 @@ export const PartnersCarousel = () => {
               <div className="w-28 h-20 sm:w-32 sm:h-24 rounded-2xl bg-white/5 border border-white/10 p-2 flex items-center justify-center shadow-2xl flex-shrink-0 backdrop-blur-sm relative overflow-hidden">
                 <div className="absolute inset-0 bg-white rounded-2xl opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.1)]" />
                 {selectedClient.logoUrl ? (
-                  <img src={selectedClient.logoUrl} alt={selectedClient.name} className="w-[115%] h-[115%] object-contain filter drop-shadow-md relative z-10" />
+                  <img src={selectedClient.logoUrl} alt={selectedClient.name} className="w-full h-full scale-110 object-contain filter drop-shadow-md relative z-10" />
                 ) : (
                   <Building2 className="w-10 h-10 text-slate-800 relative z-10" />
                 )}

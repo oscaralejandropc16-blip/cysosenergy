@@ -121,7 +121,7 @@ export const Services = () => {
         </div>
 
         {/* Division Tab Selector */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 mb-10 sm:mb-12">
           {[
             { id: 'quimica', name: 'Química de Producción', icon: FlaskConical },
             { id: 'intervencion', name: 'Intervención de Pozos', icon: Flame },

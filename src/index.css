@@ -4,6 +4,11 @@
 
 /* ===== NAVBAR SCROLL FIX ===== */
 /* Evita que las secciones queden ocultas detrás del navbar fijo */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 html {
   scroll-padding-top: 90px;
 }

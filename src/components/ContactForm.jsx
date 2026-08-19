@@ -659,7 +659,7 @@ export const ContactForm = () => {
                       Seleccione la Especialidad
                     </label>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                     {[
                       { id: 'Química de Producción EOR', label: 'Química EOR', icon: Beaker },
                       { id: 'Well Testing & Aforo de Pozos', label: 'Well Testing', icon: Activity },
