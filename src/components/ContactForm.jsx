@@ -473,7 +473,10 @@ export const ContactForm = () => {
 
               <div>
                 <h4 className="text-sm text-slate-400 font-medium mb-1">Despacho & Operaciones</h4>
-                <div className="text-xl font-black text-white tracking-wide">0414-0596012</div>
+                <div className="flex flex-col">
+                  <div className="text-xl font-black text-white tracking-wide">0414-0596012</div>
+                  <div className="text-xl font-black text-white tracking-wide">0412-4817113</div>
+                </div>
               </div>
             </div>
 

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useCms } from '../context/CmsContext';
 import { Users, ShieldCheck, Award, Sparkles, Play, X, CheckCircle2, ChevronRight } from 'lucide-react';
 
 export const HumanOperations = () => {
+  const { companyInfo } = useCms();
   const [activePhoto, setActivePhoto] = useState(0);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
@@ -31,13 +33,13 @@ export const HumanOperations = () => {
     {
       title: 'Equipo Multidisciplinario de Ingenieros y Técnicos de Campo',
       category: 'Talento Humano Venezolano',
-      image: '/images/IMG_7701.jpg',
+      image: '/images/engineers_team.png',
       desc: 'Personal técnico capacitado bajo estrictas normas internacionales de seguridad HSE, control de calidad y compromiso operativo.'
     },
     {
       title: 'Infraestructura de Superficie y Facilidades de Producción',
       category: 'Proyectos IPC & Mantenimiento',
-      image: '/images/IMG_7702.jpg',
+      image: '/images/ig_manifold.png',
       desc: 'Obras de ingeniería, procura y construcción para estaciones de flujo, manifolds y alineación de macollas petroleras en Venezuela.'
     }
   ];
@@ -64,21 +66,23 @@ export const HumanOperations = () => {
         </div>
 
         {/* Main Photographic Feature Showcase */}
-        <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-center mb-12 sm:mb-16">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16 sm:mb-20">
           
           {/* Main Selected Image Showcase */}
-          <div className="lg:col-span-7 relative group rounded-3xl overflow-hidden luxury-glass border border-gold-metallic/35 shadow-2xl">
-            <div className="relative aspect-[16/10] overflow-hidden">
+          <div className="lg:col-span-7 relative group rounded-[2.5rem] overflow-hidden luxury-glass border border-gold-metallic/30 shadow-[0_0_50px_rgba(0,0,0,0.6)] hover:border-gold-400/50 transition-colors duration-500">
+            <div className="absolute inset-0 bg-gradient-to-tr from-gold-500/5 to-transparent z-10 pointer-events-none" />
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] overflow-hidden">
               <img
                 src={gallery[activePhoto].image}
                 alt={gallery[activePhoto].title}
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-[0.88]"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 filter brightness-[0.85] group-hover:brightness-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/60 to-transparent z-10 pointer-events-none" />
 
               {/* Tag Badge */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="px-3.5 py-1.5 rounded-full bg-navy-950/90 backdrop-blur-md border border-gold-metallic/40 text-gold-400 text-xs font-black uppercase tracking-wider shadow-lg font-heading">
+              <div className="absolute top-6 left-6 z-20">
+                <span className="px-4 py-2 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 text-gold-400 text-[10px] font-black uppercase tracking-[0.2em] shadow-lg font-heading flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-flame-500 animate-pulse shadow-flame-glow" />
                   {gallery[activePhoto].category}
                 </span>
               </div>
@@ -86,18 +90,18 @@ export const HumanOperations = () => {
               {/* Play Video Trigger Button */}
               <button
                 onClick={() => setIsVideoOpen(true)}
-                className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 text-white flex items-center justify-center shadow-flame-glow hover:scale-110 transition-transform duration-300 group/btn z-10"
+                className="absolute inset-0 m-auto w-20 h-20 rounded-full bg-[#0a1224]/80 backdrop-blur-md border border-gold-400/50 text-gold-400 flex items-center justify-center shadow-[0_0_30px_rgba(250,204,21,0.3)] hover:scale-110 hover:bg-gold-400 hover:text-navy-950 hover:shadow-[0_0_40px_rgba(250,204,21,0.6)] transition-all duration-300 group/btn z-20"
                 aria-label="Reproducir video de operaciones"
               >
-                <Play className="w-7 h-7 fill-current translate-x-0.5" />
+                <Play className="w-8 h-8 fill-current translate-x-0.5" />
               </button>
 
               {/* Caption Overlay */}
-              <div className="absolute bottom-6 left-6 right-6 z-10 space-y-1.5">
-                <h3 className="text-lg sm:text-xl font-black font-heading text-white">
+              <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white mb-3 leading-tight drop-shadow-md">
                   {gallery[activePhoto].title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-200 font-light max-w-xl line-clamp-2">
+                <p className="text-sm text-slate-300 font-light max-w-xl leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-500">
                   {gallery[activePhoto].desc}
                 </p>
               </div>
@@ -105,38 +109,59 @@ export const HumanOperations = () => {
           </div>
 
           {/* Interactive Thumbnails Selector List */}
-          <div className="lg:col-span-5 space-y-3.5">
+          <div className="lg:col-span-5 space-y-4">
             {gallery.map((item, index) => (
               <div
                 key={index}
                 onClick={() => setActivePhoto(index)}
-                className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center gap-4 ${
+                className={`group relative p-5 rounded-[2rem] border transition-all duration-500 cursor-pointer flex items-center gap-5 overflow-hidden ${
                   activePhoto === index
-                    ? 'bg-navy-900 border-gold-metallic/60 shadow-gold-glow translate-x-2'
-                    : 'bg-navy-900/50 border-slate-800 hover:border-slate-700 hover:bg-navy-900/80'
+                    ? 'bg-[#0a1224] border-gold-400/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] translate-x-0 sm:-translate-x-4'
+                    : 'bg-[#050A14]/50 border-white/5 hover:border-white/10 hover:bg-[#0a1224]/50'
                 }`}
               >
-                <div className="relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 border border-slate-700">
+                {/* Active Indicator Glow */}
+                {activePhoto === index && (
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gold-400/10 rounded-full blur-[40px] pointer-events-none" />
+                )}
+
+                <div className={`relative w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 border transition-all duration-500 ${
+                  activePhoto === index ? 'border-gold-400/50 shadow-gold-glow scale-105' : 'border-slate-800 group-hover:border-slate-600'
+                }`}>
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 transition-all duration-500"
                   />
                   {activePhoto === index && (
-                    <div className="absolute inset-0 bg-gold-500/20" />
+                    <div className="absolute inset-0 bg-gold-500/20 mix-blend-overlay" />
                   )}
                 </div>
 
-                <div className="flex-1 min-w-0">
-                  <span className="text-[10px] font-black uppercase tracking-wider text-gold-400 block mb-0.5 font-heading">
-                    {item.category}
-                  </span>
-                  <h4 className="text-xs sm:text-sm font-black text-white truncate font-heading">
+                <div className="flex-1 min-w-0 z-10">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    {activePhoto === index && <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0" />}
+                    <span className={`text-[10px] font-black uppercase tracking-widest block font-heading ${
+                      activePhoto === index ? 'text-gold-400' : 'text-slate-500 group-hover:text-slate-400'
+                    }`}>
+                      {item.category}
+                    </span>
+                  </div>
+                  <h4 className={`text-sm sm:text-base font-black truncate font-heading transition-colors duration-300 ${
+                    activePhoto === index ? 'text-white' : 'text-slate-300 group-hover:text-white'
+                  }`}>
                     {item.title}
                   </h4>
-                  <p className="text-[11px] text-slate-400 font-light truncate mt-1">
+                  <p className="text-[11px] text-slate-400 font-light line-clamp-2 mt-1.5 leading-relaxed">
                     {item.desc}
                   </p>
+                </div>
+
+                {/* Right Arrow Indicator */}
+                <div className={`absolute right-4 text-gold-400 transition-all duration-500 ${
+                  activePhoto === index ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                }`}>
+                  <ChevronRight className="w-5 h-5" />
                 </div>
               </div>
             ))}
@@ -145,19 +170,20 @@ export const HumanOperations = () => {
         </div>
 
         {/* Operational Highlights Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {[
             { label: 'Especialistas Certificados', value: '100%', sub: 'Ingenieros & Técnicos' },
             { label: 'Normas SI-HO-S & Calidad', value: 'ISO 9001', sub: 'Certificación HSE' },
             { label: 'Disponibilidad de Flota', value: '24/7/365', sub: 'Respuesta Inmediata' },
             { label: 'Cobertura Nacional', value: '3 Cuencas', sub: 'Oriente, Occidente y Sur' }
           ].map((stat, idx) => (
-            <div key={idx} className="luxury-glass p-5 rounded-2xl border border-slate-800 text-center space-y-1">
-              <div className="text-xl sm:text-2xl font-black font-heading text-white">
+            <div key={idx} className="luxury-glass p-6 sm:p-8 rounded-[2rem] border border-white/5 hover:border-gold-400/30 text-center space-y-2 group transition-colors duration-500 relative overflow-hidden bg-[#0a1224]/40">
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="text-3xl sm:text-4xl font-black font-heading text-white group-hover:text-gold-400 transition-colors drop-shadow-md">
                 {stat.value}
               </div>
-              <div className="text-xs font-black text-gold-400 font-heading">{stat.label}</div>
-              <div className="text-[10px] text-slate-400 font-medium">{stat.sub}</div>
+              <div className="text-xs font-black text-gold-400 font-heading tracking-wide">{stat.label}</div>
+              <div className="text-[11px] text-slate-400 font-medium">{stat.sub}</div>
             </div>
           ))}
         </div>
@@ -188,7 +214,7 @@ export const HumanOperations = () => {
               <div className="flex items-center gap-2">
                 <Play className="w-5 h-5 text-flame-500 fill-flame-500" />
                 <h3 className="font-heading font-black text-white text-sm sm:text-base">
-                  CYSOS ENERGY - Video de Maniobra Operativa en Campo
+                  CYSOS ENERGY - Maniobra de Alivio y Operación en Línea de Producción
                 </h3>
               </div>
               <button
@@ -201,12 +227,13 @@ export const HumanOperations = () => {
 
             <div className="relative aspect-video bg-black flex items-center justify-center overflow-hidden">
               <video
+                key={companyInfo?.operationsVideoUrl || "/videos/maniobra.mp4"}
                 controls
                 autoPlay
                 className="w-full h-full object-contain"
                 poster="/images/IMG_7549.jpg"
               >
-                <source src="/videos/IMG_7557.mp4" type="video/mp4" />
+                <source src={companyInfo?.operationsVideoUrl || "/videos/maniobra.mp4"} type="video/mp4" />
               </video>
             </div>
           </div>

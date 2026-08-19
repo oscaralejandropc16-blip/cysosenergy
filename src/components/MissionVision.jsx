@@ -186,42 +186,60 @@ export const MissionVision = () => {
 
           {/* VALORES TAB */}
           {activeTab === 'valores' && (
-            <div className="grid md:grid-cols-3 gap-5 animate-fadeIn">
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8 animate-fadeIn">
               {[
                 {
                   title: 'Compromiso con el Cliente',
                   desc: 'Entender a profundidad las exigencias de cada campo petrolero y superar las expectativas operativas con respuesta oportuna 24/7.',
                   icon: HeartHandshake,
-                  color: 'from-flame-500 to-orange-600'
+                  color: 'from-flame-500 to-orange-600',
+                  glow: 'bg-flame-500/20'
                 },
                 {
                   title: 'Responsabilidad & Seguridad',
                   desc: 'Ejecución rigurosa con altos estándares de seguridad HSE (PDVSA SI-HO-S), calidad ISO 9001 y respeto absoluto por el medio ambiente.',
                   icon: ShieldCheck,
-                  color: 'from-gold-500 to-gold-700'
+                  color: 'from-gold-400 to-gold-600',
+                  glow: 'bg-gold-400/20'
                 },
                 {
                   title: 'Profesionalismo e Innovación',
                   desc: 'Equipo multidisciplinario altamente capacitado, tecnología química de vanguardia y ética inquebrantable en la gestión de hidrocarburos.',
                   icon: UserCheck,
-                  color: 'from-orange-500 to-flame-600'
+                  color: 'from-orange-500 to-flame-600',
+                  glow: 'bg-orange-500/20'
                 }
               ].map((val, idx) => {
                 const Icon = val.icon;
                 return (
                   <div
                     key={idx}
-                    className="luxury-card p-6 sm:p-7 rounded-3xl border border-slate-800 flex flex-col justify-between hover:border-gold-metallic/50 transition-all duration-300 group"
+                    className="relative p-8 sm:p-10 rounded-[2.5rem] bg-[#0a1224]/80 backdrop-blur-xl border border-slate-800/80 flex flex-col justify-between group hover:border-gold-400/50 transition-all duration-500 overflow-hidden shadow-2xl hover:-translate-y-2"
                   >
-                    <div>
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${val.color} flex items-center justify-center text-white mb-5 shadow-flame-glow group-hover:scale-105 transition-transform`}>
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <h4 className="text-lg font-black font-heading text-white mb-2">{val.title}</h4>
-                      <p className="text-slate-300 text-xs leading-relaxed font-light">{val.desc}</p>
+                    {/* Abstract Number Watermark */}
+                    <div className="absolute -top-6 -right-6 text-[120px] font-black text-slate-800/20 font-heading select-none pointer-events-none group-hover:text-gold-400/10 transition-colors duration-500">
+                      0{idx + 1}
                     </div>
-                    <div className="mt-6 pt-4 border-t border-slate-800 flex items-center gap-2 text-[11px] text-gold-400 font-bold font-heading">
-                      <span>Cultura Corporativa CYSOS</span>
+
+                    {/* Inner Glow */}
+                    <div className={`absolute -inset-x-10 -bottom-10 h-32 ${val.glow} blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+
+                    <div className="relative z-10">
+                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${val.color} flex items-center justify-center text-white mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 relative`}>
+                        <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Icon className="w-8 h-8 relative z-10" />
+                      </div>
+                      <h4 className="text-xl sm:text-2xl font-black font-heading text-white mb-4 group-hover:text-gold-400 transition-colors">{val.title}</h4>
+                      <p className="text-slate-300 text-sm leading-relaxed font-light">{val.desc}</p>
+                    </div>
+
+                    <div className="relative z-10 mt-8 pt-6 border-t border-slate-800/80 flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-navy-950 border border-slate-700 flex items-center justify-center group-hover:border-gold-400 transition-colors">
+                        <Sparkles className="w-3.5 h-3.5 text-gold-400" />
+                      </div>
+                      <span className="text-[10px] text-slate-400 font-bold font-heading uppercase tracking-widest group-hover:text-white transition-colors">
+                        ADN Corporativo
+                      </span>
                     </div>
                   </div>
                 );

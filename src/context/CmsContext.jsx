@@ -243,11 +243,148 @@ const INITIAL_MEDIA = [
     url: '/images/IMG_7701.jpg',
     caption: 'Equipo multidisciplinario de profesionales e ingenieros CYSOS ENERGY en operaciones de campo.',
     category: 'equipo'
+  },
+  {
+    id: 'truck-1',
+    title: 'Camión Chuto',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Vehículo automotor de operación libre, destinado al transporte de carga.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-2',
+    title: 'Chuto Volqueta',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Unidad de arrastre destinada al traslado de productos a granel.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-3',
+    title: 'Chuto Tolva',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Unidad de arrastre destinada al traslado de productos a granel, preferiblemente minerales en forma de pirámide.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-4',
+    title: 'Chuto Batea',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Unidad semirremolque o remolque cuya carrocería es plataforma, se utiliza para cargas de productos químicos.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-5',
+    title: 'Chuto Vacuum',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Unidad remolque con una estructura en forma cilíndrica horizontal, para fluidos (lodo, agua).',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-6',
+    title: 'Chuto Low-Boy',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Unidad semirremolque o remolque cuya carrocería es plataforma, para traslado de equipos.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-7',
+    title: 'Montacarga',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Unidad de 2.5 ton. utilizada para levantar y movilizar grandes cantidades de materiales.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-8',
+    title: 'Retroexcavadora',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Equipo diseñado para realizar movimiento de tierras y/o excavaciones.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-9',
+    title: 'Payloader Montacarga',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Equipo utilizado para movilizar herramientas a gran escala en espacios abiertos.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-10',
+    title: 'Excavadora Jumbo 320 Cat',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'La excavadora Jumbo esta diseñada para realizar movimiento de tierras y/o excavaciones.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-11',
+    title: 'Payloader',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Equipo diseñado para realizar movimiento de tierras, saneamiento y movilización de desechos.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-12',
+    title: 'Side Boom o Pluma Lateral',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Es un equipo especial para el tendido y construcciones de líneas de tuberías.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-13',
+    title: 'Patrol',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Es un equipo versátil que se encarga de operaciones únicas de movimientos de tierra.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-14',
+    title: 'Super Vactor',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Equipo utilizado para el mantenimiento de alcantarillado, destape de cañerías, limpieza.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-15',
+    title: 'Vibrocompactador',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Es una herramienta que se utiliza para compactar suelo, durante los procesos de construcción, en asfalto, cemento, o en cualquier tipo de terreno que tenga una superficie sólida.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-16',
+    title: 'Grúa Telescópica',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Unidades utilizadas para carga y pesados, con capacidad de 60 ton, 70 ton y/o hasta 110 ton.',
+    category: 'Logística, Izamiento y Transporte'
+  },
+  {
+    id: 'truck-17',
+    title: 'Unidad Flush By',
+    type: 'photo',
+    url: '/images/logistics_trucks.png',
+    caption: 'Versatilidad: Ideal para Workover, Pulling y Completación.',
+    category: 'Logística, Izamiento y Transporte'
   }
 ];
 
 const INITIAL_COMPANY_INFO = {
   logoUrl: '',
+  operationsVideoUrl: '/videos/maniobra.mp4',
   instagramPosts: '18',
   instagramFollowers: '3,573',
   instagramFollowing: '20',
@@ -343,8 +480,41 @@ export const CmsProvider = ({ children }) => {
 
   const [mediaItems, setMediaItems] = useState(() => {
     try {
-      const saved = localStorage.getItem('cysos_cms_media');
-      return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_MEDIA;
+      let savedItems = null;
+      
+      // Buscar en todos los respaldos históricos posibles, del más reciente al más antiguo
+      const keysToTry = ['cysos_cms_media_v3', 'cysos_cms_media_v2', 'cysos_cms_media_v1', 'cysos_cms_media'];
+      
+      for (const key of keysToTry) {
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              // Buscar si este respaldo tiene alguna imagen base64 (señal de que el usuario subió fotos)
+              const hasUserUploads = parsed.some(item => item.url && item.url.startsWith('data:image'));
+              if (hasUserUploads || !savedItems) {
+                savedItems = parsed;
+                if (hasUserUploads) break; // Si encontramos sus fotos, dejamos de buscar
+              }
+            }
+          } catch (e) {
+            console.error('Error parsing CMS key:', key);
+          }
+        }
+      }
+
+      savedItems = savedItems || [];
+
+      if (savedItems.length > 0) {
+        // Encontrar los nuevos camiones de INITIAL_MEDIA que faltan
+        const missingItems = INITIAL_MEDIA.filter(
+          initialItem => !savedItems.some(savedItem => savedItem.id === initialItem.id)
+        );
+        return [...savedItems, ...missingItems];
+      }
+
+      return INITIAL_MEDIA;
     } catch {
       return INITIAL_MEDIA;
     }
@@ -427,7 +597,7 @@ export const CmsProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      localStorage.setItem('cysos_cms_media', JSON.stringify(mediaItems));
+      localStorage.setItem('cysos_cms_media_v3', JSON.stringify(mediaItems));
     } catch (e) {
       console.error(e);
     }

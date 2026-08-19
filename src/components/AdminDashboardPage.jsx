@@ -222,13 +222,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-navy-950 text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-[#03050A] text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold-metallic/10 rounded-full blur-[180px] pointer-events-none" />
 
-        <div className="luxury-glass w-full max-w-md p-8 sm:p-10 rounded-3xl border border-gold-metallic/40 shadow-2xl relative z-10 text-center space-y-6">
+        <div className="bg-white/[0.02] backdrop-blur-2xl w-full max-w-md p-8 sm:p-10 rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] relative z-10 text-center space-y-6">
           <button
             onClick={onReturnToWeb}
-            className="inline-flex items-center gap-2 text-xs font-extrabold text-gold-400 hover:text-white bg-navy-900 px-3.5 py-1.5 rounded-full border border-slate-800 transition-colors mb-2"
+            className="inline-flex items-center gap-2 text-xs font-extrabold text-gold-400 hover:text-white bg-navy-900 px-3.5 py-1.5 rounded-full border border-white/10 transition-colors mb-2"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Volver a la Web Pública</span>
@@ -253,7 +253,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 placeholder="Contraseña de acceso"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full modern-input rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none text-center font-bold tracking-widest border border-gold-metallic/30"
+                className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none text-center font-bold tracking-widest border border-gold-metallic/30"
               />
               {loginError && <p className="text-xs text-red-400 font-extrabold mt-2">{loginError}</p>}
             </div>
@@ -276,7 +276,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
   }
 
   return (
-    <div className="min-h-screen bg-navy-950 text-white flex flex-col font-sans relative">
+    <div className="min-h-screen bg-[#03050A] text-white flex flex-col font-sans relative">
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-5 pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none" />
       
       {/* CLOUDINARY UPLOADING PROGRESS OVERLAY */}
       {uploadingStatus.isUploading && (
@@ -298,7 +300,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
             {/* Progress Bar */}
             <div className="space-y-2">
-              <div className="w-full h-3 bg-navy-900 rounded-full overflow-hidden border border-slate-800 p-0.5">
+              <div className="w-full h-3 bg-navy-900 rounded-full overflow-hidden border border-white/10 p-0.5">
                 <div 
                   className="h-full bg-gradient-to-r from-flame-500 via-orange-500 to-gold-500 rounded-full transition-all duration-300 shadow-flame-glow"
                   style={{ width: `${uploadingStatus.progress}%` }}
@@ -323,7 +325,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
       {/* CONFIRMATION MODAL FOR DELETIONS */}
       {deleteConfirm && (
-        <div className="fixed inset-0 z-[140] flex items-center justify-center p-4 bg-navy-950/90 backdrop-blur-xl animate-fadeIn">
+        <div className="fixed inset-0 z-[140] flex items-center justify-center p-4 bg-black/60 backdrop-blur-2xl animate-fadeIn">
           <div className="luxury-glass w-full max-w-md rounded-3xl border border-red-500/40 p-6 sm:p-8 text-center space-y-5 shadow-2xl">
             <div className="w-14 h-14 rounded-2xl bg-red-500/15 text-red-400 flex items-center justify-center mx-auto border border-red-500/30">
               <AlertTriangle className="w-7 h-7" />
@@ -340,7 +342,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               <button
                 type="button"
                 onClick={() => setDeleteConfirm(null)}
-                className="px-5 py-2.5 rounded-xl bg-navy-900 text-slate-300 hover:text-white text-xs font-bold border border-slate-800"
+                className="px-5 py-2.5 rounded-xl bg-navy-900 text-slate-300 hover:text-white text-xs font-bold border border-white/10"
               >
                 Cancelar
               </button>
@@ -359,13 +361,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
       {/* WORDPRESS-STYLE MEDIA LIBRARY SELECTOR MODAL */}
       {mediaPickerOpen && (
-        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-navy-950/90 backdrop-blur-xl animate-fadeIn">
-          <div className="luxury-glass w-full max-w-4xl max-h-[85vh] rounded-3xl border border-gold-metallic/40 p-6 sm:p-8 flex flex-col shadow-2xl space-y-5">
+        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/60 backdrop-blur-2xl animate-fadeIn">
+          <div className="bg-[#0A0E17]/90 backdrop-blur-2xl w-full max-w-4xl max-h-[85vh] rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] p-6 sm:p-8 flex flex-col shadow-2xl space-y-5">
             
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+            <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-gold-metallic/20 text-gold-400">
+                <div className="p-2 rounded-xl bg-gold-500/10 text-gold-400">
                   <FolderOpen className="w-5 h-5" />
                 </div>
                 <div>
@@ -376,7 +378,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
               <button
                 onClick={() => setMediaPickerOpen(false)}
-                className="p-2 rounded-xl bg-navy-900 text-slate-400 hover:text-white"
+                className="p-2 rounded-xl bg-white/5 text-slate-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -402,7 +404,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     key={f}
                     onClick={() => setMediaFilter(f)}
                     className={`px-3 py-1 rounded-lg font-bold text-xs capitalize ${
-                      mediaFilter === f ? 'bg-gold-metallic text-navy-950' : 'bg-navy-900 text-slate-400'
+                      mediaFilter === f ? 'bg-white text-black' : 'bg-navy-900 text-slate-400'
                     }`}
                   >
                     {f === 'all' ? 'Todos' : f === 'image' ? 'Fotos/Logos' : 'Videos'}
@@ -419,7 +421,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   <div
                     key={item.id}
                     onClick={() => selectMediaItem(item.url)}
-                    className="group relative aspect-video rounded-2xl overflow-hidden bg-navy-950 border border-slate-800 hover:border-gold-metallic cursor-pointer transition-all hover:scale-105 shadow-md flex flex-col justify-end p-2"
+                    className="group relative aspect-video rounded-2xl overflow-hidden bg-navy-950 border border-white/10 hover:border-white/20 hover:text-white cursor-pointer transition-all hover:scale-105 shadow-md flex flex-col justify-end p-2"
                   >
                     {item.type === 'video' ? (
                       <video src={item.url} muted className="absolute inset-0 w-full h-full object-cover" />
@@ -443,13 +445,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       )}
 
       {/* FULL PAGE HEADER */}
-      <header className="bg-navy-900 border-b border-slate-800 sticky top-0 z-50">
+      <header className="bg-white/[0.02] backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           <div className="flex items-center gap-4">
             <button
               onClick={onReturnToWeb}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-navy-950 border border-slate-800 text-gold-400 hover:text-white hover:border-gold-metallic text-xs font-extrabold transition-all shadow-md"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:border-white/20 hover:text-white text-xs font-extrabold transition-all shadow-md"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>← Volver a la Web Pública</span>
@@ -460,14 +462,14 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-metallic/15 border border-gold-metallic/30 text-gold-400 text-xs font-extrabold uppercase shadow-gold-glow">
+            <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs font-extrabold uppercase shadow-gold-glow">
               <Lock className="w-3.5 h-3.5 text-flame-500" />
               <span>Gestión Global de Contenido Activa</span>
             </div>
 
             <button
               onClick={logoutAdmin}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-navy-850 hover:bg-red-950 text-slate-300 hover:text-red-400 border border-slate-800 text-xs font-extrabold transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-300 hover:text-red-400 border border-white/10 text-xs font-extrabold transition-colors"
             >
               <LogOut className="w-4 h-4" />
               <span>Cerrar Sesión</span>
@@ -482,7 +484,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
         
         {/* SIDE NAVIGATION */}
         <aside className="lg:col-span-3 space-y-3">
-          <div className="luxury-glass p-3 rounded-2xl border border-slate-800 space-y-1">
+          <div className="bg-white/[0.02] backdrop-blur-xl p-4 rounded-3xl border border-white/10 space-y-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             {[
               { id: 'hero', label: '1. Portada & Video Inicial', icon: Video, count: null, help: 'El video y textos que abren la web' },
               { id: 'library', label: '2. Biblioteca de Medios', icon: FolderOpen, count: safeMediaLibrary.length, help: 'Fotos y videos guardados en la nube' },
@@ -501,8 +503,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`w-full flex flex-col p-3 rounded-xl transition-all duration-300 ${
                     isActive
-                      ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 text-white shadow-flame-glow'
-                      : 'text-slate-300 hover:text-white hover:bg-navy-900'
+                      ? 'bg-white/10 border border-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] translate-x-1'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
                   }`}
                 >
                   <div className="w-full flex items-center justify-between">
@@ -512,7 +514,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     </div>
                     {tab.count !== null && (
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono ${
-                        isActive ? 'bg-navy-950 text-gold-400' : 'bg-navy-900 text-slate-400 border border-slate-800'
+                        isActive ? 'bg-gold-500/20 text-gold-400' : 'bg-black/40 text-slate-500 border border-white/5'
                       }`}>
                         {tab.count}
                       </span>
@@ -534,7 +536,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           {activeTab === 'hero' && (
             <div className="space-y-6 animate-fadeIn">
               
-              <div className="p-5 rounded-2xl bg-navy-900/90 border border-gold-metallic/30 flex items-start gap-3">
+              <div className="p-5 rounded-3xl bg-gold-500/5 border border-gold-500/20 backdrop-blur-md flex items-start gap-3">
                 <HelpCircle className="w-5 h-5 text-gold-400 flex-shrink-0 mt-0.5" />
                 <div className="space-y-1 text-xs">
                   <h4 className="font-bold text-white text-sm">Editor Visual de Portada</h4>
@@ -545,13 +547,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               </div>
 
               {/* LIVE INTERACTIVE VISUAL PREVIEW */}
-              <div className="luxury-glass p-6 rounded-3xl border border-slate-800 space-y-4">
+              <div className="bg-white/[0.02] backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-4">
                 <span className="text-xs font-extrabold text-gold-400 uppercase tracking-wider flex items-center gap-2">
                   <Eye className="w-4 h-4 text-flame-500" />
                   <span>Así se ve tu portada en vivo en la página web:</span>
                 </span>
 
-                <div className="aspect-video sm:aspect-[21/9] rounded-2xl overflow-hidden bg-black border border-slate-800 relative shadow-2xl flex flex-col justify-center items-center text-center p-6">
+                <div className="aspect-video sm:aspect-[21/9] rounded-2xl overflow-hidden bg-black border border-white/10 relative shadow-2xl flex flex-col justify-center items-center text-center p-6">
                   <video
                     key={heroContent.videoUrl}
                     controls
@@ -581,10 +583,10 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               </div>
 
               {/* WORDPRESS-LIKE MEDIA ATTACHMENT BOXES */}
-              <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
+              <div className="bg-white/[0.02] backdrop-blur-xl p-6 sm:p-8 rounded-[2.5rem] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-6">
                 
                 {/* VIDEO SELECTOR BOX */}
-                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                <div className="p-6 rounded-3xl bg-black/40 border border-white/5 space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
                       <label className="text-xs font-extrabold text-white flex items-center gap-1.5 mb-0.5">
@@ -598,7 +600,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       <button
                         type="button"
                         onClick={() => openMediaPicker((url) => updateHeroContent('videoUrl', url), 'video')}
-                        className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 hover:text-white border border-gold-metallic/30 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition-all"
+                        className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-white/5 text-gold-400 hover:text-white border border-gold-metallic/30 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition-all"
                       >
                         <FolderOpen className="w-3.5 h-3.5" />
                         <span>Elegir de la Biblioteca</span>
@@ -619,7 +621,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </div>
 
                 {/* POSTER PHOTO SELECTOR BOX */}
-                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                <div className="p-6 rounded-3xl bg-black/40 border border-white/5 space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
                       <label className="text-xs font-extrabold text-white flex items-center gap-1.5 mb-0.5">
@@ -633,7 +635,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       <button
                         type="button"
                         onClick={() => openMediaPicker((url) => updateHeroContent('posterUrl', url), 'image')}
-                        className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 hover:text-white border border-gold-metallic/30 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition-all"
+                        className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-white/5 text-gold-400 hover:text-white border border-gold-metallic/30 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition-all"
                       >
                         <FolderOpen className="w-3.5 h-3.5" />
                         <span>Elegir de la Biblioteca</span>
@@ -652,8 +654,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     </div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-navy-950 border border-slate-800 flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-black overflow-hidden flex-shrink-0 border border-slate-800">
+                  <div className="p-3 rounded-2xl bg-black/60 border border-white/5 flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-lg bg-black overflow-hidden flex-shrink-0 border border-white/10">
                       <img src={heroContent.posterUrl} alt="Poster" className="w-full h-full object-cover" />
                     </div>
                     <span className="text-xs font-mono text-slate-300 truncate flex-1">
@@ -663,7 +665,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </div>
 
                 {/* TEXT FIELDS */}
-                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                <div className="p-6 rounded-3xl bg-black/40 border border-white/5 space-y-3">
                   <label className="text-xs font-extrabold text-white flex items-center gap-1.5">
                     <Edit3 className="w-3.5 h-3.5 text-flame-500" />
                     <span>Título Principal de la Portada:</span>
@@ -679,7 +681,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateHeroContent('titlePart1', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-2.5 text-xs text-white font-bold"
                       />
                     </div>
 
@@ -692,7 +694,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateHeroContent('titleGradient', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-xl p-2.5 text-xs text-flame-400 font-extrabold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-2.5 text-xs text-flame-400 font-extrabold"
                       />
                     </div>
 
@@ -705,13 +707,13 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateHeroContent('titlePart2', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-2.5 text-xs text-white font-bold"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-2">
+                <div className="p-6 rounded-3xl bg-black/40 border border-white/5 space-y-2">
                   <label className="text-xs font-extrabold text-white flex items-center gap-1.5">
                     <FileText className="w-3.5 h-3.5 text-gold-400" />
                     <span>Subtítulo / Párrafo Explicativo:</span>
@@ -723,11 +725,11 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       updateHeroContent('subtitle', e.target.value);
                       triggerSaveNotification();
                     }}
-                    className="w-full modern-input rounded-xl p-3 text-xs text-slate-200"
+                    className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-slate-200"
                   ></textarea>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-3">
+                <div className="p-6 rounded-3xl bg-black/40 border border-white/5 space-y-3">
                   <label className="text-xs font-extrabold text-white flex items-center gap-1.5">
                     <Layers className="w-3.5 h-3.5 text-flame-500" />
                     <span>Pilares Estratégicos de la Portada:</span>
@@ -742,7 +744,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateHeroContent('pillar1', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs font-bold"
                       />
                     </div>
                     <div>
@@ -754,7 +756,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateHeroContent('pillar2', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs font-bold"
                       />
                     </div>
                     <div>
@@ -766,7 +768,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateHeroContent('pillar3', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs font-bold"
                       />
                     </div>
                     <div>
@@ -778,7 +780,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateHeroContent('pillar4', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-lg p-2 text-xs font-bold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs font-bold"
                       />
                     </div>
                   </div>
@@ -823,8 +825,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                   {safeMediaLibrary.map((item) => (
-                    <div key={item.id} className="luxury-glass p-3 rounded-2xl border border-slate-800 space-y-2 group relative">
-                      <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-slate-800">
+                    <div key={item.id} className="luxury-glass p-3 rounded-2xl border border-white/10 space-y-2 group relative">
+                      <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-white/10">
                         {item.type === 'video' ? (
                           <video src={item.url} muted className="w-full h-full object-cover" />
                         ) : (
@@ -843,7 +845,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                       <button
                         onClick={() => setDeleteConfirm({ type: 'library', id: item.id, title: item.name })}
-                        className="w-full py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-slate-800 text-[10px] font-bold flex items-center justify-center gap-1 transition-colors"
+                        className="w-full py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-white/10 text-[10px] font-bold flex items-center justify-center gap-1 transition-colors"
                       >
                         <Trash2 className="w-3 h-3" />
                         <span>Eliminar Archivo</span>
@@ -862,7 +864,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               
               {/* Add New Partner Form */}
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 space-y-5">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <h3 className="text-base font-extrabold font-heading text-white flex items-center gap-2">
                     <Plus className="w-5 h-5 text-flame-500" />
                     <span>Agregar Nuevo Cliente al Carrusel</span>
@@ -878,7 +880,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       placeholder="Ej. BAKER HUGHES"
                       value={newPartner.name}
                       onChange={(e) => setNewPartner((p) => ({ ...p, name: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
                     />
                   </div>
 
@@ -889,7 +891,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       placeholder="Ej. Servicios de Fluidos de Perforación"
                       value={newPartner.sub}
                       onChange={(e) => setNewPartner((p) => ({ ...p, sub: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
                     />
                   </div>
 
@@ -900,7 +902,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       placeholder="Ej. Multinacional / Empresa Mixta"
                       value={newPartner.type}
                       onChange={(e) => setNewPartner((p) => ({ ...p, type: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
                     />
                   </div>
 
@@ -911,7 +913,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       <button
                         type="button"
                         onClick={() => openMediaPicker((url) => setNewPartner((p) => ({ ...p, logoUrl: url })), 'image')}
-                        className="px-3.5 py-2.5 rounded-xl bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1.5 shadow-sm"
+                        className="px-3.5 py-2.5 rounded-xl bg-navy-900 hover:bg-white/5 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1.5 shadow-sm"
                       >
                         <FolderOpen className="w-4 h-4" />
                         <span>Elegir Logo</span>
@@ -936,7 +938,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       placeholder="Descripción del contrato u operaciones conjuntas..."
                       value={newPartner.contract}
                       onChange={(e) => setNewPartner((p) => ({ ...p, contract: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
                     ></textarea>
                   </div>
 
@@ -958,7 +960,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {safePartners.map((partner) => (
-                    <div key={partner.id} className="luxury-glass p-5 rounded-2xl border border-slate-800 space-y-4">
+                    <div key={partner.id} className="luxury-glass p-5 rounded-2xl border border-white/10 space-y-4">
                       
                       <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                         <div className="flex items-center gap-3">
@@ -977,7 +979,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                                 updatePartner(partner.id, 'name', e.target.value);
                                 triggerSaveNotification();
                               }}
-                              className="modern-input rounded-lg px-2.5 py-1 text-xs font-extrabold text-white"
+                              className="bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner px-2.5 py-1 text-xs font-extrabold text-white"
                             />
                             <span className="text-[10px] text-gold-400 block mt-0.5">{partner.type}</span>
                           </div>
@@ -985,14 +987,14 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                         <button
                           onClick={() => setDeleteConfirm({ type: 'partner', id: partner.id, title: partner.name })}
-                          className="p-2 rounded-xl bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-slate-800 transition-colors"
+                          className="p-2 rounded-xl bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-white/10 transition-colors"
                           title="Eliminar cliente"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
 
-                      <div className="p-3 rounded-xl bg-navy-900 border border-slate-800 space-y-2">
+                      <div className="p-3 rounded-xl bg-navy-900 border border-white/10 space-y-2">
                         <span className="text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
                           <ImageIcon className="w-3.5 h-3.5 text-gold-400" />
                           <span>Logo del Cliente:</span>
@@ -1001,7 +1003,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           <button
                             type="button"
                             onClick={() => openMediaPicker((url) => updatePartner(partner.id, 'logoUrl', url), 'image')}
-                            className="flex-1 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center justify-center gap-1.5 transition-all"
+                            className="flex-1 py-2 rounded-xl bg-navy-950 hover:bg-white/5 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center justify-center gap-1.5 transition-all"
                           >
                             <FolderOpen className="w-3.5 h-3.5" />
                             <span>Elegir Logo</span>
@@ -1030,7 +1032,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                               updatePartner(partner.id, 'sub', e.target.value);
                               triggerSaveNotification();
                             }}
-                            className="w-full modern-input rounded-lg p-2 text-xs text-slate-300"
+                            className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs text-slate-300"
                           />
                         </div>
 
@@ -1043,7 +1045,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                               updatePartner(partner.id, 'contract', e.target.value);
                               triggerSaveNotification();
                             }}
-                            className="w-full modern-input rounded-lg p-2 text-xs text-slate-300"
+                            className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs text-slate-300"
                           ></textarea>
                         </div>
                       </div>
@@ -1058,8 +1060,63 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           {/* TAB 4: MEDIA & GALLERY */}
           {activeTab === 'media' && (
             <div className="space-y-6 animate-fadeIn">
+
+              {/* GLOBAL OPERATIONS VIDEO UPLOADER */}
+              <div className="bg-white/[0.02] backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-4 mb-6">
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                  <h3 className="text-base font-extrabold font-heading text-white flex items-center gap-2">
+                    <Video className="w-5 h-5 text-flame-500" />
+                    <span>Video Principal de la Sección de Operaciones</span>
+                  </h3>
+                </div>
+                <div className="flex flex-col gap-4">
+                  {/* PREVIEW DEL VIDEO */}
+                  <div className="w-full h-48 bg-black rounded-xl overflow-hidden border border-white/10 shadow-inner">
+                    <video 
+                      key={companyInfo?.operationsVideoUrl || '/videos/maniobra.mp4'}
+                      src={companyInfo?.operationsVideoUrl || '/videos/maniobra.mp4'} 
+                      className="w-full h-full object-cover" 
+                      controls 
+                      muted 
+                    />
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <span className="text-xs font-bold text-slate-300 block mb-1">El video que se abre al darle Play en la Galería.</span>
+                      <span className="text-[11px] text-slate-500 font-mono block break-all">
+                        Actualmente usando: {companyInfo?.operationsVideoUrl || '/videos/maniobra.mp4'}
+                      </span>
+                    </div>
+                    
+                    <div className="flex gap-2 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => openMediaPicker((url) => updateCompanyInfoText('operationsVideoUrl', url), 'video')}
+                        className="px-3.5 py-2 rounded-xl bg-gold-500/20 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1"
+                        disabled={uploadingStatus.isUploading}
+                      >
+                        <FolderOpen className="w-3.5 h-3.5" />
+                        <span>Elegir Video</span>
+                      </button>
+                      <label className={`cursor-pointer px-3.5 py-2 rounded-xl bg-flame-600 hover:bg-flame-500 text-white text-xs font-extrabold flex items-center gap-1 shadow-flame-glow ${uploadingStatus.isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                        <Upload className="w-3.5 h-3.5" />
+                        <span>{uploadingStatus.isUploading ? `Subiendo... ${uploadingStatus.progress}%` : 'Subir Video (PC)'}</span>
+                        <input
+                          type="file"
+                          accept="video/*"
+                          onChange={(e) => handleFileUpload(e, (url) => updateCompanyInfoText('operationsVideoUrl', url))}
+                          className="hidden"
+                          disabled={uploadingStatus.isUploading}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/30 space-y-5">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <h3 className="text-base font-extrabold font-heading text-white flex items-center gap-2">
                     <Plus className="w-5 h-5 text-flame-500" />
                     <span>Agregar Foto o Video a la Galería</span>
@@ -1075,7 +1132,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       placeholder="Ej. Maniobra en Pozo Faja del Orinoco"
                       value={newMedia.title}
                       onChange={(e) => setNewMedia((prev) => ({ ...prev, title: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
                     />
                   </div>
 
@@ -1085,7 +1142,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       <button
                         type="button"
                         onClick={() => openMediaPicker((url) => setNewMedia((prev) => ({ ...prev, url })), 'image')}
-                        className="px-3.5 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1"
+                        className="px-3.5 py-2 rounded-xl bg-gold-500/20 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1"
                       >
                         <FolderOpen className="w-3.5 h-3.5" />
                         <span>Elegir Foto</span>
@@ -1108,7 +1165,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     <select
                       value={newMedia.type}
                       onChange={(e) => setNewMedia((prev) => ({ ...prev, type: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs bg-navy-950 text-white"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs bg-navy-950 text-white"
                     >
                       <option value="photo">Fotografía</option>
                       <option value="video">Video MP4</option>
@@ -1122,7 +1179,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         <button
                           type="button"
                           onClick={() => openMediaPicker((url) => setNewMedia((prev) => ({ ...prev, videoUrl: url })), 'video')}
-                          className="px-3.5 py-2 rounded-xl bg-navy-950 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1"
+                          className="px-3.5 py-2 rounded-xl bg-gold-500/20 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1"
                         >
                           <FolderOpen className="w-3.5 h-3.5" />
                           <span>Elegir Video</span>
@@ -1148,7 +1205,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       placeholder="Descripción de la maniobra..."
                       value={newMedia.caption}
                       onChange={(e) => setNewMedia((prev) => ({ ...prev, caption: e.target.value }))}
-                      className="w-full modern-input rounded-xl p-3 text-xs"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
                     ></textarea>
                   </div>
 
@@ -1166,8 +1223,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {safeMediaItems.map((item) => (
-                  <div key={item.id} className="luxury-glass p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-slate-800 shadow-md">
+                  <div key={item.id} className="luxury-glass p-4 rounded-2xl border border-white/10 space-y-3">
+                    <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-white/10 shadow-md">
                       <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
                       <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono text-gold-400 flex items-center gap-1">
                         {item.type === 'video' ? <Video className="w-3 h-3" /> : <ImageIcon className="w-3 h-3" />}
@@ -1185,7 +1242,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                             updateMediaItem(item.id, 'title', e.target.value);
                             triggerSaveNotification();
                           }}
-                          className="w-full modern-input rounded-lg p-2 text-xs font-bold text-white"
+                          className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs font-bold text-white"
                         />
                       </div>
                       
@@ -1193,12 +1250,12 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         <button
                           type="button"
                           onClick={() => openMediaPicker((url) => updateMediaItem(item.id, 'url', url), 'image')}
-                          className="flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-slate-800 flex items-center justify-center gap-1"
+                          className="flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-white/5 text-gold-400 text-xs font-extrabold border border-white/10 flex items-center justify-center gap-1"
                         >
                           <FolderOpen className="w-3.5 h-3.5" />
                           <span>Cambiar Imagen</span>
                         </button>
-                        <label className="cursor-pointer flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-extrabold border border-slate-800 flex items-center justify-center gap-1">
+                        <label className="cursor-pointer flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-white/5 text-slate-300 text-xs font-extrabold border border-white/10 flex items-center justify-center gap-1">
                           <Upload className="w-3.5 h-3.5" />
                           <span>Subir de PC</span>
                           <input
@@ -1219,7 +1276,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                             updateMediaItem(item.id, 'caption', e.target.value);
                             triggerSaveNotification();
                           }}
-                          className="w-full modern-input rounded-lg p-2 text-xs font-light text-slate-300"
+                          className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs font-light text-slate-300"
                         ></textarea>
                       </div>
                     </div>
@@ -1227,7 +1284,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     <div className="pt-1 flex justify-end">
                       <button
                         onClick={() => setDeleteConfirm({ type: 'media', id: item.id, title: item.title })}
-                        className="px-3 py-1 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 text-xs font-bold border border-slate-800 flex items-center gap-1"
+                        className="px-3 py-1 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 text-xs font-bold border border-white/10 flex items-center gap-1"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                         <span>Eliminar de la Web</span>
@@ -1244,7 +1301,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             <div className="space-y-6 animate-fadeIn">
               <div className="grid gap-6">
                 {safeServices.map((srv) => (
-                  <div key={srv.id} className="luxury-glass p-6 rounded-3xl border border-slate-800 space-y-4">
+                  <div key={srv.id} className="bg-white/[0.02] backdrop-blur-xl p-6 rounded-[2.5rem] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-4">
                     <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                       <input
                         type="text"
@@ -1253,7 +1310,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateService(srv.id, 'name', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="modern-input rounded-xl px-3 py-1.5 text-sm font-extrabold text-white w-full max-w-md"
+                        className="bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner px-3 py-1.5 text-sm font-extrabold text-white w-full max-w-md"
                       />
                       <span className="text-xs text-gold-400 font-bold uppercase">{srv.id}</span>
                     </div>
@@ -1267,7 +1324,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateService(srv.id, 'tagline', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-xl p-3 text-xs text-gold-400 font-bold"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-gold-400 font-bold"
                       />
 
                       <label className="text-slate-400 font-bold block pt-2">Descripción Completa del Servicio:</label>
@@ -1278,7 +1335,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateService(srv.id, 'description', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-xl p-3 text-xs text-slate-200 leading-relaxed"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-slate-200 leading-relaxed"
                       ></textarea>
                     </div>
                   </div>
@@ -1292,7 +1349,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             <div className="space-y-6 animate-fadeIn">
               <div className="grid sm:grid-cols-2 gap-5">
                 {safeKpis.map((kpi) => (
-                  <div key={kpi.id} className="luxury-glass p-6 rounded-2xl border border-slate-800 space-y-4">
+                  <div key={kpi.id} className="luxury-glass p-6 rounded-2xl border border-white/10 space-y-4">
                     <div className="flex items-center justify-between">
                       <input
                         type="text"
@@ -1301,7 +1358,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateKpi(kpi.id, 'label', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="modern-input rounded-lg px-2.5 py-1 text-xs font-extrabold text-gold-400 uppercase tracking-wider"
+                        className="bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner px-2.5 py-1 text-xs font-extrabold text-gold-400 uppercase tracking-wider"
                       />
                       <span className="text-[10px] text-slate-500 font-mono">{kpi.id}</span>
                     </div>
@@ -1317,7 +1374,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                             triggerSaveNotification();
                           }}
                           placeholder="Prefix"
-                          className="w-16 modern-input rounded-xl p-2 text-xs font-bold text-gold-400 text-center"
+                          className="w-16 bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-2 text-xs font-bold text-gold-400 text-center"
                         />
                         <input
                           type="number"
@@ -1327,7 +1384,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                             updateKpi(kpi.id, 'value', parseFloat(e.target.value) || 0);
                             triggerSaveNotification();
                           }}
-                          className="flex-1 modern-input rounded-xl p-2 text-sm text-white font-extrabold text-center"
+                          className="flex-1 bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-2 text-sm text-white font-extrabold text-center"
                         />
                         <input
                           type="text"
@@ -1337,7 +1394,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                             triggerSaveNotification();
                           }}
                           placeholder="Suffix"
-                          className="w-16 modern-input rounded-xl p-2 text-xs font-bold text-gold-400 text-center"
+                          className="w-16 bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-2 text-xs font-bold text-gold-400 text-center"
                         />
                       </div>
                     </div>
@@ -1351,7 +1408,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           updateKpi(kpi.id, 'desc', e.target.value);
                           triggerSaveNotification();
                         }}
-                        className="w-full modern-input rounded-lg p-2 text-xs text-slate-300"
+                        className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-lg transition-all shadow-inner p-2 text-xs text-slate-300"
                       />
                     </div>
                   </div>
@@ -1381,7 +1438,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     <button
                       type="button"
                       onClick={() => openMediaPicker((url) => updateCompanyInfoText('logoUrl', url), 'image')}
-                      className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-navy-850 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1.5"
+                      className="px-3.5 py-2 rounded-xl bg-navy-950 hover:bg-white/5 text-gold-400 text-xs font-extrabold border border-gold-metallic/30 flex items-center gap-1.5"
                     >
                       <FolderOpen className="w-3.5 h-3.5" />
                       <span>Elegir de la Biblioteca</span>
@@ -1399,7 +1456,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-navy-950 rounded-2xl border border-slate-800 gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 bg-navy-950 rounded-2xl border border-white/10 gap-4">
                   <div className="flex items-center gap-5">
                     <div className="p-4 bg-navy-900 rounded-2xl border border-gold-metallic/30 flex items-center justify-center min-w-[220px] min-h-[70px] shadow-inner">
                       <Logo showText={true} isDark={true} className="h-14 sm:h-16" imageClassName="h-14 sm:h-16 max-h-20" />
@@ -1420,7 +1477,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         updateCompanyInfoText('logoUrl', '');
                         triggerSaveNotification();
                       }}
-                      className="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 text-xs font-bold border border-slate-800"
+                      className="px-3 py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 text-xs font-bold border border-white/10"
                     >
                       Restaurar Logo Original
                     </button>
@@ -1428,7 +1485,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </div>
               </div>
 
-              <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-5">
+              <div className="bg-white/[0.02] backdrop-blur-xl p-6 sm:p-8 rounded-[2.5rem] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] space-y-5">
                 <h3 className="text-base font-extrabold font-heading text-white">Datos de Contacto & Corporativos</h3>
 
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -1441,7 +1498,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         updateCompanyInfoText('telefonos', e.target.value);
                         triggerSaveNotification();
                       }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-emerald-400 font-bold"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-emerald-400 font-bold"
                     />
                   </div>
 
@@ -1454,7 +1511,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         updateCompanyInfoText('email', e.target.value);
                         triggerSaveNotification();
                       }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-gold-400 font-bold"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-gold-400 font-bold"
                     />
                   </div>
 
@@ -1467,7 +1524,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         updateCompanyInfoText('direccion', e.target.value);
                         triggerSaveNotification();
                       }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-white"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-white"
                     />
                   </div>
 
@@ -1480,70 +1537,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         updateCompanyInfoText('rif', e.target.value);
                         triggerSaveNotification();
                       }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-slate-300 font-mono"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-slate-300 font-mono"
                     />
-                  </div>
-                </div>
-
-                {/* EDITABLE INSTAGRAM STATS & BIO */}
-                <div className="p-5 rounded-2xl bg-navy-900 border border-slate-800 space-y-4">
-                  <div className="flex items-center gap-2 text-xs font-extrabold text-white">
-                    <AtSign className="w-4 h-4 text-flame-500" />
-                    <span>Datos del Perfil de Instagram (@cysosenergy):</span>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-3">
-                    <div>
-                      <span className="text-[10px] text-slate-400 block mb-1">Publicaciones:</span>
-                      <input
-                        type="text"
-                        value={companyInfo.instagramPosts || '18'}
-                        onChange={(e) => {
-                          updateCompanyInfoText('instagramPosts', e.target.value);
-                          triggerSaveNotification();
-                        }}
-                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold text-center"
-                      />
-                    </div>
-
-                    <div>
-                      <span className="text-[10px] text-gold-400 font-bold block mb-1">Seguidores:</span>
-                      <input
-                        type="text"
-                        value={companyInfo.instagramFollowers || '3,573'}
-                        onChange={(e) => {
-                          updateCompanyInfoText('instagramFollowers', e.target.value);
-                          triggerSaveNotification();
-                        }}
-                        className="w-full modern-input rounded-xl p-2.5 text-xs text-gold-400 font-extrabold text-center"
-                      />
-                    </div>
-
-                    <div>
-                      <span className="text-[10px] text-slate-400 block mb-1">Seguidos:</span>
-                      <input
-                        type="text"
-                        value={companyInfo.instagramFollowing || '20'}
-                        onChange={(e) => {
-                          updateCompanyInfoText('instagramFollowing', e.target.value);
-                          triggerSaveNotification();
-                        }}
-                        className="w-full modern-input rounded-xl p-2.5 text-xs text-white font-bold text-center"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-[10px] text-slate-400 block mb-1">Biografía Oficial de Instagram:</label>
-                    <textarea
-                      rows="2"
-                      value={companyInfo.instagramBio || 'Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.'}
-                      onChange={(e) => {
-                        updateCompanyInfoText('instagramBio', e.target.value);
-                        triggerSaveNotification();
-                      }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-slate-200"
-                    ></textarea>
                   </div>
                 </div>
 
@@ -1557,7 +1552,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         updateCompanyInfoText('mision', e.target.value);
                         triggerSaveNotification();
                       }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-slate-200 leading-relaxed"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-slate-200 leading-relaxed"
                     ></textarea>
                   </div>
 
@@ -1570,7 +1565,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         updateCompanyInfoText('vision', e.target.value);
                         triggerSaveNotification();
                       }}
-                      className="w-full modern-input rounded-xl p-3 text-xs text-slate-200 leading-relaxed"
+                      className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-slate-200 leading-relaxed"
                     ></textarea>
                   </div>
                 </div>
@@ -1582,7 +1577,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
           {activeTab === 'inbox' && (
             <div className="space-y-6 animate-fadeIn">
               
-              <div className="bg-navy-900/60 p-4 rounded-2xl border border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="bg-navy-900/60 p-4 rounded-2xl border border-white/10/80 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="relative w-full sm:w-80">
                   <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
@@ -1590,7 +1585,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     placeholder="Buscar cotización por nombre, empresa o servicio..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full bg-navy-950 border border-slate-800 rounded-xl py-2 pl-10 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-slate-600"
+                    className="w-full bg-navy-950 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-slate-600"
                   />
                 </div>
 
@@ -1607,7 +1602,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                         filterStatus === st.id
                           ? 'bg-slate-200 text-slate-900 shadow-sm'
-                          : 'bg-navy-950 text-slate-400 hover:text-slate-200 border border-slate-800'
+                          : 'bg-navy-950 text-slate-400 hover:text-slate-200 border border-white/10'
                       }`}
                     >
                       {st.label}
@@ -1632,9 +1627,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                           : 'bg-navy-950/60 border-slate-800/60 opacity-85'
                       }`}
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800/80">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10/80">
                         <div className="flex items-center gap-3">
-                          <span className="text-xs font-mono font-bold text-slate-400 bg-navy-950 px-2.5 py-1 rounded-md border border-slate-800">
+                          <span className="text-xs font-mono font-bold text-slate-400 bg-navy-950 px-2.5 py-1 rounded-md border border-white/10">
                             {msg.id}
                           </span>
                           <div>
@@ -1676,7 +1671,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         </div>
                       </div>
 
-                      <div className="p-4 bg-navy-950/80 rounded-xl border border-slate-800/80 text-xs text-slate-300 font-light italic leading-relaxed mb-4">
+                      <div className="p-4 bg-navy-950/80 rounded-xl border border-white/10/80 text-xs text-slate-300 font-light italic leading-relaxed mb-4">
                         "{msg.message}"
                       </div>
 
@@ -1692,7 +1687,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                           <a
                             href={`mailto:${msg.email}?subject=Cotización%20CYSOS%20ENERGY%20-%20${msg.service}`}
-                            className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-navy-850 text-slate-300 text-xs font-medium flex items-center gap-2 border border-slate-700 transition-colors"
+                            className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-white/5 text-slate-300 text-xs font-medium flex items-center gap-2 border border-slate-700 transition-colors"
                           >
                             <Mail className="w-3.5 h-3.5 text-slate-400" />
                             <span>Enviar Email</span>
@@ -1705,7 +1700,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                               updateMessageStatus(msg.id, msg.status === 'pending' ? 'responded' : 'pending');
                               triggerSaveNotification();
                             }}
-                            className="px-3.5 py-1.5 rounded-lg bg-navy-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-medium flex items-center gap-1.5 border border-slate-800 transition-colors"
+                            className="px-3.5 py-1.5 rounded-lg bg-navy-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-medium flex items-center gap-1.5 border border-white/10 transition-colors"
                           >
                             <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />
                             <span>{msg.status === 'pending' ? 'Marcar Atendido' : 'Marcar Pendiente'}</span>
@@ -1713,7 +1708,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                           <button
                             onClick={() => setDeleteConfirm({ type: 'message', id: msg.id, title: `Mensaje de ${msg.name}` })}
-                            className="p-2 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-500 hover:text-red-400 border border-slate-800 transition-colors"
+                            className="p-2 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-500 hover:text-red-400 border border-white/10 transition-colors"
                             title="Eliminar registro"
                           >
                             <Trash2 className="w-4 h-4" />

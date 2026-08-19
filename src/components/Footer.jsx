@@ -126,6 +126,7 @@ export const Footer = () => {
                 <div>
                   <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Despacho Inmediato</span>
                   <span className="block text-sm font-bold text-slate-200 group-hover:text-emerald-400 transition-colors">{safeInfo.phone1}</span>
+                  <span className="block text-sm font-bold text-slate-200 group-hover:text-emerald-400 transition-colors">{safeInfo.phone2}</span>
                 </div>
               </a>
 

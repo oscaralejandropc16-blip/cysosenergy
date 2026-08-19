@@ -118,24 +118,44 @@ export const Navbar = () => {
           </div>
 
           {/* Teléfono - solo desktop */}
-          <a
-            href="tel:+584140596012"
-            className="cysos-tel"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              color: 'rgba(255,255,255,0.9)',
-              textDecoration: 'none',
-              fontSize: '14px',
-              fontWeight: 600,
-              fontFamily: "'Inter', sans-serif",
-              transition: 'all 0.3s ease',
-            }}
-          >
-            <div className="cysos-pulse-dot"></div>
-            <span>0414-059-6012</span>
-          </a>
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="tel:+584140596012"
+              className="cysos-tel"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: 'rgba(255,255,255,0.9)',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 600,
+                fontFamily: "'Inter', sans-serif",
+                transition: 'all 0.3s ease',
+              }}
+            >
+              <div className="cysos-pulse-dot"></div>
+              <span>0414-0596012</span>
+            </a>
+            <span className="text-white/20">|</span>
+            <a
+              href="tel:+584124817113"
+              className="cysos-tel"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: 'rgba(255,255,255,0.9)',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 600,
+                fontFamily: "'Inter', sans-serif",
+                transition: 'all 0.3s ease',
+              }}
+            >
+              <span>0412-4817113</span>
+            </a>
+          </div>
 
           {/* CTA Button */}
           <a
@@ -223,23 +243,19 @@ export const Navbar = () => {
               <WhatsAppIcon size={24} />
             </a>
           </div>
-
-          <a
-            href="tel:+584140596012"
-            className="mobile-tel-btn"
-          >
-            <div className="cysos-pulse-dot"></div>
-            <span>Emergencias 24/7: 0414-059-6012</span>
-          </a>
-          
-          <a
-            href="#contacto"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="mobile-cta-btn"
-          >
-            <PhoneCall size={18} />
-            <span>Solicitar Cotización Técnica</span>
-          </a>
+          {/* Mobile Footer */}
+          <div className="p-6 border-t border-slate-800 bg-black/50 space-y-4">
+            <div className="flex items-center gap-3 text-gold-400 font-bold text-sm">
+              <PhoneCall className="w-4 h-4" />
+              <div className="flex flex-col">
+                <span>0414-0596012</span>
+                <span>0412-4817113</span>
+              </div>
+            </div>
+            <a href="#contacto" className="w-full btn-modern flex justify-center py-3" onClick={() => setIsMobileMenuOpen(false)}>
+              Cotizar Proyecto
+            </a>
+          </div>
         </div>
       </div>
 
