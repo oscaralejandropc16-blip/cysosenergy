@@ -103,8 +103,57 @@ export const CmsProvider = ({ children }) => {
   const [partners, setPartners] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_partners'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_PARTNERS; } catch { return INITIAL_PARTNERS; } });
   const [messages, setMessages] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_messages'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_MESSAGES; } catch { return INITIAL_MESSAGES; } });
   const [kpis, setKpis] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_kpis'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_KPIS; } catch { return INITIAL_KPIS; } });
-  const [mediaItems, setMediaItems] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_media_v3'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_MEDIA; } catch { return INITIAL_MEDIA; } });
-  const [companyInfo, setCompanyInfo] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_company_info'); return saved ? JSON.parse(saved) : INITIAL_COMPANY_INFO; } catch { return INITIAL_COMPANY_INFO; } });
+  const [mediaItems, setMediaItems] = useState(() => { 
+    try { 
+      let savedItems = null;
+      const keysToTry = ['cysos_cms_media_v3', 'cysos_cms_media_v2', 'cysos_cms_media_v1', 'cysos_cms_media'];
+      
+      for (const key of keysToTry) {
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              const hasUserUploads = parsed.some(item => item.url && item.url.startsWith('data:image') || item.url.includes('cloudinary'));
+              if (hasUserUploads || !savedItems) {
+                savedItems = parsed;
+                if (hasUserUploads) break; 
+              }
+            }
+          } catch (e) {
+            console.error('Error parsing CMS key:', key);
+          }
+        }
+      }
+
+      savedItems = savedItems || [];
+
+      if (savedItems.length > 0) {
+        const missingItems = INITIAL_MEDIA.filter(
+          initialItem => !savedItems.some(savedItem => savedItem.id === initialItem.id)
+        );
+        return [...savedItems, ...missingItems];
+      }
+      return INITIAL_MEDIA;
+    } catch { 
+      return INITIAL_MEDIA; 
+    } 
+  });
+  const [companyInfo, setCompanyInfo] = useState(() => { 
+    try { 
+      const saved = localStorage.getItem('cysos_cms_company_info'); 
+      const parsed = saved ? JSON.parse(saved) : INITIAL_COMPANY_INFO; 
+      if (!parsed.logoUrl) {
+        const logoFallback = localStorage.getItem('cysos_cms_logo_url');
+        if (logoFallback) {
+          parsed.logoUrl = logoFallback;
+        }
+      }
+      return parsed;
+    } catch { 
+      return INITIAL_COMPANY_INFO; 
+    } 
+  });
   const [services, setServices] = useState(() => { try { const saved = localStorage.getItem('cysos_cms_services'); return (saved && Array.isArray(JSON.parse(saved))) ? JSON.parse(saved) : INITIAL_SERVICES; } catch { return INITIAL_SERVICES; } });
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
@@ -165,7 +214,12 @@ export const CmsProvider = ({ children }) => {
   }, [mediaItems, isDbLoaded]);
 
   useEffect(() => {
-    try { localStorage.setItem('cysos_cms_company_info', JSON.stringify(companyInfo)); } catch(e){}
+    try { 
+      localStorage.setItem('cysos_cms_company_info', JSON.stringify(companyInfo)); 
+      if (companyInfo.logoUrl) {
+        localStorage.setItem('cysos_cms_logo_url', companyInfo.logoUrl);
+      }
+    } catch(e){}
     if (isDbLoaded) saveToSupabase('cysos_cms_company_info', companyInfo);
   }, [companyInfo, isDbLoaded]);
 
