@@ -240,7 +240,7 @@ export const ViscosityCalculator = () => {
               {/* Request Full Analysis CTA */}
               <div className="pt-5 mt-5 border-t border-slate-800">
                 <a
-                  href="#contacto"
+                  href="#formulario-cotizacion"
                   className="w-full py-3.5 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5 font-heading tracking-wide"
                 >
                   <FileSpreadsheet className="w-4 h-4" />
@@ -325,7 +325,7 @@ export const ViscosityCalculator = () => {
                 </div>
 
                 <a
-                  href="#contacto"
+                  href="#formulario-cotizacion"
                   className="w-full py-3 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all font-heading tracking-wide mt-4"
                 >
                   <span>Solicitar Propuesta Técnica de Deshidratación</span>

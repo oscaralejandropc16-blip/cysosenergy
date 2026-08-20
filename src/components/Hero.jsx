@@ -161,7 +161,7 @@ export const Hero = () => {
           {/* Primary Action Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
             <a
-              href="#contacto"
+              href="#formulario-cotizacion"
               className="px-7 py-3.5 rounded-xl text-xs sm:text-sm font-black text-white bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-flame-glow transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 font-heading tracking-wide"
             >
               <span>Solicitar Cotización Técnica</span>

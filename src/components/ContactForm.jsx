@@ -565,7 +565,7 @@ export const ContactForm = () => {
         </div>
 
         {/* MODERN UNIFIED TECHNICAL QUOTATION FORM */}
-        <div id="formulario-cotizacion" className="max-w-4xl mx-auto">
+        <div id="formulario-cotizacion" className="max-w-4xl mx-auto scroll-mt-28">
           <div className="luxury-glass p-6 sm:p-10 md:p-12 rounded-3xl border border-slate-800/90 shadow-2xl relative">
             
             {/* Form Top Title */}

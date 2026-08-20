@@ -249,7 +249,7 @@ export const Services = () => {
                   </button>
                 )}
                 <a
-                  href="#contacto"
+                  href="#formulario-cotizacion"
                   className="px-6 py-3 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 font-heading transition-all whitespace-nowrap transform hover:scale-[1.02]"
                 >
                   <PhoneCall className="w-4 h-4" />
