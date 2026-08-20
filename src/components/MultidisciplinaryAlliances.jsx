@@ -10,10 +10,35 @@ const iconMap = {
   Sparkles
 };
 
+const AllianceLogo = ({ logoUrl, name, Icon }) => {
+  const [imgError, setImgError] = React.useState(false);
+
+  React.useEffect(() => {
+    setImgError(false);
+  }, [logoUrl]);
+
+  if (!logoUrl || imgError) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <Icon className="w-8 h-8 text-navy-900" />
+      </div>
+    );
+  }
+
+  return (
+    <img 
+      src={logoUrl} 
+      alt={`${name} logo`} 
+      className="w-full h-full object-contain p-1"
+      onError={() => setImgError(true)}
+    />
+  );
+};
+
 export const MultidisciplinaryAlliances = () => {
   const { alliances } = useCms();
 
-  const allianceEntities = alliances || [];
+  const allianceEntities = Array.isArray(alliances) && alliances.length > 0 ? alliances : [];
 
   return (
     <section id="especialidades" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
@@ -46,15 +71,16 @@ export const MultidisciplinaryAlliances = () => {
 
         {/* 4 Multidisciplinary Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {allianceEntities.map((entity, idx) => {
+          {allianceEntities.map((entity) => {
             const Icon = iconMap[entity.icon] || Sparkles;
+            const highlights = Array.isArray(entity.highlights) ? entity.highlights : [];
             return (
               <div
                 key={entity.id}
                 className="bg-navy-900/40 backdrop-blur-md rounded-[2.5rem] border border-white/5 overflow-hidden group hover:border-white/20 transition-all duration-500 hover:-translate-y-2 shadow-2xl relative"
               >
                 {/* Background Inner Glow */}
-                <div className={`absolute -top-20 -right-20 w-44 h-44 ${entity.glow} rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+                <div className={`absolute -top-20 -right-20 w-44 h-44 ${entity.glow || 'bg-gold-400/20'} rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
 
                 <div className="p-8 sm:p-10 relative z-10 flex flex-col h-full">
                   {/* Top Bar: Pedestal Blanco para Logo + Badge */}
@@ -62,28 +88,16 @@ export const MultidisciplinaryAlliances = () => {
                     
                     {/* Pedestal Blanco */}
                     <div className="bg-white rounded-2xl p-3 w-48 h-20 shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center border border-white/20 group-hover:scale-105 transition-transform duration-500 flex-shrink-0">
-                      {entity.logoUrl ? (
-                        <img 
-                          src={entity.logoUrl} 
-                          alt={`${entity.name} logo`} 
-                          className="w-full h-full object-contain"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextSibling.style.display = 'flex';
-                          }}
-                        />
-                      ) : null}
-                      <div 
-                        className="w-full h-full items-center justify-center" 
-                        style={{ display: entity.logoUrl ? 'none' : 'flex' }}
-                      >
-                         <Icon className="w-8 h-8 text-navy-900" />
-                      </div>
+                      <AllianceLogo 
+                        logoUrl={entity.logoUrl} 
+                        name={entity.name} 
+                        Icon={Icon} 
+                      />
                     </div>
 
                     {/* Badge */}
                     <div className="mt-2 sm:mt-0">
-                      <span className={`px-4 py-1.5 rounded-full bg-gradient-to-r ${entity.color} text-[10px] font-black uppercase tracking-widest text-white shadow-lg whitespace-nowrap block text-center sm:inline-block`}>
+                      <span className={`px-4 py-1.5 rounded-full bg-gradient-to-r ${entity.color || 'from-flame-500 to-amber-500'} text-[10px] font-black uppercase tracking-widest text-white shadow-lg whitespace-nowrap block text-center sm:inline-block`}>
                         {entity.badge}
                       </span>
                     </div>
@@ -106,7 +120,7 @@ export const MultidisciplinaryAlliances = () => {
 
                   {/* Key Highlights */}
                   <div className="space-y-4 pt-6 border-t border-white/10 mt-auto">
-                    {entity.highlights.map((item, hIdx) => (
+                    {highlights.map((item, hIdx) => (
                       <div key={hIdx} className="flex items-start gap-3 text-sm text-slate-300">
                         <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5 opacity-90" />
                         <span className="font-light leading-relaxed">{item}</span>

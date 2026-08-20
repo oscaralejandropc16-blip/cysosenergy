@@ -183,7 +183,7 @@ const INITIAL_ALLIANCES = [
     highlights: ['Grúas telescópicas hasta 110 Ton', 'Flota de chutos vacuum y bateas', 'Movimiento de tierra y jumbo 320'],
     badge: '17 Años de Experiencia',
     icon: 'Truck',
-    logoUrl: '/images/mg_logo.png',
+    logoUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/1787255337665-sfwf1ooj88.png',
     color: 'from-amber-400 via-gold-500 to-orange-600',
     glow: 'bg-gold-400/20',
     borderGlow: 'hover:border-gold-400/50'
@@ -196,7 +196,7 @@ const INITIAL_ALLIANCES = [
     highlights: ['Importación directa desde USA', 'Tuberías ERW y válvulas API', 'Control de presión y bombas triplex'],
     badge: 'Alianza Global USA',
     icon: 'Globe',
-    logoUrl: '/images/shekinah_logo.png',
+    logoUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/1787255346033-p7gqo3sin2.png',
     color: 'from-emerald-400 via-teal-500 to-cyan-600',
     glow: 'bg-emerald-400/20',
     borderGlow: 'hover:border-emerald-400/50'
@@ -209,7 +209,7 @@ const INITIAL_ALLIANCES = [
     highlights: ['Taladros de 350 HP a 750 HP', 'Mantenimiento de sistemas BCP/ESP', 'Operaciones de subsuelo 24/7'],
     badge: 'Capacidad de 350-750 HP',
     icon: 'Flame',
-    logoUrl: '/images/nwrm_logo.png',
+    logoUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/1787255353467-2lvmy4yn9m3.png',
     color: 'from-orange-500 via-red-600 to-flame-600',
     glow: 'bg-red-500/20',
     borderGlow: 'hover:border-red-500/50'
