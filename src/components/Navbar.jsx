@@ -19,13 +19,16 @@ export const Navbar = () => {
     
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
     
     return () => {
       window.removeEventListener('scroll', onScroll);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -211,6 +214,8 @@ export const Navbar = () => {
           pointerEvents: isMobileMenuOpen ? 'auto' : 'none',
           opacity: isMobileMenuOpen ? 1 : 0,
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          touchAction: 'none',
+          overscrollBehavior: 'contain',
         }}
       >
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
