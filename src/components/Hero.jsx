@@ -103,6 +103,7 @@ export const Hero = () => {
           loop
           muted
           playsInline
+          preload="auto"
           poster={currentHero.posterUrl}
           className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05] scale-105 transform"
         >
@@ -121,7 +122,7 @@ export const Hero = () => {
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center space-y-5 sm:space-y-8 animate-fadeIn">
           
           {/* Top Pill Badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-navy-900/90 border border-gold-metallic/50 backdrop-blur-xl shadow-gold-glow">
+          <div className="hidden sm:inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-navy-900/90 border border-gold-metallic/50 backdrop-blur-xl shadow-gold-glow">
             <span className="flex h-2.5 w-2.5 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-flame-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-flame-500"></span>
