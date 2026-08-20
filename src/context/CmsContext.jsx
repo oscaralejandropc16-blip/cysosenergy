@@ -270,38 +270,7 @@ export const CmsProvider = ({ children }) => {
     initDatabase();
   }, []);
 
-  // 2. Efectos de sincronización (SOLO a Supabase)
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_hero', heroContent);
-  }, [heroContent, isDbLoaded]);
-
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_partners', partners);
-  }, [partners, isDbLoaded]);
-
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_messages', messages);
-  }, [messages, isDbLoaded]);
-
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_kpis', kpis);
-  }, [kpis, isDbLoaded]);
-
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_media_v3', mediaItems);
-  }, [mediaItems, isDbLoaded]);
-
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_company_info', companyInfo);
-  }, [companyInfo, isDbLoaded]);
-
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_services', services);
-  }, [services, isDbLoaded]);
-
-  useEffect(() => {
-    if (isDbLoaded) saveToSupabase('cysos_cms_alliances', alliances);
-  }, [alliances, isDbLoaded]);
+  // Funciones de Login
 
   // Funciones de Login
   const loginAdmin = (password) => {
@@ -326,24 +295,119 @@ export const CmsProvider = ({ children }) => {
   };
 
   // Funciones de Mutación
-  const updateHeroContent = (field, value) => setHeroContent((prev) => ({ ...prev, [field]: value }));
-  const updatePartner = (id, field, value) => setPartners((prev) => prev.map((p) => (p.id === id ? { ...p, [field]: value } : p)));
-  const addPartner = (newPartnerData) => setPartners((prev) => [...prev, { id: `partner-${Date.now()}`, ...newPartnerData }]);
-  const deletePartner = (id) => setPartners((prev) => prev.filter((p) => p.id !== id));
+  const updateHeroContent = (field, value) => {
+    setHeroContent((prev) => {
+      const newState = { ...prev, [field]: value };
+      saveToSupabase('cysos_cms_hero', newState);
+      return newState;
+    });
+  };
+
+  const updatePartner = (id, field, value) => {
+    setPartners((prev) => {
+      const newState = prev.map((p) => (p.id === id ? { ...p, [field]: value } : p));
+      saveToSupabase('cysos_cms_partners', newState);
+      return newState;
+    });
+  };
+
+  const addPartner = (newPartnerData) => {
+    setPartners((prev) => {
+      const newState = [...prev, { id: `partner-${Date.now()}`, ...newPartnerData }];
+      saveToSupabase('cysos_cms_partners', newState);
+      return newState;
+    });
+  };
+
+  const deletePartner = (id) => {
+    setPartners((prev) => {
+      const newState = prev.filter((p) => p.id !== id);
+      saveToSupabase('cysos_cms_partners', newState);
+      return newState;
+    });
+  };
+
   const addMessage = (newMessageData) => {
     const createdMsg = { id: `MSG-${Date.now().toString().slice(-4)}`, ...newMessageData, status: 'pending', createdAt: new Date().toISOString().replace('T', ' ').slice(0, 16) };
-    setMessages((prev) => [createdMsg, ...prev]);
+    setMessages((prev) => {
+      const newState = [createdMsg, ...prev];
+      saveToSupabase('cysos_cms_messages', newState);
+      return newState;
+    });
     return createdMsg;
   };
-  const updateMessageStatus = (id, newStatus) => setMessages((prev) => prev.map((msg) => (msg.id === id ? { ...msg, status: newStatus } : msg)));
-  const deleteMessage = (id) => setMessages((prev) => prev.filter((msg) => msg.id !== id));
-  const updateKpi = (id, field, value) => setKpis((prev) => prev.map((kpi) => (kpi.id === id ? { ...kpi, [field]: value } : kpi)));
-  const updateMediaItem = (id, field, value) => setMediaItems((prev) => prev.map((item) => (item.id === id ? { ...item, [field]: value } : item)));
-  const addMediaItem = (newItem) => setMediaItems((prev) => [{ id: `media-${Date.now()}`, ...newItem }, ...prev]);
-  const deleteMediaItem = (id) => setMediaItems((prev) => prev.filter((item) => item.id !== id));
-  const updateService = (id, field, value) => setServices((prev) => prev.map((srv) => (srv.id === id ? { ...srv, [field]: value } : srv)));
-  const updateCompanyInfoText = (field, text) => setCompanyInfo((prev) => ({ ...prev, [field]: text }));
-  const updateAllianceLogo = (id, url) => setAlliances((prev) => prev.map((a) => (a.id === id ? { ...a, logoUrl: url } : a)));
+
+  const updateMessageStatus = (id, newStatus) => {
+    setMessages((prev) => {
+      const newState = prev.map((msg) => (msg.id === id ? { ...msg, status: newStatus } : msg));
+      saveToSupabase('cysos_cms_messages', newState);
+      return newState;
+    });
+  };
+
+  const deleteMessage = (id) => {
+    setMessages((prev) => {
+      const newState = prev.filter((msg) => msg.id !== id);
+      saveToSupabase('cysos_cms_messages', newState);
+      return newState;
+    });
+  };
+
+  const updateKpi = (id, field, value) => {
+    setKpis((prev) => {
+      const newState = prev.map((kpi) => (kpi.id === id ? { ...kpi, [field]: value } : kpi));
+      saveToSupabase('cysos_cms_kpis', newState);
+      return newState;
+    });
+  };
+
+  const updateMediaItem = (id, field, value) => {
+    setMediaItems((prev) => {
+      const newState = prev.map((item) => (item.id === id ? { ...item, [field]: value } : item));
+      saveToSupabase('cysos_cms_media_v3', newState);
+      return newState;
+    });
+  };
+
+  const addMediaItem = (newItem) => {
+    setMediaItems((prev) => {
+      const newState = [{ id: `media-${Date.now()}`, ...newItem }, ...prev];
+      saveToSupabase('cysos_cms_media_v3', newState);
+      return newState;
+    });
+  };
+
+  const deleteMediaItem = (id) => {
+    setMediaItems((prev) => {
+      const newState = prev.filter((item) => item.id !== id);
+      saveToSupabase('cysos_cms_media_v3', newState);
+      return newState;
+    });
+  };
+
+  const updateService = (id, field, value) => {
+    setServices((prev) => {
+      const newState = prev.map((srv) => (srv.id === id ? { ...srv, [field]: value } : srv));
+      saveToSupabase('cysos_cms_services', newState);
+      return newState;
+    });
+  };
+
+  const updateCompanyInfoText = (field, text) => {
+    setCompanyInfo((prev) => {
+      const newState = { ...prev, [field]: text };
+      saveToSupabase('cysos_cms_company_info', newState);
+      return newState;
+    });
+  };
+
+  const updateAllianceLogo = (id, url) => {
+    setAlliances((prev) => {
+      const newState = prev.map((a) => (a.id === id ? { ...a, logoUrl: url } : a));
+      saveToSupabase('cysos_cms_alliances', newState);
+      return newState;
+    });
+  };
 
   return (
     <CmsContext.Provider
