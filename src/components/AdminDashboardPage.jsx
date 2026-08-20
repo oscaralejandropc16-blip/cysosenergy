@@ -434,7 +434,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       )}
 
       {/* FULL PAGE HEADER */}
-      <header className="bg-white/[0.02] backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
+      <header className="fixed top-0 left-0 right-0 w-full bg-[#03050A]/90 backdrop-blur-2xl border-b border-white/10 z-[100]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           <div className="flex items-center gap-4">
@@ -469,7 +469,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       </header>
 
       {/* WORKSPACE LAYOUT */}
-      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 grid lg:grid-cols-12 gap-8">
+      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 mt-20 grid lg:grid-cols-12 gap-8 relative z-10">
         
         {/* SIDE NAVIGATION */}
         <aside className="lg:col-span-3">
