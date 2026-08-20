@@ -65,38 +65,38 @@ export const HSECommitment = () => {
               
               <div className="relative h-60 sm:h-64 rounded-2xl overflow-hidden group">
                 <img
-                  src="/images/lab_tech.png"
-                  alt="Laboratorio Químico CYSOS ENERGY"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.88]"
+                  src="/images/cysos_placa_tecnica.jpg"
+                  alt="Placa Técnica y Registro Legal CYSOS ENERGY"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.92]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 text-[11px] font-black text-white bg-navy-950/90 px-3 py-1 rounded-xl border border-white/10 backdrop-blur-md font-heading">
-                  🔬 Laboratorio de Control de Calidad y Ensayos Reológicos
+                  📋 Placa de Fabricación: Modelo CyS 2026-I • RACDA • SAPI
                 </span>
               </div>
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="relative h-28 sm:h-32 rounded-xl overflow-hidden group">
                   <img
-                    src="/images/engineers_team.png"
-                    alt="Ingenieros en campo"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.88]"
+                    src="/images/cysos_ingeniero_auditoria.jpg"
+                    alt="Auditoría y Control en Pozo"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.92]"
                   />
                   <div className="absolute inset-0 bg-navy-950/40" />
                   <span className="absolute bottom-2 left-2 text-[10px] font-black text-white bg-navy-950/90 px-2 py-0.5 rounded-lg font-heading">
-                    Personal Certificado HSE
+                    Auditoría en Pozo
                   </span>
                 </div>
 
                 <div className="relative h-28 sm:h-32 rounded-xl overflow-hidden group">
                   <img
-                    src="/images/IMG_7701.jpg"
-                    alt="Seguridad en maniobras"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.88]"
+                    src="/images/cysos_tote_quimico.jpg"
+                    alt="Manejo Seguro de Químicos"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.92]"
                   />
                   <div className="absolute inset-0 bg-navy-950/40" />
                   <span className="absolute bottom-2 left-2 text-[10px] font-black text-white bg-navy-950/90 px-2 py-0.5 rounded-lg font-heading">
-                    Maniobras en Pozo
+                    Manejo Seguro de Insumos
                   </span>
                 </div>
               </div>

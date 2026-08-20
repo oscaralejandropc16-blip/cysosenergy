@@ -49,10 +49,22 @@ export const HumanOperations = () => {
       desc: 'Unidades de transporte pesado equipadas con brazos hidráulicos para izamiento y distribución autónoma de insumos químicos en locaciones petroleras.'
     },
     {
-      title: 'Operación y Calibración de Skids de Inyección en Cabezal',
-      category: 'Ingeniería de Superficie',
-      image: '/images/cysos_skid_inyeccion.jpg',
-      desc: 'Monitoreo de presión, caudal y tasas de inyección continua (800 - 1.500 ppm) directamente en cabezales de pozo y líneas de transferencia.'
+      title: 'Skid Automatizado de Inyección Química Continua CyS 2026-I',
+      category: 'Tecnología Propietaria',
+      image: '/images/cysos_skid_completo.jpg',
+      desc: 'Unidad de superficie de alta resistencia con gabinete de seguridad, extintor y conexiones industriales para dosificación precisa sin interrupción.'
+    },
+    {
+      title: 'Auditoría Operacional y Toma de Parámetros Reológicos en Pozo',
+      category: 'Control de Calidad en Campo',
+      image: '/images/cysos_ingeniero_auditoria.jpg',
+      desc: 'Ingenieros de yacimiento registrando presiones de cabezal, temperaturas de línea y comportamiento dinámico del fluido tratado.'
+    },
+    {
+      title: 'Homologación Legal, Registro RACDA y Certificación SAPI',
+      category: 'Cumplimiento Normativo',
+      image: '/images/cysos_placa_tecnica.jpg',
+      desc: 'Equipos fabricados en 2026 con capacidad certificada de 50 GLN/HORA, registro ambiental RACDA y propiedad intelectual ante el SAPI.'
     }
   ];
 

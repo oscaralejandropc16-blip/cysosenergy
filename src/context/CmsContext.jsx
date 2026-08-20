@@ -154,7 +154,7 @@ const INITIAL_SERVICES = [
     category: 'División 4: Ingeniería, Procura y Suministros ISO 9001',
     title: 'Sourcing Internacional y Control de Presión API',
     name: 'Procura ISO 9001',
-    image: '/images/IMG_7702.jpg',
+    image: '/images/cysos_tote_quimico.jpg',
     bgVideoUrl: '',
     icon: 'Globe',
     summary: 'Importación directa con alianzas globales en USA, suministro de tuberías certificadas, válvulas API, motores Cummins y equipos periféricos de campo.',
