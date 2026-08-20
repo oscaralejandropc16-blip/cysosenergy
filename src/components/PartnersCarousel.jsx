@@ -156,7 +156,7 @@ export const PartnersCarousel = () => {
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-2xl rounded-[2.5rem] bg-[#070e22]/95 backdrop-blur-3xl border border-gold-metallic/40 p-6 sm:p-10 space-y-7 shadow-[0_20px_80px_rgba(0,0,0,0.85)] relative cursor-default overflow-hidden animate-scaleUp"
+            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden custom-scrollbar rounded-[2.5rem] bg-[#070e22]/95 backdrop-blur-3xl border border-gold-metallic/40 p-5 sm:p-10 space-y-5 sm:space-y-7 shadow-[0_20px_80px_rgba(0,0,0,0.85)] relative cursor-default animate-scaleUp"
           >
             {/* Ambient Multi-Mesh Lighting */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-gold-500/10 rounded-full blur-[90px] pointer-events-none" />
