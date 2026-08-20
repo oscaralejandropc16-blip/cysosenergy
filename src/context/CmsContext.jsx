@@ -96,16 +96,16 @@ const INITIAL_COMPANY_INFO = {
 const INITIAL_SERVICES = [
   {
     id: 'quimica',
-    category: 'División 1: Química de Producción & Optimización EOR',
-    title: 'Formulación, Suministro e Inyección de Químicos Especializados',
-    name: 'Química de Producción',
+    category: 'División 1: Tecnología Química para Crudos Pesados y Extrapesados (XP)',
+    title: 'Reductores de Viscosidad & Desemulsionantes de Alto Rendimiento',
+    name: 'Química de Producción & EOR',
     image: '/images/ig_crude_sample.png',
     bgVideoUrl: '',
     icon: 'FlaskConical',
-    summary: 'Servicio integral de suministro e inyección continua de especialidades químicas diseñadas para maximizar la tasa de producción (BPD), recuperar pozos y proteger activos bajo norma ISO 9001.',
+    summary: 'Formulación y aplicación química avanzada para optimizar el transporte de crudos pesados/extrapesados, reducir el consumo de diluyente y maximizar la deshidratación bajo norma ISO 9001.',
     items: [
-      { name: 'Reductor Permanente de Viscosidad', desc: 'Formulado para actuar en la fase de hidrocarburos, reduciendo la viscosidad en crudos 8° - 12° API.' },
-      { name: 'Desmulsificantes & Rompedores Tipo Slug', desc: 'Para una separación ultrarrápida de fases agua-aceite en estaciones de flujo y deshidratadores.' },
+      { name: 'Reductor Permanente de Viscosidad & Demulsificante (XP)', desc: 'Hasta 38% de ahorro en diluyente, 92% de reducción de viscosidad y alivio de 30 a 50+ PSI en cabezales (800-1.500 ppm).' },
+      { name: 'Desemulsionante de Alto Rendimiento (97% Eficiencia)', desc: 'Reduce corte de agua de 7,0% a 0,8%-1,0% a 100°F-110°F con dosificación de solo 82-90 ppm. Validado en 1.500 BCNPD.' },
       { name: 'Dispersantes de Parafinas y Asfaltenos', desc: 'Previene la deposición orgánica en sartas tubulares, bombas BCP y oleoductos.' },
       { name: 'Ácidos Especializados (HCl, Acético, HCl+HF)', desc: 'Para tratamientos de acidificación de matriz, descalcificación y estimulación profunda sin taladro.' },
       { name: 'Sistemas de Limpieza con Xileno & Solvente', desc: 'Remoción de depósitos pesados y humectación de sólidos en zonas de disparo.' },
