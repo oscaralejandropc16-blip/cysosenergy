@@ -25,22 +25,34 @@ export const HumanOperations = () => {
 
   const gallery = [
     {
-      title: 'Operaciones de Inyección de Reductores de Viscosidad y Bombeo',
+      title: 'Inyección Química Continua en Macollas de Crudo Pesado',
       category: 'Operación Real CYSOS ENERGY',
-      image: '/images/IMG_7549.jpg',
-      desc: 'Despliegue operativo con unidades especializadas para inyección química y optimización de flujo en yacimientos de crudo pesado y extrapesado.'
+      image: '/images/cysos_campo_balancin.jpg',
+      desc: 'Despliegue operativo y dosificación automatizada de reductores de viscosidad junto a unidades de bombeo mecánico en yacimientos de la Faja del Orinoco.'
     },
     {
-      title: 'Equipo Multidisciplinario de Ingenieros y Técnicos de Campo',
+      title: 'Equipo Técnico y Supervisores Certificados en Campo',
       category: 'Talento Humano Venezolano',
-      image: '/images/engineers_team.png',
-      desc: 'Personal técnico capacitado bajo estrictas normas internacionales de seguridad HSE, control de calidad y compromiso operativo.'
+      image: '/images/cysos_equipo_uniformes.jpg',
+      desc: 'Personal técnico calificado con indumentaria oficial y equipos de protección, operando bajo estrictas normas de seguridad PDVSA SI-HO-S e ISO 9001.'
     },
     {
-      title: 'Infraestructura de Superficie y Facilidades de Producción',
-      category: 'Proyectos IPC & Mantenimiento',
-      image: '/images/ig_manifold.png',
-      desc: 'Obras de ingeniería, procura y construcción para estaciones de flujo, manifolds y alineación de macollas petroleras en Venezuela.'
+      title: 'Suministro de Reductor Permanente de Viscosidad Lipesa 7225 V',
+      category: 'Química de Producción Especializada',
+      image: '/images/cysos_quimica_lipesa.jpg',
+      desc: 'Almacenamiento y manejo seguro de aditivos químicos formulados para reducción reológica de hasta 92% y ahorro sustancial de diluyente.'
+    },
+    {
+      title: 'Logística de Transporte y Carga con Brazo Hidráulico',
+      category: 'Flota & Equipos de Izamiento',
+      image: '/images/cysos_logistica_camion.jpg',
+      desc: 'Unidades de transporte pesado equipadas con brazos hidráulicos para izamiento y distribución autónoma de insumos químicos en locaciones petroleras.'
+    },
+    {
+      title: 'Operación y Calibración de Skids de Inyección en Cabezal',
+      category: 'Ingeniería de Superficie',
+      image: '/images/cysos_skid_inyeccion.jpg',
+      desc: 'Monitoreo de presión, caudal y tasas de inyección continua (800 - 1.500 ppm) directamente en cabezales de pozo y líneas de transferencia.'
     }
   ];
 

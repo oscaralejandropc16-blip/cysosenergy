@@ -108,7 +108,7 @@ export const MissionVision = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
                 <div className="absolute inset-0 bg-gold-500/10 mix-blend-overlay z-10" />
                 <img 
-                  src="/images/cysos_card_mockup.jpg" 
+                  src="/images/cysos_equipo_uniformes.jpg" 
                   alt="Misión Cysos Energy" 
                   className="w-full h-full object-cover transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-700 ease-out" 
                 />
@@ -116,8 +116,8 @@ export const MissionVision = () => {
                 <div className="absolute bottom-6 left-6 right-6 z-20 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                   <div className="luxury-glass p-5 rounded-2xl border border-white/10 backdrop-blur-xl bg-navy-950/60 border-l-2 border-l-gold-400">
                     <div>
-                      <p className="text-white font-bold text-sm font-heading">Operaciones de Alto Nivel</p>
-                      <p className="text-slate-300 text-xs mt-1">Ejecución impecable en campos de crudo pesado y extrapesado a nivel nacional.</p>
+                      <p className="text-white font-bold text-sm font-heading">Personal Técnico Certificado</p>
+                      <p className="text-slate-300 text-xs mt-1">Supervisión en sitio con indumentaria oficial y normas PDVSA SI-HO-S / ISO 9001.</p>
                     </div>
                   </div>
                 </div>
@@ -134,7 +134,7 @@ export const MissionVision = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
                 <div className="absolute inset-0 bg-flame-500/10 mix-blend-overlay z-10" />
                 <img 
-                  src="/assets/vision_bg.jpg" 
+                  src="/images/cysos_campo_balancin.jpg" 
                   alt="Visión Cysos Energy" 
                   className="w-full h-full object-cover transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-700 ease-out" 
                 />
