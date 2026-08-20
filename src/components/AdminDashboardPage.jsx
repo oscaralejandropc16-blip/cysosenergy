@@ -471,8 +471,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 grid lg:grid-cols-12 gap-8">
         
         {/* SIDE NAVIGATION */}
-        <aside className="lg:col-span-3 space-y-3">
-          <div className="bg-white/[0.02] backdrop-blur-xl p-4 rounded-3xl border border-white/10 space-y-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+        <aside className="lg:col-span-3">
+          <div className="flex overflow-x-auto hide-scrollbar lg:block lg:space-y-1.5 p-2 lg:p-4 rounded-2xl lg:rounded-3xl bg-white/[0.02] backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] snap-x snap-mandatory gap-2 -mx-4 px-4 sm:mx-0 sm:px-2">
             {[
               { id: 'hero', label: '1. Portada & Video Inicial', icon: Video, count: null, help: 'El video y textos que abren la web' },
               { id: 'library', label: '2. Biblioteca de Medios', icon: FolderOpen, count: safeMediaLibrary.length, help: 'Fotos y videos guardados en la nube' },
@@ -489,9 +489,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`w-full flex flex-col p-3 rounded-xl transition-all duration-300 ${
+                  className={`min-w-[240px] lg:min-w-0 lg:w-full flex flex-col p-3 rounded-xl transition-all duration-300 snap-center flex-shrink-0 ${
                     isActive
-                      ? 'bg-white/10 border border-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] translate-x-1'
+                      ? 'bg-white/10 border border-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.05)] lg:translate-x-1'
                       : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
                   }`}
                 >

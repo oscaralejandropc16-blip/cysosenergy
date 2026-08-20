@@ -178,14 +178,14 @@ export const HumanOperations = () => {
           </div>
         </div>
 
-        {/* Category Filters Bar */}
-        <div className="flex justify-center mb-10 overflow-x-auto pb-2 scrollbar-none">
-          <div className="inline-flex p-1.5 rounded-2xl bg-navy-900/90 border border-slate-800 backdrop-blur-xl gap-1">
+        {/* Modern Filter System */}
+        <div className="flex justify-start sm:justify-center mb-8 sm:mb-12 -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex overflow-x-auto hide-scrollbar sm:flex-wrap items-center gap-2 p-2 rounded-2xl bg-navy-950/50 backdrop-blur-md border border-slate-800/80 snap-x snap-mandatory pb-2 sm:pb-2">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 sm:px-5 py-2 rounded-xl text-xs font-black font-heading transition-all whitespace-nowrap flex items-center gap-2 ${
+                className={`px-4 sm:px-5 py-2 rounded-xl text-xs font-black font-heading transition-all whitespace-nowrap flex items-center gap-2 snap-center flex-shrink-0 ${
                   activeCategory === cat.id
                     ? 'bg-gradient-to-r from-flame-500 to-gold-600 text-white shadow-flame-glow scale-[1.02]'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
