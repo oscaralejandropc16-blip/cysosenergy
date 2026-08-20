@@ -1325,6 +1325,35 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         }}
                         className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-slate-200 leading-relaxed"
                       ></textarea>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800">
+                        <div>
+                          <label className="text-slate-400 font-bold block mb-1">Imagen de Fondo (URL):</label>
+                          <input
+                            type="text"
+                            value={srv.image || ''}
+                            onChange={(e) => {
+                              updateService(srv.id, 'image', e.target.value);
+                              triggerSaveNotification();
+                            }}
+                            placeholder="Ej: https://..."
+                            className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="text-slate-400 font-bold block mb-1">Video de Fondo (URL):</label>
+                          <input
+                            type="text"
+                            value={srv.bgVideoUrl || ''}
+                            onChange={(e) => {
+                              updateService(srv.id, 'bgVideoUrl', e.target.value);
+                              triggerSaveNotification();
+                            }}
+                            placeholder="Sube el .mp4 a la Biblioteca y pega el link aquí"
+                            className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-emerald-400 font-mono"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

@@ -4,7 +4,7 @@ import { useCms } from '../context/CmsContext';
 import { Flame, Zap, Activity, ArrowUpRight, CheckCircle2, X, PhoneCall, FlaskConical, Truck, Globe, Award, ShieldCheck, Play, Sparkles, LayoutGrid } from 'lucide-react';
 
 export const Services = () => {
-  const { mediaItems = [] } = useCms();
+  const { mediaItems = [], services = [] } = useCms();
   const [selectedService, setSelectedService] = useState(null);
   const [activeTab, setActiveTab] = useState('quimica');
   const [activeVideoModal, setActiveVideoModal] = useState(false);
@@ -33,70 +33,14 @@ export const Services = () => {
     };
   }, [activeVideoModal, selectedService]);
 
-  const portfolioDivisions = {
-    quimica: {
-      category: 'División 1: Química de Producción & Optimización EOR',
-      title: 'Formulación, Suministro e Inyección de Químicos Especializados',
-      image: '/images/ig_crude_sample.png',
-      icon: FlaskConical,
-      summary: 'Servicio integral de suministro e inyección continua de especialidades químicas diseñadas para maximizar la tasa de producción (BPD), recuperar pozos y proteger activos bajo norma ISO 9001.',
-      items: [
-        { name: 'Reductor Permanente de Viscosidad', desc: 'Formulado para actuar en la fase de hidrocarburos, reduciendo la viscosidad en crudos 8° - 12° API.' },
-        { name: 'Desmulsificantes & Rompedores Tipo Slug', desc: 'Para una separación ultrarrápida de fases agua-aceite en estaciones de flujo y deshidratadores.' },
-        { name: 'Dispersantes de Parafinas y Asfaltenos', desc: 'Previene la deposición orgánica en sartas tubulares, bombas BCP y oleoductos.' },
-        { name: 'Ácidos Especializados (HCl, Acético, HCl+HF)', desc: 'Para tratamientos de acidificación de matriz, descalcificación y estimulación profunda sin taladro.' },
-        { name: 'Sistemas de Limpieza con Xileno & Solvente', desc: 'Remoción de depósitos pesados y humectación de sólidos en zonas de disparo.' },
-        { name: 'Inhibidores de Corrosión e Incrustación', desc: 'Preservación de la integridad mecánica de tubulares, bombas ESP y líneas de flujo.' },
-        { name: 'Secuestrantes de H2S & Antiespumantes', desc: 'Gestión de gases ácidos H2S y control de espuma en separadores multifásicos.' },
-        { name: 'Reductores de Fricción en Línea', desc: 'Mejora el caudal de bombeo y disminuye la caída de presión en líneas de transporte.' }
-      ]
-    },
-    intervencion: {
-      category: 'División 2: Intervención y Recuperación de Pozos',
-      title: 'Workover, Pulling y Unidades Flush By 24/7',
-      image: '/images/coiled_tubing.png',
-      icon: Flame,
-      summary: 'Reacondicionamiento total de pozos con taladros de alta potencia (350 HP a 750 HP), unidades Flush By autotransportables y mantenimiento técnico de sistemas BCP/ESP.',
-      items: [
-        { name: 'Taladros de Workover y Pulling (350 a 750 HP)', desc: 'Rehabilitación y reparación total de pozos con taladros certificados de alta capacidad.' },
-        { name: 'Unidad Flush By 24/7 Autotransportable', desc: 'Operaciones de subsuelo 24/7 con personal certificado para intervenciones rápidas y completación.' },
-        { name: 'Reparación de Sistemas BCP & Bombas ESP', desc: 'Mantenimiento especializado de Bombas de Cavidad Progresiva y Electrosumergibles.' },
-        { name: 'Limpieza Mecánica Especializada', desc: 'Herramientas como molinos, escariadores y magnetos para eliminación de residuos.' },
-        { name: 'Mantenimiento de Generadores Industriales', desc: 'Soporte técnico a plantas de generación Caterpillar y motores marinos.' }
-      ]
-    },
-    logistica: {
-      category: 'División 3: Logística, Izamiento y Transporte Pesado',
-      title: 'Grúas Telescópicas hasta 110 Toneladas y Maquinaria Pesada',
-      image: '/images/logistics_trucks.png',
-      videoUrl: 'https://www.youtube.com/embed/gyQT5aQS8_8?autoplay=1&mute=1&loop=1&playlist=gyQT5aQS8_8',
-      icon: Truck,
-      summary: 'Flota especializada para transporte pesado de fluidos, lodos y químicos, grúas telescópicas de gran tonelaje y maquinaria pesada CAT para movimiento de tierra.',
-      items: [
-        { name: 'Chutos Vacuum & Cisternas Certificadas', desc: 'Transporte de fluidos de perforación, aguas de producción y químicos a granel.' },
-        { name: 'Chutos Tolva, Volqueta, Batea & Low-Boy', desc: 'Transporte de minerales, cemento, barita, tuberías y cargas sobredimensionadas.' },
-        { name: 'Grúas Telescópicas (60 Ton, 70 Ton y 110 Ton)', desc: 'Equipos de izamiento pesado certificados para maniobras críticas en taladros.' },
-        { name: 'Brazos Hidráulicos (7 Ton a 35 Ton)', desc: 'Instalados en camiones de carga para izamiento autónomo en bases operativas.' },
-        { name: 'Excavadora Jumbo 320 CAT & Payloaders', desc: 'Movimiento de tierra, adecuación de locaciones y saneamiento ambiental.' },
-        { name: 'Side Boom (Pluma Lateral) & Super Vactor', desc: 'Tendido de líneas de oleoductos y mantenimiento de redes industriales.' }
-      ]
-    },
-    procura: {
-      category: 'División 4: Ingeniería, Procura y Suministros ISO 9001',
-      title: 'Sourcing Internacional y Control de Presión API',
-      image: '/images/IMG_7702.jpg',
-      icon: Globe,
-      summary: 'Importación directa con alianzas globales en USA, suministro de tuberías certificadas, válvulas API, motores Cummins y equipos periféricos de campo.',
-      items: [
-        { name: 'Sourcing Internacional de Tuberías ERW / Sin Costura', desc: 'Importación directa de tubulares y tuberías flexibles reforzadas RTP 2" y 4".' },
-        { name: 'Válvulas API & Motores Cummins', desc: 'Importación e instalación de válvulas de alta presión y motores industriales para bombeo.' },
-        { name: 'Control de Presión (Preventores BOP & Chokes)', desc: 'Alquiler y venta de preventores, chokes manuales, mangueras Chiksan y bombas triplex.' },
-        { name: 'Campers Habitacionales & Torres de Luz', desc: 'Campers climatizados para personal de campo, torres de iluminación y generadores.' }
-      ]
-    }
+  // Fallback map for icons if they are stored as strings
+  const IconMap = {
+    FlaskConical, Flame, Truck, Globe
   };
 
-  const currentDivision = portfolioDivisions[activeTab];
+  // Ensure services are loaded before rendering details, fallback to empty object if not found
+  const currentDivision = services.find(s => s.id === activeTab) || services[0] || { items: [] };
+
 
   return (
     <section id="servicios" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
@@ -122,13 +66,8 @@ export const Services = () => {
 
         {/* Division Tab Selector */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 mb-10 sm:mb-12">
-          {[
-            { id: 'quimica', name: 'Química de Producción', icon: FlaskConical },
-            { id: 'intervencion', name: 'Intervención de Pozos', icon: Flame },
-            { id: 'logistica', name: 'Logística & Izamiento', icon: Truck },
-            { id: 'procura', name: 'Procura ISO 9001', icon: Globe },
-          ].map((tab) => {
-            const Icon = tab.icon;
+          {services.map((tab) => {
+            const Icon = IconMap[tab.icon] || FlaskConical;
             const isActive = activeTab === tab.id;
             return (
               <button
@@ -154,13 +93,24 @@ export const Services = () => {
         {/* Active Division Showcase Card */}
         <div className="luxury-glass rounded-3xl border border-gold-metallic/35 overflow-hidden shadow-2xl grid lg:grid-cols-12 items-stretch">
           
-          {/* Left Side: Photographic Banner Header */}
+          {/* Left Side: Photographic/Video Banner Header */}
           <div className="lg:col-span-5 relative min-h-[300px] lg:min-h-full group overflow-hidden">
-            <img
-              src={currentDivision.image}
-              alt={currentDivision.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.82]"
-            />
+            {currentDivision.bgVideoUrl ? (
+              <video
+                src={currentDivision.bgVideoUrl}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.82]"
+              />
+            ) : (
+              <img
+                src={currentDivision.image}
+                alt={currentDivision.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.82]"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-navy-950" />
             
             <div className="absolute top-4 left-4">
