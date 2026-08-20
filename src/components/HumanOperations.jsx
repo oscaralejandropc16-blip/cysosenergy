@@ -1,19 +1,127 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
-import { Users, ShieldCheck, Award, Sparkles, Play, X, CheckCircle2, ChevronRight } from 'lucide-react';
+import { 
+  Users, ShieldCheck, Award, Sparkles, Play, X, CheckCircle2, 
+  ChevronRight, ChevronLeft, Maximize2, Filter, Eye, Camera
+} from 'lucide-react';
 
 export const HumanOperations = () => {
   const { companyInfo } = useCms();
-  const [activePhoto, setActivePhoto] = useState(0);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
+  const gallery = [
+    {
+      id: 1,
+      title: 'Inyección Química Continua en Macollas de Crudo Pesado',
+      categoryTag: 'quimica',
+      categoryName: 'Inyección & Skids',
+      image: '/images/cysos_campo_balancin.jpg',
+      desc: 'Despliegue operativo y dosificación automatizada de reductores de viscosidad junto a unidades de bombeo mecánico en yacimientos de la Faja del Orinoco.'
+    },
+    {
+      id: 2,
+      title: 'Equipo Técnico y Supervisores Certificados en Campo',
+      categoryTag: 'equipo',
+      categoryName: 'Talento Humano',
+      image: '/images/cysos_equipo_uniformes.jpg',
+      desc: 'Personal técnico calificado con indumentaria oficial y equipos de protección, operando bajo estrictas normas de seguridad PDVSA SI-HO-S e ISO 9001.'
+    },
+    {
+      id: 3,
+      title: 'Suministro de Reductor Permanente de Viscosidad Lipesa 7225 V',
+      categoryTag: 'quimica',
+      categoryName: 'Inyección & Skids',
+      image: '/images/cysos_quimica_lipesa.jpg',
+      desc: 'Almacenamiento y manejo seguro de aditivos químicos formulados para reducción reológica de hasta 92% y ahorro sustancial de diluyente.'
+    },
+    {
+      id: 4,
+      title: 'Logística de Transporte y Carga con Brazo Hidráulico',
+      categoryTag: 'logistica',
+      categoryName: 'Logística & Transporte',
+      image: '/images/cysos_logistica_camion.jpg',
+      desc: 'Unidades de transporte pesado equipadas con brazos hidráulicos para izamiento y distribución autónoma de insumos químicos en locaciones petroleras.'
+    },
+    {
+      id: 5,
+      title: 'Skid Automatizado de Inyección Química Continua CyS 2026-I',
+      categoryTag: 'quimica',
+      categoryName: 'Inyección & Skids',
+      image: '/images/cysos_skid_completo.jpg',
+      desc: 'Unidad de superficie de alta resistencia con gabinete de seguridad, extintor y conexiones industriales para dosificación precisa sin interrupción.'
+    },
+    {
+      id: 6,
+      title: 'Auditoría Operacional y Toma de Parámetros Reológicos en Pozo',
+      categoryTag: 'equipo',
+      categoryName: 'Talento Humano',
+      image: '/images/cysos_ingeniero_auditoria.jpg',
+      desc: 'Ingenieros de yacimiento registrando presiones de cabezal, temperaturas de línea y comportamiento dinámico del fluido tratado.'
+    },
+    {
+      id: 7,
+      title: 'Homologación Legal, Registro RACDA y Certificación SAPI',
+      categoryTag: 'legal',
+      categoryName: 'Cumplimiento Legal',
+      image: '/images/cysos_placa_tecnica.jpg',
+      desc: 'Equipos fabricados en 2026 con capacidad certificada de 50 GLN/HORA, registro ambiental RACDA y propiedad intelectual ante el SAPI.'
+    },
+    {
+      id: 8,
+      title: 'Supervisión Técnica Permanente en Estaciones de Inyección',
+      categoryTag: 'equipo',
+      categoryName: 'Talento Humano',
+      image: '/images/cysos_supervisor_skid.jpg',
+      desc: 'Supervisores e inspectores en sitio garantizando continuidad operacional, control de dosificación y seguridad industrial.'
+    },
+    {
+      id: 9,
+      title: 'Distribución y Entrega de Tambores Químicos en Macolla',
+      categoryTag: 'logistica',
+      categoryName: 'Logística & Transporte',
+      image: '/images/cysos_camion_tambores_campo.jpg',
+      desc: 'Flota operativa trasladando tambores de Reductor de Viscosidad y Desemulsionante directo a pozos activos en la Faja del Orinoco.'
+    },
+    {
+      id: 10,
+      title: 'Presencia e Identidad Corporativa en Campo de Producción',
+      categoryTag: 'equipo',
+      categoryName: 'Talento Humano',
+      image: '/images/cysos_casco_pov.jpg',
+      desc: 'Visión de primera persona del personal de supervisión técnica operando en campos petroleros nacionales.'
+    }
+  ];
+
+  const categories = [
+    { id: 'all', label: 'Todas las Fotos', count: gallery.length },
+    { id: 'quimica', label: 'Inyección Química & Skids', count: gallery.filter(g => g.categoryTag === 'quimica').length },
+    { id: 'equipo', label: 'Talento Humano', count: gallery.filter(g => g.categoryTag === 'equipo').length },
+    { id: 'logistica', label: 'Logística & Transporte', count: gallery.filter(g => g.categoryTag === 'logistica').length },
+    { id: 'legal', label: 'Cumplimiento SAPI / RACDA', count: gallery.filter(g => g.categoryTag === 'legal').length },
+  ];
+
+  const filteredGallery = activeCategory === 'all'
+    ? gallery
+    : gallery.filter(item => item.categoryTag === activeCategory);
+
+  // Keyboard navigation & escape listener for Lightbox
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
+        setSelectedPhotoIndex(null);
         setIsVideoOpen(false);
       }
+      if (e.key === 'ArrowRight' && selectedPhotoIndex !== null) {
+        setSelectedPhotoIndex((prev) => (prev + 1) % filteredGallery.length);
+      }
+      if (e.key === 'ArrowLeft' && selectedPhotoIndex !== null) {
+        setSelectedPhotoIndex((prev) => (prev - 1 + filteredGallery.length) % filteredGallery.length);
+      }
     };
-    if (isVideoOpen) {
+
+    if (selectedPhotoIndex !== null || isVideoOpen) {
       window.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
     }
@@ -21,188 +129,134 @@ export const HumanOperations = () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [isVideoOpen]);
+  }, [selectedPhotoIndex, isVideoOpen, filteredGallery.length]);
 
-  const gallery = [
-    {
-      title: 'Inyección Química Continua en Macollas de Crudo Pesado',
-      category: 'Operación Real CYSOS ENERGY',
-      image: '/images/cysos_campo_balancin.jpg',
-      desc: 'Despliegue operativo y dosificación automatizada de reductores de viscosidad junto a unidades de bombeo mecánico en yacimientos de la Faja del Orinoco.'
-    },
-    {
-      title: 'Equipo Técnico y Supervisores Certificados en Campo',
-      category: 'Talento Humano Venezolano',
-      image: '/images/cysos_equipo_uniformes.jpg',
-      desc: 'Personal técnico calificado con indumentaria oficial y equipos de protección, operando bajo estrictas normas de seguridad PDVSA SI-HO-S e ISO 9001.'
-    },
-    {
-      title: 'Suministro de Reductor Permanente de Viscosidad Lipesa 7225 V',
-      category: 'Química de Producción Especializada',
-      image: '/images/cysos_quimica_lipesa.jpg',
-      desc: 'Almacenamiento y manejo seguro de aditivos químicos formulados para reducción reológica de hasta 92% y ahorro sustancial de diluyente.'
-    },
-    {
-      title: 'Logística de Transporte y Carga con Brazo Hidráulico',
-      category: 'Flota & Equipos de Izamiento',
-      image: '/images/cysos_logistica_camion.jpg',
-      desc: 'Unidades de transporte pesado equipadas con brazos hidráulicos para izamiento y distribución autónoma de insumos químicos en locaciones petroleras.'
-    },
-    {
-      title: 'Skid Automatizado de Inyección Química Continua CyS 2026-I',
-      category: 'Tecnología Propietaria',
-      image: '/images/cysos_skid_completo.jpg',
-      desc: 'Unidad de superficie de alta resistencia con gabinete de seguridad, extintor y conexiones industriales para dosificación precisa sin interrupción.'
-    },
-    {
-      title: 'Auditoría Operacional y Toma de Parámetros Reológicos en Pozo',
-      category: 'Control de Calidad en Campo',
-      image: '/images/cysos_ingeniero_auditoria.jpg',
-      desc: 'Ingenieros de yacimiento registrando presiones de cabezal, temperaturas de línea y comportamiento dinámico del fluido tratado.'
-    },
-    {
-      title: 'Homologación Legal, Registro RACDA y Certificación SAPI',
-      category: 'Cumplimiento Normativo',
-      image: '/images/cysos_placa_tecnica.jpg',
-      desc: 'Equipos fabricados en 2026 con capacidad certificada de 50 GLN/HORA, registro ambiental RACDA y propiedad intelectual ante el SAPI.'
-    },
-    {
-      title: 'Supervisión Técnica Permanente en Estaciones de Inyección',
-      category: 'Liderazgo & Operaciones',
-      image: '/images/cysos_supervisor_skid.jpg',
-      desc: 'Supervisores e inspectores en sitio garantizando continuidad operacional, control de dosificación y seguridad industrial.'
-    },
-    {
-      title: 'Distribución y Entrega de Tambores Químicos en Macolla',
-      category: 'Logística de Transporte Pesado',
-      image: '/images/cysos_camion_tambores_campo.jpg',
-      desc: 'Flota operativa trasladando tambores de Reductor de Viscosidad y Desemulsionante directo a pozos activos en la Faja del Orinoco.'
-    }
-  ];
+  const openLightbox = (index) => {
+    setSelectedPhotoIndex(index);
+  };
+
+  const nextPhoto = (e) => {
+    e.stopPropagation();
+    setSelectedPhotoIndex((prev) => (prev + 1) % filteredGallery.length);
+  };
+
+  const prevPhoto = (e) => {
+    e.stopPropagation();
+    setSelectedPhotoIndex((prev) => (prev - 1 + filteredGallery.length) % filteredGallery.length);
+  };
 
   return (
     <section id="operaciones" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
-      {/* Glow Effects */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[160px] pointer-events-none" />
+      {/* Ambient Glows */}
+      <div className="absolute top-1/3 left-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-flame-500/10 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 text-gold-400 text-xs font-black uppercase tracking-wider shadow-gold-glow font-heading">
-            <Users className="w-4 h-4 text-flame-500" />
-            <span>Galería Oficial de Operaciones Reales</span>
+            <Camera className="w-4 h-4 text-flame-500" />
+            <span>Galería Oficial de Operaciones en Campo</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-            Nuestro Talento Humano y <span className="animate-gradient-text">Equipos en Campo</span>
+            Nuestro Talento Humano y <span className="animate-gradient-text">Equipos en Acción</span>
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
-            Fotografías y material audiovisual real de los proyectos y maniobras operativas ejecutadas por CYSOS ENERGY en cuencas venezolanas.
+            Fotografías 100% auténticas de nuestros skids de inyección continua, personal certificado y flota pesada en la Faja del Orinoco y cuencas venezolanas.
           </p>
+
+          {/* Video Button Trigger */}
+          <div className="pt-2">
+            <button
+              onClick={() => setIsVideoOpen(true)}
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-flame-500 to-gold-600 hover:from-flame-600 hover:to-gold-700 text-white text-xs font-black uppercase tracking-wider shadow-flame-glow transition-all transform hover:scale-105 font-heading"
+            >
+              <Play className="w-4 h-4 fill-current" />
+              <span>Ver Video Oficial de Maniobra en Pozo</span>
+            </button>
+          </div>
         </div>
 
-        {/* Main Photographic Feature Showcase */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16 sm:mb-20">
-          
-          {/* Main Selected Image Showcase */}
-          <div className="lg:col-span-7 relative group rounded-[2.5rem] overflow-hidden luxury-glass border border-gold-metallic/30 shadow-[0_0_50px_rgba(0,0,0,0.6)] hover:border-gold-400/50 transition-colors duration-500">
-            <div className="absolute inset-0 bg-gradient-to-tr from-gold-500/5 to-transparent z-10 pointer-events-none" />
-            <div className="relative aspect-[4/3] sm:aspect-[16/10] overflow-hidden">
-              <img
-                src={gallery[activePhoto].image}
-                alt={gallery[activePhoto].title}
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 filter brightness-[0.85] group-hover:brightness-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/60 to-transparent z-10 pointer-events-none" />
-
-              {/* Tag Badge */}
-              <div className="absolute top-6 left-6 z-20">
-                <span className="px-4 py-2 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 text-gold-400 text-[10px] font-black uppercase tracking-[0.2em] shadow-lg font-heading flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-flame-500 animate-pulse shadow-flame-glow" />
-                  {gallery[activePhoto].category}
-                </span>
-              </div>
-
-              {/* Play Video Trigger Button */}
+        {/* Category Filters Bar */}
+        <div className="flex justify-center mb-10 overflow-x-auto pb-2 scrollbar-none">
+          <div className="inline-flex p-1.5 rounded-2xl bg-navy-900/90 border border-slate-800 backdrop-blur-xl gap-1">
+            {categories.map((cat) => (
               <button
-                onClick={() => setIsVideoOpen(true)}
-                className="absolute inset-0 m-auto w-20 h-20 rounded-full bg-[#0a1224]/80 backdrop-blur-md border border-gold-400/50 text-gold-400 flex items-center justify-center shadow-[0_0_30px_rgba(250,204,21,0.3)] hover:scale-110 hover:bg-gold-400 hover:text-navy-950 hover:shadow-[0_0_40px_rgba(250,204,21,0.6)] transition-all duration-300 group/btn z-20"
-                aria-label="Reproducir video de operaciones"
-              >
-                <Play className="w-8 h-8 fill-current translate-x-0.5" />
-              </button>
-
-              {/* Caption Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 z-20 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white mb-3 leading-tight drop-shadow-md break-words">
-                  {gallery[activePhoto].title}
-                </h3>
-                <p className="text-sm text-slate-300 font-light max-w-xl leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-                  {gallery[activePhoto].desc}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive Thumbnails Selector List */}
-          <div className="lg:col-span-5 space-y-4">
-            {gallery.map((item, index) => (
-              <div
-                key={index}
-                onClick={() => setActivePhoto(index)}
-                className={`group relative p-5 rounded-[2rem] border transition-all duration-500 cursor-pointer flex items-center gap-5 overflow-hidden ${
-                  activePhoto === index
-                    ? 'bg-[#0a1224] border-gold-400/40 shadow-[0_10px_40px_rgba(0,0,0,0.5)] translate-x-0 sm:-translate-x-4'
-                    : 'bg-[#050A14]/50 border-white/5 hover:border-white/10 hover:bg-[#0a1224]/50'
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-4 sm:px-5 py-2 rounded-xl text-xs font-black font-heading transition-all whitespace-nowrap flex items-center gap-2 ${
+                  activeCategory === cat.id
+                    ? 'bg-gradient-to-r from-flame-500 to-gold-600 text-white shadow-flame-glow scale-[1.02]'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
-                {/* Active Indicator Glow */}
-                {activePhoto === index && (
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gold-400/10 rounded-full blur-[40px] pointer-events-none" />
-                )}
-
-                <div className={`relative w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 border transition-all duration-500 ${
-                  activePhoto === index ? 'border-gold-400/50 shadow-gold-glow scale-105' : 'border-slate-800 group-hover:border-slate-600'
+                <span>{cat.label}</span>
+                <span className={`px-1.5 py-0.5 rounded-full text-[10px] ${
+                  activeCategory === cat.id ? 'bg-black/30 text-white' : 'bg-navy-950 text-slate-500'
                 }`}>
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 transition-all duration-500"
-                  />
-                  {activePhoto === index && (
-                    <div className="absolute inset-0 bg-gold-500/20 mix-blend-overlay" />
-                  )}
-                </div>
-
-                <div className="flex-1 min-w-0 z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    {activePhoto === index && <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0" />}
-                    <span className={`text-[10px] font-black uppercase tracking-widest block font-heading ${
-                      activePhoto === index ? 'text-gold-400' : 'text-slate-500 group-hover:text-slate-400'
-                    }`}>
-                      {item.category}
-                    </span>
-                  </div>
-                  <h4 className={`text-sm sm:text-base font-black truncate font-heading transition-colors duration-300 ${
-                    activePhoto === index ? 'text-white' : 'text-slate-300 group-hover:text-white'
-                  }`}>
-                    {item.title}
-                  </h4>
-                  <p className="text-[11px] text-slate-400 font-light line-clamp-2 mt-1.5 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* Right Arrow Indicator */}
-                <div className={`absolute right-4 text-gold-400 transition-all duration-500 ${
-                  activePhoto === index ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-                }`}>
-                  <ChevronRight className="w-5 h-5" />
-                </div>
-              </div>
+                  {cat.count}
+                </span>
+              </button>
             ))}
           </div>
+        </div>
 
+        {/* Dynamic Balanced Photo Grid (3 cols on desktop, 2 on tablet, 1 on mobile) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20 animate-fadeIn">
+          {filteredGallery.map((item, index) => (
+            <div
+              key={item.id}
+              onClick={() => openLightbox(index)}
+              className="group relative rounded-3xl overflow-hidden luxury-glass border border-slate-800/80 hover:border-gold-400/60 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:-translate-y-1.5 cursor-pointer flex flex-col justify-between"
+            >
+              {/* Image Container */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-950">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 filter brightness-[0.9] group-hover:brightness-100"
+                />
+                
+                {/* Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent" />
+
+                {/* Category Pill */}
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="px-3 py-1 rounded-xl bg-navy-950/80 backdrop-blur-md border border-white/10 text-gold-400 text-[10px] font-black uppercase tracking-wider font-heading flex items-center gap-1.5 shadow-lg">
+                    <span className="w-1.5 h-1.5 rounded-full bg-flame-500 animate-pulse" />
+                    {item.categoryName}
+                  </span>
+                </div>
+
+                {/* Zoom Icon Button */}
+                <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-9 h-9 rounded-xl bg-navy-950/90 border border-gold-400/40 text-gold-400 flex items-center justify-center shadow-lg">
+                    <Maximize2 className="w-4 h-4" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card Footer Content */}
+              <div className="p-5 sm:p-6 bg-navy-950/90 border-t border-slate-800/60 space-y-2 flex-1 flex flex-col justify-between">
+                <h3 className="text-base sm:text-lg font-black font-heading text-white group-hover:text-gold-400 transition-colors leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-slate-400 font-light line-clamp-2 leading-relaxed">
+                  {item.desc}
+                </p>
+
+                <div className="pt-2 flex items-center justify-between text-xs font-bold text-gold-400 font-heading">
+                  <span className="flex items-center gap-1 text-[11px] group-hover:underline">
+                    <Eye className="w-3.5 h-3.5 text-flame-500" />
+                    <span>Ver en alta resolución</span>
+                  </span>
+                  <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Operational Highlights Metrics */}
@@ -226,16 +280,86 @@ export const HumanOperations = () => {
 
       </div>
 
+      {/* FULLSCREEN LIGHTBOX MODAL */}
+      {selectedPhotoIndex !== null && filteredGallery[selectedPhotoIndex] && (
+        <div
+          onClick={() => setSelectedPhotoIndex(null)}
+          className="fixed inset-0 z-[150] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
+        >
+          {/* Close Button Top Right */}
+          <button
+            onClick={() => setSelectedPhotoIndex(null)}
+            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[160] px-4 py-2 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-black text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
+            title="Cerrar (Esc)"
+          >
+            <X className="w-5 h-5" />
+            <span className="hidden sm:inline">Cerrar (Esc)</span>
+          </button>
+
+          {/* Prev Arrow */}
+          <button
+            onClick={prevPhoto}
+            className="fixed left-4 sm:left-8 top-1/2 -translate-y-1/2 z-[160] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-navy-900/80 border border-gold-400/30 text-white hover:text-gold-400 hover:bg-navy-850 flex items-center justify-center shadow-2xl transition-all transform hover:scale-110"
+            title="Foto Anterior"
+          >
+            <ChevronLeft className="w-7 h-7" />
+          </button>
+
+          {/* Next Arrow */}
+          <button
+            onClick={nextPhoto}
+            className="fixed right-4 sm:right-8 top-1/2 -translate-y-1/2 z-[160] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-navy-900/80 border border-gold-400/30 text-white hover:text-gold-400 hover:bg-navy-850 flex items-center justify-center shadow-2xl transition-all transform hover:scale-110"
+            title="Foto Siguiente"
+          >
+            <ChevronRight className="w-7 h-7" />
+          </button>
+
+          {/* Lightbox Modal Card */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="luxury-glass w-full max-w-5xl rounded-[2.5rem] border border-gold-metallic/40 overflow-hidden relative shadow-2xl cursor-default my-auto max-h-[92vh] flex flex-col bg-navy-950"
+          >
+            {/* High-Res Image Showcase */}
+            <div className="relative w-full max-h-[60vh] sm:max-h-[68vh] bg-black flex items-center justify-center overflow-hidden">
+              <img
+                src={filteredGallery[selectedPhotoIndex].image}
+                alt={filteredGallery[selectedPhotoIndex].title}
+                className="w-full h-full object-contain max-h-[60vh] sm:max-h-[68vh]"
+              />
+              <div className="absolute top-4 left-4">
+                <span className="px-3.5 py-1.5 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 text-gold-400 text-xs font-black uppercase tracking-wider font-heading">
+                  Foto {selectedPhotoIndex + 1} de {filteredGallery.length}
+                </span>
+              </div>
+            </div>
+
+            {/* Photo Metadata Footer */}
+            <div className="p-6 sm:p-8 bg-navy-950 border-t border-slate-800 space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="px-3 py-1 rounded-lg bg-flame-500/20 border border-flame-500/40 text-flame-400 text-[10px] font-black uppercase tracking-widest font-heading">
+                  {filteredGallery[selectedPhotoIndex].categoryName}
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black font-heading text-white">
+                {filteredGallery[selectedPhotoIndex].title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+                {filteredGallery[selectedPhotoIndex].desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* GALLERY VIDEO MODAL */}
       {isVideoOpen && (
         <div 
           onClick={() => setIsVideoOpen(false)}
-          className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
+          className="fixed inset-0 z-[160] flex items-center justify-center p-4 sm:p-6 bg-navy-950/95 backdrop-blur-2xl animate-fadeIn cursor-pointer"
         >
-          {/* Floating Close Button Top Right */}
           <button
             onClick={() => setIsVideoOpen(false)}
-            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[130] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-black text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
+            className="fixed top-5 right-5 sm:top-7 sm:right-7 z-[170] px-4 py-2.5 rounded-full bg-flame-600 hover:bg-flame-500 text-white font-black text-xs shadow-flame-glow flex items-center gap-2 transition-all transform hover:scale-105"
             title="Cerrar Video (Esc)"
           >
             <X className="w-5 h-5" />
@@ -267,7 +391,7 @@ export const HumanOperations = () => {
                 controls
                 autoPlay
                 className="w-full h-full object-contain"
-                poster="/images/IMG_7549.jpg"
+                poster="/images/cysos_casco_pov.jpg"
               >
                 <source src={companyInfo?.operationsVideoUrl || "/videos/maniobra.mp4"} type="video/mp4" />
               </video>
