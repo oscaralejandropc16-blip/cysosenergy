@@ -51,66 +51,68 @@ export const MultidisciplinaryAlliances = () => {
             return (
               <div
                 key={entity.id}
-                className={`luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-800/90 shadow-2xl relative overflow-hidden group transition-all duration-500 hover:-translate-y-1 ${entity.borderGlow}`}
+                className="bg-navy-900/40 backdrop-blur-md rounded-[2rem] border border-white/5 overflow-hidden group hover:border-white/20 transition-all duration-500 hover:-translate-y-1 shadow-2xl flex flex-col"
               >
-                {/* Background Inner Glow */}
-                <div className={`absolute -top-20 -right-20 w-44 h-44 ${entity.glow} rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
-
-                {/* Abstract Watermark Number */}
-                <div className="absolute top-4 right-6 text-7xl sm:text-8xl font-black text-slate-800/20 font-heading select-none pointer-events-none group-hover:text-gold-400/10 transition-colors duration-500">
-                  0{idx + 1}
+                {/* LOGO HEADER (BLANCO) */}
+                <div className="h-36 sm:h-44 bg-white relative flex flex-col items-center justify-center p-8 sm:p-10 border-b border-white/10">
+                  {/* Badge floating top right inside white area */}
+                  <div className="absolute top-4 right-4">
+                     <span className={`px-3 py-1.5 rounded-full bg-gradient-to-r ${entity.color} text-[10px] font-black uppercase tracking-wider text-white shadow-lg`}>
+                       {entity.badge}
+                     </span>
+                  </div>
+                  
+                  {entity.logoUrl ? (
+                    <img 
+                      src={entity.logoUrl} 
+                      alt={`${entity.name} logo`} 
+                      className="w-full h-full object-contain filter group-hover:scale-105 transition-transform duration-500"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  
+                  {/* Fallback Icon si no hay imagen o si falla */}
+                  <div 
+                    className="w-full h-full items-center justify-center" 
+                    style={{ display: entity.logoUrl ? 'none' : 'flex' }}
+                  >
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${entity.color} p-0.5 shadow-xl flex items-center justify-center`}>
+                       <div className="w-full h-full bg-navy-950 rounded-[14px] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Icon className="w-8 h-8 text-white" />
+                       </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="relative z-10 space-y-5">
-                  {/* Top Bar: Icon/Logo + Badge */}
-                  <div className="flex items-center justify-between gap-3">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${entity.color} p-0.5 shadow-lg flex items-center justify-center flex-shrink-0`}>
-                      <div className="w-full h-full bg-navy-950 rounded-[14px] flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-300 overflow-hidden relative">
-                        {entity.logoUrl ? (
-                          <img 
-                            src={entity.logoUrl} 
-                            alt={`${entity.name} logo`} 
-                            className="w-full h-full object-contain p-2"
-                            onError={(e) => {
-                              // Fallback al icono si la imagen falla o aún no se ha subido
-                              e.currentTarget.style.display = 'none';
-                              e.currentTarget.nextSibling.style.display = 'block';
-                            }}
-                          />
-                        ) : null}
-                        {/* Fallback Icon */}
-                        <div style={{ display: entity.logoUrl ? 'none' : 'block' }}>
-                          <Icon className="w-6 h-6 text-gold-400" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <span className="px-3 py-1 rounded-full bg-navy-900 border border-slate-700/80 text-[11px] font-black uppercase tracking-wider text-gold-300 font-heading">
-                      {entity.badge}
-                    </span>
-                  </div>
+                {/* CONTENT BODY */}
+                <div className="p-6 sm:p-8 relative z-10 flex-1 flex flex-col space-y-5 bg-gradient-to-b from-navy-900/50 to-navy-950/90">
+                  {/* Background Inner Glow */}
+                  <div className={`absolute top-0 right-0 w-32 h-32 ${entity.glow} rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
 
                   {/* Title & Category */}
-                  <div>
+                  <div className="relative z-10">
                     <h3 className="text-xl sm:text-2xl font-black font-heading text-white group-hover:text-gold-400 transition-colors">
                       {entity.name}
                     </h3>
-                    <span className="text-xs font-bold text-slate-400 font-sans tracking-wide block mt-0.5">
+                    <span className="text-[11px] font-bold text-slate-400 font-sans tracking-widest block mt-1 uppercase">
                       {entity.category}
                     </span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-slate-800/80 pt-4">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light relative z-10">
                     {entity.desc}
                   </p>
 
                   {/* Key Highlights */}
-                  <div className="space-y-2 pt-1">
+                  <div className="space-y-3 pt-5 border-t border-white/5 mt-auto relative z-10 flex-1 flex flex-col justify-end">
                     {entity.highlights.map((item, hIdx) => (
-                      <div key={hIdx} className="flex items-center gap-2.5 text-xs text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                        <span className="font-light">{item}</span>
+                      <div key={hIdx} className="flex items-start gap-3 text-xs text-slate-300">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5 opacity-90" />
+                        <span className="font-light leading-relaxed">{item}</span>
                       </div>
                     ))}
                   </div>
