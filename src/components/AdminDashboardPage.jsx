@@ -19,7 +19,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     kpis = [], updateKpi,
     mediaItems = [], updateMediaItem, addMediaItem, deleteMediaItem,
     services = [], updateService,
-    companyInfo = {}, updateCompanyInfoText 
+    companyInfo = {}, updateCompanyInfoText,
+    alliances = [], updateAllianceLogo
   } = useCms();
 
   const [password, setPassword] = useState('');
@@ -481,7 +482,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               { id: 'services', label: '5. Servicios & Divisiones', icon: Briefcase, count: safeServices.length, help: 'Las 4 divisiones operativas' },
               { id: 'kpis', label: '6. Cifras & Métricas (+450)', icon: Sliders, count: safeKpis.length, help: 'Indicadores operacionales clave' },
               { id: 'empresa', label: '7. Misión, Visión & Contacto', icon: FileText, count: null, help: 'Teléfonos, correos y dirección fiscal' },
-              { id: 'inbox', label: '8. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Solicitudes recibidas de clientes' }
+              { id: 'alliances', label: '8. Alianzas Estratégicas', icon: Sparkles, count: alliances ? alliances.length : 0, help: 'Logos de empresas aliadas' },
+              { id: 'inbox', label: '9. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Solicitudes recibidas de clientes' }
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -1698,7 +1700,51 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
           )}
 
-          {/* TAB 8: INBOX */}
+          {/* TAB 8: ALIANZAS ESTRATÉGICAS */}
+          {activeTab === 'alliances' && (
+            <div className="space-y-6 animate-fadeIn">
+              <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                <h3 className="text-xl font-extrabold font-heading text-white">Consorcio & Alianzas</h3>
+                <span className="text-xs text-slate-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+                  {alliances.length} Empresas Aliadas
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {alliances.map((alliance) => (
+                  <div key={alliance.id} className="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-5 rounded-[2rem] flex flex-col gap-4 shadow-xl">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h4 className="text-sm font-extrabold text-white">{alliance.name}</h4>
+                        <p className="text-xs text-slate-400 font-light">{alliance.category}</p>
+                      </div>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold-500/10 text-gold-400 border border-gold-500/20 uppercase">
+                        {alliance.badge}
+                      </span>
+                    </div>
+                    <div className="flex-1 flex flex-col items-center justify-center p-6 bg-black/40 rounded-2xl border border-white/5 h-32 relative">
+                      {alliance.logoUrl ? (
+                         <img src={alliance.logoUrl} alt="Logo" className="absolute inset-0 w-full h-full object-contain p-2" />
+                      ) : (
+                         <span className="text-xs text-slate-500 italic">Sin logo asignado</span>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => openMediaPicker((url) => {
+                        updateAllianceLogo(alliance.id, url);
+                        triggerSaveNotification();
+                      }, 'image')}
+                      className="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-slate-300 hover:text-white border border-white/10 transition-colors flex items-center justify-center gap-2"
+                    >
+                      <ImageIcon className="w-4 h-4" />
+                      <span>Elegir / Cambiar Logo</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 9: INBOX */}
           {activeTab === 'inbox' && (
             <div className="space-y-6 animate-fadeIn">
               

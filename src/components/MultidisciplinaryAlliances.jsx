@@ -1,57 +1,19 @@
 import React from 'react';
 import { FlaskConical, Truck, Globe, Flame, ShieldCheck, Sparkles, Award, ArrowUpRight, CheckCircle2, Building2 } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
+
+const iconMap = {
+  FlaskConical,
+  Truck,
+  Globe,
+  Flame,
+  Sparkles
+};
 
 export const MultidisciplinaryAlliances = () => {
-  const allianceEntities = [
-    {
-      id: 'cysos',
-      name: 'Cysos Energy',
-      category: 'Química de Producción & EOR',
-      desc: 'Optimización del transporte de crudos pesados mediante tecnologías de reducción de viscosidad.',
-      highlights: ['Reducción de viscosidad hasta 92%', 'Ahorro de diluyente hasta 38%', 'Desemulsionante de alta eficiencia'],
-      badge: 'Líder en Tecnología Química',
-      icon: FlaskConical,
-      color: 'from-flame-500 via-orange-600 to-amber-500',
-      glow: 'bg-flame-500/20',
-      borderGlow: 'hover:border-flame-500/50'
-    },
-    {
-      id: 'mg-services',
-      name: 'MG Services Group',
-      category: 'Logística, Izamiento & Carga Pesada',
-      desc: '17 años de experiencia en transporte de carga pesada y equipos de izamiento con grúas de hasta 110 toneladas.',
-      highlights: ['Grúas telescópicas hasta 110 Ton', 'Flota de chutos vacuum y bateas', 'Movimiento de tierra y jumbo 320'],
-      badge: '17 Años de Experiencia',
-      icon: Truck,
-      color: 'from-amber-400 via-gold-500 to-orange-600',
-      glow: 'bg-gold-400/20',
-      borderGlow: 'hover:border-gold-400/50'
-    },
-    {
-      id: 'shekinah',
-      name: 'Shekinah Group',
-      category: 'Sourcing Internacional & Procura USA',
-      desc: 'Sourcing directo desde USA y soporte técnico especializado con garantía local en Venezuela.',
-      highlights: ['Importación directa desde USA', 'Tuberías ERW y válvulas API', 'Control de presión y bombas triplex'],
-      badge: 'Alianza Global USA',
-      icon: Globe,
-      color: 'from-emerald-400 via-teal-500 to-cyan-600',
-      glow: 'bg-emerald-400/20',
-      borderGlow: 'hover:border-emerald-400/50'
-    },
-    {
-      id: 'nwrm',
-      name: 'Inversiones Nwrm',
-      category: 'Intervención & Rehabilitación de Pozos',
-      desc: 'Rehabilitación y reparación de pozos con taladros de Workover y Pulling de 350 HP a 750 HP.',
-      highlights: ['Taladros de 350 HP a 750 HP', 'Mantenimiento de sistemas BCP/ESP', 'Operaciones de subsuelo 24/7'],
-      badge: 'Capacidad de 350-750 HP',
-      icon: Flame,
-      color: 'from-orange-500 via-red-600 to-flame-600',
-      glow: 'bg-red-500/20',
-      borderGlow: 'hover:border-red-500/50'
-    }
-  ];
+  const { alliances } = useCms();
+
+  const allianceEntities = alliances || [];
 
   return (
     <section id="especialidades" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
@@ -85,7 +47,7 @@ export const MultidisciplinaryAlliances = () => {
         {/* 4 Multidisciplinary Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {allianceEntities.map((entity, idx) => {
-            const Icon = entity.icon;
+            const Icon = iconMap[entity.icon] || Sparkles;
             return (
               <div
                 key={entity.id}
@@ -100,11 +62,26 @@ export const MultidisciplinaryAlliances = () => {
                 </div>
 
                 <div className="relative z-10 space-y-5">
-                  {/* Top Bar: Icon + Badge */}
+                  {/* Top Bar: Icon/Logo + Badge */}
                   <div className="flex items-center justify-between gap-3">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${entity.color} p-0.5 shadow-lg flex items-center justify-center flex-shrink-0`}>
-                      <div className="w-full h-full bg-navy-950 rounded-[14px] flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="w-6 h-6 text-gold-400" />
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${entity.color} p-0.5 shadow-lg flex items-center justify-center flex-shrink-0`}>
+                      <div className="w-full h-full bg-navy-950 rounded-[14px] flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-300 overflow-hidden relative">
+                        {entity.logoUrl ? (
+                          <img 
+                            src={entity.logoUrl} 
+                            alt={`${entity.name} logo`} 
+                            className="w-full h-full object-contain p-2"
+                            onError={(e) => {
+                              // Fallback al icono si la imagen falla o aún no se ha subido
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.nextSibling.style.display = 'block';
+                            }}
+                          />
+                        ) : null}
+                        {/* Fallback Icon */}
+                        <div style={{ display: entity.logoUrl ? 'none' : 'block' }}>
+                          <Icon className="w-6 h-6 text-gold-400" />
+                        </div>
                       </div>
                     </div>
 

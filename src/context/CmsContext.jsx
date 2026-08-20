@@ -161,6 +161,61 @@ const INITIAL_SERVICES = [
   }
 ];
 
+const INITIAL_ALLIANCES = [
+  {
+    id: 'cysos',
+    name: 'Cysos Energy',
+    category: 'Química de Producción & EOR',
+    desc: 'Optimización del transporte de crudos pesados mediante tecnologías de reducción de viscosidad.',
+    highlights: ['Reducción de viscosidad hasta 92%', 'Ahorro de diluyente hasta 38%', 'Desemulsionante de alta eficiencia'],
+    badge: 'Líder en Tecnología Química',
+    icon: 'FlaskConical',
+    logoUrl: '/images/cysos_logo.png',
+    color: 'from-flame-500 via-orange-600 to-amber-500',
+    glow: 'bg-flame-500/20',
+    borderGlow: 'hover:border-flame-500/50'
+  },
+  {
+    id: 'mg-services',
+    name: 'MG Services Group',
+    category: 'Logística, Izamiento & Carga Pesada',
+    desc: '17 años de experiencia en transporte de carga pesada y equipos de izamiento con grúas de hasta 110 toneladas.',
+    highlights: ['Grúas telescópicas hasta 110 Ton', 'Flota de chutos vacuum y bateas', 'Movimiento de tierra y jumbo 320'],
+    badge: '17 Años de Experiencia',
+    icon: 'Truck',
+    logoUrl: '/images/mg_logo.png',
+    color: 'from-amber-400 via-gold-500 to-orange-600',
+    glow: 'bg-gold-400/20',
+    borderGlow: 'hover:border-gold-400/50'
+  },
+  {
+    id: 'shekinah',
+    name: 'Shekinah Group',
+    category: 'Sourcing Internacional & Procura USA',
+    desc: 'Sourcing directo desde USA y soporte técnico especializado con garantía local en Venezuela.',
+    highlights: ['Importación directa desde USA', 'Tuberías ERW y válvulas API', 'Control de presión y bombas triplex'],
+    badge: 'Alianza Global USA',
+    icon: 'Globe',
+    logoUrl: '/images/shekinah_logo.png',
+    color: 'from-emerald-400 via-teal-500 to-cyan-600',
+    glow: 'bg-emerald-400/20',
+    borderGlow: 'hover:border-emerald-400/50'
+  },
+  {
+    id: 'nwrm',
+    name: 'Inversiones Nwrm',
+    category: 'Intervención & Rehabilitación de Pozos',
+    desc: 'Rehabilitación y reparación de pozos con taladros de Workover y Pulling de 350 HP a 750 HP.',
+    highlights: ['Taladros de 350 HP a 750 HP', 'Mantenimiento de sistemas BCP/ESP', 'Operaciones de subsuelo 24/7'],
+    badge: 'Capacidad de 350-750 HP',
+    icon: 'Flame',
+    logoUrl: '/images/nwrm_logo.png',
+    color: 'from-orange-500 via-red-600 to-flame-600',
+    glow: 'bg-red-500/20',
+    borderGlow: 'hover:border-red-500/50'
+  }
+];
+
 export const CmsProvider = ({ children }) => {
   const [isDbLoaded, setIsDbLoaded] = useState(false);
   const [dbSyncStatus, setDbSyncStatus] = useState('idle');
@@ -173,6 +228,7 @@ export const CmsProvider = ({ children }) => {
   const [mediaItems, setMediaItems] = useState(INITIAL_MEDIA);
   const [companyInfo, setCompanyInfo] = useState(INITIAL_COMPANY_INFO);
   const [services, setServices] = useState(INITIAL_SERVICES);
+  const [alliances, setAlliances] = useState(INITIAL_ALLIANCES);
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(() => { 
@@ -204,6 +260,7 @@ export const CmsProvider = ({ children }) => {
         if (data['cysos_cms_media_v3']) setMediaItems(data['cysos_cms_media_v3']);
         if (data['cysos_cms_company_info']) setCompanyInfo(data['cysos_cms_company_info']);
         if (data['cysos_cms_services']) setServices(data['cysos_cms_services']);
+        if (data['cysos_cms_alliances']) setAlliances(data['cysos_cms_alliances']);
         setDbSyncStatus('success');
       } else {
         setDbSyncStatus('error');
@@ -241,6 +298,10 @@ export const CmsProvider = ({ children }) => {
   useEffect(() => {
     if (isDbLoaded) saveToSupabase('cysos_cms_services', services);
   }, [services, isDbLoaded]);
+
+  useEffect(() => {
+    if (isDbLoaded) saveToSupabase('cysos_cms_alliances', alliances);
+  }, [alliances, isDbLoaded]);
 
   // Funciones de Login
   const loginAdmin = (password) => {
@@ -282,16 +343,17 @@ export const CmsProvider = ({ children }) => {
   const deleteMediaItem = (id) => setMediaItems((prev) => prev.filter((item) => item.id !== id));
   const updateService = (id, field, value) => setServices((prev) => prev.map((srv) => (srv.id === id ? { ...srv, [field]: value } : srv)));
   const updateCompanyInfoText = (field, text) => setCompanyInfo((prev) => ({ ...prev, [field]: text }));
+  const updateAllianceLogo = (id, url) => setAlliances((prev) => prev.map((a) => (a.id === id ? { ...a, logoUrl: url } : a)));
 
   return (
     <CmsContext.Provider
       value={{
         heroContent, updateHeroContent,
         partners, updatePartner, addPartner, deletePartner,
-        messages, kpis, mediaItems, companyInfo, services,
+        messages, kpis, mediaItems, companyInfo, services, alliances,
         isAdminOpen, setIsAdminOpen, isLoggedIn, loginAdmin, logoutAdmin,
         addMessage, updateMessageStatus, deleteMessage, updateKpi,
-        updateMediaItem, addMediaItem, deleteMediaItem, updateService, updateCompanyInfoText,
+        updateMediaItem, addMediaItem, deleteMediaItem, updateService, updateCompanyInfoText, updateAllianceLogo,
         dbSyncStatus // Proveemos el estado de sincro por si el admin panel quiere mostrar "Guardando en la nube..."
       }}
     >
