@@ -69,7 +69,7 @@ export const Services = () => {
         </div>
 
         {/* Division Tab Selector */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {services.map((tab) => {
             const Icon = IconMap[tab.icon] || FlaskConical;
             const isActive = activeTab === tab.id;
@@ -79,7 +79,7 @@ export const Services = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`p-3.5 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-center gap-3.5 w-full ${
                   isActive
-                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 border-gold-metallic text-white shadow-flame-glow scale-[1.02] sm:scale-105'
+                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 border-gold-metallic text-white shadow-flame-glow sm:scale-105'
                     : 'luxury-card border-slate-800 text-slate-300 hover:border-gold-400/40 hover:text-white bg-[#0a1224]/60'
                 }`}
               >

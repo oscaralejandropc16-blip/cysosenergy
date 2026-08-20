@@ -279,16 +279,16 @@ export const HumanOperations = () => {
         )}
 
         {/* Operational Highlights Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
           {[
             { label: 'Especialistas Certificados', value: '100%', sub: 'Ingenieros & Técnicos' },
             { label: 'Normas SI-HO-S & Calidad', value: 'ISO 9001', sub: 'Certificación HSE' },
             { label: 'Disponibilidad de Flota', value: '24/7/365', sub: 'Respuesta Inmediata' },
             { label: 'Cobertura Nacional', value: '3 Cuencas', sub: 'Oriente, Occidente y Sur' }
           ].map((stat, idx) => (
-            <div key={idx} className="luxury-glass p-6 sm:p-8 rounded-[2rem] border border-white/5 hover:border-gold-400/30 text-center space-y-2 group transition-colors duration-500 relative overflow-hidden bg-[#0a1224]/40">
+            <div key={idx} className="luxury-glass p-4 sm:p-8 rounded-2xl sm:rounded-[2rem] border border-white/5 hover:border-gold-400/30 text-center space-y-2 group transition-colors duration-500 relative overflow-hidden bg-[#0a1224]/40 flex flex-col justify-center min-h-[140px]">
               <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="text-3xl sm:text-4xl font-black font-heading text-white group-hover:text-gold-400 transition-colors drop-shadow-md">
+              <div className="text-2xl sm:text-4xl font-black font-heading text-white group-hover:text-gold-400 transition-colors drop-shadow-md">
                 {stat.value}
               </div>
               <div className="text-xs font-black text-gold-400 font-heading tracking-wide">{stat.label}</div>

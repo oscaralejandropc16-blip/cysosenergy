@@ -33,7 +33,7 @@ export const ViscosityCalculator = () => {
               Tecnología Química para Crudos Pesados y Extrapesados (XP)
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
             Ingeniería Reológica & <span className="animate-gradient-text">Optimización EOR</span>
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
@@ -41,7 +41,7 @@ export const ViscosityCalculator = () => {
           </p>
 
           {/* Technology Selector Tabs */}
-          <div className="inline-flex p-1.5 rounded-2xl bg-navy-900/90 border border-slate-800 backdrop-blur-xl mt-4">
+          <div className="flex flex-col sm:flex-row p-1.5 rounded-2xl bg-navy-900/90 border border-slate-800 backdrop-blur-xl mt-4 gap-1">
             <button
               onClick={() => setActiveChemTab('reductor')}
               className={`px-5 py-2.5 rounded-xl text-xs font-black font-heading transition-all ${
