@@ -92,49 +92,51 @@ export const PartnersCarousel = () => {
         <div className="absolute left-0 top-0 bottom-0 w-32 sm:w-64 bg-gradient-to-r from-navy-950 via-navy-950/80 to-transparent z-20 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 sm:w-64 bg-gradient-to-l from-navy-950 via-navy-950/80 to-transparent z-20 pointer-events-none" />
 
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 sm:gap-8 items-center cursor-pointer px-4">
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-8 sm:gap-10 items-center cursor-pointer px-4">
           {marqueeItems.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
               onClick={() => setSelectedClient(partner)}
-              className="flex-shrink-0 group/card relative p-5 sm:p-6 rounded-[2rem] bg-[#0a1224]/80 backdrop-blur-xl border border-slate-800/80 hover:border-gold-400/50 transition-all duration-500 overflow-hidden flex items-center gap-5 min-w-[360px] sm:min-w-[440px]"
+              className="flex-shrink-0 group/card relative p-6 sm:p-8 rounded-[2.5rem] bg-[#050A14]/60 backdrop-blur-2xl border border-white/5 hover:border-gold-500/30 transition-all duration-700 overflow-hidden flex items-center gap-6 min-w-[400px] sm:min-w-[480px] shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_40px_rgba(250,204,21,0.08)]"
             >
-              {/* Premium Background Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gold-400/0 to-gold-400/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
-              <div className="absolute -inset-x-10 -bottom-10 h-24 bg-gold-400/20 blur-[40px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              {/* Ultra-Premium Background Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gold-500/0 via-transparent to-gold-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-gold-500/10 rounded-full blur-[50px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none transform group-hover/card:scale-150" />
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-flame-500/10 rounded-full blur-[40px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
-              {/* Glass Floating Logo Orb */}
-              <div className="relative w-28 h-20 sm:w-32 sm:h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2 flex-shrink-0 shadow-2xl group-hover/card:scale-105 group-hover/card:-rotate-3 transition-transform duration-500 backdrop-blur-sm overflow-hidden">
-                <div className="absolute inset-0 bg-white rounded-2xl opacity-90 group-hover/card:opacity-100 transition-opacity duration-300 shadow-[inset_0_0_15px_rgba(0,0,0,0.1)]" />
+              {/* Glass Floating Logo Container */}
+              <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-white/[0.03] border border-white/10 flex items-center justify-center p-4 flex-shrink-0 shadow-2xl group-hover/card:scale-105 group-hover/card:-rotate-3 transition-transform duration-700 backdrop-blur-md overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-white rounded-3xl opacity-[0.85] group-hover/card:opacity-100 transition-opacity duration-500" />
                 {partner.logoUrl ? (
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
-                    className="w-full h-full object-contain filter drop-shadow-md relative z-10 scale-110 group-hover/card:scale-125 transition-transform duration-500"
+                    className="w-full h-full object-contain filter drop-shadow-sm relative z-10 scale-100 group-hover/card:scale-110 transition-transform duration-700"
                   />
                 ) : (
-                  <Building2 className="w-10 h-10 text-slate-800 relative z-10" />
+                  <Building2 className="w-12 h-12 text-slate-800 relative z-10" />
                 )}
               </div>
 
-              {/* Text & Meta */}
-              <div className="flex-1 min-w-0 relative z-10">
-                <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <h4 className="text-base sm:text-lg font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors">
+              {/* Text & Meta Information */}
+              <div className="flex-1 min-w-0 relative z-10 flex flex-col justify-center">
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <h4 className="text-lg sm:text-xl font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors duration-500 tracking-tight">
                     {partner.name}
                   </h4>
-                  <div className="w-7 h-7 rounded-full bg-slate-800/60 flex items-center justify-center group-hover/card:bg-gold-400 group-hover/card:text-navy-950 transition-colors text-slate-400 flex-shrink-0 transform group-hover/card:rotate-12">
+                  <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover/card:bg-gold-500 group-hover/card:border-gold-500 group-hover/card:text-navy-950 transition-all duration-500 text-slate-400 flex-shrink-0 transform group-hover/card:rotate-45 group-hover/card:scale-110 shadow-lg">
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>
                 
-                <p className="text-[11px] sm:text-xs text-slate-400 truncate font-medium mb-3">
+                <p className="text-xs sm:text-sm text-slate-400/90 truncate font-light mb-4 tracking-wide group-hover/card:text-slate-300 transition-colors duration-500">
                   {partner.sub}
                 </p>
                 
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-950/90 border border-slate-700/50 group-hover/card:border-gold-400/30 transition-colors shadow-inner">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                  <span className="text-[9px] font-black uppercase text-slate-300 group-hover/card:text-gold-400 font-heading tracking-widest">
+                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 border border-white/5 group-hover/card:border-gold-500/20 group-hover/card:bg-black/60 transition-all duration-500 shadow-inner w-fit">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.6)]" />
+                  <span className="text-[10px] font-bold uppercase text-slate-300 group-hover/card:text-gold-400 font-heading tracking-[0.2em] transition-colors duration-500">
                     {partner.type}
                   </span>
                 </div>

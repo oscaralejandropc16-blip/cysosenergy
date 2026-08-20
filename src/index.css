@@ -106,7 +106,7 @@ section[id] {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 55s linear infinite;
+  animation: marquee 180s linear infinite;
   will-change: transform;
 }
 
