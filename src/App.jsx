@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PartnersCarousel } from './components/PartnersCarousel';
 import { MissionVision } from './components/MissionVision';
+import { MultidisciplinaryAlliances } from './components/MultidisciplinaryAlliances';
 import { HumanOperations } from './components/HumanOperations';
 import { Services } from './components/Services';
 import { ViscosityCalculator } from './components/ViscosityCalculator';
@@ -79,6 +80,7 @@ function MainAppContent() {
           <Hero />
           <PartnersCarousel />
           <MissionVision />
+          <MultidisciplinaryAlliances />
           <HumanOperations />
           <Services />
           <ViscosityCalculator />
