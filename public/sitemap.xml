@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://cysosenergy.vercel.app/</loc>
-    <lastmod>2026-08-19</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://cysosenergy.com/</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://cysosenergy.com/images/cysos_logo.png</image:loc>
+      <image:title>CYSOS ENERGY C.A. - Servicios Petroleros e Ingeniería IPC</image:title>
+      <image:caption>Líder en química de producción, logística pesada, izamiento y rehabilitación de pozos en Venezuela</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cysosenergy.com/images/IMG_7549.jpg</image:loc>
+      <image:title>Planta de Inyección y Manifold de Operaciones Petroleras</image:title>
+      <image:caption>Operaciones en la Faja Petrolífera del Orinoco y Oriente de Venezuela</image:caption>
+    </image:image>
   </url>
 </urlset>

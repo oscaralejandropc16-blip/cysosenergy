@@ -1,5 +1,19 @@
+# Robots.txt for CYSOS ENERGY, C.A. (https://cysosenergy.com)
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /*acceso-corporativo*
 
-Sitemap: https://cysosenergy.vercel.app/sitemap.xml
+# Googlebot / Bingbot specific optimizations
+User-agent: Googlebot
+Allow: /
+Allow: /images/
+Allow: /videos/
+
+User-agent: Bingbot
+Allow: /
+Allow: /images/
+Allow: /videos/
+
+# Official Sitemap Location
+Sitemap: https://cysosenergy.com/sitemap.xml

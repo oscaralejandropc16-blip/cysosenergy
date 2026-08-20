@@ -1,0 +1,23 @@
+{
+  "name": "CYSOS ENERGY, C.A. | Servicios Petroleros e Ingeniería IPC",
+  "short_name": "CYSOS ENERGY",
+  "description": "Soluciones integrales en química de producción, logística pesada, intervención de pozos y procura internacional en Venezuela.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#03050A",
+  "theme_color": "#03050A",
+  "icons": [
+    {
+      "src": "/images/cysos_icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/cysos_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
