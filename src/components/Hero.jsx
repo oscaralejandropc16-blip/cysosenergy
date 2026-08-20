@@ -95,7 +95,6 @@ export const Hero = () => {
                 muted
                 playsinline
                 preload="auto"
-                poster="${currentHero.posterUrl}"
                 class="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05] scale-105 transform"
               >
                 <source src="${currentHero.videoUrl}" type="video/mp4" />
