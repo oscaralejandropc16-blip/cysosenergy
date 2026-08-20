@@ -118,7 +118,7 @@ export const Hero = () => {
       </div>
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto pt-6 pb-8">
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center space-y-6 sm:space-y-8 animate-fadeIn">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center space-y-5 sm:space-y-8 animate-fadeIn">
           
           {/* Top Pill Badge */}
           <div className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-navy-900/90 border border-gold-metallic/50 backdrop-blur-xl shadow-gold-glow">
@@ -126,18 +126,18 @@ export const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-flame-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-flame-500"></span>
             </span>
-            <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-gold-400 font-heading">
+            <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-gold-400 font-heading text-center">
               {currentHero.badgeText}
             </span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-heading text-white tracking-tight leading-[1.08] drop-shadow-2xl">
-            {currentHero.titlePart1} <span className="animate-gradient-text">{currentHero.titleGradient}</span> {currentHero.titlePart2}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-heading text-white tracking-tight leading-[1.1] drop-shadow-2xl px-2">
+            {currentHero.titlePart1} <br className="block sm:hidden" /><span className="animate-gradient-text">{currentHero.titleGradient}</span> <br className="block sm:hidden" />{currentHero.titlePart2}
           </h1>
 
           {/* Subheading */}
-          <p className="text-base sm:text-lg md:text-xl text-slate-100 leading-relaxed max-w-3xl font-normal drop-shadow-md">
+          <p className="text-sm sm:text-lg md:text-xl text-slate-100 leading-relaxed max-w-3xl font-normal drop-shadow-md px-4">
             {currentHero.subtitle}
           </p>
 

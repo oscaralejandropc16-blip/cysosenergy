@@ -175,17 +175,17 @@ export const Services = () => {
           </div>
 
           {/* Right Side: Detailed Service Items Showcase (No truncation, fully readable) */}
-          <div className="lg:col-span-7 p-6 sm:p-8 md:p-10 space-y-6 flex flex-col justify-between">
+          <div className="lg:col-span-7 p-5 sm:p-8 md:p-10 space-y-5 sm:space-y-6 flex flex-col justify-between">
             
             {/* Header Description */}
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-                <span className="text-xs text-gold-400 font-black uppercase tracking-wider font-heading">
+                <span className="text-[10px] sm:text-xs text-gold-400 font-black uppercase tracking-wider font-heading">
                   Especificaciones Técnicas & Formulación
                 </span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black font-heading text-white leading-tight">
+              <h3 className="text-xl sm:text-3xl font-black font-heading text-white leading-tight">
                 {currentDivision.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed pt-1">
@@ -194,7 +194,7 @@ export const Services = () => {
             </div>
 
             {/* Sub-Items Cards Grid (Complete, No Cutoffs) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 pt-2">
               {currentDivision.items.map((item, idx) => {
                 const isFeatured = idx < 2 && activeTab === 'quimica';
                 return (
@@ -209,7 +209,7 @@ export const Services = () => {
                     <div className="space-y-1.5">
                       <div className="flex items-start gap-2">
                         <CheckCircle2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isFeatured ? 'text-gold-400' : 'text-flame-500'}`} />
-                        <h4 className="text-xs sm:text-sm font-black text-white font-heading leading-snug">
+                        <h4 className="text-[13px] sm:text-sm font-black text-white font-heading leading-snug">
                           {item.name}
                         </h4>
                       </div>

@@ -72,18 +72,18 @@ export const MissionVision = () => {
           {activeTab === 'mision' && (
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 animate-fadeIn items-center">
               {/* Text Area */}
-              <div className="order-2 lg:order-1 luxury-glass p-8 sm:p-10 rounded-[2.5rem] border border-gold-metallic/30 shadow-2xl relative overflow-hidden group hover:border-gold-400/50 transition-colors duration-500">
+              <div className="order-2 lg:order-1 luxury-glass p-6 sm:p-10 rounded-[2.5rem] border border-gold-metallic/30 shadow-2xl relative overflow-hidden group hover:border-gold-400/50 transition-colors duration-500">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gold-400/5 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 
-                <div className="flex items-center gap-5 mb-8 relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-flame-500 to-gold-600 p-[2px] shadow-flame-glow flex-shrink-0">
+                <div className="flex items-center gap-4 sm:gap-5 mb-6 sm:mb-8 relative z-10">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-flame-500 to-gold-600 p-[2px] shadow-flame-glow flex-shrink-0">
                     <div className="w-full h-full bg-[#0a1224] rounded-[14px] flex items-center justify-center text-gold-400">
-                      <Target className="w-8 h-8" />
+                      <Target className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">Nuestra Misión</h3>
-                    <p className="text-[11px] text-gold-400 font-black tracking-widest uppercase font-heading mt-1">CYSOS ENERGY, C.A.</p>
+                    <h3 className="text-xl sm:text-3xl font-black font-heading text-white">Nuestra Misión</h3>
+                    <p className="text-[10px] sm:text-[11px] text-gold-400 font-black tracking-widest uppercase font-heading mt-1">CYSOS ENERGY, C.A.</p>
                   </div>
                 </div>
 
@@ -150,18 +150,18 @@ export const MissionVision = () => {
               </div>
 
               {/* Text Area */}
-              <div className="order-2 luxury-glass p-8 sm:p-10 rounded-[2.5rem] border border-gold-metallic/30 shadow-2xl relative overflow-hidden group hover:border-flame-500/50 transition-colors duration-500">
+              <div className="order-2 luxury-glass p-6 sm:p-10 rounded-[2.5rem] border border-gold-metallic/30 shadow-2xl relative overflow-hidden group hover:border-flame-500/50 transition-colors duration-500">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-flame-500/5 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 
-                <div className="flex items-center gap-5 mb-8 relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-500 to-flame-600 p-[2px] shadow-gold-glow flex-shrink-0">
+                <div className="flex items-center gap-4 sm:gap-5 mb-6 sm:mb-8 relative z-10">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-gold-500 to-flame-600 p-[2px] shadow-gold-glow flex-shrink-0">
                     <div className="w-full h-full bg-[#0a1224] rounded-[14px] flex items-center justify-center text-gold-400">
-                      <Compass className="w-8 h-8" />
+                      <Compass className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">Nuestra Visión</h3>
-                    <p className="text-[11px] text-flame-500 font-black tracking-widest uppercase font-heading mt-1">Liderazgo & Expansión</p>
+                    <h3 className="text-xl sm:text-3xl font-black font-heading text-white">Nuestra Visión</h3>
+                    <p className="text-[10px] sm:text-[11px] text-flame-500 font-black tracking-widest uppercase font-heading mt-1">Liderazgo & Expansión</p>
                   </div>
                 </div>
 
@@ -214,7 +214,7 @@ export const MissionVision = () => {
                 return (
                   <div
                     key={idx}
-                    className="relative p-8 sm:p-10 rounded-[2.5rem] bg-[#0a1224]/80 backdrop-blur-xl border border-slate-800/80 flex flex-col justify-between group hover:border-gold-400/50 transition-all duration-500 overflow-hidden shadow-2xl hover:-translate-y-2"
+                    className="relative p-6 sm:p-10 rounded-[2.5rem] bg-[#0a1224]/80 backdrop-blur-xl border border-slate-800/80 flex flex-col justify-between group hover:border-gold-400/50 transition-all duration-500 overflow-hidden shadow-2xl hover:-translate-y-2"
                   >
                     {/* Abstract Number Watermark */}
                     <div className="absolute -top-6 -right-6 text-[120px] font-black text-slate-800/20 font-heading select-none pointer-events-none group-hover:text-gold-400/10 transition-colors duration-500">
@@ -225,15 +225,15 @@ export const MissionVision = () => {
                     <div className={`absolute -inset-x-10 -bottom-10 h-32 ${val.glow} blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
 
                     <div className="relative z-10">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${val.color} flex items-center justify-center text-white mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 relative`}>
+                      <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${val.color} flex items-center justify-center text-white mb-6 sm:mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 relative`}>
                         <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <Icon className="w-8 h-8 relative z-10" />
+                        <Icon className="w-6 h-6 sm:w-8 sm:h-8 relative z-10" />
                       </div>
-                      <h4 className="text-xl sm:text-2xl font-black font-heading text-white mb-4 group-hover:text-gold-400 transition-colors">{val.title}</h4>
+                      <h4 className="text-lg sm:text-2xl font-black font-heading text-white mb-3 sm:mb-4 group-hover:text-gold-400 transition-colors">{val.title}</h4>
                       <p className="text-slate-300 text-sm leading-relaxed font-light">{val.desc}</p>
                     </div>
 
-                    <div className="relative z-10 mt-8 pt-6 border-t border-slate-800/80 flex items-center gap-3">
+                    <div className="relative z-10 mt-6 sm:mt-8 pt-6 border-t border-slate-800/80 flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-navy-950 border border-slate-700 flex items-center justify-center group-hover:border-gold-400 transition-colors">
                         <Sparkles className="w-3.5 h-3.5 text-gold-400" />
                       </div>
