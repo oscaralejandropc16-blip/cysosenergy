@@ -104,7 +104,7 @@ export const MissionVision = () => {
               </div>
 
               {/* Image Area */}
-              <div className="order-1 lg:order-2 relative group h-72 sm:h-96 lg:h-full min-h-[400px] rounded-[2.5rem] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-slate-800">
+              <div className="order-1 lg:order-2 relative group h-72 sm:h-96 lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-slate-800">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
                 <div className="absolute inset-0 bg-gold-500/10 mix-blend-overlay z-10" />
                 <img 
@@ -130,7 +130,7 @@ export const MissionVision = () => {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 animate-fadeIn items-center">
               
               {/* Image Area */}
-              <div className="order-1 relative group h-72 sm:h-96 lg:h-full min-h-[400px] rounded-[2.5rem] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-slate-800">
+              <div className="order-1 relative group h-72 sm:h-96 lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-slate-800">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
                 <div className="absolute inset-0 bg-flame-500/10 mix-blend-overlay z-10" />
                 <img 
