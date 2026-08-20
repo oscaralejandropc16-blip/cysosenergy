@@ -832,7 +832,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       </div>
 
                       <button
-                        onClick={() => setDeleteConfirm({ type: 'library', id: item.id, title: item.name })}
+                        onClick={() => setDeleteConfirm({ type: 'library', id: item.path, title: item.name })}
                         className="w-full py-1.5 rounded-lg bg-navy-900 hover:bg-red-950 text-slate-400 hover:text-red-400 border border-white/10 text-[10px] font-bold flex items-center justify-center gap-1 transition-colors"
                       >
                         <Trash2 className="w-3 h-3" />
