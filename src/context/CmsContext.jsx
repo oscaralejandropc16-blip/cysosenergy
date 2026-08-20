@@ -21,7 +21,7 @@ const INITIAL_MEDIA_LIBRARY = [
 
 const INITIAL_HERO_CONTENT = {
   videoUrl: '/videos/IMG_7557.mp4',
-  posterUrl: '/images/IMG_7549.jpg',
+  posterUrl: '/images/cysos_casco_pov.jpg',
   badgeText: 'Soluciones Integrales para la Industria Energética • Venezuela',
   titlePart1: 'Creamos Soluciones y',
   titleGradient: 'Resolvemos Desafíos',
@@ -53,12 +53,12 @@ const INITIAL_KPIS = [
 ];
 
 const INITIAL_MEDIA = [
-  { id: 'media-1', title: 'Well Testing & Pruebas de Pozo', type: 'photo', url: '/images/ig_well_testing.png', caption: 'Servicio especializado con equipos de Well Testing a pozos petroleros en Venezuela.', category: 'operaciones' },
-  { id: 'media-2', title: 'Manifold de Pruebas & Válvulas de Seguridad', type: 'video', url: '/images/ig_valve_safety.png', videoUrl: '/videos/IMG_7557.mp4', caption: 'Maniobras de seguridad y válvula de control en manifold de pruebas de producción.', category: 'operaciones' },
-  { id: 'media-3', title: 'Muestra Reológica de Crudo Pesado', type: 'photo', url: '/images/ig_crude_sample.png', caption: 'Muestra reológica de crudo pesado previo a la dosificación de reductor CYSOS EOR System.', category: 'laboratorio' },
-  { id: 'media-4', title: 'Maniobras en Múltiple de Producción', type: 'video', url: '/images/ig_manifold.png', videoUrl: '/videos/IMG_7557.mp4', caption: 'Inspección técnica y maniobra de alineación en múltiple de producción en Faja del Orinoco.', category: 'operaciones' },
-  { id: 'media-5', title: 'Inyección Continua EOR System', type: 'video', url: '/images/IMG_7549.jpg', videoUrl: '/videos/IMG_7557.mp4', caption: 'Operación de inyección continua de reductores de viscosidad CYSOS EOR System en yacimiento.', category: 'quimica' },
-  { id: 'media-6', title: 'Equipo Multidisciplinario en Yacimiento', type: 'photo', url: '/images/IMG_7701.jpg', caption: 'Equipo multidisciplinario de profesionales e ingenieros CYSOS ENERGY en operaciones de campo.', category: 'equipo' },
+  { id: 'media-1', title: 'Identidad y Seguridad en Campo CYSOS', type: 'photo', url: '/images/cysos_casco_pov.jpg', caption: 'Compromiso y presencia de ingenieros de campo en operaciones de crudo pesado en Venezuela.', category: 'equipo' },
+  { id: 'media-2', title: 'Unidad de Inyección Química y Protección Contra Incendios', type: 'photo', url: '/images/cysos_skid_detalle.jpg', caption: 'Gabinete de inyección continua con extintor presurizado y rotulación industrial oficial.', category: 'quimica' },
+  { id: 'media-3', title: 'Operación y Apertura de Skid en Pozo Activo', type: 'photo', url: '/images/cysos_skid_operador.jpg', caption: 'Técnico de campo realizando inspección de líneas y bombas de dosificación en macolla.', category: 'operaciones' },
+  { id: 'media-4', title: 'Panorámica Operacional en la Faja del Orinoco', type: 'photo', url: '/images/cysos_balancin_sol.jpg', caption: 'Balancín petrolero y sistema de inyección química continua bajo cielo oriental.', category: 'operaciones' },
+  { id: 'media-5', title: 'Placa de Fabricación Oficial y Registro Legal', type: 'photo', url: '/images/cysos_placa_tecnica.jpg', caption: 'Modelo CyS 2026-I homologado ante el SAPI y con registro ambiental RACDA.', category: 'certificaciones' },
+  { id: 'media-6', title: 'Equipo Multidisciplinario en Yacimiento', type: 'photo', url: '/images/cysos_equipo_uniformes.jpg', caption: 'Personal técnico con uniforme oficial CYSOS ENERGY en inspección de campo.', category: 'equipo' },
   { id: 'truck-1', title: 'Camión Chuto', type: 'photo', url: '/images/logistics_trucks.png', caption: 'Vehículo automotor de operación libre, destinado al transporte de carga.', category: 'Logística, Izamiento y Transporte' },
   { id: 'truck-2', title: 'Chuto Volqueta', type: 'photo', url: '/images/logistics_trucks.png', caption: 'Unidad de arrastre destinada al traslado de productos a granel.', category: 'Logística, Izamiento y Transporte' },
   { id: 'truck-3', title: 'Chuto Tolva', type: 'photo', url: '/images/logistics_trucks.png', caption: 'Unidad de arrastre destinada al traslado de productos a granel, preferiblemente minerales en forma de pirámide.', category: 'Logística, Izamiento y Transporte' },
