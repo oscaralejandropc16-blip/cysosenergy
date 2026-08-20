@@ -69,7 +69,7 @@ export const Services = () => {
         </div>
 
         {/* Division Tab Selector */}
-        <div className="flex overflow-x-auto hide-scrollbar sm:grid sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-12 snap-x snap-mandatory pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:pb-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12">
           {services.map((tab) => {
             const Icon = IconMap[tab.icon] || FlaskConical;
             const isActive = activeTab === tab.id;
@@ -77,9 +77,9 @@ export const Services = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`p-4 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-center gap-3.5 min-w-[280px] sm:min-w-0 snap-center flex-shrink-0 ${
+                className={`p-3.5 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-center gap-3.5 w-full ${
                   isActive
-                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 border-gold-metallic text-white shadow-flame-glow scale-[1.02]'
+                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 border-gold-metallic text-white shadow-flame-glow scale-[1.02] sm:scale-105'
                     : 'luxury-card border-slate-800 text-slate-300 hover:border-gold-400/40 hover:text-white bg-[#0a1224]/60'
                 }`}
               >
