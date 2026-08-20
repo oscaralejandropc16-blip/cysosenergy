@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCms } from '../context/CmsContext';
-import { Target, Compass, Award, HeartHandshake, ShieldCheck, UserCheck, CheckCircle2, Sparkles, Building2 } from 'lucide-react';
+import { Target, Compass, Award, HeartHandshake, ShieldCheck, UserCheck, CheckCircle2, Sparkles, Building2, Users, MessageSquare, Lightbulb, Scale } from 'lucide-react';
 
 export const MissionVision = () => {
   const { companyInfo } = useCms();
@@ -193,25 +193,46 @@ export const MissionVision = () => {
             <div className="grid md:grid-cols-3 gap-6 sm:gap-8 animate-fadeIn">
               {[
                 {
-                  title: 'Compromiso con el Cliente',
-                  desc: 'Entender a profundidad las exigencias de cada campo petrolero y superar las expectativas operativas con respuesta oportuna 24/7.',
-                  icon: HeartHandshake,
-                  color: 'from-flame-500 to-orange-600',
-                  glow: 'bg-flame-500/20'
-                },
-                {
-                  title: 'Responsabilidad & Seguridad',
-                  desc: 'Ejecución rigurosa con altos estándares de seguridad HSE (PDVSA SI-HO-S), calidad ISO 9001 y respeto absoluto por el medio ambiente.',
+                  title: 'Responsabilidad',
+                  desc: 'Más de 20 años de experiencia documentada en el sector.',
                   icon: ShieldCheck,
                   color: 'from-gold-400 to-gold-600',
                   glow: 'bg-gold-400/20'
                 },
                 {
-                  title: 'Profesionalismo e Innovación',
-                  desc: 'Equipo multidisciplinario altamente capacitado, tecnología química de vanguardia y ética inquebrantable en la gestión de hidrocarburos.',
-                  icon: UserCheck,
+                  title: 'Colaboración',
+                  desc: 'Los empleados construyen relaciones sólidas en toda la compañía, saben brindar ayuda y recibir opiniones para el mejorar el desarrollo laboral.',
+                  icon: Users,
                   color: 'from-orange-500 to-flame-600',
                   glow: 'bg-orange-500/20'
+                },
+                {
+                  title: 'Enfoque en el cliente',
+                  desc: 'Generamos confianza en el cliente entregando resultados óptimos. Comprendemos y sabemos las necesidades del cliente y capacitamos a nuestro personal para brindar la mejor atención posible.',
+                  icon: HeartHandshake,
+                  color: 'from-flame-500 to-red-600',
+                  glow: 'bg-flame-500/20'
+                },
+                {
+                  title: 'Comunicación',
+                  desc: 'Trabajamos duro para ser claros, concisos y evitar errores de comunicación. Centrarse en la comunicación eficaz permite satisfacer y superar las necesidades del cliente.',
+                  icon: MessageSquare,
+                  color: 'from-gold-300 to-amber-500',
+                  glow: 'bg-gold-400/20'
+                },
+                {
+                  title: 'Desarrollo',
+                  desc: 'La formación continua y las oportunidades de crecimiento son más que beneficios, una forma de vida. Nuestro personal comparte información, se orienta y brindan comentarios.',
+                  icon: Lightbulb,
+                  color: 'from-orange-400 to-flame-500',
+                  glow: 'bg-orange-400/20'
+                },
+                {
+                  title: 'Honestidad',
+                  desc: 'Todos nuestros empleados aprenden a trabajar juntos a través de líneas y culturas basadas en la honestidad.',
+                  icon: Scale,
+                  color: 'from-amber-500 to-orange-600',
+                  glow: 'bg-amber-500/20'
                 }
               ].map((val, idx) => {
                 const Icon = val.icon;
