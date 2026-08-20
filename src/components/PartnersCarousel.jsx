@@ -97,7 +97,7 @@ export const PartnersCarousel = () => {
             <div
               key={`${partner.id}-${index}`}
               onClick={() => setSelectedClient(partner)}
-              className="flex-shrink-0 group/card relative p-6 sm:p-8 rounded-[2.5rem] bg-[#050A14]/60 backdrop-blur-2xl border border-white/5 hover:border-gold-500/30 transition-all duration-700 overflow-hidden flex items-center gap-6 min-w-[400px] sm:min-w-[480px] shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_40px_rgba(250,204,21,0.08)]"
+              className="flex-shrink-0 group/card relative p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-[#050A14]/60 backdrop-blur-2xl border border-white/5 hover:border-gold-500/30 transition-all duration-700 overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-[280px] sm:w-auto sm:min-w-[480px] shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_40px_rgba(250,204,21,0.08)]"
             >
               {/* Ultra-Premium Background Hover Glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-gold-500/0 via-transparent to-gold-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -105,7 +105,7 @@ export const PartnersCarousel = () => {
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-flame-500/10 rounded-full blur-[40px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
               {/* Glass Floating Logo Container */}
-              <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-white/[0.03] border border-white/10 flex items-center justify-center p-4 flex-shrink-0 shadow-2xl group-hover/card:scale-105 group-hover/card:-rotate-3 transition-transform duration-700 backdrop-blur-md overflow-hidden">
+              <div className="relative w-20 h-20 sm:w-32 sm:h-32 rounded-2xl sm:rounded-3xl bg-white/[0.03] border border-white/10 flex items-center justify-center p-3 sm:p-4 flex-shrink-0 shadow-2xl group-hover/card:scale-105 group-hover/card:-rotate-3 transition-transform duration-700 backdrop-blur-md overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
                 <div className="absolute inset-0 bg-white rounded-3xl opacity-[0.85] group-hover/card:opacity-100 transition-opacity duration-500" />
                 {partner.logoUrl ? (
@@ -117,28 +117,28 @@ export const PartnersCarousel = () => {
                     className="w-full h-full object-contain filter drop-shadow-sm relative z-10 scale-100 group-hover/card:scale-110 transition-transform duration-700"
                   />
                 ) : (
-                  <Building2 className="w-12 h-12 text-slate-800 relative z-10" />
+                  <Building2 className="w-10 h-10 sm:w-12 sm:h-12 text-slate-800 relative z-10" />
                 )}
               </div>
 
               {/* Text & Meta Information */}
-              <div className="flex-1 min-w-0 relative z-10 flex flex-col justify-center">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <h4 className="text-lg sm:text-xl font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors duration-500 tracking-tight">
+              <div className="flex-1 min-w-0 relative z-10 flex flex-col justify-center w-full">
+                <div className="flex items-start justify-between gap-3 mb-2 w-full">
+                  <h4 className="text-base sm:text-xl font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors duration-500 tracking-tight">
                     {partner.name}
                   </h4>
-                  <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover/card:bg-gold-500 group-hover/card:border-gold-500 group-hover/card:text-navy-950 transition-all duration-500 text-slate-400 flex-shrink-0 transform group-hover/card:rotate-45 group-hover/card:scale-110 shadow-lg">
-                    <ArrowUpRight className="w-4 h-4" />
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover/card:bg-gold-500 group-hover/card:border-gold-500 group-hover/card:text-navy-950 transition-all duration-500 text-slate-400 flex-shrink-0 transform group-hover/card:rotate-45 group-hover/card:scale-110 shadow-lg">
+                    <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </div>
                 </div>
                 
-                <p className="text-xs sm:text-sm text-slate-400/90 truncate font-light mb-4 tracking-wide group-hover/card:text-slate-300 transition-colors duration-500">
+                <p className="text-[11px] sm:text-sm text-slate-400/90 font-light mb-4 tracking-wide group-hover/card:text-slate-300 transition-colors duration-500 whitespace-normal line-clamp-2 sm:line-clamp-1">
                   {partner.sub}
                 </p>
                 
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 border border-white/5 group-hover/card:border-gold-500/20 group-hover/card:bg-black/60 transition-all duration-500 shadow-inner w-fit">
+                <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-black/40 border border-white/5 group-hover/card:border-gold-500/20 group-hover/card:bg-black/60 transition-all duration-500 shadow-inner w-fit">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.6)]" />
-                  <span className="text-[10px] font-bold uppercase text-slate-300 group-hover/card:text-gold-400 font-heading tracking-[0.2em] transition-colors duration-500">
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase text-slate-300 group-hover/card:text-gold-400 font-heading tracking-[0.2em] transition-colors duration-500">
                     {partner.type}
                   </span>
                 </div>
