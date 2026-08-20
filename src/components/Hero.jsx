@@ -60,16 +60,6 @@ const AnimatedCounter = ({ targetValue, decimals = 0, duration = 2000 }) => {
 
 export const Hero = () => {
   const { kpis, heroContent } = useCms();
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
-    }
-  }, [heroContent]);
-
   const currentHero = heroContent || {
     videoUrl: '/videos/IMG_7557.mp4',
     posterUrl: '/images/IMG_7549.jpg',
@@ -95,20 +85,25 @@ export const Hero = () => {
     <section id="inicio" className="relative pt-32 pb-16 md:pt-40 md:pb-20 bg-navy-950 min-h-screen flex flex-col justify-between overflow-hidden">
       
       {/* DYNAMIC CMS CINEMATIC VIDEO BACKGROUND */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          key={currentHero.videoUrl}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster={currentHero.posterUrl}
-          className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05] scale-105 transform"
-        >
-          <source src={currentHero.videoUrl} type="video/mp4" />
-        </video>
+      <div 
+        className="absolute inset-0 z-0 overflow-hidden"
+        dangerouslySetInnerHTML={{
+          __html: `
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              poster="${currentHero.posterUrl}"
+              class="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05] scale-105 transform"
+            >
+              <source src="${currentHero.videoUrl}" type="video/mp4" />
+            </video>
+          `
+        }}
+      >
+      </div>
         
         {/* Radial Dark Vignette Overlay - muy sutil para no tapar el video */}
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-navy-950/10" />
