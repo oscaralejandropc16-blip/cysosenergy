@@ -71,7 +71,7 @@ export const ViscosityCalculator = () => {
             
             {/* Controls Column */}
             <div className="lg:col-span-7 luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 shadow-2xl space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <h3 className="text-lg sm:text-xl font-black font-heading text-white flex items-center gap-2">
                   <Sliders className="w-5 h-5 text-flame-500" />
                   <span>Simulador Reológico (Skid Inyección Continua)</span>
@@ -83,7 +83,7 @@ export const ViscosityCalculator = () => {
 
               {/* Slider 1: API Gravity */}
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs">
                   <label className="text-slate-200 font-bold">Gravedad API del Crudo:</label>
                   <span className="text-gold-400 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
                     {apiGravity.toFixed(1)}° API ({apiGravity < 10 ? 'Extrapesado Faja' : 'Pesado'})
@@ -99,15 +99,15 @@ export const ViscosityCalculator = () => {
                   className="w-full h-2.5 bg-navy-900 rounded-lg appearance-none cursor-pointer accent-flame-500"
                 />
                 <div className="flex justify-between text-[10px] text-slate-400 font-medium">
-                  <span>6° API (Extrapesado)</span>
-                  <span>8.5° API (Faja del Orinoco)</span>
-                  <span>14° API (Pesado)</span>
+                  <span>6°<span className="hidden sm:inline"> API (Extrapesado)</span></span>
+                  <span className="hidden sm:block">8.5° API (Faja del Orinoco)</span>
+                  <span>14°<span className="hidden sm:inline"> API (Pesado)</span></span>
                 </div>
               </div>
 
               {/* Slider 2: Initial Viscosity */}
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs">
                   <label className="text-slate-200 font-bold">Viscosidad Inicial del Crudo (cPs):</label>
                   <span className="text-gold-400 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
                     {initialViscosity.toLocaleString('es-VE')} cPs
@@ -123,15 +123,15 @@ export const ViscosityCalculator = () => {
                   className="w-full h-2.5 bg-navy-900 rounded-lg appearance-none cursor-pointer accent-flame-500"
                 />
                 <div className="flex justify-between text-[10px] text-slate-400 font-medium">
-                  <span>2,000 cPs</span>
-                  <span>18,000 cPs (Típico Faja)</span>
-                  <span>50,000 cPs</span>
+                  <span>2,000<span className="hidden sm:inline"> cPs</span></span>
+                  <span className="hidden sm:block">18,000 cPs (Típico Faja)</span>
+                  <span>50,000<span className="hidden sm:inline"> cPs</span></span>
                 </div>
               </div>
 
               {/* Slider 3: Dosage PPM */}
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs">
                   <label className="text-slate-200 font-bold">Tasa de Inyección Skids Automatizados (PPM):</label>
                   <span className="text-flame-500 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-flame-500/40">
                     {dosagePpm} PPM
@@ -147,9 +147,9 @@ export const ViscosityCalculator = () => {
                   className="w-full h-2.5 bg-navy-900 rounded-lg appearance-none cursor-pointer accent-flame-500"
                 />
                 <div className="flex justify-between text-[10px] text-slate-400 font-medium">
-                  <span>800 PPM (Mínimo Operativo)</span>
-                  <span>1,000 PPM (Recomendado)</span>
-                  <span>1,500 PPM (Máx. Efectividad)</span>
+                  <span>800<span className="hidden sm:inline"> PPM (Mínimo)</span></span>
+                  <span className="hidden sm:block">1,000 PPM (Recomendado)</span>
+                  <span>1,500<span className="hidden sm:inline"> PPM (Máx)</span></span>
                 </div>
               </div>
 
@@ -181,7 +181,7 @@ export const ViscosityCalculator = () => {
             <div className="lg:col-span-5 luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 shadow-2xl flex flex-col justify-between">
               <div className="space-y-5">
                 
-                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-slate-800 gap-3">
                   <h3 className="text-base sm:text-lg font-black font-heading text-white">Impacto Operacional Validado</h3>
                   <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-black uppercase tracking-wider font-heading">
                     Hasta 92% Eficiencia
