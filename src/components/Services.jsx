@@ -121,6 +121,8 @@ export const Services = () => {
                 <img
                   src={currentDivision.image}
                   alt={currentDivision.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.75]"
                 />
               )}
@@ -352,6 +354,8 @@ export const Services = () => {
                         <img 
                           src={item.url} 
                           alt={item.title}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 filter brightness-90 group-hover:brightness-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent opacity-90" />

@@ -110,6 +110,8 @@ export const MissionVision = () => {
                 <img 
                   src="/images/cysos_skid_operador.jpg" 
                   alt="Misión Cysos Energy" 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-700 ease-out" 
                 />
                 
@@ -136,6 +138,8 @@ export const MissionVision = () => {
                 <img 
                   src="/images/cysos_balancin_sol.jpg" 
                   alt="Visión Cysos Energy" 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-700 ease-out" 
                 />
                 

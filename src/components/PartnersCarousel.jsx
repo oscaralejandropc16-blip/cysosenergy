@@ -112,6 +112,8 @@ export const PartnersCarousel = () => {
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain filter drop-shadow-sm relative z-10 scale-100 group-hover/card:scale-110 transition-transform duration-700"
                   />
                 ) : (
