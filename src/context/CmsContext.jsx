@@ -95,42 +95,36 @@ const INITIAL_COMPANY_INFO = {
 
 const INITIAL_SERVICES = [
   {
-    id: 'quimica',
-    category: 'División 1: Tecnología Química para Crudos Pesados y Extrapesados (XP)',
-    title: 'Reductores de Viscosidad & Desemulsionantes de Alto Rendimiento',
-    name: 'Química de Producción & EOR',
-    image: '/images/cysos_quimica_lipesa.jpg',
-    videoUrl: '/videos/maniobra.mp4',
-    bgVideoUrl: '',
-    icon: 'FlaskConical',
-    summary: 'Formulación y aplicación química avanzada para optimizar el transporte de crudos pesados/extrapesados, reducir el consumo de diluyente y maximizar la deshidratación bajo norma ISO 9001.',
-    items: [
-      { name: 'Reductor Permanente de Viscosidad & Demulsificante (XP)', desc: 'Hasta 38% de ahorro en diluyente, 92% de reducción de viscosidad y alivio de 30 a 50+ PSI en cabezales (800-1.500 ppm).' },
-      { name: 'Desemulsionante de Alto Rendimiento (97% Eficiencia)', desc: 'Reduce corte de agua de 7,0% a 0,8%-1,0% a 100°F-110°F con dosificación de solo 82-90 ppm. Validado en 1.500 BCNPD.' },
-      { name: 'Dispersantes de Parafinas y Asfaltenos', desc: 'Previene la deposición orgánica en sartas tubulares, bombas BCP y oleoductos.' },
-      { name: 'Ácidos Especializados (HCl, Acético, HCl+HF)', desc: 'Para tratamientos de acidificación de matriz, descalcificación y estimulación profunda sin taladro.' },
-      { name: 'Sistemas de Limpieza con Xileno & Solvente', desc: 'Remoción de depósitos pesados y humectación de sólidos en zonas de disparo.' },
-      { name: 'Inhibidores de Corrosión e Incrustación', desc: 'Preservación de la integridad mecánica de tubulares, bombas ESP y líneas de flujo.' },
-      { name: 'Secuestrantes de H2S & Antiespumantes', desc: 'Gestión de gases ácidos H2S y control de espuma en separadores multifásicos.' },
-      { name: 'Reductores de Fricción en Línea', desc: 'Mejora el caudal de bombeo y disminuye la caída de presión en líneas de transporte.' }
-    ]
-  },
-  {
     id: 'intervencion',
-    category: 'División 2: Intervención y Recuperación de Pozos',
-    title: 'Workover, Pulling y Unidades Flush By 24/7',
+    category: 'División 1: Intervención y Recuperación de Pozos',
+    title: 'Workover, Pulling y Unidad Kenmex 24/7',
     name: 'Intervención de Pozos',
     image: '/images/coiled_tubing.png',
     videoUrl: '/videos/IMG_7557.mp4',
     bgVideoUrl: '',
     icon: 'Flame',
-    summary: 'Reacondicionamiento total de pozos con taladros de alta potencia (350 HP a 750 HP), unidades Flush By autotransportables y mantenimiento técnico de sistemas BCP/ESP.',
+    summary: 'Reacondicionamiento total de pozos y extracción de tuberías/bombas con taladros de alta potencia (350 HP a 750 HP), Unidad Kenmex para operaciones de subsuelo 24/7 y mantenimiento técnico especializado.',
     items: [
-      { name: 'Taladros de Workover y Pulling (350 a 750 HP)', desc: 'Rehabilitación y reparación total de pozos con taladros certificados de alta capacidad.' },
-      { name: 'Unidad Flush By 24/7 Autotransportable', desc: 'Operaciones de subsuelo 24/7 con personal certificado para intervenciones rápidas y completación.' },
-      { name: 'Reparación de Sistemas BCP & Bombas ESP', desc: 'Mantenimiento especializado de Bombas de Cavidad Progresiva y Electrosumergibles.' },
-      { name: 'Limpieza Mecánica Especializada', desc: 'Herramientas como molinos, escariadores y magnetos para eliminación de residuos.' },
-      { name: 'Mantenimiento de Generadores Industriales', desc: 'Soporte técnico a plantas de generación Caterpillar y motores marinos.' }
+      { name: 'Workover y Pulling', desc: 'Reacondicionamiento total de pozos y extracción de tuberías/bombas con taladros de alta potencia (350 HP a 750 HP).' },
+      { name: 'Mantenimiento y Reparación Técnica', desc: 'Reparación especializada de bombas industriales, sistemas BCP y ESP, y reparación de plantas eléctricas.' },
+      { name: 'Unidad Kenmex', desc: 'Operaciones de subsuelo 24/7 con personal certificado para intervenciones profundas y completación.' },
+      { name: 'Limpieza Mecánica', desc: 'Herramientas especializadas como molinos, escariadores y magnetos para eliminar residuos y sedimentos.' }
+    ]
+  },
+  {
+    id: 'quimica',
+    category: 'División 2: Química de Producción y Optimización',
+    title: 'Reductores de Viscosidad & Desemulsionantes de Alto Rendimiento',
+    name: 'Química de Producción',
+    image: '/images/cysos_quimica_lipesa.jpg',
+    videoUrl: '/videos/maniobra.mp4',
+    bgVideoUrl: '',
+    icon: 'FlaskConical',
+    summary: 'Servicio integral de suministro e inyección de especialidades químicas diseñadas para maximizar la eficiencia operativa y proteger la infraestructura.',
+    items: [
+      { name: 'Optimización de Crudos Pesados', desc: 'Reductor permanente de viscosidad (en fase de hidrocarburos), desmulsificantes y rompedores rápidos tipo slug para una separación eficiente de fases, dispersantes de parafinas/asfáltenos y dispersante de crudo, reductor de fricción para mejora de flujo en tuberías.' },
+      { name: 'Estimulación y Tratamiento de Pozos', desc: 'Suministro de ácidos especializados, ácido clorhídrico, ácido acético y mezcla de HCl y HF, sistemas de limpieza con xileno, solvente mutual y humectante de sólidos, surfactantes a base de agua para tratamientos específicos.' },
+      { name: 'Protección de Activos y Acondicionamiento', desc: 'Inhibidores de corrosión e incrustación para preservar la integridad de equipos, antiespumantes y clarificantes para el control de procesos, secuestrante para la gestión de gases ácidos.' }
     ]
   },
   {
@@ -142,31 +136,27 @@ const INITIAL_SERVICES = [
     videoUrl: '/videos/IMG_7557.mp4',
     bgVideoUrl: '',
     icon: 'Truck',
-    summary: 'Flota especializada para transporte pesado de fluidos, lodos y químicos, grúas telescópicas de gran tonelaje y maquinaria pesada CAT para movimiento de tierra.',
+    summary: 'Flota especializada de transporte pesado para carga y fluidos, grúas telescópicas certificadas de hasta 110 toneladas y maquinaria pesada CAT para movimiento de tierra.',
     items: [
-      { name: 'Chutos Vacuum & Cisternas Certificadas', desc: 'Transporte de fluidos de perforación, aguas de producción y químicos a granel.' },
-      { name: 'Chutos Tolva, Volqueta, Batea & Low-Boy', desc: 'Transporte de minerales, cemento, barita, tuberías y cargas sobredimensionadas.' },
-      { name: 'Grúas Telescópicas (60 Ton, 70 Ton y 110 Ton)', desc: 'Equipos de izamiento pesado certificados para maniobras críticas en taladros.' },
-      { name: 'Brazos Hidráulicos (7 Ton a 35 Ton)', desc: 'Instalados en camiones de carga para izamiento autónomo en bases operativas.' },
-      { name: 'Excavadora Jumbo 320 CAT & Payloaders', desc: 'Movimiento de tierra, adecuación de locaciones y saneamiento ambiental.' },
-      { name: 'Side Boom (Pluma Lateral) & Super Vactor', desc: 'Tendido de líneas de oleoductos y mantenimiento de redes industriales.' }
+      { name: 'Transporte Especializado', desc: 'Flota de chutos con tolva, batea, vacuum y low-boy para carga pesada y fluidos.' },
+      { name: 'Equipos de Izamiento', desc: 'Alquiler de grúas telescópicas con capacidad de hasta 110 toneladas y brazos hidráulicos.' },
+      { name: 'Movimiento de Tierra', desc: 'Operaciones con excavadoras jumbo, retroexcavadoras, payloaders y vibrocompactadores.' }
     ]
   },
   {
     id: 'procura',
-    category: 'División 4: Ingeniería, Procura y Suministros ISO 9001',
+    category: 'División 4: Ingeniería, Procura y Suministros Industriales (ISO 9001)',
     title: 'Sourcing Internacional y Control de Presión API',
     name: 'Procura ISO 9001',
     image: '/images/cysos_tote_quimico.jpg',
     videoUrl: '/videos/IMG_7557.mp4',
     bgVideoUrl: '',
     icon: 'Globe',
-    summary: 'Importación directa con alianzas globales en USA, suministro de tuberías certificadas, válvulas API, motores Cummins y equipos periféricos de campo.',
+    summary: 'Ingeniería, procura y suministros industriales con estándares de calidad ISO 9001, sourcing internacional directo desde USA y equipos de control de presión.',
     items: [
-      { name: 'Sourcing Internacional de Tuberías ERW / Sin Costura', desc: 'Importación directa de tubulares y tuberías flexibles reforzadas RTP 2" y 4".' },
-      { name: 'Válvulas API & Motores Cummins', desc: 'Importación e instalación de válvulas de alta presión y motores industriales para bombeo.' },
-      { name: 'Control de Presión (Preventores BOP & Chokes)', desc: 'Alquiler y venta de preventores, chokes manuales, mangueras Chiksan y bombas triplex.' },
-      { name: 'Campers Habitacionales & Torres de Luz', desc: 'Campers climatizados para personal de campo, torres de iluminación y generadores.' }
+      { name: 'Sourcing Internacional', desc: 'Alianzas directas para la importación de tuberías (ERW/Sin costura), válvulas API y motores Cummins.' },
+      { name: 'Control de Presión', desc: 'Alquiler y venta de preventores, chokes manuales, mangueras Chiksan y bombas triplex.' },
+      { name: 'Alquiler de Equipos Periféricos', desc: 'Campers habitacionales, torres de iluminación, montacargas y contenedores para residuos peligrosos.' }
     ]
   }
 ];

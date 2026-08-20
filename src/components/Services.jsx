@@ -10,7 +10,7 @@ import {
 export const Services = () => {
   const { mediaItems = [], services = [] } = useCms();
   const [selectedService, setSelectedService] = useState(null);
-  const [activeTab, setActiveTab] = useState('quimica');
+  const [activeTab, setActiveTab] = useState('intervencion');
   const [activeVideoModal, setActiveVideoModal] = useState(null);
   const [isFleetModalOpen, setIsFleetModalOpen] = useState(false);
 
@@ -90,7 +90,7 @@ export const Services = () => {
                 </div>
                 <div className="min-w-0 flex-1">
                   <span className="text-xs uppercase tracking-wider text-gold-300 font-bold block mb-0.5 opacity-80">
-                    {tab.id === 'quimica' ? 'División 1' : tab.id === 'intervencion' ? 'División 2' : tab.id === 'logistica' ? 'División 3' : 'División 4'}
+                    División {services.indexOf(tab) + 1}
                   </span>
                   <span className="text-xs sm:text-sm font-black font-heading leading-tight block truncate">
                     {tab.name}
