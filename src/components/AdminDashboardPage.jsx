@@ -434,7 +434,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       )}
 
       {/* FULL PAGE HEADER */}
-      <header className="fixed top-0 left-0 right-0 w-full bg-[#03050A]/90 backdrop-blur-2xl border-b border-white/10 z-50">
+      <header className="flex-none bg-[#03050A]/90 backdrop-blur-2xl border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
           <div className="flex items-center gap-4">
@@ -468,8 +468,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
         </div>
       </header>
 
-      {/* WORKSPACE LAYOUT */}
-      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 mt-20 grid lg:grid-cols-12 gap-8 relative">
+      {/* SCROLLABLE WORKSPACE LAYOUT */}
+      <main className="flex-1 overflow-y-auto w-full relative z-10 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 grid lg:grid-cols-12 gap-8">
         
         {/* SIDE NAVIGATION */}
         <aside className="lg:col-span-3">
@@ -1893,10 +1894,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
             </div>
           )}
+        </div>
+      </main>
 
-        </main>
-
-      </div>
     </div>
   );
 };
