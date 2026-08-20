@@ -77,7 +77,7 @@ export const InstagramGallery = () => {
               >
                 <div className="w-full h-full rounded-full bg-[#050A14] flex items-center justify-center p-1 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] overflow-hidden">
                   <img 
-                    src={companyInfo?.logoUrl || '/images/cysos_instagram_avatar.svg'} 
+                    src={companyInfo?.logoUrl || '/images/cysos_logo.png'} 
                     alt="Cysos Energy Instagram" 
                     className="w-[85%] h-[85%] object-contain"
                   />

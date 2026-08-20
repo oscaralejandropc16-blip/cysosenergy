@@ -79,11 +79,18 @@ const INITIAL_MEDIA = [
 ];
 
 const INITIAL_COMPANY_INFO = {
-  logoUrl: '', operationsVideoUrl: '/videos/maniobra.mp4', instagramPosts: '18', instagramFollowers: '3,573', instagramFollowing: '20',
+  logoUrl: 'https://res.cloudinary.com/wv92q44j/image/upload/v1787175974/t7ut2s7wz85xhjlsaooe.png',
+  operationsVideoUrl: '/videos/maniobra.mp4',
+  instagramPosts: '18',
+  instagramFollowers: '3,573',
+  instagramFollowing: '20',
   instagramBio: `Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.`,
   mision: `Brindar soluciones integrales en ingeniería, procura internacional, logística pesada, intervención de pozos y química de producción petrolera, con un equipo altamente capacitado de profesionales, técnicos y personal operativo. Nos comprometemos a ejecutar proyectos con los más altos estándares de calidad (ISO 9001) y seguridad HSE (PDVSA SI-HO-S), garantizando respuesta oportuna, efectividad y protección ambiental en Venezuela.`,
   vision: `Consolidarnos como la empresa venezolana líder en ingeniería, procura, construcción y servicios petroleros especializados, destacada por la innovación en soluciones para la recuperación de pozos, inyección de reductores de viscosidad y logística de izamiento pesado, garantizando la confianza de nuestros clientes y el crecimiento económico del país.`,
-  direccion: `C.C. Terrazas del Norte II, Maturín, Edo. Monagas, Venezuela`, telefonos: `0414-0596012 / 0412-4817113`, email: `MANAGER@CYSOS.ENERGY`, rif: `J-50478054-4`
+  direccion: `C.C. Terrazas del Norte II, Maturín, Edo. Monagas, Venezuela`,
+  telefonos: `0414-0596012 / 0412-4817113`,
+  email: `MANAGER@CYSOS.ENERGY`,
+  rif: `J-50478054-4`
 };
 
 const INITIAL_SERVICES = [
