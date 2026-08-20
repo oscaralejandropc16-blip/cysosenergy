@@ -8,8 +8,14 @@ import {
 export const HumanOperations = () => {
   const { companyInfo } = useCms();
   const [activeCategory, setActiveCategory] = useState('all');
+  const [visibleCount, setVisibleCount] = useState(6);
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  const handleCategoryChange = (catId) => {
+    setActiveCategory(catId);
+    setVisibleCount(6);
+  };
 
   const gallery = [
     {
@@ -184,7 +190,7 @@ export const HumanOperations = () => {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
+                onClick={() => handleCategoryChange(cat.id)}
                 className={`px-4 sm:px-5 py-2 rounded-xl text-xs font-black font-heading transition-all whitespace-nowrap flex items-center gap-2 snap-center flex-shrink-0 ${
                   activeCategory === cat.id
                     ? 'bg-gradient-to-r from-flame-500 to-gold-600 text-white shadow-flame-glow scale-[1.02]'
@@ -203,8 +209,8 @@ export const HumanOperations = () => {
         </div>
 
         {/* Dynamic Balanced Photo Grid (3 cols on desktop, 2 on tablet, 1 on mobile) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20 animate-fadeIn">
-          {filteredGallery.map((item, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-10 animate-fadeIn">
+          {filteredGallery.slice(0, visibleCount).map((item, index) => (
             <div
               key={item.id}
               onClick={() => openLightbox(index)}
@@ -258,6 +264,19 @@ export const HumanOperations = () => {
             </div>
           ))}
         </div>
+
+        {/* Load More Button */}
+        {visibleCount < filteredGallery.length && (
+          <div className="flex justify-center mb-16 sm:mb-20 animate-fadeIn">
+            <button
+              onClick={() => setVisibleCount(prev => prev + 6)}
+              className="px-8 py-3.5 rounded-2xl bg-navy-900/80 hover:bg-navy-800 text-gold-400 text-xs font-black uppercase tracking-widest font-heading border border-gold-400/30 hover:border-gold-400 transition-all shadow-[0_0_20px_rgba(250,204,21,0.05)] flex items-center gap-2 transform hover:-translate-y-1"
+            >
+              <span>Ver más fotos operativas</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
 
         {/* Operational Highlights Metrics */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
