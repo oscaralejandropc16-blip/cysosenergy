@@ -21,14 +21,9 @@ const isSecretAdminRoute = () => {
   const path = window.location.pathname.toLowerCase();
   const search = window.location.search.toLowerCase();
   return (
-    hash === '#cysos-panel' || 
-    hash === '#portal-interno' || 
-    hash === '#admin' ||
-    path.includes('/cysos-panel') ||
-    path.includes('/portal-interno') ||
-    path.includes('/admin') ||
-    search.includes('cysos-panel') ||
-    search.includes('admin=true')
+    hash === '#acceso-corporativo-cysos-2026' || 
+    path.includes('/acceso-corporativo-cysos-2026') ||
+    search.includes('acceso-corporativo-cysos-2026')
   );
 };
 
@@ -64,7 +59,7 @@ function MainAppContent() {
   }, [isAdminOpen]);
 
   const handleReturnToWeb = () => {
-    if (window.location.pathname.includes('/admin') || window.location.pathname.includes('/cysos-panel')) {
+    if (window.location.pathname.includes('/acceso-corporativo-cysos-2026')) {
       window.history.pushState({}, '', '/');
     }
     window.location.hash = '';

@@ -185,7 +185,21 @@ export const CmsProvider = ({ children }) => {
   const [services, setServices] = useState(INITIAL_SERVICES);
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(() => { try { return localStorage.getItem('cysos_admin_session') === 'true'; } catch { return false; } });
+  const [isLoggedIn, setIsLoggedIn] = useState(() => { 
+    try { 
+      const session = localStorage.getItem('cysos_admin_session');
+      const expiry = localStorage.getItem('cysos_admin_session_expiry');
+      if (session === 'true' && expiry) {
+        if (new Date().getTime() < parseInt(expiry, 10)) {
+          return true;
+        } else {
+          localStorage.removeItem('cysos_admin_session');
+          localStorage.removeItem('cysos_admin_session_expiry');
+        }
+      }
+      return false;
+    } catch { return false; } 
+  });
 
   // 1. Carga inicial desde Supabase Database
   useEffect(() => {
@@ -242,7 +256,11 @@ export const CmsProvider = ({ children }) => {
   const loginAdmin = (password) => {
     if (password === 'cysos2026' || password === 'admin') {
       setIsLoggedIn(true);
-      try { localStorage.setItem('cysos_admin_session', 'true'); } catch (e) {}
+      try { 
+        localStorage.setItem('cysos_admin_session', 'true'); 
+        const expiry = new Date().getTime() + 24 * 60 * 60 * 1000;
+        localStorage.setItem('cysos_admin_session_expiry', expiry.toString());
+      } catch (e) {}
       return { success: true };
     }
     return { success: false, error: 'Contraseña incorrecta.' };
@@ -250,7 +268,10 @@ export const CmsProvider = ({ children }) => {
 
   const logoutAdmin = () => {
     setIsLoggedIn(false);
-    try { localStorage.removeItem('cysos_admin_session'); } catch (e) {}
+    try { 
+      localStorage.removeItem('cysos_admin_session'); 
+      localStorage.removeItem('cysos_admin_session_expiry');
+    } catch (e) {}
   };
 
   // Funciones de Mutación
