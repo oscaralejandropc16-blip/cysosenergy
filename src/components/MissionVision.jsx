@@ -108,7 +108,7 @@ export const MissionVision = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
                 <div className="absolute inset-0 bg-gold-500/10 mix-blend-overlay z-10" />
                 <img 
-                  src="/images/cysos_equipo_uniformes.jpg" 
+                  src="/images/cysos_skid_operador.jpg" 
                   alt="Misión Cysos Energy" 
                   className="w-full h-full object-cover transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-700 ease-out" 
                 />
@@ -134,7 +134,7 @@ export const MissionVision = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
                 <div className="absolute inset-0 bg-flame-500/10 mix-blend-overlay z-10" />
                 <img 
-                  src="/images/cysos_campo_balancin.jpg" 
+                  src="/images/cysos_balancin_sol.jpg" 
                   alt="Visión Cysos Energy" 
                   className="w-full h-full object-cover transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-700 ease-out" 
                 />
