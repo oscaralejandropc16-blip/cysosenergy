@@ -136,7 +136,7 @@ const INITIAL_SERVICES = [
     category: 'División 3: Logística, Izamiento y Transporte Pesado',
     title: 'Grúas Telescópicas hasta 110 Toneladas y Maquinaria Pesada',
     name: 'Logística & Izamiento',
-    image: '/images/cysos_logistica_camion.jpg',
+    image: '/images/cysos_camion_tambores_campo.jpg',
     bgVideoUrl: '',
     icon: 'Truck',
     summary: 'Flota especializada para transporte pesado de fluidos, lodos y químicos, grúas telescópicas de gran tonelaje y maquinaria pesada CAT para movimiento de tierra.',

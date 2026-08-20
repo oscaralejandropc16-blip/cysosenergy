@@ -65,6 +65,18 @@ export const HumanOperations = () => {
       category: 'Cumplimiento Normativo',
       image: '/images/cysos_placa_tecnica.jpg',
       desc: 'Equipos fabricados en 2026 con capacidad certificada de 50 GLN/HORA, registro ambiental RACDA y propiedad intelectual ante el SAPI.'
+    },
+    {
+      title: 'Supervisión Técnica Permanente en Estaciones de Inyección',
+      category: 'Liderazgo & Operaciones',
+      image: '/images/cysos_supervisor_skid.jpg',
+      desc: 'Supervisores e inspectores en sitio garantizando continuidad operacional, control de dosificación y seguridad industrial.'
+    },
+    {
+      title: 'Distribución y Entrega de Tambores Químicos en Macolla',
+      category: 'Logística de Transporte Pesado',
+      image: '/images/cysos_camion_tambores_campo.jpg',
+      desc: 'Flota operativa trasladando tambores de Reductor de Viscosidad y Desemulsionante directo a pozos activos en la Faja del Orinoco.'
     }
   ];
 
