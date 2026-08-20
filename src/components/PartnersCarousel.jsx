@@ -146,72 +146,111 @@ export const PartnersCarousel = () => {
         </div>
       </div>
 
-      {/* INTERACTIVE CLIENT DETAIL MODAL */}
+      {/* INTERACTIVE CLIENT DETAIL MODAL - ULTRA-LUXURY REDESIGN */}
       {selectedClient && (
         <div 
           onClick={() => setSelectedClient(null)}
-          className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 bg-[#050A14]/90 backdrop-blur-3xl animate-fadeIn cursor-pointer"
+          className="fixed inset-0 z-[140] flex items-center justify-center p-4 sm:p-6 bg-navy-950/90 backdrop-blur-2xl animate-fadeIn cursor-pointer"
         >
-          {/* Floating Close Button Top Right */}
-          <button
-            onClick={() => setSelectedClient(null)}
-            className="fixed top-6 right-6 sm:top-10 sm:right-10 z-[130] w-12 h-12 rounded-full bg-slate-800/50 hover:bg-gold-400 hover:text-navy-950 text-white flex items-center justify-center transition-all transform hover:scale-110 shadow-xl backdrop-blur-md border border-white/10 hover:border-gold-400"
-            title="Cerrar (Esc)"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-xl rounded-[2.5rem] bg-[#0a1224]/90 backdrop-blur-xl border border-slate-800/80 p-8 sm:p-10 space-y-8 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative cursor-default overflow-hidden"
+            className="w-full max-w-2xl rounded-[2.5rem] bg-[#070e22]/95 backdrop-blur-3xl border border-gold-metallic/40 p-6 sm:p-10 space-y-7 shadow-[0_20px_80px_rgba(0,0,0,0.85)] relative cursor-default overflow-hidden animate-scaleUp"
           >
-            {/* Modal Internal Glow */}
-            <div className="absolute -top-32 -right-32 w-64 h-64 bg-gold-400/10 rounded-full blur-[60px] pointer-events-none" />
+            {/* Ambient Multi-Mesh Lighting */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-gold-500/10 rounded-full blur-[90px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-flame-500/10 rounded-full blur-[80px] pointer-events-none" />
 
-            {/* Header: Logo and Title */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-6 relative z-10">
-              <div className="w-28 h-20 sm:w-32 sm:h-24 rounded-2xl bg-white/5 border border-white/10 p-2 flex items-center justify-center shadow-2xl flex-shrink-0 backdrop-blur-sm relative overflow-hidden">
-                <div className="absolute inset-0 bg-white rounded-2xl opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.1)]" />
-                {selectedClient.logoUrl ? (
-                  <img src={selectedClient.logoUrl} alt={selectedClient.name} className="w-full h-full scale-110 object-contain filter drop-shadow-md relative z-10" />
-                ) : (
-                  <Building2 className="w-10 h-10 text-slate-800 relative z-10" />
-                )}
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">{selectedClient.name}</h3>
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
-                  <span className="text-[10px] font-black uppercase text-gold-400 tracking-widest font-heading">{selectedClient.type}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Contract Details */}
-            <div className="relative z-10 border-l-2 border-gold-400/50 pl-5 sm:pl-6 space-y-3">
-              <div className="flex items-center gap-2.5">
-                <FileCheck2 className="w-5 h-5 text-gold-400" />
-                <span className="text-xs uppercase font-black tracking-widest text-white font-heading">
-                  Alcance Operativo del Contrato
-                </span>
-              </div>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-light">
-                {selectedClient.contract}
-              </p>
-            </div>
-
-            {/* Footer */}
-            <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-slate-800/80">
-              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest font-heading">Normas SI-HO-S & ISO 9001</span>
+            {/* Top Bar with Integrated Close Button */}
+            <div className="flex items-center justify-between border-b border-white/10 pb-5 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-400 text-[10px] font-black uppercase tracking-widest font-heading shadow-inner">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.8)]" />
+                <span>Alianza Corporativa Estratégica</span>
               </div>
 
               <button
                 onClick={() => setSelectedClient(null)}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gold-400 hover:bg-gold-300 text-navy-950 font-black text-[11px] uppercase tracking-widest font-heading transition-colors shadow-lg hover:shadow-gold-400/20"
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-flame-600 border border-white/10 hover:border-flame-500 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg"
+                title="Cerrar ventana (Esc)"
               >
-                Cerrar Panel
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Header: Logo and Corporate Info */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6 relative z-10">
+              {/* Refined Glass/Glossy Logo Container */}
+              <div className="w-28 h-24 sm:w-36 sm:h-28 rounded-3xl bg-white p-3.5 flex items-center justify-center shadow-2xl flex-shrink-0 border border-white/30 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-slate-100" />
+                {selectedClient.logoUrl ? (
+                  <img 
+                    src={selectedClient.logoUrl} 
+                    alt={selectedClient.name} 
+                    className="w-full h-full object-contain filter drop-shadow-sm relative z-10 scale-100" 
+                  />
+                ) : (
+                  <Building2 className="w-12 h-12 text-slate-800 relative z-10" />
+                )}
+              </div>
+
+              <div className="space-y-2 flex-1 min-w-0">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-navy-900/90 border border-gold-400/30 text-[10px] font-black uppercase text-gold-400 tracking-wider font-heading">
+                  <Award className="w-3.5 h-3.5 text-flame-500" />
+                  <span>{selectedClient.type || 'Cliente Homologado'}</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white tracking-tight leading-tight">
+                  {selectedClient.name}
+                </h3>
+                {selectedClient.sub && (
+                  <p className="text-xs text-slate-300 font-light leading-snug">
+                    {selectedClient.sub}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Contract & Operational Scope Box */}
+            <div className="relative z-10 rounded-3xl bg-navy-950/90 border border-slate-800 p-6 sm:p-7 space-y-3.5 shadow-inner">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-xl bg-gold-400/10 border border-gold-400/30 flex items-center justify-center text-gold-400 flex-shrink-0 shadow-gold-glow">
+                  <FileCheck2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-xs uppercase font-black tracking-widest text-white font-heading block">
+                    Alcance Operativo del Contrato
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-light">Servicios y equipos suministrados por CYSOS ENERGY</span>
+                </div>
+              </div>
+              
+              <p className="text-sm text-slate-200 leading-relaxed font-light pl-1 pt-1 border-t border-slate-800/80">
+                {selectedClient.contract}
+              </p>
+
+              {/* Operational Metadata Badges */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-black/40 border border-white/5 text-[11px] text-slate-300">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] flex-shrink-0" />
+                  <span>Estatus: <strong className="text-white font-bold">Contrato Ejecutado / Vigente</strong></span>
+                </div>
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-black/40 border border-white/5 text-[11px] text-slate-300">
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0" />
+                  <span>Estándar: <strong className="text-white font-bold">Homologación PDVSA</strong></span>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+              <div className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 w-full sm:w-auto">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <span className="text-[11px] font-bold text-emerald-300 font-heading">Normas PDVSA SI-HO-S & Calidad ISO 9001</span>
+              </div>
+
+              <button
+                onClick={() => setSelectedClient(null)}
+                className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 text-white font-black text-xs uppercase tracking-wider font-heading transition-all shadow-flame-glow transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Cerrar Detalle
               </button>
             </div>
           </div>
