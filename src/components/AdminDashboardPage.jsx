@@ -521,7 +521,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
         </aside>
 
         {/* MAIN WORKSPACE CONTENT AREA */}
-        <main className="lg:col-span-9 space-y-6">
+        <section className="lg:col-span-9 space-y-6">
           
           {/* TAB 1: HERO & VIDEO MANAGER */}
           {activeTab === 'hero' && (
@@ -1894,6 +1894,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
             </div>
           )}
+        </section>
         </div>
       </main>
 
