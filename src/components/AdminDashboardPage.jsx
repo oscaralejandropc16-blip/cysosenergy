@@ -1326,9 +1326,59 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                         className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-slate-200 leading-relaxed"
                       ></textarea>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800">
-                        <div>
-                          <label className="text-slate-400 font-bold block mb-1">Imagen de Fondo (URL):</label>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-800">
+                        {/* Video Operativo Popup */}
+                        <div className="p-4 rounded-2xl bg-black/40 border border-gold-500/20 space-y-2">
+                          <label className="text-xs font-black text-gold-400 flex items-center gap-1.5">
+                            <Video className="w-3.5 h-3.5 text-flame-500" />
+                            <span>Video Operativo Individual:</span>
+                          </label>
+                          <p className="text-[10px] text-slate-400">Video específico que se abre en el botón "Registro Operativo"</p>
+                          <input
+                            type="text"
+                            value={srv.videoUrl || ''}
+                            onChange={(e) => {
+                              updateService(srv.id, 'videoUrl', e.target.value);
+                              triggerSaveNotification();
+                            }}
+                            placeholder="Link de video MP4 o YouTube..."
+                            className="w-full bg-black/60 border border-white/10 focus:border-gold-500/50 text-white rounded-xl p-2.5 text-xs text-gold-400 font-mono"
+                          />
+                          <div className="flex gap-2 pt-1">
+                            <button
+                              type="button"
+                              onClick={() => openMediaPicker((url) => {
+                                updateService(srv.id, 'videoUrl', url);
+                                triggerSaveNotification();
+                              }, 'video')}
+                              className="flex-1 py-1.5 rounded-lg bg-navy-950 hover:bg-white/5 text-gold-400 text-[11px] font-extrabold border border-gold-metallic/30 flex items-center justify-center gap-1"
+                            >
+                              <FolderOpen className="w-3 h-3" />
+                              <span>Biblioteca</span>
+                            </button>
+                            <label className="cursor-pointer flex-1 py-1.5 rounded-lg bg-flame-600 hover:bg-flame-500 text-white text-[11px] font-extrabold flex items-center justify-center gap-1 shadow-flame-glow">
+                              <Upload className="w-3 h-3" />
+                              <span>Subir Video</span>
+                              <input
+                                type="file"
+                                accept="video/*"
+                                onChange={(e) => handleFileUpload(e, (url) => {
+                                  updateService(srv.id, 'videoUrl', url);
+                                  triggerSaveNotification();
+                                })}
+                                className="hidden"
+                              />
+                            </label>
+                          </div>
+                        </div>
+
+                        {/* Imagen de Fondo / Banner */}
+                        <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                          <label className="text-xs font-black text-white flex items-center gap-1.5">
+                            <ImageIcon className="w-3.5 h-3.5 text-gold-400" />
+                            <span>Foto Principal / Banner:</span>
+                          </label>
+                          <p className="text-[10px] text-slate-400">Imagen de portada para esta división</p>
                           <input
                             type="text"
                             value={srv.image || ''}
@@ -1336,12 +1386,44 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                               updateService(srv.id, 'image', e.target.value);
                               triggerSaveNotification();
                             }}
-                            placeholder="Ej: https://..."
-                            className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs"
+                            placeholder="Ej: /images/... o https://..."
+                            className="w-full bg-black/60 border border-white/10 focus:border-gold-500/50 text-white rounded-xl p-2.5 text-xs text-slate-200"
                           />
+                          <div className="flex gap-2 pt-1">
+                            <button
+                              type="button"
+                              onClick={() => openMediaPicker((url) => {
+                                updateService(srv.id, 'image', url);
+                                triggerSaveNotification();
+                              }, 'image')}
+                              className="flex-1 py-1.5 rounded-lg bg-navy-950 hover:bg-white/5 text-gold-400 text-[11px] font-extrabold border border-white/10 flex items-center justify-center gap-1"
+                            >
+                              <FolderOpen className="w-3 h-3" />
+                              <span>Biblioteca</span>
+                            </button>
+                            <label className="cursor-pointer flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-white/5 text-slate-300 text-[11px] font-extrabold border border-white/10 flex items-center justify-center gap-1">
+                              <Upload className="w-3 h-3" />
+                              <span>Subir Foto</span>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handleFileUpload(e, (url) => {
+                                  updateService(srv.id, 'image', url);
+                                  triggerSaveNotification();
+                                })}
+                                className="hidden"
+                              />
+                            </label>
+                          </div>
                         </div>
-                        <div>
-                          <label className="text-slate-400 font-bold block mb-1">Video de Fondo (URL):</label>
+
+                        {/* Video de Fondo Opcional */}
+                        <div className="p-4 rounded-2xl bg-black/40 border border-white/5 space-y-2">
+                          <label className="text-xs font-black text-slate-300 flex items-center gap-1.5">
+                            <Play className="w-3.5 h-3.5 text-emerald-400" />
+                            <span>Video de Fondo (Bucle):</span>
+                          </label>
+                          <p className="text-[10px] text-slate-400">Opcional: reproduce video de fondo en lugar de foto</p>
                           <input
                             type="text"
                             value={srv.bgVideoUrl || ''}
@@ -1349,9 +1431,35 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                               updateService(srv.id, 'bgVideoUrl', e.target.value);
                               triggerSaveNotification();
                             }}
-                            placeholder="Sube el .mp4 a la Biblioteca y pega el link aquí"
-                            className="w-full bg-black/50 border border-white/10 focus:border-gold-500/50 focus:bg-black/80 text-white placeholder-slate-500 rounded-xl transition-all shadow-inner p-3 text-xs text-emerald-400 font-mono"
+                            placeholder="Sube el .mp4 a la Biblioteca..."
+                            className="w-full bg-black/60 border border-white/10 focus:border-gold-500/50 text-white rounded-xl p-2.5 text-xs text-emerald-400 font-mono"
                           />
+                          <div className="flex gap-2 pt-1">
+                            <button
+                              type="button"
+                              onClick={() => openMediaPicker((url) => {
+                                updateService(srv.id, 'bgVideoUrl', url);
+                                triggerSaveNotification();
+                              }, 'video')}
+                              className="flex-1 py-1.5 rounded-lg bg-navy-950 hover:bg-white/5 text-gold-400 text-[11px] font-extrabold border border-white/10 flex items-center justify-center gap-1"
+                            >
+                              <FolderOpen className="w-3 h-3" />
+                              <span>Biblioteca</span>
+                            </button>
+                            <label className="cursor-pointer flex-1 py-1.5 rounded-lg bg-navy-900 hover:bg-white/5 text-slate-300 text-[11px] font-extrabold border border-white/10 flex items-center justify-center gap-1">
+                              <Upload className="w-3 h-3" />
+                              <span>Subir Video</span>
+                              <input
+                                type="file"
+                                accept="video/*"
+                                onChange={(e) => handleFileUpload(e, (url) => {
+                                  updateService(srv.id, 'bgVideoUrl', url);
+                                  triggerSaveNotification();
+                                })}
+                                className="hidden"
+                              />
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
