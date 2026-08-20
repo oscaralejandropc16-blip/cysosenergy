@@ -85,25 +85,25 @@ export const Hero = () => {
     <section id="inicio" className="relative pt-32 pb-16 md:pt-40 md:pb-20 bg-navy-950 min-h-screen flex flex-col justify-between overflow-hidden">
       
       {/* DYNAMIC CMS CINEMATIC VIDEO BACKGROUND */}
-      <div 
-        className="absolute inset-0 z-0 overflow-hidden"
-        dangerouslySetInnerHTML={{
-          __html: `
-            <video
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              poster="${currentHero.posterUrl}"
-              class="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05] scale-105 transform"
-            >
-              <source src="${currentHero.videoUrl}" type="video/mp4" />
-            </video>
-          `
-        }}
-      >
-      </div>
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div 
+          dangerouslySetInnerHTML={{
+            __html: `
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+                poster="${currentHero.posterUrl}"
+                class="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05] scale-105 transform"
+              >
+                <source src="${currentHero.videoUrl}" type="video/mp4" />
+              </video>
+            `
+          }}
+          className="w-full h-full"
+        />
         
         {/* Radial Dark Vignette Overlay - muy sutil para no tapar el video */}
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/30 to-navy-950/10" />
