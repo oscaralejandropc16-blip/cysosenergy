@@ -24,7 +24,7 @@ export const ContactForm = () => {
       address: 'C.C. Terrazas del Norte II, Maturín, Edo. Monagas',
       coords: { x: 74, y: 36 },
       phone: '0414-0596012 / 0412-4817113',
-      email: 'MANAGER@CYSOS.ENERGY',
+      email: 'gerencia@cysosenergy.com',
       status: 'Sede Principal 24/7',
       focus: 'Centro de Comando, Laboratorio Reológico & Base Operativa de Well Testing',
       googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=C.C.+Terrazas+del+Norte+II,+Maturin,+Monagas,+Venezuela',
@@ -189,7 +189,7 @@ export const ContactForm = () => {
 
           {/* Pod 2: Gmail */}
           <a
-            href="mailto:MANAGER@CYSOS.ENERGY"
+            href="mailto:gerencia@cysosenergy.com"
             className="group relative p-6 rounded-3xl bg-[#0f172a]/80 backdrop-blur-xl border border-slate-800 hover:border-[#EA4335]/50 transition-all overflow-hidden flex flex-col justify-between h-full"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#EA4335]/0 to-[#EA4335]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -211,7 +211,7 @@ export const ContactForm = () => {
 
               <div>
                 <h4 className="text-sm text-slate-400 font-medium mb-1">Correo Corporativo</h4>
-                <div className="text-sm sm:text-base lg:text-lg font-black text-white tracking-wide break-all font-heading">MANAGER@CYSOS.ENERGY</div>
+                <div className="text-sm sm:text-base lg:text-lg font-black text-white tracking-wide break-all font-heading">gerencia@cysosenergy.com</div>
               </div>
             </div>
 

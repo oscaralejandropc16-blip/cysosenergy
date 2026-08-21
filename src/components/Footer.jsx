@@ -17,7 +17,7 @@ export const Footer = () => {
     address: 'C.C. Terrazas del Norte II, Nivel Mezzanina, Local M-12, Maturín, Estado Monagas, Venezuela.',
     phone1: '0414-0596012',
     phone2: '0412-4817113',
-    email1: 'MANAGER@CYSOS.ENERGY',
+    email1: 'gerencia@cysosenergy.com',
     email2: 'OPERACIONES@CYSOS.ENERGY'
   };
 

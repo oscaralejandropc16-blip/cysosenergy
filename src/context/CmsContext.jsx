@@ -89,7 +89,7 @@ const INITIAL_COMPANY_INFO = {
   vision: `Consolidarnos como la empresa venezolana líder en ingeniería, procura, construcción y servicios petroleros especializados, destacada por la innovación en soluciones para la recuperación de pozos, inyección de reductores de viscosidad y logística de izamiento pesado, garantizando la confianza de nuestros clientes y el crecimiento económico del país.`,
   direccion: `C.C. Terrazas del Norte II, Maturín, Edo. Monagas, Venezuela`,
   telefonos: `0414-0596012 / 0412-4817113`,
-  email: `MANAGER@CYSOS.ENERGY`,
+  email: `gerencia@cysosenergy.com`,
   rif: `J-50478054-4`
 };
 
