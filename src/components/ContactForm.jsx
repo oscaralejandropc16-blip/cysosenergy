@@ -211,7 +211,7 @@ export const ContactForm = () => {
 
               <div>
                 <h4 className="text-sm text-slate-400 font-medium mb-1">Correo Corporativo</h4>
-                <div className="text-lg font-black text-white tracking-wide truncate">MANAGER@CYSOS</div>
+                <div className="text-sm sm:text-base lg:text-lg font-black text-white tracking-wide break-all font-heading">MANAGER@CYSOS.ENERGY</div>
               </div>
             </div>
 
