@@ -14,9 +14,11 @@ export const HSECommitment = () => {
           
           {/* Left Column: Text & Certifications */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase tracking-wider shadow-emerald-glow font-heading">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Compromiso de Seguridad, Salud y Ambiente</span>
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 shadow-[0_0_20px_rgba(52,211,153,0.1)]">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] font-black uppercase text-emerald-400 tracking-widest font-heading">
+                Compromiso de Seguridad, Salud y Ambiente
+              </span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">

@@ -161,9 +161,11 @@ export const HumanOperations = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-4 sm:space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 text-gold-400 text-[10px] sm:text-xs font-black uppercase tracking-wider shadow-gold-glow font-heading">
-            <Camera className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-flame-500" />
-            <span>Galería Oficial de Operaciones en Campo</span>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
+            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
+            <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
+              Galería Oficial de Operaciones en Campo
+            </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight leading-tight">
             Nuestro Talento Humano y <span className="animate-gradient-text">Equipos en Acción</span>

@@ -125,9 +125,11 @@ export const ContactForm = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-slate-700/80 text-gold-400 text-xs font-black uppercase tracking-wider font-heading">
-            <Radio className="w-3.5 h-3.5 text-flame-500 animate-pulse" />
-            <span>Centro de Operaciones & Requerimientos Técnicos</span>
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
+            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
+            <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
+              Centro de Operaciones & Requerimientos Técnicos
+            </span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">

@@ -27,9 +27,9 @@ export const ViscosityCalculator = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-gold-metallic/40 shadow-gold-glow">
-            <Sliders className="w-4 h-4 text-gold-400" />
-            <span className="text-xs font-black uppercase tracking-wider text-gold-400 font-heading">
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
+            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
+            <span className="text-[11px] font-black uppercase tracking-widest text-gold-400 font-heading">
               Tecnología Química para Crudos Pesados y Extrapesados (XP)
             </span>
           </div>
