@@ -1660,7 +1660,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     <label className="text-xs font-bold text-slate-300 block mb-1">RIF de la Empresa</label>
                     <input
                       type="text"
-                      value={companyInfo.rif || 'J-50478054-4'}
+                      value={companyInfo.rif || 'J-40031863-7'}
                       onChange={(e) => {
                         updateCompanyInfoText('rif', e.target.value);
                         triggerSaveNotification();

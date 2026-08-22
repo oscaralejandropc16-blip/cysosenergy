@@ -21,14 +21,14 @@ export const ContactForm = () => {
     maturin: {
       name: 'Sede Central & Base Maturín',
       state: 'Monagas, Venezuela',
-      address: 'C.C. Terrazas del Norte II, Maturín, Edo. Monagas',
+      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1, Oficina 01-18, Maturín, Edo. Monagas',
       coords: { x: 74, y: 36 },
-      phone: '0414-0596012 / 0412-4817113',
+      phone: '0414-0596012 / 0412-9486249',
       email: 'gerencia@cysosenergy.com',
       status: 'Sede Principal 24/7',
       focus: 'Centro de Comando, Laboratorio Reológico & Base Operativa de Well Testing',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=C.C.+Terrazas+del+Norte+II,+Maturin,+Monagas,+Venezuela',
-      embedMapQuery: 'C.C.+Terrazas+del+Norte+II,+Maturin,+Monagas,+Venezuela'
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
+      embedMapQuery: 'Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
     },
     faja: {
       name: 'Faja Petrolífera del Orinoco',
@@ -47,7 +47,7 @@ export const ContactForm = () => {
       state: 'El Tigre / San Tomé, Anzoátegui',
       address: 'Zona Industrial El Tigre, Edo. Anzoátegui',
       coords: { x: 62, y: 44 },
-      phone: '0412-4817113',
+      phone: '0412-9486249',
       email: 'LOGISTICA@CYSOS.ENERGY',
       status: 'Flota Disponible',
       focus: 'Transporte Pesado, Chutos, Bateas y Cisternas de Químicos',
@@ -174,7 +174,7 @@ export const ContactForm = () => {
                 <h4 className="text-sm text-slate-400 font-medium mb-1">Despacho & Operaciones</h4>
                 <div className="flex flex-col">
                   <div className="text-xl font-black text-white tracking-wide">0414-0596012</div>
-                  <div className="text-xl font-black text-white tracking-wide">0412-4817113</div>
+                  <div className="text-xl font-black text-white tracking-wide">0412-9486249</div>
                 </div>
               </div>
             </div>

@@ -13,10 +13,10 @@ export const Footer = () => {
   // Ensure default values are used if companyInfo is empty or missing fields
   const defaults = {
     name: 'CYSOS ENERGY, C.A.',
-    rif: 'J-50346383-1',
-    address: 'C.C. Terrazas del Norte II, Nivel Mezzanina, Local M-12, Maturín, Estado Monagas, Venezuela.',
+    rif: 'J-40031863-7',
+    address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
     phone1: '0414-0596012',
-    phone2: '0412-4817113',
+    phone2: '0412-9486249',
     email1: 'gerencia@cysosenergy.com',
     email2: 'OPERACIONES@CYSOS.ENERGY'
   };

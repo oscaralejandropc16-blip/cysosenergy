@@ -142,7 +142,7 @@ export const Navbar = () => {
             </a>
             <span className="text-white/20">|</span>
             <a
-              href="tel:+584124817113"
+              href="tel:+584129486249"
               className="cysos-tel"
               style={{
                 display: 'flex',
@@ -156,7 +156,7 @@ export const Navbar = () => {
                 transition: 'all 0.3s ease',
               }}
             >
-              <span>0412-4817113</span>
+              <span>0412-9486249</span>
             </a>
           </div>
 
@@ -254,7 +254,7 @@ export const Navbar = () => {
               <PhoneCall className="w-4 h-4" />
               <div className="flex flex-col">
                 <span>0414-0596012</span>
-                <span>0412-4817113</span>
+                <span>0412-9486249</span>
               </div>
             </div>
             <a href="#contacto" className="w-full btn-modern flex justify-center py-3" onClick={() => setIsMobileMenuOpen(false)}>
