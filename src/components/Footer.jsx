@@ -15,8 +15,7 @@ export const Footer = () => {
     name: 'CYSOS ENERGY, C.A.',
     rif: 'J-40031863-7',
     address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
-    phone1: '0414-0596012',
-    phone2: '0412-9486249',
+    phone1: '0412-9486249',
     email1: 'gerencia@cysosenergy.com',
     email2: 'OPERACIONES@CYSOS.ENERGY'
   };
@@ -126,7 +125,6 @@ export const Footer = () => {
                 <div>
                   <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Despacho Inmediato</span>
                   <span className="block text-sm font-bold text-slate-200 group-hover:text-emerald-400 transition-colors">{safeInfo.phone1}</span>
-                  <span className="block text-sm font-bold text-slate-200 group-hover:text-emerald-400 transition-colors">{safeInfo.phone2}</span>
                 </div>
               </a>
 

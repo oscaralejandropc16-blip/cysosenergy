@@ -23,7 +23,7 @@ export const ContactForm = () => {
       state: 'Monagas, Venezuela',
       address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1, Oficina 01-18, Maturín, Edo. Monagas',
       coords: { x: 74, y: 36 },
-      phone: '0414-0596012 / 0412-9486249',
+      phone: '0412-9486249',
       email: 'gerencia@cysosenergy.com',
       status: 'Sede Principal 24/7',
       focus: 'Centro de Comando, Laboratorio Reológico & Base Operativa de Well Testing',
@@ -35,7 +35,7 @@ export const ContactForm = () => {
       state: 'División Junín / Carabobo / Ayacucho',
       address: 'Macollas y Estaciones de Flujo en FPO',
       coords: { x: 67, y: 52 },
-      phone: '0414-0596012',
+      phone: '0412-9486249',
       email: 'OPERACIONES@CYSOS.ENERGY',
       status: 'Despliegue de Campo',
       focus: 'Inyección Continua de Reductor de Viscosidad & Pruebas de Pozo',
@@ -59,7 +59,7 @@ export const ContactForm = () => {
       state: 'Maracaibo / Costa Oriental, Zulia',
       address: 'Costa Oriental del Lago & Campo Boscán',
       coords: { x: 25, y: 32 },
-      phone: '0414-0596012',
+      phone: '0412-9486249',
       email: 'OCCIDENTE@CYSOS.ENERGY',
       status: 'Soporte Técnico',
       focus: 'Tratamiento de Crudos Pesados, Demulsificantes & Coiled Tubing',
@@ -146,7 +146,7 @@ export const ContactForm = () => {
           
           {/* Pod 1: WhatsApp */}
           <a
-            href="https://wa.me/584140596012"
+            href="https://wa.me/584129486249"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative p-6 rounded-3xl bg-[#0f172a]/80 backdrop-blur-xl border border-slate-800 hover:border-[#25D366]/50 transition-all overflow-hidden flex flex-col justify-between h-full"
@@ -172,10 +172,7 @@ export const ContactForm = () => {
 
               <div>
                 <h4 className="text-sm text-slate-400 font-medium mb-1">Despacho & Operaciones</h4>
-                <div className="flex flex-col">
-                  <div className="text-xl font-black text-white tracking-wide">0414-0596012</div>
-                  <div className="text-xl font-black text-white tracking-wide">0412-9486249</div>
-                </div>
+                <div className="text-xl font-black text-white tracking-wide">0412-9486249</div>
               </div>
             </div>
 

@@ -115,32 +115,13 @@ export const Navbar = () => {
             <a href="https://linkedin.com/company/cysosenergy" target="_blank" rel="noreferrer" className="cysos-social-icon" aria-label="LinkedIn">
               <Linkedin size={18} />
             </a>
-            <a href="https://wa.me/584140596012" target="_blank" rel="noreferrer" className="cysos-social-icon" aria-label="WhatsApp">
+            <a href="https://wa.me/584129486249" target="_blank" rel="noreferrer" className="cysos-social-icon" aria-label="WhatsApp">
               <WhatsAppIcon size={18} />
             </a>
           </div>
 
           {/* Teléfono - solo desktop */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="tel:+584140596012"
-              className="cysos-tel"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: 'rgba(255,255,255,0.9)',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: 600,
-                fontFamily: "'Inter', sans-serif",
-                transition: 'all 0.3s ease',
-              }}
-            >
-              <div className="cysos-pulse-dot"></div>
-              <span>0414-0596012</span>
-            </a>
-            <span className="text-white/20">|</span>
             <a
               href="tel:+584129486249"
               className="cysos-tel"
@@ -156,6 +137,7 @@ export const Navbar = () => {
                 transition: 'all 0.3s ease',
               }}
             >
+              <div className="cysos-pulse-dot"></div>
               <span>0412-9486249</span>
             </a>
           </div>
@@ -244,7 +226,7 @@ export const Navbar = () => {
             <a href="https://linkedin.com/company/cysosenergy" target="_blank" rel="noreferrer" className="mobile-social-icon">
               <Linkedin size={24} />
             </a>
-            <a href="https://wa.me/584140596012" target="_blank" rel="noreferrer" className="mobile-social-icon">
+            <a href="https://wa.me/584129486249" target="_blank" rel="noreferrer" className="mobile-social-icon">
               <WhatsAppIcon size={24} />
             </a>
           </div>
@@ -252,10 +234,7 @@ export const Navbar = () => {
           <div className="p-6 border-t border-slate-800 bg-black/50 space-y-4">
             <div className="flex items-center gap-3 text-gold-400 font-bold text-sm">
               <PhoneCall className="w-4 h-4" />
-              <div className="flex flex-col">
-                <span>0414-0596012</span>
-                <span>0412-9486249</span>
-              </div>
+              <span>0412-9486249</span>
             </div>
             <a href="#contacto" className="w-full btn-modern flex justify-center py-3" onClick={() => setIsMobileMenuOpen(false)}>
               Cotizar Proyecto
