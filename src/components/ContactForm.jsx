@@ -19,52 +19,52 @@ export const ContactForm = () => {
 
   const operationalHubs = {
     maturin: {
-      name: 'Sede Central & Base Maturín',
-      state: 'Monagas, Venezuela',
-      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1, Oficina 01-18, Maturín, Edo. Monagas',
+      name: 'Sede Central & Corporativa',
+      state: 'Maturín, Edo. Monagas (Ubicación Única)',
+      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
       coords: { x: 74, y: 36 },
       phone: '0412-9486249',
       email: 'gerencia@cysosenergy.com',
-      status: 'Sede Principal 24/7',
-      focus: 'Centro de Comando, Laboratorio Reológico & Base Operativa de Well Testing',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
-      embedMapQuery: 'Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
+      status: 'Sede Única Principal',
+      focus: 'Centro de Comando, Laboratorio Reológico & Sede Principal',
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
+      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
     },
     faja: {
       name: 'Faja Petrolífera del Orinoco',
-      state: 'División Junín / Carabobo / Ayacucho',
-      address: 'Macollas y Estaciones de Flujo en FPO',
+      state: 'Área de Despliegue Operativo',
+      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
       coords: { x: 67, y: 52 },
       phone: '0412-9486249',
-      email: 'OPERACIONES@CYSOS.ENERGY',
+      email: 'gerencia@cysosenergy.com',
       status: 'Despliegue de Campo',
       focus: 'Inyección Continua de Reductor de Viscosidad & Pruebas de Pozo',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Faja+Petrolifera+del+Orinoco,+Venezuela',
-      embedMapQuery: 'Faja+Petrolifera+del+Orinoco,+Venezuela'
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
+      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
     },
     eltigre: {
-      name: 'Base Logística Oriental',
-      state: 'El Tigre / San Tomé, Anzoátegui',
-      address: 'Zona Industrial El Tigre, Edo. Anzoátegui',
+      name: 'Eje Oriental Anzoátegui',
+      state: 'Área de Despliegue Operativo',
+      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
       coords: { x: 62, y: 44 },
       phone: '0412-9486249',
-      email: 'LOGISTICA@CYSOS.ENERGY',
-      status: 'Flota Disponible',
+      email: 'gerencia@cysosenergy.com',
+      status: 'Flota & Transporte',
       focus: 'Transporte Pesado, Chutos, Bateas y Cisternas de Químicos',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Zona+Industrial+El+Tigre,+Anzoategui,+Venezuela',
-      embedMapQuery: 'Zona+Industrial+El+Tigre,+Anzoategui,+Venezuela'
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
+      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
     },
     zulia: {
-      name: 'Base Occidente / Lago',
-      state: 'Maracaibo / Costa Oriental, Zulia',
-      address: 'Costa Oriental del Lago & Campo Boscán',
+      name: 'Cuenca Occidental / Zulia',
+      state: 'Área de Despliegue Operativo',
+      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
       coords: { x: 25, y: 32 },
       phone: '0412-9486249',
-      email: 'OCCIDENTE@CYSOS.ENERGY',
+      email: 'gerencia@cysosenergy.com',
       status: 'Soporte Técnico',
       focus: 'Tratamiento de Crudos Pesados, Demulsificantes & Coiled Tubing',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Costa+Oriental+del+Lago,+Zulia,+Venezuela',
-      embedMapQuery: 'Costa+Oriental+del+Lago,+Zulia,+Venezuela'
+      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
+      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
     }
   };
 

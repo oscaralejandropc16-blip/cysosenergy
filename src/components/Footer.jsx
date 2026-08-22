@@ -91,25 +91,28 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 3: Bases Operativas */}
-          <div className="md:col-span-4 lg:col-span-2 space-y-6">
+          {/* Col 3: Ubicación Única */}
+          <div className="md:col-span-4 lg:col-span-2 space-y-4">
             <h4 className="text-xs font-black text-white uppercase tracking-widest font-heading flex items-center gap-3">
-              Bases
+              Ubicación Única
               <div className="h-px bg-slate-800 flex-1" />
             </h4>
-            <ul className="space-y-5">
-              {[
-                { city: 'Maturín', state: 'Monagas (HQ)' },
-                { city: 'FPO', state: 'Junín / Carabobo' },
-                { city: 'El Tigre', state: 'Anzoátegui' },
-                { city: 'Costa Oriental', state: 'Zulia' }
-              ].map((loc, idx) => (
-                <li key={idx} className="flex flex-col gap-0.5">
-                  <span className="text-sm font-bold text-slate-200">{loc.city}</span>
-                  <span className="text-[11px] text-slate-500 font-medium tracking-wide uppercase">{loc.state}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="flex flex-col gap-1.5 text-xs">
+              <span className="text-sm font-bold text-white">Sede Central</span>
+              <span className="text-gold-400 font-bold text-[11px] uppercase tracking-wide">Maturín, Edo. Monagas</span>
+              <p className="text-slate-400 font-light leading-relaxed text-[11px]">
+                {safeInfo.address}
+              </p>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 text-[11px] font-bold mt-1 group"
+              >
+                <span>Ver en Google Maps</span>
+                <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+              </a>
+            </div>
           </div>
 
           {/* Col 4: Hotline & Direct Channels */}
