@@ -26,6 +26,9 @@ export const Footer = () => {
       if (companyInfo[key]) safeInfo[key] = companyInfo[key];
     });
   }
+  if (safeInfo.rif === 'J-50478054-4' || safeInfo.rif === 'J-50346383-1' || !safeInfo.rif) {
+    safeInfo.rif = 'J-40031863-7';
+  }
 
   return (
     <footer className="relative bg-[#050A14] border-t border-slate-800/60 pt-20 pb-8 overflow-hidden font-sans">

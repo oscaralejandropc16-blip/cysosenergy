@@ -258,7 +258,16 @@ export const CmsProvider = ({ children }) => {
         if (data['cysos_cms_messages']) setMessages(data['cysos_cms_messages']);
         if (data['cysos_cms_kpis']) setKpis(data['cysos_cms_kpis']);
         if (data['cysos_cms_media_v3']) setMediaItems(data['cysos_cms_media_v3']);
-        if (data['cysos_cms_company_info']) setCompanyInfo(data['cysos_cms_company_info']);
+        if (data['cysos_cms_company_info']) {
+          const loadedInfo = data['cysos_cms_company_info'];
+          if (loadedInfo.rif === 'J-50478054-4' || loadedInfo.rif === 'J-50346383-1' || !loadedInfo.rif) {
+            loadedInfo.rif = 'J-40031863-7';
+          }
+          if (loadedInfo.telefonos && (loadedInfo.telefonos.includes('0414') || loadedInfo.telefonos.includes('4817113'))) {
+            loadedInfo.telefonos = '0412-9486249';
+          }
+          setCompanyInfo((prev) => ({ ...prev, ...loadedInfo }));
+        }
         if (data['cysos_cms_services']) setServices(data['cysos_cms_services']);
         if (data['cysos_cms_alliances']) setAlliances(data['cysos_cms_alliances']);
         setDbSyncStatus('success');
