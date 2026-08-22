@@ -1,14 +1,28 @@
 import React from 'react';
-import { Navigation, Compass, Map as MapIcon, Globe, ExternalLink, ArrowRight, Building2, MapPin, Phone, Mail } from 'lucide-react';
+import { Navigation, Compass, Map as MapIcon, Globe, ExternalLink, ArrowRight, Building2, MapPin, Phone, Mail, ShieldCheck } from 'lucide-react';
 
 export const OperationalMapShowcase = ({
-  operationalHubs,
-  selectedHub,
-  handleSelectHub,
   mapViewMode,
   setMapViewMode,
   currentHub
 }) => {
+  const defaultHub = {
+    name: 'Sede Central & Corporativa',
+    company: 'CYSOS ENERGY, C.A.',
+    state: 'Maturín, Estado Monagas, Venezuela',
+    address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
+    coords: { x: 74, y: 36 },
+    phone: '0412-9486249',
+    email: 'gerencia@cysosenergy.com',
+    rif: 'J-40031863-7',
+    status: 'Sede Única Oficial 24/7',
+    focus: 'Centro de Mando Administrativo, Laboratorio Reológico EOR, Operaciones de Campo e Ingeniería IPC',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
+    embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
+  };
+
+  const hub = currentHub || defaultHub;
+
   return (
     <div id="bases-operativas" className="luxury-glass p-5 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden scroll-mt-28">
       
@@ -20,10 +34,10 @@ export const OperationalMapShowcase = ({
           </div>
           <div>
             <h3 className="text-base sm:text-lg font-black font-heading text-white">
-              Despliegue Operativo Georreferenciado • Venezuela
+              Ubicación Georreferenciada • Sede Corporativa
             </h3>
             <span className="text-xs text-slate-400 font-light">
-              Toque cualquier baliza para abrir su ubicación exacta en Google Maps
+              Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas
             </span>
           </div>
         </div>
@@ -58,29 +72,6 @@ export const OperationalMapShowcase = ({
         </div>
       </div>
 
-      {/* Hub Selector Pills */}
-      <div className="flex items-center gap-2 flex-wrap mb-6">
-        {[
-          { id: 'maturin', label: 'Maturín (Sede Principal)' },
-          { id: 'faja', label: 'Faja del Orinoco' },
-          { id: 'eltigre', label: 'El Tigre / San Tomé' },
-          { id: 'zulia', label: 'Zulia / Costa Oriental' }
-        ].map((hub) => (
-          <button
-            key={hub.id}
-            onClick={() => handleSelectHub(hub.id)}
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all flex items-center gap-2 font-heading ${
-              selectedHub === hub.id
-                ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-amber-500 text-white shadow-md'
-                : 'bg-navy-900 text-slate-300 border border-slate-800 hover:border-slate-700 hover:text-white'
-            }`}
-          >
-            <span className={`w-2 h-2 rounded-full ${selectedHub === hub.id ? 'bg-white' : 'bg-gold-400'}`} />
-            <span>{hub.label}</span>
-          </button>
-        ))}
-      </div>
-
       <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-center">
         
         {/* Left: Vector Radar Map OR Live Google Maps Satellite Embed */}
@@ -97,16 +88,16 @@ export const OperationalMapShowcase = ({
                 scrolling="no"
                 marginHeight="0"
                 marginWidth="0"
-                src={`https://maps.google.com/maps?q=${currentHub.embedMapQuery}&t=k&z=13&ie=UTF8&iwloc=&output=embed`}
+                src={`https://maps.google.com/maps?q=${hub.embedMapQuery}&t=k&z=17&ie=UTF8&iwloc=&output=embed`}
                 className="w-full h-full filter contrast-105 brightness-95 rounded-xl"
               />
               <div className="absolute top-3 left-3 bg-navy-950/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700 text-[11px] font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span>GPS en Vivo: {currentHub.name}</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>GPS Oficial: Complejo CCP, Maturín</span>
               </div>
             </div>
           ) : (
-            /* HIGH-PRECISION VECTOR RADAR MAP OF VENEZUELA */
+            /* HIGH-PRECISION VECTOR RADAR MAP OF VENEZUELA WITH SINGLE MATURIN HQ BEACON */
             <div className="relative w-full h-full flex items-center justify-center">
               
               {/* Grid Lines */}
@@ -122,6 +113,12 @@ export const OperationalMapShowcase = ({
                     <stop offset="0%" stopColor="#1E293B" stopOpacity="0.85" />
                     <stop offset="100%" stopColor="#0B132B" stopOpacity="0.95" />
                   </linearGradient>
+
+                  <radialGradient id="maturin-glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#EA580C" stopOpacity="0.8" />
+                    <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+                  </radialGradient>
                 </defs>
 
                 {/* Accurate Venezuela Geographic Contour Path */}
@@ -157,75 +154,66 @@ export const OperationalMapShowcase = ({
                   opacity="0.4"
                 />
 
-                {/* Laser Connections Between Hubs */}
-                <line x1="592" y1="216" x2="536" y2="312" stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
-                <line x1="536" y1="312" x2="496" y2="264" stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
-                <line x1="496" y1="264" x2="200" y2="192" stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.4" />
+                {/* SINGLE PRECISE BEACON IN MATURIN (x: 592, y: 216) */}
+                <g
+                  onClick={() => window.open(hub.googleMapsUrl, '_blank')}
+                  className="cursor-pointer group"
+                >
+                  {/* Expanding Radar Wave */}
+                  <circle cx="592" cy="216" r="45" fill="url(#maturin-glow)">
+                    <animate attributeName="r" values="20;55;20" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite" />
+                  </circle>
 
-                {/* INTERACTIVE RADAR BEACONS */}
-                {Object.entries(operationalHubs).map(([key, hub]) => {
-                  const isSelected = selectedHub === key;
-                  const posX = (hub.coords.x * 800) / 100;
-                  const posY = (hub.coords.y * 600) / 100;
+                  <circle cx="592" cy="216" r="28" fill="none" stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3 3">
+                    <animate attributeName="r" values="15;38;15" dur="2.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.9;0.2;0.9" dur="2.5s" repeatCount="indefinite" />
+                  </circle>
 
-                  return (
-                    <g
-                      key={key}
-                      onClick={() => {
-                        handleSelectHub(key);
-                        window.open(hub.googleMapsUrl, '_blank');
-                      }}
-                      className="cursor-pointer group"
-                    >
-                      {/* Solid Invisible Hit Target */}
-                      <circle cx={posX} cy={posY} r={30} fill="transparent" />
+                  {/* Outer Pin Body */}
+                  <circle
+                    cx="592"
+                    cy="216"
+                    r="14"
+                    fill="#EA580C"
+                    stroke="#FFFFFF"
+                    strokeWidth="3"
+                    className="transition-transform duration-200 group-hover:scale-110 shadow-lg"
+                  />
 
-                      {/* Outer Pin Body */}
-                      <circle
-                        cx={posX}
-                        cy={posY}
-                        r={isSelected ? 13 : 8}
-                        fill={isSelected ? '#EA580C' : '#D97706'}
-                        stroke="#FFFFFF"
-                        strokeWidth={isSelected ? 2.5 : 1.5}
-                        className="pointer-events-none transition-colors duration-200 group-hover:fill-flame-400"
-                      />
+                  {/* Core Center Dot */}
+                  <circle cx="592" cy="216" r="5" fill="#FFFFFF" />
 
-                      {/* Core Center Dot */}
-                      <circle cx={posX} cy={posY} r={isSelected ? 4.5 : 3} fill="#FFFFFF" className="pointer-events-none" />
-
-                      {/* Label Tag on Map */}
-                      <rect
-                        x={posX + 14}
-                        y={posY - 14}
-                        width={hub.name.length * 7.5 + 20}
-                        height="24"
-                        rx="6"
-                        fill="#050A14"
-                        stroke={isSelected ? '#F59E0B' : '#475569'}
-                        strokeWidth="1.2"
-                        className="pointer-events-none"
-                        opacity="0.95"
-                      />
-                      <text
-                        x={posX + 22}
-                        y={posY + 2}
-                        fill={isSelected ? '#FACC15' : '#FFFFFF'}
-                        fontSize="11"
-                        fontFamily="system-ui, sans-serif"
-                        fontWeight="bold"
-                        className="pointer-events-none select-none font-heading"
-                      >
-                        📍 {hub.name}
-                      </text>
-                    </g>
-                  );
-                })}
+                  {/* Label Tag on Map */}
+                  <rect
+                    x="614"
+                    y="200"
+                    width="170"
+                    height="32"
+                    rx="8"
+                    fill="#050A14"
+                    stroke="#F59E0B"
+                    strokeWidth="1.5"
+                    opacity="0.95"
+                    className="shadow-xl"
+                  />
+                  <text
+                    x="624"
+                    y="221"
+                    fill="#FACC15"
+                    fontSize="12"
+                    fontFamily="system-ui, sans-serif"
+                    fontWeight="bold"
+                    className="select-none font-heading"
+                  >
+                    📍 Sede Central • Maturín
+                  </text>
+                </g>
               </svg>
 
-              <div className="absolute bottom-3 left-4 text-[11px] text-slate-400 font-sans tracking-wide flex items-center gap-2 bg-navy-900/80 px-2.5 py-1 rounded-lg border border-slate-800">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                <span>Toque cualquier baliza para abrir en Google Maps</span>
+              <div className="absolute bottom-3 left-4 text-[11px] text-slate-400 font-sans tracking-wide flex items-center gap-2 bg-navy-900/90 px-3 py-1.5 rounded-xl border border-slate-800">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Toque la baliza para abrir la ubicación exacta en Google Maps</span>
               </div>
             </div>
           )}
@@ -237,13 +225,14 @@ export const OperationalMapShowcase = ({
             
             <div className="flex items-start justify-between">
               <div className="space-y-1">
-                <span className="px-2.5 py-0.5 rounded-md bg-flame-500/10 text-flame-400 text-[11px] font-black uppercase tracking-wider border border-flame-500/20 font-heading">
-                  {currentHub.status}
+                <span className="px-2.5 py-0.5 rounded-md bg-flame-500/10 text-flame-400 text-[11px] font-black uppercase tracking-wider border border-flame-500/20 font-heading flex items-center gap-1.5 w-fit">
+                  <span className="w-1.5 h-1.5 rounded-full bg-flame-400 animate-pulse" />
+                  {hub.status}
                 </span>
                 <h4 className="text-lg sm:text-xl font-black font-heading text-white pt-1">
-                  {currentHub.name}
+                  {hub.name}
                 </h4>
-                <span className="text-xs text-gold-400 font-bold block">{currentHub.state}</span>
+                <span className="text-xs text-gold-400 font-bold block">{hub.state}</span>
               </div>
 
               <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-gold-400 flex-shrink-0">
@@ -251,40 +240,47 @@ export const OperationalMapShowcase = ({
               </div>
             </div>
 
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2.5 text-xs">
               <div className="flex items-start gap-2.5 text-slate-300">
                 <MapPin className="w-4 h-4 text-flame-500 flex-shrink-0 mt-0.5" />
-                <span className="leading-relaxed font-light">{currentHub.address}</span>
+                <span className="leading-relaxed font-light">{hub.address}</span>
               </div>
 
               <div className="flex items-center gap-2.5 text-slate-300">
                 <Phone className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <a href={`tel:${currentHub.phone.split('/')[0].trim()}`} className="text-white font-medium hover:text-gold-400 transition-colors font-sans tracking-wide">
-                  {currentHub.phone}
+                <a href={`tel:+584129486249`} className="text-white font-medium hover:text-gold-400 transition-colors font-sans tracking-wide">
+                  {hub.phone}
                 </a>
               </div>
 
               <div className="flex items-center gap-2.5 text-slate-300">
                 <Mail className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <a href={`mailto:${currentHub.email}`} className="text-gold-400 font-sans tracking-wide font-medium hover:underline">
-                  {currentHub.email}
+                <a href={`mailto:${hub.email}`} className="text-gold-400 font-sans tracking-wide font-medium hover:underline">
+                  {hub.email}
                 </a>
+              </div>
+
+              <div className="flex items-center gap-2.5 text-slate-300 pt-1">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <span className="text-emerald-400 font-bold font-mono text-[11px] tracking-wide">
+                  RIF: {hub.rif || 'J-40031863-7'}
+                </span>
               </div>
             </div>
 
             <div className="pt-3 border-t border-slate-800">
               <span className="text-[10px] uppercase tracking-wider text-slate-400 font-black block mb-1 font-heading">
-                Especialidad Operativa en esta Región:
+                Instalación Principal:
               </span>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
-                {currentHub.focus}
+                {hub.focus}
               </p>
             </div>
 
             {/* Direct Google Maps Button */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               <a
-                href={currentHub.googleMapsUrl}
+                href={hub.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 flex items-center justify-center gap-2 transition-colors font-heading"
@@ -302,7 +298,7 @@ export const OperationalMapShowcase = ({
                 }}
                 className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-flame-500 via-orange-600 to-amber-500 hover:from-flame-600 hover:to-amber-600 text-white font-black text-xs shadow-md flex items-center justify-center gap-2 transition-all font-heading"
               >
-                <span>Cotizar en esta Base</span>
+                <span>Cotizar Proyecto</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>

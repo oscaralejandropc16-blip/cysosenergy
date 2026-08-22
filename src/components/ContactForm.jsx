@@ -17,58 +17,22 @@ export const ContactForm = () => {
   const [selectedHub, setSelectedHub] = useState('maturin');
   const [mapViewMode, setMapViewMode] = useState('radar');
 
-  const operationalHubs = {
-    maturin: {
-      name: 'Sede Central & Corporativa',
-      state: 'Maturín, Edo. Monagas (Ubicación Única)',
-      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
-      coords: { x: 74, y: 36 },
-      phone: '0412-9486249',
-      email: 'gerencia@cysosenergy.com',
-      status: 'Sede Única Principal',
-      focus: 'Centro de Comando, Laboratorio Reológico & Sede Principal',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
-      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
-    },
-    faja: {
-      name: 'Faja Petrolífera del Orinoco',
-      state: 'Área de Despliegue Operativo',
-      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
-      coords: { x: 67, y: 52 },
-      phone: '0412-9486249',
-      email: 'gerencia@cysosenergy.com',
-      status: 'Despliegue de Campo',
-      focus: 'Inyección Continua de Reductor de Viscosidad & Pruebas de Pozo',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
-      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
-    },
-    eltigre: {
-      name: 'Eje Oriental Anzoátegui',
-      state: 'Área de Despliegue Operativo',
-      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
-      coords: { x: 62, y: 44 },
-      phone: '0412-9486249',
-      email: 'gerencia@cysosenergy.com',
-      status: 'Flota & Transporte',
-      focus: 'Transporte Pesado, Chutos, Bateas y Cisternas de Químicos',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
-      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
-    },
-    zulia: {
-      name: 'Cuenca Occidental / Zulia',
-      state: 'Área de Despliegue Operativo',
-      address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
-      coords: { x: 25, y: 32 },
-      phone: '0412-9486249',
-      email: 'gerencia@cysosenergy.com',
-      status: 'Soporte Técnico',
-      focus: 'Tratamiento de Crudos Pesados, Demulsificantes & Coiled Tubing',
-      googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
-      embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
-    }
+  const operationalHub = {
+    name: 'Sede Central & Corporativa',
+    company: 'CYSOS ENERGY, C.A.',
+    state: 'Maturín, Estado Monagas, Venezuela',
+    address: 'Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas',
+    coords: { x: 74, y: 36 },
+    phone: '0412-9486249',
+    email: 'gerencia@cysosenergy.com',
+    rif: 'J-40031863-7',
+    status: 'Sede Única Oficial 24/7',
+    focus: 'Centro de Mando Administrativo, Laboratorio Reológico EOR, Operaciones de Campo e Ingeniería IPC',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela',
+    embedMapQuery: 'Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela'
   };
 
-  const currentHub = operationalHubs[selectedHub];
+  const currentHub = operationalHub;
 
   const [formData, setFormData] = useState({
     name: '',
@@ -76,7 +40,7 @@ export const ContactForm = () => {
     email: '',
     phone: '',
     service: 'Química de Producción EOR',
-    location: 'Sede Central & Base Maturín (Monagas, Venezuela)',
+    location: 'Sede Central Maturín, Monagas (Av. Alirio Ugarte Pelayo, Complejo CCP)',
     message: ''
   });
 
@@ -87,11 +51,6 @@ export const ContactForm = () => {
 
   const handleSelectService = (serviceName) => {
     setFormData((prev) => ({ ...prev, service: serviceName }));
-  };
-
-  const handleSelectHub = (hubKey) => {
-    setSelectedHub(hubKey);
-    setFormData((prev) => ({ ...prev, location: operationalHubs[hubKey].name + ' (' + operationalHubs[hubKey].state + ')' }));
   };
 
   const handleSubmit = (e) => {
@@ -558,9 +517,6 @@ export const ContactForm = () => {
 
         {/* INTERACTIVE OPERATIONAL RADAR & GOOGLE MAPS SHOWCASE */}
         <OperationalMapShowcase
-          operationalHubs={operationalHubs}
-          selectedHub={selectedHub}
-          handleSelectHub={handleSelectHub}
           mapViewMode={mapViewMode}
           setMapViewMode={setMapViewMode}
           currentHub={currentHub}
