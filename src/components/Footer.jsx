@@ -247,11 +247,9 @@ export const Footer = () => {
             © {currentYear} <span className="text-slate-300 font-bold">CYSOS ENERGY, C.A.</span> Todos los derechos reservados.
           </p>
 
+          {/* Legal / Copyright only (No admin links) */}
           <div className="flex items-center gap-6">
-            <a href="#cysos-panel" className="group flex items-center gap-2 text-[11px] font-bold text-slate-500 hover:text-gold-400 transition-colors uppercase tracking-widest">
-              <Lock className="w-3.5 h-3.5" />
-              <span>Acceso Administrativo</span>
-            </a>
+            {/* The admin panel access is exclusively via keyboard shortcut (Ctrl+Shift+A) or secret URL */}
           </div>
         </div>
 
