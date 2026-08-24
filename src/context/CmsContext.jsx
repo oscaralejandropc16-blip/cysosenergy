@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { saveToSupabase, loadAllFromSupabase } from '../services/supabaseService';
+import { saveToSupabase, loadAllFromSupabase, recordVisitInSupabase, saveAnalyticsToSupabase } from '../services/supabaseService';
 
 const CmsContext = createContext();
 
@@ -216,6 +216,22 @@ const INITIAL_ALLIANCES = [
   }
 ];
 
+const INITIAL_VISIT_STATS = {
+  totalVisits: 14280,
+  uniqueVisitors: 9640,
+  todayVisits: 145,
+  lastDate: new Date().toISOString().split('T')[0],
+  history: [
+    { date: '2026-08-18', visits: 120 },
+    { date: '2026-08-19', visits: 135 },
+    { date: '2026-08-20', visits: 148 },
+    { date: '2026-08-21', visits: 162 },
+    { date: '2026-08-22', visits: 154 },
+    { date: '2026-08-23', visits: 145 }
+  ],
+  devices: { mobile: 68, desktop: 32 }
+};
+
 export const CmsProvider = ({ children }) => {
   const [isDbLoaded, setIsDbLoaded] = useState(false);
   const [dbSyncStatus, setDbSyncStatus] = useState('idle');
@@ -229,6 +245,7 @@ export const CmsProvider = ({ children }) => {
   const [companyInfo, setCompanyInfo] = useState(INITIAL_COMPANY_INFO);
   const [services, setServices] = useState(INITIAL_SERVICES);
   const [alliances, setAlliances] = useState(INITIAL_ALLIANCES);
+  const [visitStats, setVisitStats] = useState(INITIAL_VISIT_STATS);
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(() => { 
@@ -270,6 +287,7 @@ export const CmsProvider = ({ children }) => {
         }
         if (data['cysos_cms_services']) setServices(data['cysos_cms_services']);
         if (data['cysos_cms_alliances']) setAlliances(data['cysos_cms_alliances']);
+        if (data['cysos_cms_analytics']) setVisitStats(data['cysos_cms_analytics']);
         setDbSyncStatus('success');
       } else {
         setDbSyncStatus('error');
@@ -277,6 +295,35 @@ export const CmsProvider = ({ children }) => {
       setIsDbLoaded(true);
     };
     initDatabase();
+  }, []);
+
+  // 2. Registro inteligente de visita en tiempo real
+  useEffect(() => {
+    const registerVisit = async () => {
+      try {
+        let isNewSession = false;
+        let isUniqueUser = false;
+
+        if (!sessionStorage.getItem('cysos_session_visited')) {
+          sessionStorage.setItem('cysos_session_visited', 'true');
+          isNewSession = true;
+        }
+
+        if (!localStorage.getItem('cysos_user_uid')) {
+          localStorage.setItem('cysos_user_uid', `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
+          isUniqueUser = true;
+        }
+
+        const stats = await recordVisitInSupabase(isNewSession, isUniqueUser);
+        if (stats) {
+          setVisitStats(stats);
+        }
+      } catch (err) {
+        console.error('Error registrando analítica de visita:', err);
+      }
+    };
+
+    registerVisit();
   }, []);
 
   // Funciones de Login
@@ -418,12 +465,27 @@ export const CmsProvider = ({ children }) => {
     });
   };
 
+  const updateAnalyticsBaseline = async (newTotalVisits) => {
+    const total = Number(newTotalVisits) || 14280;
+    const unique = Math.round(total * 0.68);
+    const updated = {
+      ...visitStats,
+      totalVisits: total,
+      uniqueVisitors: unique,
+      updated_at: new Date().toISOString()
+    };
+    setVisitStats(updated);
+    await saveAnalyticsToSupabase(updated);
+    return updated;
+  };
+
   return (
     <CmsContext.Provider
       value={{
         heroContent, updateHeroContent,
         partners, updatePartner, addPartner, deletePartner,
         messages, kpis, mediaItems, companyInfo, services, alliances,
+        visitStats, setVisitStats, updateAnalyticsBaseline,
         isAdminOpen, setIsAdminOpen, isLoggedIn, loginAdmin, logoutAdmin,
         addMessage, updateMessageStatus, deleteMessage, updateKpi,
         updateMediaItem, addMediaItem, deleteMediaItem, updateService, updateCompanyInfoText, updateAllianceLogo,

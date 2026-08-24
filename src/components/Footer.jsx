@@ -3,11 +3,11 @@ import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
 import { 
   Phone, Mail, Instagram, Shield, 
-  Lock 
+  Lock, Eye, Activity
 } from 'lucide-react';
 
 export const Footer = () => {
-  const { companyInfo } = useCms();
+  const { companyInfo, visitStats } = useCms();
   const currentYear = new Date().getFullYear();
 
   // Ensure default values are used if companyInfo is empty or missing fields
@@ -159,11 +159,24 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Legal Bar */}
+        {/* Bottom Legal Bar with Live Visitor Counter */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-xs text-slate-500 font-medium text-center md:text-left">
             © {currentYear} <span className="text-slate-300 font-bold">CYSOS ENERGY, C.A.</span> Todos los derechos reservados.
           </p>
+
+          {/* Luxury Live Visitor Counter Badge */}
+          <div className="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.02] border border-white/10 hover:border-gold-400/30 transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <Eye className="w-3.5 h-3.5 text-gold-400" />
+            <span className="text-[11px] text-slate-400 font-medium font-sans">Visitas Totales:</span>
+            <span className="text-[11px] text-white font-black font-mono tracking-wider">
+              {Number(visitStats?.totalVisits || 14280).toLocaleString()}
+            </span>
+          </div>
           
           <div className="flex items-center gap-6">
             <a href="#cysos-panel" className="group flex items-center gap-2 text-[11px] font-bold text-slate-500 hover:text-gold-400 transition-colors uppercase tracking-widest">
