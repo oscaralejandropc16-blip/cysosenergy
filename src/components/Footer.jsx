@@ -250,7 +250,7 @@ export const Footer = () => {
           <div className="flex items-center gap-6">
             <a href="#cysos-panel" className="group flex items-center gap-2 text-[11px] font-bold text-slate-500 hover:text-gold-400 transition-colors uppercase tracking-widest">
               <Lock className="w-3.5 h-3.5" />
-              <span>Portal Empleados</span>
+              <span>Acceso Administrativo</span>
             </a>
           </div>
         </div>
