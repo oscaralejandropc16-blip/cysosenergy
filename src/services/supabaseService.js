@@ -144,19 +144,14 @@ export const listSupabaseStorage = async () => {
  */
 export const recordVisitInSupabase = async (isNewSession = true, isUniqueUser = false) => {
   const DEFAULT_ANALYTICS = {
-    totalVisits: 14280,
-    uniqueVisitors: 9640,
-    todayVisits: 145,
+    totalVisits: 1,
+    uniqueVisitors: 1,
+    todayVisits: 1,
     lastDate: new Date().toISOString().split('T')[0],
     history: [
-      { date: '2026-08-18', visits: 120 },
-      { date: '2026-08-19', visits: 135 },
-      { date: '2026-08-20', visits: 148 },
-      { date: '2026-08-21', visits: 162 },
-      { date: '2026-08-22', visits: 154 },
-      { date: '2026-08-23', visits: 145 }
+      { date: new Date().toISOString().split('T')[0], visits: 1 }
     ],
-    devices: { mobile: 68, desktop: 32 }
+    devices: { mobile: 50, desktop: 50 }
   };
 
   try {
@@ -182,10 +177,10 @@ export const recordVisitInSupabase = async (isNewSession = true, isUniqueUser = 
     }
 
     if (isNewSession) {
-      current.totalVisits = (Number(current.totalVisits) || 14280) + 1;
+      current.totalVisits = (Number(current.totalVisits) || 0) + 1;
       todayVisits += 1;
       if (isUniqueUser) {
-        current.uniqueVisitors = (Number(current.uniqueVisitors) || 9640) + 1;
+        current.uniqueVisitors = (Number(current.uniqueVisitors) || 0) + 1;
       }
     }
 

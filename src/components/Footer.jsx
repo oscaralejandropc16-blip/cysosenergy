@@ -174,7 +174,7 @@ export const Footer = () => {
             <Eye className="w-3.5 h-3.5 text-gold-400" />
             <span className="text-[11px] text-slate-400 font-medium font-sans">Visitas Totales:</span>
             <span className="text-[11px] text-white font-black font-mono tracking-wider">
-              {Number(visitStats?.totalVisits || 14280).toLocaleString()}
+              {Number(visitStats?.totalVisits || 1).toLocaleString()}
             </span>
           </div>
           
