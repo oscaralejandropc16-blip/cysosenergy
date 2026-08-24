@@ -298,16 +298,25 @@ export const CmsProvider = ({ children }) => {
       try {
         let isNewSession = false;
         let isUniqueUser = false;
+        const now = Date.now();
+        const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutos de sesión
 
-        if (!sessionStorage.getItem('cysos_session_visited')) {
-          sessionStorage.setItem('cysos_session_visited', 'true');
-          isNewSession = true;
-        }
-
+        // 1. Visitante Único (Huella permanente)
         if (!localStorage.getItem('cysos_user_uid')) {
-          localStorage.setItem('cysos_user_uid', `user-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
+          localStorage.setItem('cysos_user_uid', `user-${now}-${Math.random().toString(36).substr(2, 9)}`);
           isUniqueUser = true;
         }
+
+        // 2. Control de Sesión (No cuenta si recarga o cierra y abre rápido)
+        const lastVisitStr = localStorage.getItem('cysos_last_visit_time');
+        const lastVisitTime = lastVisitStr ? parseInt(lastVisitStr, 10) : 0;
+
+        if (now - lastVisitTime > SESSION_TIMEOUT) {
+          isNewSession = true; // Solo es nueva visita si pasaron más de 30 min
+        }
+
+        // 3. Actualizar la última interacción
+        localStorage.setItem('cysos_last_visit_time', now.toString());
 
         const stats = await recordVisitInSupabase(isNewSession, isUniqueUser);
         if (stats) {
