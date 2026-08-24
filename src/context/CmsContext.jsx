@@ -299,7 +299,7 @@ export const CmsProvider = ({ children }) => {
         let isNewSession = false;
         let isUniqueUser = false;
         const now = Date.now();
-        const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutos de sesión
+        const SESSION_TIMEOUT = 24 * 60 * 60 * 1000; // 24 horas de sesión
 
         // 1. Visitante Único (Huella permanente)
         if (!localStorage.getItem('cysos_user_uid')) {
@@ -307,12 +307,12 @@ export const CmsProvider = ({ children }) => {
           isUniqueUser = true;
         }
 
-        // 2. Control de Sesión (No cuenta si recarga o cierra y abre rápido)
+        // 2. Control de Sesión (No cuenta si recarga o cierra y abre el mismo día)
         const lastVisitStr = localStorage.getItem('cysos_last_visit_time');
         const lastVisitTime = lastVisitStr ? parseInt(lastVisitStr, 10) : 0;
 
         if (now - lastVisitTime > SESSION_TIMEOUT) {
-          isNewSession = true; // Solo es nueva visita si pasaron más de 30 min
+          isNewSession = true; // Solo es nueva visita si pasaron más de 24 horas
         }
 
         // 3. Actualizar la última interacción
