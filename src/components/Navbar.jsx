@@ -51,7 +51,7 @@ export const Navbar = () => {
         right: 0,
         width: '100%',
         zIndex: 2147483647,
-        padding: '24px 20px',
+        padding: '48px 20px 16px 20px',
         boxSizing: 'border-box',
         pointerEvents: 'none',
       }}

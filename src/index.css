@@ -217,3 +217,74 @@ button[class*="share-experience"],
   scrollbar-width: none;  /* Firefox */
 }
 
+/* ==========================================================================
+   Print Stylesheet for Corporate Technical Dossier PDF Export
+   ========================================================================== */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide regular page elements */
+  nav, header, footer, aside, button,
+  .cysos-nav-wrapper,
+  .print\:hidden,
+  #inicio, #servicios, #calculadora, #contacto, #mapa-venezuela,
+  #instagram-feed, #mision-vision, #alianzas, #operaciones {
+    display: none !important;
+  }
+
+  /* Ensure modal and dossier print beautifully */
+  .fixed.inset-0.z-\[99999\] {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  #cysos-corporate-dossier {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 20px !important;
+    color: #0F172A !important;
+    background: #FFFFFF !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  #cysos-corporate-dossier * {
+    color: #0F172A !important;
+    border-color: #CBD5E1 !important;
+    background-color: #F8FAFC !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  #cysos-corporate-dossier .text-gold-400,
+  #cysos-corporate-dossier .text-gold-300 {
+    color: #B45309 !important;
+  }
+
+  #cysos-corporate-dossier .text-flame-500 {
+    color: #C2410C !important;
+  }
+
+  #cysos-corporate-dossier .text-emerald-400 {
+    color: #047857 !important;
+  }
+
+  #cysos-corporate-dossier .text-slate-400,
+  #cysos-corporate-dossier .text-slate-300 {
+    color: #475569 !important;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: letter portrait;
+  }
+}
+
+

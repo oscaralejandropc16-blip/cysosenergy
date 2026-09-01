@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useCms } from '../context/CmsContext';
-import { Activity, FlaskConical, Truck, Globe, Flame, ShieldCheck, ArrowRight, Settings, ChevronDown } from 'lucide-react';
+import { Activity, FlaskConical, Truck, Globe, Flame, ShieldCheck, ArrowRight, Settings, ChevronDown, FileText } from 'lucide-react';
 
 // Robust Animated Counter Component triggering smooth counting up from 0
 const AnimatedCounter = ({ targetValue, decimals = 0, duration = 2000 }) => {
@@ -58,7 +58,7 @@ const AnimatedCounter = ({ targetValue, decimals = 0, duration = 2000 }) => {
   return <span ref={counterRef}>{formattedNumber}</span>;
 };
 
-export const Hero = () => {
+export const Hero = ({ onOpenDossier }) => {
   const { kpis, heroContent } = useCms();
   const currentHero = heroContent || {
     videoUrl: '/videos/IMG_7557.mp4',
@@ -167,6 +167,14 @@ export const Hero = () => {
               <span>Solicitar Cotización Técnica</span>
               <ArrowRight className="w-4 h-4" />
             </a>
+
+            <button
+              onClick={onOpenDossier}
+              className="px-6 py-3.5 rounded-xl text-xs sm:text-sm font-bold text-gold-300 hover:text-white bg-navy-900/90 hover:bg-gold-950/60 border border-gold-metallic/50 hover:border-gold-400 backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 font-heading shadow-gold-glow"
+            >
+              <FileText className="w-4 h-4 text-gold-400" />
+              <span>Dossier 2026 (PDF)</span>
+            </button>
 
             <a
               href="#calculadora"

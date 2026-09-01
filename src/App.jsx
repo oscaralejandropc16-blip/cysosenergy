@@ -15,6 +15,11 @@ import { ContactForm } from './components/ContactForm';
 import { AdminDashboardPage } from './components/AdminDashboardPage';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Footer } from './components/Footer';
+import { TopOperationalTicker } from './components/TopOperationalTicker';
+import { TrustBadgesStrip } from './components/TrustBadgesStrip';
+import { RecentOperations } from './components/RecentOperations';
+import { FloatingOperationsWidget } from './components/FloatingOperationsWidget';
+import { DossierModal } from './components/DossierModal';
 
 // Secret paths for high security
 const isSecretAdminRoute = () => {
@@ -33,6 +38,7 @@ function MainAppContent() {
   const [currentRoute, setCurrentRoute] = useState(() => {
     return isSecretAdminRoute() ? 'admin' : 'home';
   });
+  const [isDossierOpen, setIsDossierOpen] = useState(false);
 
   useEffect(() => {
     const handleUrlCheck = () => {
@@ -74,15 +80,18 @@ function MainAppContent() {
 
   return (
     <>
-      <Navbar />
+      <TopOperationalTicker onOpenDossier={() => setIsDossierOpen(true)} />
+      <Navbar onOpenDossier={() => setIsDossierOpen(true)} />
       <div className="min-h-screen bg-navy-950 text-slate-100 font-sans selection:bg-flame-500 selection:text-white">
         <main>
-          <Hero />
+          <Hero onOpenDossier={() => setIsDossierOpen(true)} />
+          <TrustBadgesStrip onOpenDossier={() => setIsDossierOpen(true)} />
           <PartnersCarousel />
           <MissionVision />
           <MultidisciplinaryAlliances />
           <HumanOperations />
           <Services />
+          <RecentOperations onOpenDossier={() => setIsDossierOpen(true)} />
           <ViscosityCalculator />
           <VenezuelaMap />
           <HSECommitment />
@@ -91,6 +100,8 @@ function MainAppContent() {
         </main>
         <Footer />
         <ScrollToTop />
+        <FloatingOperationsWidget />
+        <DossierModal isOpen={isDossierOpen} onClose={() => setIsDossierOpen(false)} />
       </div>
     </>
   );
