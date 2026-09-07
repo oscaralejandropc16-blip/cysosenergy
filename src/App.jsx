@@ -11,6 +11,7 @@ import { ViscosityCalculator } from './components/ViscosityCalculator';
 import { VenezuelaMap } from './components/VenezuelaMap';
 import { HSECommitment } from './components/HSECommitment';
 import { InstagramGallery } from './components/InstagramGallery';
+import { NewsSection } from './components/NewsSection';
 import { ContactForm } from './components/ContactForm';
 import { AdminDashboardPage } from './components/AdminDashboardPage';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -96,6 +97,7 @@ function MainAppContent() {
           <VenezuelaMap />
           <HSECommitment />
           <InstagramGallery />
+          <NewsSection />
           <ContactForm />
         </main>
         <Footer />

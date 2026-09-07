@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Logo } from './Logo';
+import { NewsAdminPanel } from './NewsAdminPanel';
 import { 
   Lock, Mail, MessageSquare, Trash2, CheckCircle2, Search, Filter, 
   LogOut, Edit3, Image as ImageIcon, Key, Plus, ArrowLeft, Building, 
@@ -484,7 +485,8 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               { id: 'kpis', label: '6. Cifras & Métricas (+450)', icon: Sliders, count: safeKpis.length, help: 'Indicadores operacionales clave' },
               { id: 'empresa', label: '7. Misión, Visión & Contacto', icon: FileText, count: null, help: 'Teléfonos, correos y dirección fiscal' },
               { id: 'alliances', label: '8. Alianzas Estratégicas', icon: Sparkles, count: alliances ? alliances.length : 0, help: 'Logos de empresas aliadas' },
-              { id: 'inbox', label: '9. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Solicitudes recibidas de clientes' }
+              { id: 'inbox', label: '9. Bandeja de Cotizaciones', icon: MessageSquare, count: pendingCount, help: 'Solicitudes recibidas de clientes' },
+              { id: 'news', label: '10. Noticias', icon: FileText, count: null, help: 'Novedades y artículos con fotos/videos' }
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -1743,6 +1745,14 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 ))}
               </div>
             </div>
+          )}
+
+          {/* TAB 10: NOTICIAS */}
+          {activeTab === 'news' && (
+            <NewsAdminPanel 
+              openMediaPicker={openMediaPicker}
+              triggerSaveNotification={triggerSaveNotification}
+            />
           )}
 
           {/* TAB 9: INBOX */}

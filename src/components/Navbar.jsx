@@ -38,6 +38,7 @@ export const Navbar = () => {
     { name: 'Operaciones', href: '#operaciones' },
     { name: 'Servicios', href: '#servicios' },
     { name: 'EOR', href: '#calculadora' },
+    { name: 'Noticias', href: '#noticias' },
     { name: 'Contacto', href: '#contacto' },
   ];
 

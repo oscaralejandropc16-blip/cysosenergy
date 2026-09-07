@@ -14,6 +14,9 @@ export const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [createdId, setCreatedId] = useState('');
   const [loading, setLoading] = useState(false);
+  const [captchaParams, setCaptchaParams] = useState({ num1: Math.floor(Math.random() * 10) + 1, num2: Math.floor(Math.random() * 10) + 1 });
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  const [captchaError, setCaptchaError] = useState(false);
   const [selectedHub, setSelectedHub] = useState('maturin');
   const [mapViewMode, setMapViewMode] = useState('radar');
 
@@ -55,6 +58,13 @@ export const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (parseInt(captchaAnswer) !== captchaParams.num1 + captchaParams.num2) {
+      setCaptchaError(true);
+      return;
+    }
+    setCaptchaError(false);
+
     setLoading(true);
 
     setTimeout(() => {
@@ -71,6 +81,8 @@ export const ContactForm = () => {
         location: 'Sede Central & Base Maturín (Monagas, Venezuela)',
         message: ''
       });
+      setCaptchaParams({ num1: Math.floor(Math.random() * 10) + 1, num2: Math.floor(Math.random() * 10) + 1 });
+      setCaptchaAnswer('');
     }, 500);
   };
 
@@ -269,6 +281,7 @@ export const ContactForm = () => {
                   .animate-stagger-2 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both; }
                   .animate-stagger-3 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both; }
                   .animate-stagger-4 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both; }
+                  .animate-stagger-5 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both; }
                   
                   .input-glow-wrapper {
                     position: relative;
@@ -469,8 +482,49 @@ export const ContactForm = () => {
                   </div>
                 </div>
 
+                {/* Step 4: Security CAPTCHA */}
+                <div className="space-y-4 pt-4 border-t border-slate-800/60 animate-stagger-4">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-800 text-gold-400 text-xs font-black font-sans tracking-wide border border-slate-700">4</span>
+                    <label className="text-sm font-black text-white block font-heading tracking-wide">
+                      Verificación de Seguridad
+                    </label>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex items-center justify-center px-6 py-3.5 bg-navy-900/80 rounded-xl border border-slate-700/50">
+                      <span className="text-lg font-black text-amber-400 font-heading tracking-wider">
+                        ¿Cuánto es {captchaParams.num1} + {captchaParams.num2}?
+                      </span>
+                    </div>
+                    
+                    <div className="input-glow-wrapper group flex-1">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <ShieldCheck className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                      </div>
+                      <input
+                        type="number"
+                        required
+                        placeholder="Ingrese el resultado *"
+                        value={captchaAnswer}
+                        onChange={(e) => {
+                          setCaptchaAnswer(e.target.value);
+                          setCaptchaError(false);
+                        }}
+                        className={`w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-bold tracking-wide outline-none transition-colors ${captchaError ? 'border-red-500/50 text-red-400 focus:border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'text-white'}`}
+                      />
+                    </div>
+                  </div>
+                  {captchaError && (
+                    <p className="text-xs text-red-400 font-bold mt-1 ml-1 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                      Respuesta incorrecta. Por favor, intente de nuevo.
+                    </p>
+                  )}
+                </div>
+
                 {/* Submit Action */}
-                <div className="pt-6 animate-stagger-4">
+                <div className="pt-6 animate-stagger-5">
                   <button
                     type="submit"
                     disabled={loading}

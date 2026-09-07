@@ -216,6 +216,36 @@ const INITIAL_ALLIANCES = [
   }
 ];
 
+const INITIAL_NEWS = [
+  {
+    id: 'news-1',
+    title: 'Nueva Tecnología de Reducción de Viscosidad',
+    date: '2026-09-01',
+    tag: 'Tecnología EOR',
+    content: 'Hemos desplegado con éxito nuestro nuevo reductor de viscosidad en la Faja del Orinoco, logrando un ahorro del 40% en uso de diluyentes. Con esta implementación, aseguramos un flujo continuo y eficiente para crudos extrapesados.',
+    mediaUrl: '/images/cysos_quimica_lipesa.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-2',
+    title: 'Operación de Izamiento con Grúa 110T',
+    date: '2026-08-25',
+    tag: 'Logística & Izamiento',
+    content: 'Maniobra de alta complejidad realizada de forma segura utilizando nuestra grúa telescópica de 110 Toneladas. El equipo multidisciplinario garantizó cero incidentes durante el desarrollo del proyecto en el oriente del país.',
+    mediaUrl: '/videos/maniobra.mp4',
+    mediaType: 'video'
+  },
+  {
+    id: 'news-3',
+    title: 'Intervención y Reparación de Pozo con Unidad Flush By',
+    date: '2026-08-15',
+    tag: 'Operaciones',
+    content: 'Nuestro equipo de especialistas logró la recuperación de un pozo clave en tiempo récord gracias a la versatilidad de la Unidad Flush By, optimizando los tiempos operativos para nuestros clientes.',
+    mediaUrl: '/images/cysos_skid_operador.jpg',
+    mediaType: 'image'
+  }
+];
+
 const INITIAL_VISIT_STATS = {
   totalVisits: 1,
   uniqueVisitors: 1,
@@ -240,6 +270,7 @@ export const CmsProvider = ({ children }) => {
   const [companyInfo, setCompanyInfo] = useState(INITIAL_COMPANY_INFO);
   const [services, setServices] = useState(INITIAL_SERVICES);
   const [alliances, setAlliances] = useState(INITIAL_ALLIANCES);
+  const [news, setNews] = useState(INITIAL_NEWS);
   const [visitStats, setVisitStats] = useState(INITIAL_VISIT_STATS);
 
   const [isAdminOpen, setIsAdminOpen] = useState(false);
@@ -282,6 +313,7 @@ export const CmsProvider = ({ children }) => {
         }
         if (data['cysos_cms_services']) setServices(data['cysos_cms_services']);
         if (data['cysos_cms_alliances']) setAlliances(data['cysos_cms_alliances']);
+        if (data['cysos_cms_news']) setNews(data['cysos_cms_news']);
         if (data['cysos_cms_analytics']) setVisitStats(data['cysos_cms_analytics']);
         setDbSyncStatus('success');
       } else {
@@ -469,6 +501,30 @@ export const CmsProvider = ({ children }) => {
     });
   };
 
+  const addNews = (newsItem) => {
+    setNews((prev) => {
+      const newState = [{ id: `news-${Date.now()}`, ...newsItem }, ...prev];
+      saveToSupabase('cysos_cms_news', newState);
+      return newState;
+    });
+  };
+
+  const updateNews = (id, updatedFields) => {
+    setNews((prev) => {
+      const newState = prev.map((n) => (n.id === id ? { ...n, ...updatedFields } : n));
+      saveToSupabase('cysos_cms_news', newState);
+      return newState;
+    });
+  };
+
+  const deleteNews = (id) => {
+    setNews((prev) => {
+      const newState = prev.filter((n) => n.id !== id);
+      saveToSupabase('cysos_cms_news', newState);
+      return newState;
+    });
+  };
+
   const updateAnalyticsBaseline = async (newTotalVisits) => {
     const total = Number(newTotalVisits) || 14280;
     const unique = Math.round(total * 0.68);
@@ -488,11 +544,12 @@ export const CmsProvider = ({ children }) => {
       value={{
         heroContent, updateHeroContent,
         partners, updatePartner, addPartner, deletePartner,
-        messages, kpis, mediaItems, companyInfo, services, alliances,
+        messages, kpis, mediaItems, companyInfo, services, alliances, news,
         visitStats, setVisitStats, updateAnalyticsBaseline,
         isAdminOpen, setIsAdminOpen, isLoggedIn, loginAdmin, logoutAdmin,
         addMessage, updateMessageStatus, deleteMessage, updateKpi,
         updateMediaItem, addMediaItem, deleteMediaItem, updateService, updateCompanyInfoText, updateAllianceLogo,
+        addNews, updateNews, deleteNews,
         dbSyncStatus // Proveemos el estado de sincro por si el admin panel quiere mostrar "Guardando en la nube..."
       }}
     >
