@@ -232,7 +232,7 @@ const INITIAL_NEWS = [
     date: '2026-08-25',
     tag: 'Logística & Izamiento',
     content: 'Maniobra de alta complejidad realizada de forma segura utilizando nuestra grúa telescópica de 110 Toneladas. El equipo multidisciplinario garantizó cero incidentes durante el desarrollo del proyecto en el oriente del país.',
-    mediaUrl: '/videos/maniobra.mp4',
+    mediaUrl: '/videos/IMG_7557.mp4',
     mediaType: 'video'
   },
   {
