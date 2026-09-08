@@ -101,7 +101,15 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
 
-    setUploadingStatus({ isUploading: true, progress: 50, fileName: file.name });
+    setUploadingStatus({ isUploading: true, progress: 10, fileName: file.name });
+
+    // Simulador visual de progreso para que el usuario no crea que se quedó pegado
+    const progressInterval = setInterval(() => {
+      setUploadingStatus(prev => ({
+        ...prev,
+        progress: prev.progress >= 95 ? 95 : prev.progress + Math.floor(Math.random() * 5) + 1
+      }));
+    }, 1000);
 
     try {
       const result = await uploadToSupabaseStorage(file);
@@ -114,8 +122,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
       }
     } catch (error) {
       console.error('Upload error', error);
-      triggerSaveNotification('❌ Error al subir el archivo');
+      triggerSaveNotification('❌ Error al subir el archivo (quizás es muy pesado)');
     } finally {
+      clearInterval(progressInterval);
       setUploadingStatus({ isUploading: false, progress: 100, fileName: '' });
       e.target.value = null; // reset input
     }
@@ -279,12 +288,12 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-lg font-extrabold font-heading text-white">Subiendo a la Nube (Cloudinary 25 GB)</h3>
+              <h3 className="text-lg font-extrabold font-heading text-white">Subiendo Archivo a la Nube</h3>
               <p className="text-xs text-gold-400 font-bold truncate max-w-xs mx-auto">
                 {uploadingStatus.fileName}
               </p>
-              <p className="text-[11px] text-slate-300 font-light">
-                Comprimiendo y optimizando archivo para carga instantánea en teléfonos y computadoras...
+              <p className="text-[11px] text-slate-300 font-light px-4">
+                Por favor espera sin cerrar esta ventana. Si estás subiendo un video, puede tomar varios minutos dependiendo de tu velocidad de conexión a internet y el peso del archivo.
               </p>
             </div>
 
@@ -297,7 +306,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 />
               </div>
               <div className="flex justify-between text-[10px] font-mono text-slate-400">
-                <span>Almacenamiento Cloudinary CDN</span>
+                <span>Procesando archivo seguro...</span>
                 <span className="font-bold text-white">{uploadingStatus.progress}%</span>
               </div>
             </div>
