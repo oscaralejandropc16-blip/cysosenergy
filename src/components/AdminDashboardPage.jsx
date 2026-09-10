@@ -423,7 +423,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     className="group relative aspect-video rounded-2xl overflow-hidden bg-navy-950 border border-white/10 hover:border-white/20 hover:text-white cursor-pointer transition-all hover:scale-105 shadow-md flex flex-col justify-end p-2"
                   >
                     {item.type === 'video' ? (
-                      <video src={item.url} muted className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-navy-900/50">
+                        <Video className="w-8 h-8 text-gold-400 opacity-50 mb-2" />
+                      </div>
                     ) : (
                       <img src={item.url} alt={item.name} className="absolute inset-0 w-full h-full object-contain p-2 bg-navy-900/50" />
                     )}
@@ -566,7 +568,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     poster={heroContent.posterUrl || '/images/IMG_7549.jpg'}
                     className="absolute inset-0 w-full h-full object-cover filter brightness-[0.70]"
                   >
-                    <source src={heroContent.videoUrl || '/videos/IMG_7557.mp4'} type="video/mp4" />
+                    <source src="/videos/IMG_7557.mp4" type="video/mp4" />
                   </video>
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-navy-950/60 pointer-events-none" />
 
@@ -830,7 +832,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     <div key={item.id} className="luxury-glass p-3 rounded-2xl border border-white/10 space-y-2 group relative">
                       <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-white/10">
                         {item.type === 'video' ? (
-                          <video src={item.url} muted className="w-full h-full object-cover" />
+                          <div className="w-full h-full flex items-center justify-center bg-navy-900/50">
+                            <Video className="w-8 h-8 text-gold-400 opacity-50" />
+                          </div>
                         ) : (
                           <img src={item.url} alt={item.name} className="w-full h-full object-contain p-2 bg-navy-900/50" />
                         )}

@@ -97,7 +97,7 @@ export const Hero = ({ onOpenDossier }) => {
                 preload="auto"
                 class="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.05] scale-105 transform"
               >
-                <source src="${currentHero.videoUrl}" type="video/mp4" />
+                <source src="/videos/IMG_7557.mp4" type="video/mp4" />
               </video>
             `
           }}
