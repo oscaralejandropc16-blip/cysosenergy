@@ -3,10 +3,10 @@ import { ShieldCheck, Leaf, Award, CheckCircle2, HeartHandshake, Sparkles, FileC
 
 export const HSECommitment = () => {
   return (
-    <section className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
+    <section id="hse" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
       {/* Glow Backdrop */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-emerald-500/15 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -14,15 +14,14 @@ export const HSECommitment = () => {
           
           {/* Left Column: Text & Certifications */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 shadow-[0_0_20px_rgba(52,211,153,0.1)]">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[11px] font-black uppercase text-emerald-400 tracking-widest font-heading">
-                Compromiso de Seguridad, Salud y Ambiente
-              </span>
+            <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-emerald-400 font-heading">
+              <span className="w-1.5 h-1.5 bg-emerald-400 rotate-45" />
+              <span>Compromiso de Seguridad, Salud y Ambiente</span>
+              <span className="h-px w-8 bg-gradient-to-r from-emerald-400/60 to-transparent" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-              Política de Seguridad <span className="text-gradient-gold">HSE & ISO Compliance</span>
+              Política de Seguridad <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-energy-sky bg-clip-text text-transparent">HSE & ISO Compliance</span>
             </h2>
 
             <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed font-light">
@@ -36,8 +35,8 @@ export const HSECommitment = () => {
                 { title: 'ISO 9001:2015', desc: 'Gestión de Calidad Certificada' },
                 { title: 'ISO 14001:2015', desc: 'Gestión y Cuidado Ambiental' }
               ].map((cert, idx) => (
-                <div key={idx} className="luxury-card p-4 rounded-2xl border border-slate-800 space-y-1 group hover:border-emerald-500/40">
-                  <Award className="w-5 h-5 text-gold-400 group-hover:scale-110 transition-transform" />
+                <div key={idx} className="luxury-card p-4 rounded-2xl border border-slate-700/80 bg-navy-900/60 space-y-1 group hover:border-emerald-500/50 transition-all">
+                  <Award className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
                   <h4 className="text-xs font-black font-heading text-white">{cert.title}</h4>
                   <p className="text-[10px] text-slate-400 font-light">{cert.desc}</p>
                 </div>
@@ -63,16 +62,16 @@ export const HSECommitment = () => {
 
           {/* Right Column: High Resolution Photographic Showcase */}
           <div className="lg:col-span-6 relative">
-            <div className="luxury-glass p-4 sm:p-5 rounded-3xl border border-emerald-500/30 shadow-2xl space-y-4">
+            <div className="luxury-glass p-4 sm:p-5 rounded-3xl border border-emerald-500/30 bg-navy-900/70 shadow-2xl space-y-4">
               
               <div className="relative h-60 sm:h-64 rounded-2xl overflow-hidden group">
                 <img
                   src="/images/cysos_placa_tecnica.jpg"
                   alt="Placa Técnica y Registro Legal CYSOS ENERGY"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.92]"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.95]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-3 text-[11px] font-black text-white bg-navy-950/90 px-3 py-1 rounded-xl border border-white/10 backdrop-blur-md font-heading">
+                <span className="absolute bottom-3 left-3 text-[11px] font-black text-white bg-navy-950/90 px-3 py-1 rounded-xl border border-white/15 backdrop-blur-md font-heading">
                   📋 Placa de Fabricación: Modelo CyS 2026-I • RACDA • SAPI
                 </span>
               </div>
@@ -82,10 +81,10 @@ export const HSECommitment = () => {
                   <img
                     src="/images/cysos_ingeniero_auditoria.jpg"
                     alt="Auditoría y Control en Pozo"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.92]"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.95]"
                   />
                   <div className="absolute inset-0 bg-navy-950/40" />
-                  <span className="absolute bottom-2 left-2 text-[10px] font-black text-white bg-navy-950/90 px-2 py-0.5 rounded-lg font-heading">
+                  <span className="absolute bottom-2 left-2 text-[10px] font-black text-white bg-navy-950/90 px-2.5 py-1 rounded-lg font-heading border border-white/10">
                     Auditoría en Pozo
                   </span>
                 </div>
@@ -94,10 +93,10 @@ export const HSECommitment = () => {
                   <img
                     src="/images/cysos_tote_quimico.jpg"
                     alt="Manejo Seguro de Químicos"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.92]"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-[0.95]"
                   />
                   <div className="absolute inset-0 bg-navy-950/40" />
-                  <span className="absolute bottom-2 left-2 text-[10px] font-black text-white bg-navy-950/90 px-2 py-0.5 rounded-lg font-heading">
+                  <span className="absolute bottom-2 left-2 text-[10px] font-black text-white bg-navy-950/90 px-2.5 py-1 rounded-lg font-heading border border-white/10">
                     Manejo Seguro de Insumos
                   </span>
                 </div>

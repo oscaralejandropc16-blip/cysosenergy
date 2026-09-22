@@ -37,15 +37,15 @@ export const FloatingOperationsWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 font-sans">
+    <div className="fixed bottom-6 left-6 z-30 font-sans">
       {/* Expanded Interactive Card */}
       {isOpen && (
-        <div className="mb-3 w-[calc(100vw-3rem)] sm:w-96 bg-navy-900/95 border border-gold-metallic/50 rounded-3xl p-5 shadow-2xl backdrop-blur-2xl animate-fadeIn text-white">
+        <div className="mb-3 w-[calc(100vw-3rem)] sm:w-96 bg-navy-900/95 border border-slate-700/80 rounded-2xl p-5 shadow-2xl backdrop-blur-2xl animate-fadeIn text-white">
           
           {/* Header */}
           <div className="flex items-start justify-between pb-3 border-b border-slate-800">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-lg">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-lg">
                 <WhatsAppIcon size={24} />
               </div>
               <div>
@@ -143,7 +143,7 @@ export const FloatingOperationsWidget = () => {
 
               <a
                 href="tel:+584129486249"
-                className="w-full py-2 px-4 rounded-xl bg-navy-950 hover:bg-navy-850 border border-slate-700 hover:border-gold-400/40 text-slate-300 hover:text-white font-heading font-semibold text-xs flex items-center justify-center gap-2 transition-colors"
+                className="w-full py-2 px-4 rounded-xl bg-navy-950 hover:bg-navy-850 border border-slate-700 hover:border-flame-500/50 text-slate-300 hover:text-white font-heading font-semibold text-xs flex items-center justify-center gap-2 transition-colors"
               >
                 <PhoneCall className="w-3.5 h-3.5 text-flame-500" />
                 <span>Llamar Directo: 0412-9486249</span>
@@ -154,21 +154,21 @@ export const FloatingOperationsWidget = () => {
         </div>
       )}
 
-      {/* Floating Trigger Button */}
+      {/* Floating Trigger Button - Enterprise Dark Glass with WhatsApp Accent */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Abrir mesa operativa WhatsApp"
-        className="group relative flex items-center gap-2.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-4 py-3 rounded-full shadow-2xl border border-emerald-400/40 transition-all duration-300 transform hover:scale-105 active:scale-95"
+        className="group relative flex items-center gap-2.5 bg-navy-900/95 hover:bg-navy-850 text-white px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-2xl border border-slate-700/80 hover:border-emerald-500/50 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 backdrop-blur-xl"
       >
-        <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
         
-        <WhatsAppIcon size={20} className="group-hover:rotate-12 transition-transform duration-300" />
+        <WhatsAppIcon size={18} className="text-emerald-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
         
-        <span className="font-heading font-black text-xs uppercase tracking-wider hidden sm:inline">
-          {isOpen ? 'Cerrar Despacho' : 'Guardia 24/7 • WhatsApp'}
+        <span className="font-heading font-bold text-xs uppercase tracking-wider hidden sm:inline text-slate-200 group-hover:text-white">
+          {isOpen ? 'Cerrar Despacho' : 'Guardia 24/7'}
         </span>
       </button>
     </div>

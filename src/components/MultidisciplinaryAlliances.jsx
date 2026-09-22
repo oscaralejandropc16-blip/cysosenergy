@@ -44,18 +44,17 @@ export const MultidisciplinaryAlliances = () => {
     <section id="especialidades" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
       {/* Background Ambience Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gold-metallic/5 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-energy-cyan/10 rounded-full blur-[180px] pointer-events-none" />
       <div className="absolute top-0 right-0 w-80 h-80 bg-flame-500/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12 sm:space-y-16">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-            <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
-              Especialidades Técnicas • Integración Multidisciplinaria
-            </span>
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-energy-sky font-heading">
+            <span className="w-1.5 h-1.5 bg-energy-cyan rotate-45" />
+            <span>Especialidades Técnicas • Integración Multidisciplinaria</span>
+            <span className="h-px w-8 bg-gradient-to-r from-energy-cyan/60 to-transparent" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight leading-tight">
@@ -79,10 +78,10 @@ export const MultidisciplinaryAlliances = () => {
             return (
               <div
                 key={entity.id}
-                className="bg-navy-900/40 backdrop-blur-md rounded-[2.5rem] border border-white/5 overflow-hidden group hover:border-white/20 transition-all duration-500 hover:-translate-y-2 shadow-2xl relative"
+                className="bg-navy-900/60 backdrop-blur-md rounded-[2.5rem] border border-energy-sky/15 overflow-hidden group hover:border-energy-cyan/40 transition-all duration-500 hover:-translate-y-2 shadow-2xl relative"
               >
                 {/* Background Inner Glow */}
-                <div className={`absolute -top-20 -right-20 w-44 h-44 ${entity.glow || 'bg-gold-400/20'} rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+                <div className="absolute -top-20 -right-20 w-44 h-44 bg-energy-cyan/15 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                 <div className="p-8 sm:p-10 relative z-10 flex flex-col h-full">
                   {/* Top Bar: Pedestal Blanco para Logo + Badge */}
@@ -97,9 +96,9 @@ export const MultidisciplinaryAlliances = () => {
                       />
                     </div>
 
-                    {/* Badge */}
+                    {/* Geometric Badge (No Pill) */}
                     <div className="mt-2 sm:mt-0">
-                      <span className={`px-4 py-1.5 rounded-full bg-gradient-to-r ${entity.color || 'from-flame-500 to-amber-500'} text-[10px] font-black uppercase tracking-widest text-white shadow-lg whitespace-nowrap block text-center sm:inline-block`}>
+                      <span className="px-3.5 py-1.5 rounded-lg bg-navy-950/90 border border-energy-sky/30 text-energy-sky text-[10px] font-black uppercase tracking-widest shadow-md whitespace-nowrap block text-center sm:inline-block font-heading">
                         {entity.badge}
                       </span>
                     </div>
@@ -107,7 +106,7 @@ export const MultidisciplinaryAlliances = () => {
 
                   {/* Title & Category */}
                   <div className="mb-4">
-                    <h3 className="text-2xl sm:text-3xl font-black font-heading text-white group-hover:text-gold-400 transition-colors">
+                    <h3 className="text-2xl sm:text-3xl font-black font-heading text-white group-hover:text-energy-sky transition-colors">
                       {entity.name}
                     </h3>
                     <span className="text-xs font-bold text-slate-400 font-sans tracking-widest block mt-1.5 uppercase">

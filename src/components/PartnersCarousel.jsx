@@ -271,30 +271,29 @@ export const PartnersCarousel = () => {
     <section className="py-20 md:py-24 relative bg-navy-950 overflow-hidden border-b border-slate-800/80">
       
       {/* Background Decorative Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gold-metallic/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-flame-500/5 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12 sm:mb-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
-              <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-              <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
-                Clientes & Aliados
-              </span>
+            <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-slate-300 font-heading">
+              <span className="w-1.5 h-1.5 bg-flame-500 rotate-45" />
+              <span>Clientes & Aliados Estratégicos</span>
+              <span className="h-px w-8 bg-gradient-to-r from-flame-500/60 to-transparent" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-              Empresas que confían en <span className="animate-gradient-text bg-gradient-to-r from-gold-400 via-orange-400 to-flame-500 bg-clip-text text-transparent block mt-1 sm:inline sm:mt-0">CYSOS ENERGY</span>
+              Empresas que confían en <span className="text-flame-500 block mt-1 sm:inline sm:mt-0">CYSOS ENERGY</span>
             </h2>
             
             {/* Mobile swipe gesture guide */}
-            <div className="flex sm:hidden items-center gap-2 text-xs text-gold-400/90 font-medium bg-gold-400/10 border border-gold-400/20 px-3.5 py-1.5 rounded-full w-fit">
-              <MoveHorizontal className="w-3.5 h-3.5 animate-pulse text-gold-400" />
+            <div className="flex sm:hidden items-center gap-2 text-xs text-slate-300 font-heading font-medium bg-navy-900 border border-slate-700 px-3 py-1 rounded-lg w-fit">
+              <MoveHorizontal className="w-3.5 h-3.5 animate-pulse text-flame-500" />
               <span>Desliza con tu dedo para explorar</span>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start sm:items-center md:items-end lg:items-center gap-4">
-            <p className="text-sm text-slate-400 font-light max-w-md leading-relaxed md:text-right border-l md:border-l-0 md:border-r-2 border-gold-400/30 pl-4 md:pl-0 md:pr-6">
+            <p className="text-sm text-slate-300 font-light max-w-md leading-relaxed md:text-right border-l md:border-l-0 md:border-r-2 border-slate-700 pl-4 md:pl-0 md:pr-6">
               Trayectoria comprobada operando junto a corporaciones multinacionales y empresas mixtas del sector hidrocarburos.
             </p>
 
@@ -304,7 +303,7 @@ export const PartnersCarousel = () => {
                 type="button"
                 onClick={() => handleGlide('prev')}
                 aria-label="Ver anterior"
-                className="w-10 h-10 rounded-2xl bg-white/5 hover:bg-gold-500/20 border border-white/10 hover:border-gold-400/40 text-slate-300 hover:text-gold-400 flex items-center justify-center transition-all duration-300 active:scale-90 shadow-lg backdrop-blur-md"
+                className="w-10 h-10 rounded-2xl bg-navy-900 hover:bg-navy-850 border border-slate-700 hover:border-flame-500/60 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 active:scale-90 shadow-lg backdrop-blur-md"
                 title="Deslizar anterior"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -313,7 +312,7 @@ export const PartnersCarousel = () => {
                 type="button"
                 onClick={() => handleGlide('next')}
                 aria-label="Ver siguiente"
-                className="w-10 h-10 rounded-2xl bg-white/5 hover:bg-gold-500/20 border border-white/10 hover:border-gold-400/40 text-slate-300 hover:text-gold-400 flex items-center justify-center transition-all duration-300 active:scale-90 shadow-lg backdrop-blur-md"
+                className="w-10 h-10 rounded-2xl bg-navy-900 hover:bg-navy-850 border border-slate-700 hover:border-flame-500/60 text-slate-300 hover:text-white flex items-center justify-center transition-all duration-300 active:scale-90 shadow-lg backdrop-blur-md"
                 title="Deslizar siguiente"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -325,7 +324,7 @@ export const PartnersCarousel = () => {
 
       {/* CONTINUOUS TOUCH & DRAG INTERACTIVE TICKER */}
       <div 
-        className={`relative w-full overflow-hidden py-10 sm:py-12 border-y border-slate-800/40 bg-gradient-to-b from-[#050A14] via-[#081020] to-[#050A14] backdrop-blur-xl touch-pan-y select-none ${
+        className={`relative w-full overflow-hidden py-10 sm:py-12 border-y border-slate-800/60 bg-gradient-to-b from-navy-950 via-navy-900/60 to-navy-950 backdrop-blur-xl touch-pan-y select-none ${
           isDraggingState ? 'cursor-grabbing' : 'cursor-grab'
         }`}
         onMouseEnter={handleMouseEnter}
@@ -351,11 +350,11 @@ export const PartnersCarousel = () => {
             <div
               key={`${partner.id}-${index}`}
               onClick={() => handleCardClick(partner)}
-              className="flex-shrink-0 group/card relative p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-[#050A14]/60 backdrop-blur-2xl border border-white/5 hover:border-gold-500/30 transition-all duration-500 overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-[280px] sm:w-auto sm:min-w-[480px] shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_40px_rgba(250,204,21,0.08)] select-none cursor-pointer"
+              className="flex-shrink-0 group/card relative p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-navy-900/70 backdrop-blur-2xl border border-energy-sky/15 hover:border-energy-cyan/40 transition-all duration-500 overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-[280px] sm:w-auto sm:min-w-[480px] shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-cyan-glow select-none cursor-pointer"
             >
               {/* Ultra-Premium Background Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gold-500/0 via-transparent to-gold-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-gold-500/10 rounded-full blur-[50px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none transform group-hover/card:scale-150" />
+              <div className="absolute inset-0 bg-gradient-to-br from-energy-cyan/0 via-transparent to-energy-cyan/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-energy-cyan/10 rounded-full blur-[50px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none transform group-hover/card:scale-150" />
               <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-flame-500/10 rounded-full blur-[40px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
               {/* Glass Floating Logo Container */}
@@ -379,21 +378,21 @@ export const PartnersCarousel = () => {
               {/* Text & Meta Information */}
               <div className="flex-1 min-w-0 relative z-10 flex flex-col justify-center w-full pointer-events-none">
                 <div className="flex items-start justify-between gap-3 mb-2 w-full">
-                  <h4 className="text-base sm:text-xl font-black font-heading text-white truncate group-hover/card:text-gold-400 transition-colors duration-500 tracking-tight">
+                  <h4 className="text-base sm:text-xl font-black font-heading text-white truncate group-hover/card:text-flame-400 transition-colors duration-500 tracking-tight">
                     {partner.name}
                   </h4>
-                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover/card:bg-gold-500 group-hover/card:border-gold-500 group-hover/card:text-navy-950 transition-all duration-500 text-slate-400 flex-shrink-0 transform group-hover/card:rotate-45 group-hover/card:scale-110 shadow-lg">
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover/card:bg-flame-500 group-hover/card:border-flame-500 group-hover/card:text-white transition-all duration-500 text-slate-400 flex-shrink-0 transform group-hover/card:rotate-45 group-hover/card:scale-110 shadow-lg">
                     <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </div>
                 </div>
                 
-                <p className="text-[11px] sm:text-sm text-slate-400/90 font-light mb-4 tracking-wide group-hover/card:text-slate-300 transition-colors duration-500 whitespace-normal line-clamp-2 sm:line-clamp-1">
+                <p className="text-[11px] sm:text-sm text-slate-300 font-light mb-4 tracking-wide group-hover/card:text-white transition-colors duration-500 whitespace-normal line-clamp-2 sm:line-clamp-1">
                   {partner.sub}
                 </p>
                 
-                <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-black/40 border border-white/5 group-hover/card:border-gold-500/20 group-hover/card:bg-black/60 transition-all duration-500 shadow-inner w-fit">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.6)]" />
-                  <span className="text-[9px] sm:text-[10px] font-bold uppercase text-slate-300 group-hover/card:text-gold-400 font-heading tracking-[0.2em] transition-colors duration-500">
+                <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg bg-navy-950/80 border border-slate-700/80 group-hover/card:border-flame-500/40 transition-all duration-500 shadow-inner w-fit">
+                  <div className="w-1.5 h-1.5 rounded-sm bg-flame-500" />
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase text-slate-300 group-hover/card:text-flame-400 font-heading tracking-[0.2em] transition-colors duration-500">
                     {partner.type}
                   </span>
                 </div>
@@ -407,26 +406,25 @@ export const PartnersCarousel = () => {
       {selectedClient && (
         <div 
           onClick={() => setSelectedClient(null)}
-          className="fixed inset-0 z-[140] flex items-center justify-center p-4 sm:p-6 bg-navy-950/90 backdrop-blur-2xl animate-fadeIn cursor-pointer"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/85 backdrop-blur-md animate-fadeIn"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden custom-scrollbar rounded-[2.5rem] bg-[#070e22]/95 backdrop-blur-3xl border border-gold-metallic/40 p-5 sm:p-10 space-y-5 sm:space-y-7 shadow-[0_20px_80px_rgba(0,0,0,0.85)] relative cursor-default animate-scaleUp"
+            className="w-full max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden custom-scrollbar rounded-[2.5rem] bg-[#070e22]/95 backdrop-blur-3xl border border-slate-700/80 p-5 sm:p-10 space-y-5 sm:space-y-7 shadow-[0_20px_80px_rgba(0,0,0,0.85)] relative cursor-default animate-scaleUp"
           >
-            {/* Ambient Multi-Mesh Lighting */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-gold-500/10 rounded-full blur-[90px] pointer-events-none" />
+            {/* Subtle Ambient Warmth */}
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-flame-500/10 rounded-full blur-[80px] pointer-events-none" />
 
             {/* Top Bar with Integrated Close Button */}
             <div className="flex items-center justify-between border-b border-white/10 pb-5 relative z-10">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 text-gold-400 text-[10px] font-black uppercase tracking-widest font-heading shadow-inner">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.8)]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-navy-900 border border-slate-700 text-slate-300 text-[10px] font-heading font-bold uppercase tracking-widest shadow-inner">
+                <span className="w-1.5 h-1.5 rounded-sm bg-flame-500" />
                 <span>Alianza Corporativa Estratégica</span>
               </div>
 
               <button
                 onClick={() => setSelectedClient(null)}
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-flame-600 border border-white/10 hover:border-flame-500 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-lg"
+                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-flame-600 border border-white/10 hover:border-flame-500 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300 transform hover:scale-105 shadow-lg"
                 title="Cerrar ventana (Esc)"
               >
                 <X className="w-5 h-5" />
@@ -451,7 +449,7 @@ export const PartnersCarousel = () => {
               </div>
 
               <div className="space-y-2 flex-1 min-w-0">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-navy-900/90 border border-gold-400/30 text-[10px] font-black uppercase text-gold-400 tracking-wider font-heading">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-navy-900/90 border border-slate-700 text-[10px] font-black uppercase text-slate-200 tracking-wider font-heading">
                   <Award className="w-3.5 h-3.5 text-flame-500" />
                   <span>{selectedClient.type || 'Cliente Homologado'}</span>
                 </div>
@@ -467,9 +465,9 @@ export const PartnersCarousel = () => {
             </div>
 
             {/* Contract & Operational Scope Box */}
-            <div className="relative z-10 rounded-3xl bg-navy-950/90 border border-slate-800 p-6 sm:p-7 space-y-3.5 shadow-inner">
+            <div className="relative z-10 rounded-3xl bg-navy-950/90 border border-slate-700/80 p-6 sm:p-7 space-y-3.5 shadow-inner">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-gold-400/10 border border-gold-400/30 flex items-center justify-center text-gold-400 flex-shrink-0 shadow-gold-glow">
+                <div className="w-8 h-8 rounded-xl bg-flame-500/10 border border-flame-500/30 flex items-center justify-center text-flame-500 flex-shrink-0 shadow-flame-glow">
                   <FileCheck2 className="w-4 h-4" />
                 </div>
                 <div>
@@ -486,12 +484,12 @@ export const PartnersCarousel = () => {
 
               {/* Operational Metadata Badges */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-black/40 border border-white/5 text-[11px] text-slate-300">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] flex-shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-navy-900/80 border border-white/5 text-[11px] text-slate-300">
+                  <div className="w-1.5 h-1.5 rounded-sm bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] flex-shrink-0" />
                   <span>Estatus: <strong className="text-white font-bold">Contrato Ejecutado / Vigente</strong></span>
                 </div>
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-black/40 border border-white/5 text-[11px] text-slate-300">
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold-400 shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0" />
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-navy-900/80 border border-white/5 text-[11px] text-slate-300">
+                  <div className="w-1.5 h-1.5 rounded-sm bg-energy-cyan shadow-[0_0_8px_rgba(14,165,233,0.8)] flex-shrink-0" />
                   <span>Estándar: <strong className="text-white font-bold">Homologación PDVSA</strong></span>
                 </div>
               </div>
@@ -506,7 +504,7 @@ export const PartnersCarousel = () => {
 
               <button
                 onClick={() => setSelectedClient(null)}
-                className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 text-white font-black text-xs uppercase tracking-wider font-heading transition-all shadow-flame-glow transform hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 hover:from-flame-600 hover:to-orange-700 text-white font-black text-xs uppercase tracking-wider font-heading transition-all shadow-flame-glow transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 Cerrar Detalle
               </button>

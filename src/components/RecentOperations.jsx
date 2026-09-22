@@ -95,18 +95,17 @@ export const RecentOperations = ({ onOpenDossier }) => {
     <section id="operaciones-recientes" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
       {/* Background Decorative Glows */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-flame-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-energy-cyan/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-flame-500/15 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-flame-500/10 border border-flame-500/20 shadow-[0_0_20px_rgba(249,115,22,0.15)]">
-            <span className="w-2 h-2 rounded-full bg-flame-500 animate-pulse" />
-            <span className="text-[11px] font-black uppercase tracking-widest text-flame-500 font-heading">
-              Bitácora Operativa 2026 • Registro en Campo
-            </span>
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-energy-sky font-heading">
+            <span className="w-1.5 h-1.5 bg-energy-cyan rotate-45" />
+            <span>Bitácora Operativa 2026 • Registro en Campo</span>
+            <span className="h-px w-8 bg-gradient-to-r from-energy-cyan/60 to-transparent" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
@@ -126,8 +125,8 @@ export const RecentOperations = ({ onOpenDossier }) => {
               onClick={() => setActiveFilter(cat)}
               className={`px-4 py-2 rounded-xl text-xs font-heading font-black transition-all duration-300 ${
                 activeFilter === cat
-                  ? 'bg-gradient-to-r from-gold-500 to-flame-500 text-navy-950 shadow-gold-glow scale-105'
-                  : 'bg-navy-900/80 text-slate-300 hover:text-white hover:bg-navy-800 border border-slate-800'
+                  ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 text-white shadow-flame-glow scale-105'
+                  : 'bg-navy-900/80 text-slate-300 hover:text-white hover:bg-navy-800 border border-slate-700/80'
               }`}
             >
               {cat}
@@ -140,7 +139,7 @@ export const RecentOperations = ({ onOpenDossier }) => {
           {filteredOperations.map((op) => (
             <div
               key={op.id}
-              className="luxury-card rounded-3xl overflow-hidden border border-slate-800 hover:border-gold-metallic/50 transition-all duration-500 flex flex-col group hover:-translate-y-1.5 shadow-xl"
+              className="luxury-card rounded-3xl overflow-hidden border border-slate-800 hover:border-energy-cyan/50 transition-all duration-500 flex flex-col group hover:-translate-y-1.5 shadow-xl"
             >
               {/* Image Preview Container */}
               <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-navy-900">
@@ -179,10 +178,10 @@ export const RecentOperations = ({ onOpenDossier }) => {
               {/* Card Body */}
               <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4 bg-navy-950/90">
                 <div className="space-y-2">
-                  <div className="text-[10px] font-black uppercase text-gold-400 tracking-wider font-heading">
+                  <div className="text-[10px] font-black uppercase text-energy-sky tracking-wider font-heading">
                     Cliente: {op.client}
                   </div>
-                  <h3 className="text-sm sm:text-base font-black font-heading text-white group-hover:text-gold-300 transition-colors leading-snug">
+                  <h3 className="text-sm sm:text-base font-black font-heading text-white group-hover:text-energy-sky transition-colors leading-snug">
                     {op.title}
                   </h3>
                   <p className="text-xs text-slate-300 leading-relaxed font-light">
@@ -196,7 +195,7 @@ export const RecentOperations = ({ onOpenDossier }) => {
                     <span className="text-[10px] uppercase font-bold text-slate-400 font-heading">
                       {op.metricLabel}:
                     </span>
-                    <span className="font-extrabold text-gold-400 text-[11px] text-right">
+                    <span className="font-extrabold text-energy-sky text-[11px] text-right">
                       {op.metricValue}
                     </span>
                   </div>
@@ -209,7 +208,7 @@ export const RecentOperations = ({ onOpenDossier }) => {
                     
                     <a
                       href="#formulario-cotizacion"
-                      className="text-gold-400 hover:text-white font-bold flex items-center gap-1 transition-colors"
+                      className="text-energy-sky hover:text-white font-bold flex items-center gap-1 transition-colors"
                     >
                       <span>Cotizar similar</span>
                       <ArrowRight className="w-3 h-3" />
@@ -224,7 +223,7 @@ export const RecentOperations = ({ onOpenDossier }) => {
         </div>
 
         {/* Action Bottom Banner */}
-        <div className="mt-12 bg-gradient-to-r from-navy-900 via-navy-850 to-navy-900 border border-gold-metallic/30 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="mt-12 bg-gradient-to-r from-navy-900 via-navy-850 to-navy-900 border border-energy-sky/30 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="space-y-1 text-center md:text-left">
             <h4 className="text-base sm:text-lg font-black font-heading text-white">
               ¿Requiere programar una intervención operativa este mes?
@@ -237,7 +236,7 @@ export const RecentOperations = ({ onOpenDossier }) => {
           <div className="flex items-center gap-3 flex-wrap justify-center flex-shrink-0">
             <button
               onClick={onOpenDossier}
-              className="px-5 py-2.5 rounded-xl bg-navy-950 hover:bg-navy-800 border border-slate-700 hover:border-gold-metallic/60 text-xs font-bold font-heading text-gold-300 hover:text-white transition-all"
+              className="px-5 py-2.5 rounded-xl bg-navy-950 hover:bg-navy-800 border border-slate-700 hover:border-energy-sky/60 text-xs font-bold font-heading text-energy-sky hover:text-white transition-all"
             >
               Consultar Dossier Técnico
             </button>

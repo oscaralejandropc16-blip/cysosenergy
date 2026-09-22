@@ -58,7 +58,7 @@ export const TrustBadgesStrip = ({ onOpenDossier }) => {
 
           <button
             onClick={onOpenDossier}
-            className="text-[11px] font-bold text-gold-400 hover:text-white flex items-center gap-1 transition-colors self-start sm:self-auto font-heading"
+            className="text-[11px] font-bold text-energy-sky hover:text-white flex items-center gap-1 transition-colors self-start sm:self-auto font-heading"
           >
             <span>Ver Fichas en Dossier 2026</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -75,13 +75,13 @@ export const TrustBadgesStrip = ({ onOpenDossier }) => {
                 key={b.id}
                 onClick={() => setActiveBadge(isSelected ? null : b.id)}
                 className={`p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between group ${b.color} ${
-                  isSelected ? 'ring-2 ring-gold-400/50 scale-[1.02]' : 'hover:scale-[1.02]'
+                  isSelected ? 'ring-2 ring-energy-cyan/50 scale-[1.02]' : 'hover:scale-[1.02]'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <Icon className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                    <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-navy-950/80 border border-white/10 text-white font-heading">
+                    <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-md bg-navy-950/90 border border-white/10 text-white font-heading">
                       {b.code}
                     </span>
                   </div>
@@ -103,9 +103,9 @@ export const TrustBadgesStrip = ({ onOpenDossier }) => {
 
         {/* Interactive Drawer if clicked */}
         {activeBadge && (
-          <div className="mt-4 p-4 rounded-2xl bg-navy-950/90 border border-gold-metallic/30 text-xs text-slate-300 animate-fadeIn flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="mt-4 p-4 rounded-2xl bg-navy-950/90 border border-energy-sky/30 text-xs text-slate-300 animate-fadeIn flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div>
-              <span className="font-bold text-gold-400 font-heading">
+              <span className="font-bold text-energy-sky font-heading">
                 {BADGES.find(b => b.id === activeBadge)?.title}:
               </span>{' '}
               {BADGES.find(b => b.id === activeBadge)?.desc} Todas las certificaciones se encuentran debidamente auditadas y respaldadas para licitaciones con empresas mixtas y operadoras transnacionales.

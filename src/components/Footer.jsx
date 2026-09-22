@@ -62,11 +62,11 @@ export const Footer = () => {
   const formattedDigits = String(animatedVisits).padStart(6, '0').split('');
 
   return (
-    <footer className="relative bg-[#03060E] border-t border-slate-800/80 pt-20 pb-10 overflow-hidden font-sans">
+    <footer className="relative bg-[#07152B] border-t border-slate-800/90 pt-20 pb-10 overflow-hidden font-sans">
       
       {/* Dynamic Background Glow & Top Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-72 bg-gold-500/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-energy-cyan/40 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-72 bg-energy-cyan/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 space-y-12">
         
@@ -77,9 +77,9 @@ export const Footer = () => {
           <div className="md:col-span-12 lg:col-span-4 space-y-6">
             <div className="flex flex-col items-start gap-5">
               <Logo className="h-16 w-auto" />
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_15px_rgba(250,204,21,0.05)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
-                <span className="text-[11px] text-gold-400 font-bold uppercase tracking-widest font-heading">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-energy-cyan/10 border border-energy-cyan/30 shadow-[0_0_15px_rgba(14,165,233,0.1)]">
+                <span className="w-1.5 h-1.5 rounded-sm bg-energy-cyan animate-pulse" />
+                <span className="text-[11px] text-energy-sky font-bold uppercase tracking-widest font-heading">
                   RIF: {safeInfo.rif}
                 </span>
               </div>
@@ -89,7 +89,7 @@ export const Footer = () => {
               Empresa venezolana de ingeniería, procura, construcción y servicios petroleros especializados en optimización reológica EOR, estimulación de pozos y logística pesada de izamiento.
             </p>
 
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-navy-900/40 border border-emerald-500/20">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-navy-900/60 border border-emerald-500/30">
               <Shield className="w-4 h-4 text-emerald-400" />
               <span className="text-[11px] text-emerald-400 font-bold uppercase tracking-widest font-heading">
                 Normas ISO 9001 & SI-HO-S
@@ -113,8 +113,8 @@ export const Footer = () => {
                 { label: 'Galería de Operaciones', href: '#operaciones' }
               ].map((link, idx) => (
                 <li key={idx}>
-                  <a href={link.href} className="group flex items-center gap-3 text-sm text-slate-400 hover:text-gold-400 transition-all">
-                    <div className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-gold-400 group-hover:scale-125 transition-all" />
+                  <a href={link.href} className="group flex items-center gap-3 text-sm text-slate-400 hover:text-energy-sky transition-all">
+                    <div className="w-1.5 h-1.5 rounded-sm bg-slate-700 group-hover:bg-energy-cyan group-hover:scale-125 transition-all" />
                     <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
                   </a>
                 </li>
@@ -130,7 +130,7 @@ export const Footer = () => {
             </h4>
             <div className="flex flex-col gap-1.5 text-xs">
               <span className="text-sm font-bold text-white">Sede Central</span>
-              <span className="text-gold-400 font-bold text-[11px] uppercase tracking-wide">Maturín, Edo. Monagas</span>
+              <span className="text-energy-sky font-bold text-[11px] uppercase tracking-wide">Maturín, Edo. Monagas</span>
               <p className="text-slate-400 font-light leading-relaxed text-[11px]">
                 {safeInfo.address}
               </p>
@@ -155,8 +155,8 @@ export const Footer = () => {
             
             <div className="flex flex-col gap-2">
               <a href={`https://wa.me/${safeInfo.phone1.replace(/\D/g,'')}`} target="_blank" rel="noopener noreferrer" 
-                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-emerald-500/5 transition-colors border border-transparent hover:border-emerald-500/20">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
+                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-emerald-500/10 transition-colors border border-transparent hover:border-emerald-500/20">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
@@ -166,19 +166,19 @@ export const Footer = () => {
               </a>
 
               <a href={`mailto:${safeInfo.email1}`} 
-                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-gold-400/5 transition-colors border border-transparent hover:border-gold-400/20">
-                <div className="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center text-gold-400 group-hover:scale-110 group-hover:bg-gold-400/20 transition-all">
+                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-energy-cyan/10 transition-colors border border-transparent hover:border-energy-cyan/20">
+                <div className="w-10 h-10 rounded-xl bg-energy-cyan/10 flex items-center justify-center text-energy-sky group-hover:scale-110 group-hover:bg-energy-cyan/20 transition-all">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
                   <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Gerencia & RFQ</span>
-                  <span className="block text-sm font-bold text-slate-200 group-hover:text-gold-400 transition-colors truncate">{safeInfo.email1}</span>
+                  <span className="block text-sm font-bold text-slate-200 group-hover:text-energy-sky transition-colors truncate">{safeInfo.email1}</span>
                 </div>
               </a>
               
               <a href="https://instagram.com/cysosenergy" target="_blank" rel="noopener noreferrer"
-                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-flame-500/5 transition-colors border border-transparent hover:border-flame-500/20">
-                <div className="w-10 h-10 rounded-full bg-flame-500/10 flex items-center justify-center text-flame-400 group-hover:scale-110 group-hover:bg-flame-500/20 transition-all">
+                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-flame-500/10 transition-colors border border-transparent hover:border-flame-500/20">
+                <div className="w-10 h-10 rounded-xl bg-flame-500/10 flex items-center justify-center text-flame-400 group-hover:scale-110 group-hover:bg-flame-500/20 transition-all">
                   <Instagram className="w-4 h-4" />
                 </div>
                 <div>
@@ -191,16 +191,16 @@ export const Footer = () => {
         </div>
 
         {/* SIMPLE VISITOR COUNTER */}
-        <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-navy-950/90 via-slate-900/70 to-navy-950/90 border border-slate-800/90 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-xl relative overflow-hidden group hover:border-gold-500/30 transition-all duration-300">
+        <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-navy-900/90 via-navy-850/80 to-navy-900/90 border border-slate-700/80 shadow-2xl backdrop-blur-xl relative overflow-hidden group hover:border-energy-cyan/40 transition-all duration-300">
           
-          <div className="absolute inset-0 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:16px_16px] opacity-5 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-80 h-32 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(#0ea5e9_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-80 h-32 bg-energy-cyan/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
             
             {/* Left: Counter Title */}
             <div className="flex items-center gap-4 text-left w-full lg:w-auto">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-500/10 via-amber-500/20 to-flame-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 shadow-[0_0_20px_rgba(245,158,11,0.15)] flex-shrink-0">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-energy-cyan/15 via-energy-blue/20 to-flame-500/15 border border-energy-sky/30 flex items-center justify-center text-energy-sky shadow-[0_0_20px_rgba(14,165,233,0.2)] flex-shrink-0">
                 <Activity className="w-6 h-6" />
               </div>
               <div className="space-y-1">
@@ -216,21 +216,21 @@ export const Footer = () => {
             </div>
 
             {/* Center: Digital High-Precision Odometer Digit Reels */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 bg-black/60 p-2.5 sm:px-4 sm:py-2.5 rounded-2xl border border-slate-800/80 shadow-inner w-full lg:w-auto justify-center">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-heading flex items-center gap-1.5">
-                <Eye className="w-3.5 h-3.5 text-gold-400" />
+            <div className="flex flex-col sm:flex-row items-center gap-3 bg-navy-950/90 p-2.5 sm:px-4 sm:py-2.5 rounded-2xl border border-slate-700/80 shadow-inner w-full lg:w-auto justify-center">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300 font-heading flex items-center gap-1.5">
+                <Eye className="w-3.5 h-3.5 text-energy-sky" />
                 <span>Visitas:</span>
               </span>
 
-              {/* Monospace Hardware Digit Display */}
+              {/* Digital Hardware Digit Display */}
               <div className="flex items-center gap-1">
                 {formattedDigits.map((digit, idx) => (
                   <div
                     key={idx}
-                    className="w-7 h-9 sm:w-8 sm:h-10 rounded-lg bg-gradient-to-b from-slate-900 via-navy-950 to-black border border-slate-700/80 flex items-center justify-center text-white font-mono font-black text-sm sm:text-base shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_2px_6px_rgba(0,0,0,0.8)] text-gold-300 relative overflow-hidden"
+                    className="w-7 h-9 sm:w-8 sm:h-10 rounded-lg bg-gradient-to-b from-slate-900 via-navy-900 to-navy-950 border border-slate-700/80 flex items-center justify-center text-energy-sky font-mono font-black text-sm sm:text-base shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_2px_6px_rgba(0,0,0,0.8)] relative overflow-hidden"
                   >
                     <div className="absolute inset-x-0 top-1/2 h-[1px] bg-black/40 pointer-events-none" />
-                    <span className="relative z-10 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">
+                    <span className="relative z-10 drop-shadow-[0_0_8px_rgba(14,165,233,0.6)]">
                       {digit}
                     </span>
                   </div>

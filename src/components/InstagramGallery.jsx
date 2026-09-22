@@ -43,17 +43,16 @@ export const InstagramGallery = () => {
     <section id="galeria" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
       {/* Background Decorative Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gold-metallic/10 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-energy-cyan/10 rounded-full blur-[200px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-            <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
-              Feed Oficial @cysosenergy en Tiempo Real
-            </span>
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-energy-sky font-heading">
+            <span className="w-1.5 h-1.5 bg-energy-cyan rotate-45" />
+            <span>Feed Oficial @cysosenergy en Tiempo Real</span>
+            <span className="h-px w-8 bg-gradient-to-r from-energy-cyan/60 to-transparent" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
@@ -65,7 +64,7 @@ export const InstagramGallery = () => {
         </div>
 
         {/* High-End Official Profile Card Banner - EXACT INSTAGRAM REPLICA */}
-        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 mb-8 shadow-2xl max-w-4xl mx-auto">
+        <div className="luxury-glass p-6 sm:p-8 rounded-3xl border border-energy-sky/30 hover:border-energy-cyan/50 mb-8 shadow-2xl max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             
             <div className="flex items-center gap-4 sm:gap-5">
@@ -74,10 +73,10 @@ export const InstagramGallery = () => {
                 href="https://instagram.com/cysosenergy/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-flame-500 via-rose-500 to-amber-400 shadow-gold-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center"
+                className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full p-1 bg-gradient-to-tr from-flame-500 via-rose-500 to-energy-sky shadow-cyan-glow flex-shrink-0 group hover:scale-105 transition-transform flex items-center justify-center"
                 title="Ver perfil oficial en Instagram"
               >
-                <div className="w-full h-full rounded-full bg-[#050A14] flex items-center justify-center p-1 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] overflow-hidden">
+                <div className="w-full h-full rounded-full bg-navy-950 flex items-center justify-center p-1 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] overflow-hidden">
                   <img 
                     src={companyInfo?.logoUrl || '/images/cysos_logo.png'} 
                     alt="Cysos Energy Instagram" 
@@ -92,7 +91,7 @@ export const InstagramGallery = () => {
                     href="https://instagram.com/cysosenergy/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xl sm:text-2xl font-black font-heading text-white hover:text-gold-400 transition-colors"
+                    className="text-xl sm:text-2xl font-black font-heading text-white hover:text-energy-sky transition-colors"
                   >
                     cysosenergy
                   </a>
@@ -100,7 +99,7 @@ export const InstagramGallery = () => {
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   </div>
                 </div>
-                <p className="text-xs font-black text-gold-400 font-heading">Cysos Energy • Servicios petroleros</p>
+                <p className="text-xs font-black text-energy-sky font-heading">Cysos Energy • Servicios petroleros</p>
                 <p className="text-xs text-slate-300 font-light max-w-md leading-relaxed">
                   Soluciones integrales y estratégicas para la industria energética. Eficiencia, tecnología y seguridad en cada proyecto.
                 </p>

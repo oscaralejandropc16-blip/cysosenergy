@@ -35,10 +35,11 @@ export const Navbar = () => {
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
     { name: 'Misión', href: '#mision-vision' },
-    { name: 'Operaciones', href: '#operaciones' },
     { name: 'Servicios', href: '#servicios' },
-    { name: 'EOR', href: '#calculadora' },
-    { name: 'Noticias', href: '#noticias' },
+    { name: 'Simulador EOR', href: '#calculadora' },
+    { name: 'Cuencas', href: '#cobertura' },
+    { name: 'HSE', href: '#hse' },
+    { name: 'Sala de Prensa', href: '#sala-de-prensa' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
@@ -46,37 +47,37 @@ export const Navbar = () => {
     <div
       className="cysos-nav-wrapper"
       style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
+        position: 'relative',
         width: '100%',
-        zIndex: 2147483647,
-        padding: '48px 20px 16px 20px',
+        zIndex: 50,
+        padding: '20px 16px 14px 16px',
         boxSizing: 'border-box',
         pointerEvents: 'none',
       }}
     >
-      {/* Barra principal flotante */}
+      {/* Barra principal flotante - Luminous Sapphire Glass */}
       <div
+        className="cysos-nav-bar"
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          background: 'rgba(15, 23, 42, 0.4)',
+          background: 'rgba(14, 36, 66, 0.85)',
           backdropFilter: 'blur(24px)',
           WebkitBackdropFilter: 'blur(24px)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '100px',
-          boxShadow: '0 20px 40px -10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
+          border: '1px solid rgba(56, 189, 248, 0.22)',
+          borderRadius: '14px',
+          boxShadow: '0 20px 45px -10px rgba(10, 25, 47, 0.75), 0 0 25px rgba(14, 165, 233, 0.1)',
           padding: '8px 12px 8px 24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: '16px',
           pointerEvents: 'auto',
-          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-          transform: scrolled ? 'translateY(-10px)' : 'translateY(0)',
-          opacity: scrolled ? 0.9 : 1,
+          position: 'relative',
+          zIndex: 50,
+          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          transform: scrolled ? 'translateY(-4px)' : 'translateY(0)',
+          opacity: scrolled ? 0.96 : 1,
         }}
       >
         {/* Logo */}
@@ -160,7 +161,7 @@ export const Navbar = () => {
             style={{
               background: isMobileMenuOpen ? 'rgba(255,255,255,0.1)' : 'transparent',
               border: 'none',
-              borderRadius: '50%',
+              borderRadius: '8px',
               width: '44px',
               height: '44px',
               cursor: 'pointer',
@@ -187,16 +188,16 @@ export const Navbar = () => {
           left: 0,
           width: '100%',
           height: '100vh',
-          background: 'rgba(2, 6, 23, 0.95)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          zIndex: -1,
+          background: 'rgba(2, 6, 23, 0.96)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          zIndex: 40,
           display: 'flex',
           flexDirection: 'column',
-          padding: '120px 24px 40px',
+          padding: '110px 20px 30px',
           pointerEvents: isMobileMenuOpen ? 'auto' : 'none',
           opacity: isMobileMenuOpen ? 1 : 0,
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
           touchAction: 'none',
           overscrollBehavior: 'contain',
         }}
@@ -233,7 +234,7 @@ export const Navbar = () => {
           </div>
           {/* Mobile Footer */}
           <div className="p-6 border-t border-slate-800 bg-black/50 space-y-4">
-            <div className="flex items-center gap-3 text-gold-400 font-bold text-sm">
+            <div className="flex items-center gap-3 text-flame-500 font-bold text-sm">
               <PhoneCall className="w-4 h-4" />
               <span>0412-9486249</span>
             </div>
@@ -253,7 +254,7 @@ export const Navbar = () => {
           font-weight: 500;
           font-family: 'Outfit', sans-serif;
           padding: 8px 16px;
-          border-radius: 100px;
+          border-radius: 6px;
           transition: all 0.3s ease;
           overflow: hidden;
         }
@@ -261,8 +262,8 @@ export const Navbar = () => {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(249, 115, 22, 0.15));
-          border-radius: 100px;
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 6px;
           opacity: 0;
           transform: scale(0.8);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -279,72 +280,72 @@ export const Navbar = () => {
         .cysos-pulse-dot {
           width: 8px;
           height: 8px;
-          background-color: #10b981;
+          background-color: #f97316;
           border-radius: 50%;
-          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+          box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7);
           animation: pulse-ring 2s infinite cubic-bezier(0.66, 0, 0, 1);
         }
         @keyframes pulse-ring {
-          0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-          70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+          0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+          70% { box-shadow: 0 0 0 6px rgba(249, 115, 22, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
         }
 
         .cysos-tel:hover {
-          color: #fbbf24 !important;
+          color: #f97316 !important;
         }
 
         .cysos-social-icon {
-          color: rgba(255,255,255,0.6);
+          color: rgba(255,255,255,0.7);
           display: flex;
           align-items: center;
           justify-content: center;
           width: 36px;
           height: 36px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(255,255,255,0.05);
+          border-radius: 8px;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .cysos-social-icon:hover {
-          color: #fbbf24;
-          background: rgba(251, 191, 36, 0.1);
-          border-color: rgba(251, 191, 36, 0.2);
+          color: #f97316;
+          background: rgba(249, 115, 22, 0.12);
+          border-color: rgba(249, 115, 22, 0.4);
           transform: translateY(-2px);
         }
 
         .mobile-social-icon {
-          color: rgba(255,255,255,0.7);
+          color: rgba(255,255,255,0.8);
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.1);
+          width: 44px;
+          height: 44px;
+          border-radius: 8px;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.12);
           transition: all 0.3s ease;
         }
         .mobile-social-icon:hover {
-          color: #fbbf24;
-          background: rgba(251, 191, 36, 0.15);
-          transform: scale(1.1);
+          color: #f97316;
+          background: rgba(249, 115, 22, 0.15);
+          transform: scale(1.05);
         }
 
         .btn-modern {
-          background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-          color: #0f172a;
+          background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+          color: #ffffff;
           text-decoration: none;
           font-size: 14px;
           font-weight: 700;
-          padding: 10px 24px;
-          border-radius: 100px;
+          padding: 10px 22px;
+          border-radius: 8px;
           display: flex;
           align-items: center;
           gap: 8px;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           font-family: 'Outfit', sans-serif;
-          box-shadow: 0 10px 20px -10px rgba(245, 158, 11, 0.5);
+          box-shadow: 0 10px 20px -10px rgba(249, 115, 22, 0.5);
           position: relative;
           overflow: hidden;
         }
@@ -358,7 +359,7 @@ export const Navbar = () => {
         }
         .btn-modern:hover {
           transform: translateY(-2px);
-          box-shadow: 0 15px 25px -10px rgba(245, 158, 11, 0.6);
+          box-shadow: 0 15px 25px -10px rgba(249, 115, 22, 0.65);
         }
         .btn-modern:hover::after {
           transform: rotate(45deg) translateX(100%);
@@ -488,7 +489,7 @@ export const Navbar = () => {
     </div>
   );
 
-  return ReactDOM.createPortal(navbar, document.body);
+  return navbar;
 };
 
 export default Navbar;

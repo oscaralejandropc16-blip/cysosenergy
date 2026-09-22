@@ -55,20 +55,19 @@ export const VenezuelaMap = () => {
     <section id="cobertura" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
       {/* Glow Backdrop */}
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-96 h-96 bg-energy-cyan/15 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-            <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
-              Presencia Operativa en las Principales Cuencas Petroleras
-            </span>
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-slate-300 font-heading">
+            <span className="w-1.5 h-1.5 bg-flame-500 rotate-45" />
+            <span>Presencia Operativa en las Principales Cuencas Petroleras</span>
+            <span className="h-px w-8 bg-gradient-to-r from-flame-500/60 to-transparent" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-            Cobertura Operativa en <span className="animate-gradient-text">Cuencas Petroleras</span>
+            Cobertura Operativa en <span className="text-flame-500">Cuencas Petroleras</span>
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
             Bases operativas, personal técnico y logística desplegada en los principales distritos petroleros de Venezuela.
@@ -88,7 +87,7 @@ export const VenezuelaMap = () => {
                 onClick={() => setActiveBasin(tab.id)}
                 className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-black transition-all duration-300 font-heading ${
                   activeBasin === tab.id
-                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 text-white shadow-flame-glow scale-105'
+                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 text-white shadow-flame-glow scale-105'
                     : 'text-slate-300 hover:text-white hover:bg-navy-800'
                 }`}
               >
@@ -99,19 +98,19 @@ export const VenezuelaMap = () => {
         </div>
 
         {/* Photographic Showcase Card */}
-        <div className="luxury-glass rounded-3xl border border-gold-metallic/35 overflow-hidden shadow-2xl grid lg:grid-cols-12 items-center">
+        <div className="luxury-glass rounded-3xl border border-slate-700/80 overflow-hidden shadow-2xl grid lg:grid-cols-12 items-center">
           
           {/* Photographic Banner */}
           <div className="lg:col-span-6 relative h-72 sm:h-80 lg:h-full min-h-[320px] group overflow-hidden">
             <img
               src={current.image}
               alt={current.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.82]"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.92]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-navy-950" />
             
             <div className="absolute top-4 left-4">
-              <span className="px-3.5 py-1.5 rounded-full bg-navy-950/90 text-gold-400 text-xs font-black uppercase border border-gold-metallic/40 backdrop-blur-md font-heading">
+              <span className="px-3 py-1 rounded-md bg-navy-950/90 text-slate-200 text-xs font-heading font-bold uppercase border border-slate-700/80 backdrop-blur-md">
                 {current.tag}
               </span>
             </div>
@@ -124,7 +123,7 @@ export const VenezuelaMap = () => {
           {/* Basin Information */}
           <div className="lg:col-span-6 p-6 sm:p-8 md:p-10 space-y-6">
             <div>
-              <span className="text-xs text-gold-400 font-black uppercase tracking-wider block mb-1 font-heading">
+              <span className="text-xs text-flame-400 font-black uppercase tracking-wider block mb-1 font-heading">
                 {current.apiRange}
               </span>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-black font-heading text-white mb-2">
@@ -143,7 +142,7 @@ export const VenezuelaMap = () => {
               <ul className="space-y-2">
                 {current.services.map((srv, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <CheckCircle2 className="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-flame-500 flex-shrink-0 mt-0.5" />
                     <span className="font-light">{srv}</span>
                   </li>
                 ))}
@@ -153,11 +152,11 @@ export const VenezuelaMap = () => {
             <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <span className="text-[10px] text-slate-400 uppercase font-bold block font-heading">Desempeño Comprobado:</span>
-                <span className="text-xs sm:text-sm font-bold text-emerald-400">{current.kpi}</span>
+                <span className="text-xs sm:text-sm font-bold text-white">{current.kpi}</span>
               </div>
               <a
                 href="#contacto"
-                className="px-5 py-2.5 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 font-heading"
+                className="px-5 py-2.5 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 hover:from-flame-600 hover:to-orange-700 shadow-flame-glow flex items-center justify-center gap-2 font-heading"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>Solicitar Cobertura</span>

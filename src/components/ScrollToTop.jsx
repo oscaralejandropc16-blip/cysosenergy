@@ -30,16 +30,10 @@ export const ScrollToTop = () => {
     <button
       onClick={scrollToTop}
       aria-label="Volver arriba"
-      className="fixed bottom-6 right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-slate-700 via-black to-[#050505] shadow-[0_0_20px_rgba(251,191,36,0.3)] border-2 border-gold-500/50 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(251,191,36,0.6)] hover:border-gold-400 active:scale-95 group animate-fadeIn flex items-center justify-center overflow-hidden -rotate-45 rounded-[50%_0_50%_50%]"
+      className="fixed bottom-6 right-6 z-30 w-11 h-11 sm:w-12 sm:h-12 bg-navy-950/95 hover:bg-navy-850 shadow-luxury border border-slate-700 hover:border-flame-500 text-slate-300 hover:text-flame-400 rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 group animate-fadeIn flex items-center justify-center backdrop-blur-md"
     >
-      {/* Petroleum Gloss Effect (Brighter) */}
-      <div className="absolute inset-0 bg-gradient-to-bl from-white/40 via-white/5 to-transparent opacity-100" />
-      
-      {/* Icon Container (Counter-rotate) */}
-      <div className="relative flex items-center justify-center w-full h-full text-gold-400 group-hover:text-white transition-colors duration-300 rotate-45">
-        <div className="group-hover:-translate-y-1 transition-transform duration-300">
-          <ChevronUp className="w-6 h-6" strokeWidth={3} />
-        </div>
+      <div className="group-hover:-translate-y-0.5 transition-transform duration-200">
+        <ChevronUp className="w-5 h-5" strokeWidth={2.5} />
       </div>
     </button>
   );

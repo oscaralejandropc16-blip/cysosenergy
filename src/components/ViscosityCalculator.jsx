@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sliders, CheckCircle2, FileSpreadsheet, Sparkles, Activity, Gauge, TrendingDown, ArrowRight } from 'lucide-react';
+import { Sliders, CheckCircle2, FileSpreadsheet, Sparkles, Activity, Gauge, TrendingDown, ArrowRight, Send } from 'lucide-react';
 
 export const ViscosityCalculator = () => {
   const [activeChemTab, setActiveChemTab] = useState('reductor'); // 'reductor' | 'desemulsionante'
@@ -19,34 +19,32 @@ export const ViscosityCalculator = () => {
   return (
     <section id="calculadora" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
-      {/* Background Decorative Glows */}
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[160px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-flame-500/10 rounded-full blur-[160px] pointer-events-none animate-pulse-glow" />
+      {/* Background Decorative Ambient Glow */}
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-flame-500/5 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-            <span className="text-[11px] font-black uppercase tracking-widest text-gold-400 font-heading">
-              Tecnología Química para Crudos Pesados y Extrapesados (XP)
-            </span>
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-slate-300 font-heading">
+            <span className="w-1.5 h-1.5 bg-flame-500 rotate-45" />
+            <span>Tecnología Química para Crudos Pesados y Extrapesados (XP)</span>
+            <span className="h-px w-8 bg-gradient-to-r from-flame-500/60 to-transparent" />
           </div>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-            Ingeniería Reológica & <span className="animate-gradient-text">Optimización EOR</span>
+            Ingeniería Reológica & <span className="text-flame-500">Optimización EOR</span>
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
             Formulaciones químicas avanzadas con validación a escala industrial para reducción de viscosidad, ahorro de diluyente y deshidratación acelerada.
           </p>
 
           {/* Technology Selector Tabs */}
-          <div className="flex flex-col sm:flex-row p-1.5 rounded-2xl bg-navy-900/90 border border-slate-800 backdrop-blur-xl mt-4 gap-1">
+          <div className="flex flex-col sm:flex-row p-1.5 rounded-2xl bg-navy-900/90 border border-slate-700/80 backdrop-blur-xl mt-4 gap-1">
             <button
               onClick={() => setActiveChemTab('reductor')}
               className={`px-5 py-2.5 rounded-xl text-xs font-black font-heading transition-all ${
                 activeChemTab === 'reductor'
-                  ? 'bg-gradient-to-r from-flame-500 to-gold-600 text-white shadow-flame-glow'
+                  ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 text-white shadow-flame-glow'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -56,7 +54,7 @@ export const ViscosityCalculator = () => {
               onClick={() => setActiveChemTab('desemulsionante')}
               className={`px-5 py-2.5 rounded-xl text-xs font-black font-heading transition-all ${
                 activeChemTab === 'desemulsionante'
-                  ? 'bg-gradient-to-r from-flame-500 to-gold-600 text-white shadow-flame-glow'
+                  ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 text-white shadow-flame-glow'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -70,13 +68,13 @@ export const ViscosityCalculator = () => {
           <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-stretch animate-fadeIn">
             
             {/* Controls Column */}
-            <div className="lg:col-span-7 luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 shadow-2xl space-y-6">
+            <div className="lg:col-span-7 luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-700/80 hover:border-flame-500/40 shadow-2xl space-y-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                 <h3 className="text-lg sm:text-xl font-black font-heading text-white flex items-center gap-2">
                   <Sliders className="w-5 h-5 text-flame-500" />
                   <span>Simulador Reológico (Skid Inyección Continua)</span>
                 </h3>
-                <span className="px-3 py-1 rounded-full bg-flame-500/10 border border-flame-500/30 text-flame-400 text-[10px] font-black uppercase font-heading">
+                <span className="px-2.5 py-1 rounded-lg bg-flame-500/10 border border-flame-500/30 text-flame-400 text-[10px] font-heading font-bold uppercase">
                   Crudos XP 8° - 12° API
                 </span>
               </div>
@@ -85,7 +83,7 @@ export const ViscosityCalculator = () => {
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs">
                   <label className="text-slate-200 font-bold">Gravedad API del Crudo:</label>
-                  <span className="text-gold-400 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
+                  <span className="text-white font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-slate-700">
                     {apiGravity.toFixed(1)}° API ({apiGravity < 10 ? 'Extrapesado Faja' : 'Pesado'})
                   </span>
                 </div>
@@ -109,7 +107,7 @@ export const ViscosityCalculator = () => {
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs">
                   <label className="text-slate-200 font-bold">Viscosidad Inicial del Crudo (cPs):</label>
-                  <span className="text-gold-400 font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-gold-metallic/40">
+                  <span className="text-white font-black font-sans tracking-wide bg-navy-950 px-3 py-1 rounded-lg border border-slate-700">
                     {initialViscosity.toLocaleString('es-VE')} cPs
                   </span>
                 </div>
@@ -156,7 +154,7 @@ export const ViscosityCalculator = () => {
               {/* Technical Specifications Highlights */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div className="p-3.5 rounded-xl bg-navy-950/80 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 text-gold-400 font-heading font-black text-xs">
+                  <div className="flex items-center gap-2 text-flame-400 font-heading font-black text-xs">
                     <Activity className="w-3.5 h-3.5" />
                     <span>Doble Efecto Simultáneo</span>
                   </div>
@@ -166,7 +164,7 @@ export const ViscosityCalculator = () => {
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-navy-950/80 border border-slate-800 space-y-1">
-                  <div className="flex items-center gap-2 text-emerald-400 font-heading font-black text-xs">
+                  <div className="flex items-center gap-2 text-flame-400 font-heading font-black text-xs">
                     <Gauge className="w-3.5 h-3.5" />
                     <span>Alivio de Presión Hidráulica</span>
                   </div>
@@ -178,12 +176,12 @@ export const ViscosityCalculator = () => {
             </div>
 
             {/* Results Column */}
-            <div className="lg:col-span-5 luxury-glass p-6 sm:p-8 rounded-3xl border border-gold-metallic/35 shadow-2xl flex flex-col justify-between">
+            <div className="lg:col-span-5 luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-700/80 shadow-2xl flex flex-col justify-between">
               <div className="space-y-5">
                 
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-slate-800 gap-3">
                   <h3 className="text-base sm:text-lg font-black font-heading text-white">Impacto Operacional Validado</h3>
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-black uppercase tracking-wider font-heading">
+                  <span className="px-2.5 py-1 rounded-lg bg-flame-500/10 border border-flame-500/30 text-flame-400 text-[10px] font-heading font-bold uppercase tracking-wider">
                     Hasta 92% Eficiencia
                   </span>
                 </div>
@@ -194,11 +192,11 @@ export const ViscosityCalculator = () => {
                     Viscosidad Post-Tratamiento CYSOS:
                   </span>
                   <div className="flex items-baseline gap-3">
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-black font-heading text-emerald-400">
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-black font-heading text-white">
                       {finalViscosity.toLocaleString('es-VE')}
                     </span>
                     <span className="text-sm font-bold text-slate-400">cPs</span>
-                    <span className="ml-auto text-xs font-black text-white bg-gradient-to-r from-emerald-500 to-emerald-600 px-3 py-1 rounded-lg border border-emerald-400/30 font-heading">
+                    <span className="ml-auto text-xs font-black text-white bg-gradient-to-r from-flame-500 to-orange-600 px-3 py-1 rounded-lg border border-flame-400/30 font-heading">
                       -{reductionPercentage}%
                     </span>
                   </div>
@@ -217,7 +215,7 @@ export const ViscosityCalculator = () => {
 
                   <div className="bg-navy-950/90 p-4 rounded-2xl border border-slate-800">
                     <span className="text-[10px] uppercase font-black text-slate-400 block mb-1 font-heading">Alivio en Cabezal</span>
-                    <span className="text-lg sm:text-xl font-black text-gold-400 font-sans tracking-wide">-{pressureReliefPsi} PSI</span>
+                    <span className="text-lg sm:text-xl font-black text-white font-sans tracking-wide">-{pressureReliefPsi} PSI</span>
                     <span className="text-[10px] text-slate-400 block mt-1 font-light">Protección de bombas BCP</span>
                   </div>
                 </div>
@@ -230,7 +228,7 @@ export const ViscosityCalculator = () => {
                     'Aplicación directa con skids automatizados (800 - 1.500 ppm)'
                   ].map((text, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs text-slate-200 font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-flame-500 flex-shrink-0" />
                       <span className="font-light">{text}</span>
                     </div>
                   ))}
@@ -241,11 +239,10 @@ export const ViscosityCalculator = () => {
               <div className="pt-5 mt-5 border-t border-slate-800">
                 <a
                   href="#formulario-cotizacion"
-                  className="w-full py-3.5 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5 font-heading tracking-wide"
+                  className="w-full py-3 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 hover:from-flame-400 hover:to-orange-500 shadow-flame-glow flex items-center justify-center gap-2 font-heading tracking-wide transition-all"
                 >
-                  <FileSpreadsheet className="w-4 h-4" />
-                  <span>Solicitar Ensayo Reológico sin Costo</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <Send className="w-3.5 h-3.5" />
+                  <span>Solicitar Simulación de Campo para mi Crudo</span>
                 </a>
               </div>
 
@@ -254,11 +251,11 @@ export const ViscosityCalculator = () => {
           </div>
         ) : (
           /* TAB 2: HIGH PERFORMANCE DEMULSIFIER SHOWCASE */
-          <div className="luxury-glass p-6 sm:p-10 rounded-3xl border border-gold-metallic/35 shadow-2xl space-y-8 animate-fadeIn">
+          <div className="luxury-glass p-6 sm:p-10 rounded-3xl border border-slate-700/80 shadow-2xl space-y-8 animate-fadeIn">
             <div className="grid lg:grid-cols-12 gap-8 items-center">
               
               <div className="lg:col-span-7 space-y-4">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider font-heading">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-flame-500/10 border border-flame-500/30 text-flame-400 text-xs font-heading font-bold uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>97% Eficiencia Global Comprobada</span>
                 </div>
@@ -273,13 +270,13 @@ export const ViscosityCalculator = () => {
 
                 <div className="grid sm:grid-cols-2 gap-4 pt-2">
                   <div className="p-4 rounded-2xl bg-navy-950/80 border border-slate-800 space-y-2">
-                    <span className="text-xs font-black uppercase text-gold-400 font-heading block">
+                    <span className="text-xs font-black uppercase text-flame-400 font-heading block">
                       Corte de Agua (BS&W):
                     </span>
                     <div className="flex items-baseline gap-2">
                       <span className="text-2xl font-black font-heading text-white">7.0%</span>
-                      <ArrowRight className="w-4 h-4 text-emerald-400" />
-                      <span className="text-2xl font-black font-heading text-emerald-400">0.8% - 1.0%</span>
+                      <ArrowRight className="w-4 h-4 text-flame-500" />
+                      <span className="text-2xl font-black font-heading text-white">0.8% - 1.0%</span>
                     </div>
                     <p className="text-[11px] text-slate-400 font-light">
                       Cumplimiento riguroso de estándares de crudo fiscalizado.
@@ -308,25 +305,25 @@ export const ViscosityCalculator = () => {
                 <div className="space-y-3 text-xs">
                   <div className="flex justify-between py-2 border-b border-slate-800/60">
                     <span className="text-slate-400 font-medium">Dosificación Optimizada:</span>
-                    <span className="font-bold text-gold-400 font-mono">82 a 90 PPM</span>
+                    <span className="font-bold text-flame-400 font-heading">82 a 90 PPM</span>
                   </div>
                   <div className="flex justify-between py-2 border-b border-slate-800/60">
                     <span className="text-slate-400 font-medium">Definición Interfacial:</span>
-                    <span className="font-bold text-emerald-400">Nítida (Sin emulsión intermedia)</span>
+                    <span className="font-bold text-white">Nítida (Sin emulsión intermedia)</span>
                   </div>
                   <div className="flex justify-between py-2 border-b border-slate-800/60">
                     <span className="text-slate-400 font-medium">Validación a Escala Industrial:</span>
-                    <span className="font-bold text-white font-mono">1.500 BCNPD (60% agua entrada)</span>
+                    <span className="font-bold text-white font-heading">1.500 BCNPD (60% agua entrada)</span>
                   </div>
                   <div className="flex justify-between py-2">
                     <span className="text-slate-400 font-medium">Efluentes Acuosos:</span>
-                    <span className="font-bold text-emerald-400">Libres de hidrocarburo</span>
+                    <span className="font-bold text-white">Libres de hidrocarburo</span>
                   </div>
                 </div>
 
                 <a
                   href="#formulario-cotizacion"
-                  className="w-full py-3 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all font-heading tracking-wide mt-4"
+                  className="w-full py-3 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 hover:from-flame-600 hover:to-orange-700 shadow-flame-glow flex items-center justify-center gap-2 transition-all font-heading tracking-wide mt-4"
                 >
                   <span>Solicitar Propuesta Técnica de Deshidratación</span>
                   <ArrowRight className="w-3.5 h-3.5" />

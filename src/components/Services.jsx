@@ -48,29 +48,28 @@ export const Services = () => {
   return (
     <section id="servicios" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
       
-      {/* Glow Backdrop */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-flame-500/10 rounded-full blur-[180px] pointer-events-none" />
+      {/* Glow Backdrop - Luminous Energy Cyan & Solar Flame */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-energy-cyan/10 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-flame-500/10 rounded-full blur-[180px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-            <span className="text-[11px] font-black uppercase text-gold-400 tracking-widest font-heading">
-              Portafolio Integral de Soluciones Petroleras ISO 9001
-            </span>
+          <div className="inline-flex items-center gap-2.5 text-xs font-bold tracking-[0.2em] uppercase text-slate-300 font-heading">
+            <span className="w-2 h-2 bg-flame-500 rounded-sm" />
+            <span>Portafolio Integral de Soluciones Petroleras ISO 9001</span>
+            <span className="h-px w-8 bg-gradient-to-r from-flame-500/60 to-transparent" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-            Nuestras 4 Divisiones de <span className="animate-gradient-text">Servicios Especializados</span>
+            Nuestras 4 Divisiones de <span className="text-flame-500">Servicios Especializados</span>
           </h2>
-          <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
+          <p className="text-slate-200 text-xs sm:text-sm md:text-base font-normal">
             Soluciones de alta ingeniería química, reacondicionamiento de pozos, logística pesada y procura internacional para maximizar la producción de hidrocarburos.
           </p>
         </div>
 
-        {/* Division Tab Selector */}
+        {/* Division Tab Selector - Industrial Corporate Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {services.map((tab) => {
             const Icon = IconMap[tab.icon] || FlaskConical;
@@ -79,19 +78,21 @@ export const Services = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`p-3.5 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-center gap-3.5 w-full ${
+                className={`p-3.5 sm:p-5 rounded-2xl border text-left transition-all duration-300 flex items-center gap-3.5 w-full cursor-pointer ${
                   isActive
-                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 border-gold-metallic text-white shadow-flame-glow sm:scale-105'
-                    : 'luxury-card border-slate-800 text-slate-300 hover:border-gold-400/40 hover:text-white bg-[#0a1224]/60'
+                    ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 border-orange-400 text-white shadow-flame-glow sm:scale-105'
+                    : 'bg-navy-900/80 border-slate-700/80 text-slate-200 hover:border-flame-500/50 hover:text-white hover:bg-navy-850/90 shadow-md'
                 }`}
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                  isActive ? 'bg-navy-950 text-gold-400 shadow-inner' : 'bg-navy-900 text-gold-400 border border-slate-700'
+                  isActive ? 'bg-navy-950 text-white shadow-inner' : 'bg-navy-950/80 text-slate-300 border border-slate-700/80'
                 }`}>
-                  <Icon className="w-5 h-5" />
+                  <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-flame-500'}`} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <span className="text-xs uppercase tracking-wider text-gold-300 font-bold block mb-0.5 opacity-80">
+                  <span className={`text-[11px] uppercase tracking-wider font-bold block mb-0.5 ${
+                    isActive ? 'text-white/90' : 'text-slate-400'
+                  }`}>
                     División {services.indexOf(tab) + 1}
                   </span>
                   <span className="text-xs sm:text-sm font-black font-heading leading-tight block truncate">
@@ -103,38 +104,38 @@ export const Services = () => {
           })}
         </div>
 
-        {/* Active Division Showcase Card */}
-        <div className="luxury-glass rounded-[2.5rem] border border-gold-metallic/35 overflow-hidden shadow-2xl grid lg:grid-cols-12 items-stretch bg-navy-950/80">
+        {/* Active Division Showcase Card - Industrial Slate Glass */}
+        <div className="luxury-glass rounded-[2.5rem] border border-slate-700/80 overflow-hidden shadow-2xl grid lg:grid-cols-12 items-stretch bg-navy-900/80">
           
           {/* Left Side: Photographic/Video Showcase & Highlights */}
-          <div className="lg:col-span-5 relative min-h-[380px] lg:min-h-full flex flex-col justify-between p-6 sm:p-8 overflow-hidden group">
-            {/* Media Background */}
+          <div className="lg:col-span-5 relative min-h-[280px] sm:min-h-[380px] p-6 sm:p-8 flex flex-col justify-between overflow-hidden">
+            {/* Background Media */}
             <div className="absolute inset-0 z-0">
               {currentDivision.bgVideoUrl ? (
-                <video
-                  src={currentDivision.bgVideoUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.75]"
-                />
+                <video 
+                  key={currentDivision.bgVideoUrl}
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="w-full h-full object-cover filter brightness-[0.6] contrast-[1.1] scale-105"
+                >
+                  <source src={currentDivision.bgVideoUrl} type="video/mp4" />
+                </video>
               ) : (
-                <img
-                  src={currentDivision.image}
+                <img 
+                  src={currentDivision.image} 
                   alt={currentDivision.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.75]"
+                  className="w-full h-full object-cover filter brightness-[0.6] contrast-[1.1]" 
                 />
               )}
-              {/* Elegant Gradients to ensure text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/60 to-navy-950/30" />
+              {/* Gradients */}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/50 to-navy-950/20" />
             </div>
 
             {/* Top Badge */}
             <div className="relative z-10 flex flex-wrap gap-2">
-              <span className="px-3.5 py-1.5 rounded-full bg-navy-950/90 text-gold-400 text-xs font-black uppercase border border-gold-metallic/40 backdrop-blur-md font-heading shadow-lg">
+              <span className="px-3 py-1 rounded-md bg-navy-950/90 text-slate-200 text-xs font-heading font-bold uppercase border border-slate-700/80 backdrop-blur-md shadow-lg">
                 {currentDivision.category}
               </span>
             </div>
@@ -142,8 +143,8 @@ export const Services = () => {
             {/* Middle Feature Highlights Overlay (Only for Química) */}
             {activeTab === 'quimica' && (
               <div className="relative z-10 my-auto space-y-2 py-4">
-                <div className="p-3 rounded-2xl bg-navy-950/85 backdrop-blur-md border border-gold-400/30 shadow-xl space-y-1">
-                  <div className="flex items-center gap-2 text-gold-400 text-xs font-black font-heading">
+                <div className="p-3 rounded-2xl bg-navy-950/85 backdrop-blur-md border border-slate-700/80 shadow-xl space-y-1">
+                  <div className="flex items-center gap-2 text-flame-400 text-xs font-black font-heading">
                     <Sparkles className="w-4 h-4 text-flame-500" />
                     <span>Rendimiento Comprobado en Campo:</span>
                   </div>
@@ -153,7 +154,7 @@ export const Services = () => {
                       <span className="text-slate-400 text-[10px]">Ahorro Diluyente</span>
                     </div>
                     <div className="p-2 rounded-xl bg-black/40 border border-white/5">
-                      <span className="text-gold-400 font-bold block text-xs">Hasta 92%</span>
+                      <span className="text-flame-400 font-bold block text-xs">Hasta 92%</span>
                       <span className="text-slate-400 text-[10px]">Reducción Viscosidad</span>
                     </div>
                   </div>
@@ -168,9 +169,9 @@ export const Services = () => {
                   url: currentDivision.videoUrl || currentDivision.bgVideoUrl || '/videos/maniobra.mp4',
                   title: `CYSOS ENERGY - ${currentDivision.name}: ${currentDivision.title}`
                 })}
-                className="w-full px-4 py-3 rounded-2xl bg-navy-950/90 hover:bg-navy-900 text-white text-xs font-black flex items-center justify-center gap-2.5 border border-gold-metallic/40 shadow-xl backdrop-blur-md transition-all group/vbtn hover:border-gold-metallic hover:scale-[1.02] font-heading"
+                className="w-full px-4 py-3 rounded-2xl bg-navy-950/90 hover:bg-navy-900 text-white text-xs font-black flex items-center justify-center gap-2.5 border border-slate-700/80 shadow-xl backdrop-blur-md transition-all group/vbtn hover:border-flame-500/50 hover:scale-[1.02] font-heading"
               >
-                <div className="w-7 h-7 rounded-full bg-gradient-to-r from-flame-500 to-gold-600 flex items-center justify-center shadow-flame-glow group-hover/vbtn:scale-110 transition-transform flex-shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-r from-flame-500 to-orange-600 flex items-center justify-center shadow-flame-glow group-hover/vbtn:scale-110 transition-transform flex-shrink-0">
                   <Play className="w-3.5 h-3.5 fill-white translate-x-0.5 text-white" />
                 </div>
                 <span className="tracking-wide">Ver Registro Operativo en Video</span>
@@ -184,8 +185,8 @@ export const Services = () => {
             {/* Header Description */}
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-                <span className="text-[10px] sm:text-xs text-gold-400 font-black uppercase tracking-wider font-heading">
+                <span className="w-2 h-2 rounded-sm bg-flame-500" />
+                <span className="text-[10px] sm:text-xs text-slate-300 font-black uppercase tracking-wider font-heading">
                   Especificaciones Técnicas & Formulación
                 </span>
               </div>
@@ -206,13 +207,13 @@ export const Services = () => {
                     key={idx} 
                     className={`p-4 rounded-2xl border transition-all duration-300 flex flex-col justify-between space-y-2 ${
                       isFeatured 
-                        ? 'bg-[#0f172a]/95 border-gold-400/50 shadow-[0_4px_20px_rgba(250,204,21,0.1)] hover:border-gold-400' 
+                        ? 'bg-[#0f172a]/95 border-flame-500/40 shadow-[0_4px_20px_rgba(249,115,22,0.1)] hover:border-flame-500' 
                         : 'bg-navy-950/80 border-slate-800 hover:border-slate-700'
                     }`}
                   >
                     <div className="space-y-1.5">
                       <div className="flex items-start gap-2">
-                        <CheckCircle2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isFeatured ? 'text-gold-400' : 'text-flame-500'}`} />
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0 text-flame-500" />
                         <h4 className="text-[13px] sm:text-sm font-black text-white font-heading leading-snug">
                           {item.name}
                         </h4>
@@ -223,7 +224,7 @@ export const Services = () => {
                     </div>
                     {isFeatured && (
                       <div className="pl-6 pt-1">
-                        <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-gold-400 font-heading bg-gold-400/10 px-2 py-0.5 rounded-md border border-gold-400/20">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-flame-400 font-heading bg-flame-500/10 px-2 py-0.5 rounded-md border border-flame-500/20">
                           <Sparkle className="w-2.5 h-2.5" /> Formulación de Alto Rendimiento
                         </span>
                       </div>
@@ -235,8 +236,8 @@ export const Services = () => {
 
             {/* Action CTA & Certifications Footer */}
             <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2.5 text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3.5 py-2 rounded-xl border border-emerald-500/20 w-fit">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <div className="flex items-center gap-2.5 text-xs font-bold text-slate-300 bg-navy-950 px-3.5 py-2 rounded-xl border border-slate-700 w-fit">
+                <ShieldCheck className="w-4 h-4 text-flame-500 flex-shrink-0" />
                 <span>Normas PDVSA SI-HO-S & Calidad ISO 9001</span>
               </div>
               
@@ -244,15 +245,15 @@ export const Services = () => {
                 {activeTab === 'logistica' && fleetItems.length > 0 && (
                   <button
                     onClick={() => setIsFleetModalOpen(true)}
-                    className="px-5 py-3 rounded-xl text-xs font-black text-gold-400 bg-navy-900/60 border border-gold-400/30 hover:bg-gold-400/10 hover:border-gold-400/60 shadow-[0_0_15px_rgba(250,204,21,0.05)] flex items-center justify-center gap-2 font-heading transition-all whitespace-nowrap"
+                    className="px-5 py-3 rounded-xl text-xs font-black text-slate-200 bg-navy-900/60 border border-slate-700 hover:bg-navy-850 hover:border-flame-500/50 flex items-center justify-center gap-2 font-heading transition-all whitespace-nowrap"
                   >
-                    <LayoutGrid className="w-4 h-4" />
+                    <LayoutGrid className="w-4 h-4 text-flame-500" />
                     <span>Catálogo de Flota ({fleetItems.length} Equipos)</span>
                   </button>
                 )}
                 <a
                   href="#formulario-cotizacion"
-                  className="px-6 py-3 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 hover:from-flame-600 hover:to-gold-700 shadow-flame-glow flex items-center justify-center gap-2 font-heading transition-all whitespace-nowrap transform hover:scale-[1.02]"
+                  className="px-6 py-3 rounded-xl text-xs font-black text-white bg-gradient-to-r from-flame-500 via-flame-600 to-orange-600 hover:from-flame-400 hover:to-orange-500 shadow-flame-glow flex items-center justify-center gap-2 font-heading transition-all whitespace-nowrap transform hover:scale-[1.02]"
                 >
                   <PhoneCall className="w-4 h-4" />
                   <span>Solicitar Propuesta Técnica</span>
@@ -351,7 +352,7 @@ export const Services = () => {
               <div className="p-8 overflow-y-auto custom-scrollbar relative z-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                   {fleetItems.map((item, idx) => (
-                    <div key={idx} className="group relative rounded-[2rem] overflow-hidden border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-gold-400/30 transition-all duration-500 flex flex-col hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                    <div key={idx} className="group relative rounded-[2rem] overflow-hidden border border-energy-sky/15 bg-white/[0.02] hover:bg-white/[0.04] hover:border-energy-cyan/40 transition-all duration-500 flex flex-col hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
                       <div className="relative aspect-[16/10] overflow-hidden bg-black/50">
                         <img 
                           src={item.url} 
@@ -360,17 +361,17 @@ export const Services = () => {
                           decoding="async"
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 filter brightness-90 group-hover:brightness-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent opacity-90" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent opacity-90" />
                         
-                        <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span className="text-[9px] font-black text-white uppercase tracking-[0.2em] font-heading">
+                        <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/15">
+                          <span className="w-1.5 h-1.5 rounded-sm bg-emerald-400 animate-pulse" />
+                          <span className="text-[10px] font-heading font-bold text-white uppercase tracking-wider">
                             Unidad Operativa
                           </span>
                         </div>
                       </div>
                       <div className="p-6 flex flex-col flex-1 relative z-10 -mt-8">
-                        <h4 className="text-lg sm:text-xl font-black text-white font-heading mb-2 leading-tight drop-shadow-md group-hover:text-gold-400 transition-colors">
+                        <h4 className="text-lg sm:text-xl font-black text-white font-heading mb-2 leading-tight drop-shadow-md group-hover:text-energy-sky transition-colors">
                           {item.title}
                         </h4>
                         <p className="text-xs text-slate-400 font-light line-clamp-3 leading-relaxed mt-auto">

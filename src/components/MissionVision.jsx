@@ -14,32 +14,31 @@ export const MissionVision = () => {
   return (
     <section id="mision-vision" className="py-20 md:py-24 relative bg-navy-950 border-y border-slate-800/80 overflow-hidden">
       
-      {/* Background Decorative Glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-gold-metallic/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-flame-500/10 rounded-full blur-[160px] pointer-events-none" />
+      {/* Background Decorative Ambient Glows */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-energy-cyan/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-flame-500/15 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with High Contrast */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-gold-400/10 border border-gold-400/20 shadow-[0_0_20px_rgba(250,204,21,0.1)]">
-            <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
-            <span className="text-[11px] font-black uppercase tracking-widest text-gold-400 font-heading">
-              Identidad Institucional Oficial
-            </span>
+          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] uppercase text-slate-300 font-heading">
+            <span className="w-1.5 h-1.5 bg-flame-500 rotate-45" />
+            <span>Identidad Institucional Oficial</span>
+            <span className="h-px w-8 bg-gradient-to-r from-flame-500/60 to-transparent" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-            Misión, Visión y <span className="animate-gradient-text">Valores Corporativos</span>
+            Misión, Visión y <span className="text-flame-500">Valores Corporativos</span>
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm md:text-base font-light">
             Marco estratégico que rige nuestras operaciones de ingeniería y servicios petroleros en Venezuela.
           </p>
         </div>
 
-        {/* Tab Selector Buttons */}
+        {/* Tab Selector Buttons - Modern Segmented Control (No Pill) */}
         <div className="flex justify-center mb-10 sm:mb-12">
-          <div className="flex flex-col sm:flex-row p-1.5 bg-navy-900/90 rounded-2xl border border-slate-700 shadow-2xl backdrop-blur-xl gap-1 w-full sm:w-auto mx-4 sm:mx-0">
+          <div className="flex flex-col sm:flex-row p-1.5 bg-navy-900/90 rounded-xl border border-slate-700/80 shadow-2xl backdrop-blur-xl gap-1.5 w-full sm:w-auto mx-4 sm:mx-0">
             {[
               { id: 'mision', label: 'Nuestra Misión', icon: Target },
               { id: 'vision', label: 'Nuestra Visión', icon: Compass },
@@ -51,13 +50,13 @@ export const MissionVision = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-black transition-all duration-300 font-heading ${
+                  className={`flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 font-heading cursor-pointer ${
                     isActive
-                      ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-gold-600 text-white shadow-flame-glow scale-105'
-                      : 'text-slate-300 hover:text-white hover:bg-navy-800'
+                      ? 'bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 text-white shadow-flame-glow'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-gold-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-flame-500'}`} />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -72,18 +71,18 @@ export const MissionVision = () => {
           {activeTab === 'mision' && (
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 animate-fadeIn items-center">
               {/* Text Area */}
-              <div className="order-2 lg:order-1 luxury-glass p-6 sm:p-10 rounded-[2.5rem] border border-gold-metallic/30 shadow-2xl relative overflow-hidden group hover:border-gold-400/50 transition-colors duration-500">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gold-400/5 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+              <div className="order-2 lg:order-1 luxury-glass p-6 sm:p-10 rounded-[2.5rem] border border-slate-700/80 shadow-2xl relative overflow-hidden group hover:border-flame-500/50 transition-colors duration-500">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-flame-500/5 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 
                 <div className="flex items-center gap-4 sm:gap-5 mb-6 sm:mb-8 relative z-10">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-flame-500 to-gold-600 p-[2px] shadow-flame-glow flex-shrink-0">
-                    <div className="w-full h-full bg-[#0a1224] rounded-[14px] flex items-center justify-center text-gold-400">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-flame-500 to-orange-600 p-[2px] shadow-flame-glow flex-shrink-0">
+                    <div className="w-full h-full bg-navy-900 rounded-[14px] flex items-center justify-center text-flame-400">
                       <Target className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
                   </div>
                   <div>
                     <h3 className="text-xl sm:text-3xl font-black font-heading text-white">Nuestra Misión</h3>
-                    <p className="text-[10px] sm:text-[11px] text-gold-400 font-black tracking-widest uppercase font-heading mt-1">CYSOS ENERGY, C.A.</p>
+                    <p className="text-[10px] sm:text-[11px] text-flame-400 font-black tracking-widest uppercase font-heading mt-1">CYSOS ENERGY, C.A.</p>
                   </div>
                 </div>
 
@@ -92,31 +91,30 @@ export const MissionVision = () => {
                 </p>
 
                 <div className="mt-8 pt-6 border-t border-slate-800 grid sm:grid-cols-2 gap-4 relative z-10">
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-950/50 border border-slate-800/50 group/item hover:border-gold-400/30 transition-colors">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0" />
-                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-gold-400 transition-colors">Ingeniería IPC Especializada</span>
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-900/80 border border-slate-800/80 group/item hover:border-flame-500/40 transition-colors">
+                    <div className="w-1.5 h-1.5 rounded-sm bg-flame-500 flex-shrink-0" />
+                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-flame-400 transition-colors">Ingeniería IPC Especializada</span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-950/50 border border-slate-800/50 group/item hover:border-gold-400/30 transition-colors">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse shadow-[0_0_8px_rgba(250,204,21,0.8)] flex-shrink-0" />
-                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-gold-400 transition-colors">Reducción de Viscosidad</span>
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-900/80 border border-slate-800/80 group/item hover:border-flame-500/40 transition-colors">
+                    <div className="w-1.5 h-1.5 rounded-sm bg-flame-500 flex-shrink-0" />
+                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-flame-400 transition-colors">Reducción de Viscosidad</span>
                   </div>
                 </div>
               </div>
 
               {/* Image Area */}
-              <div className="order-1 lg:order-2 relative group h-72 sm:h-96 lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-slate-800">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
-                <div className="absolute inset-0 bg-gold-500/10 mix-blend-overlay z-10" />
+              <div className="order-1 lg:order-2 relative group h-72 sm:h-96 lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-700/80">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent z-10" />
                 <img 
                   src="/images/cysos_skid_operador.jpg" 
                   alt="Misión Cysos Energy" 
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover transform group-hover:scale-105 group-hover:rotate-1 transition-all duration-700 ease-out" 
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 ease-out" 
                 />
                 
-                <div className="absolute bottom-6 left-6 right-6 z-20 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                  <div className="luxury-glass p-5 rounded-2xl border border-white/10 backdrop-blur-xl bg-navy-950/60 border-l-2 border-l-gold-400">
+                <div className="absolute bottom-6 left-6 right-6 z-20">
+                  <div className="luxury-glass p-5 rounded-2xl border border-slate-700/80 backdrop-blur-xl bg-navy-900/80 border-l-4 border-l-flame-500">
                     <div>
                       <p className="text-white font-bold text-sm font-heading">Personal Técnico Certificado</p>
                       <p className="text-slate-300 text-xs mt-1">Supervisión en sitio con indumentaria oficial y normas PDVSA SI-HO-S / ISO 9001.</p>
@@ -132,9 +130,8 @@ export const MissionVision = () => {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 animate-fadeIn items-center">
               
               {/* Image Area */}
-              <div className="order-1 relative group h-72 sm:h-96 lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-slate-800">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050A14] via-[#050A14]/40 to-transparent z-10" />
-                <div className="absolute inset-0 bg-flame-500/10 mix-blend-overlay z-10" />
+              <div className="order-1 relative group h-72 sm:h-96 lg:h-[450px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-700/80">
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent z-10" />
                 <img 
                   src="/images/cysos_balancin_sol.jpg" 
                   alt="Visión Cysos Energy" 
@@ -144,7 +141,7 @@ export const MissionVision = () => {
                 />
                 
                 <div className="absolute bottom-6 left-6 right-6 z-20 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                  <div className="luxury-glass p-5 rounded-2xl border border-white/10 backdrop-blur-xl bg-navy-950/60 border-l-2 border-l-flame-500">
+                  <div className="luxury-glass p-5 rounded-2xl border border-flame-500/30 backdrop-blur-xl bg-navy-900/80 border-l-4 border-l-flame-500">
                     <div>
                       <p className="text-white font-bold text-sm font-heading">Liderazgo Corporativo 2030</p>
                       <p className="text-slate-300 text-xs mt-1">Consolidación tecnológica e innovación en la industria petrolera venezolana.</p>
@@ -154,18 +151,18 @@ export const MissionVision = () => {
               </div>
 
               {/* Text Area */}
-              <div className="order-2 luxury-glass p-6 sm:p-10 rounded-[2.5rem] border border-gold-metallic/30 shadow-2xl relative overflow-hidden group hover:border-flame-500/50 transition-colors duration-500">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-flame-500/5 rounded-full blur-[50px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+              <div className="order-2 luxury-glass p-6 sm:p-10 rounded-[2.5rem] border border-slate-700/80 shadow-2xl relative overflow-hidden group hover:border-flame-500/60 transition-colors duration-500">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-flame-500/5 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 
                 <div className="flex items-center gap-4 sm:gap-5 mb-6 sm:mb-8 relative z-10">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-gold-500 to-flame-600 p-[2px] shadow-gold-glow flex-shrink-0">
-                    <div className="w-full h-full bg-[#0a1224] rounded-[14px] flex items-center justify-center text-gold-400">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-flame-500 to-orange-600 p-[2px] shadow-flame-glow flex-shrink-0">
+                    <div className="w-full h-full bg-navy-900 rounded-[14px] flex items-center justify-center text-flame-400">
                       <Compass className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
                   </div>
                   <div>
                     <h3 className="text-xl sm:text-3xl font-black font-heading text-white">Nuestra Visión</h3>
-                    <p className="text-[10px] sm:text-[11px] text-flame-500 font-black tracking-widest uppercase font-heading mt-1">Liderazgo & Expansión</p>
+                    <p className="text-[10px] sm:text-[11px] text-flame-400 font-black tracking-widest uppercase font-heading mt-1">Liderazgo & Expansión</p>
                   </div>
                 </div>
 
@@ -174,13 +171,13 @@ export const MissionVision = () => {
                 </p>
 
                 <div className="mt-8 pt-6 border-t border-slate-800 grid sm:grid-cols-2 gap-4 relative z-10">
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-950/50 border border-slate-800/50 group/item hover:border-flame-500/30 transition-colors">
-                    <div className="w-1.5 h-1.5 rounded-full bg-flame-500 animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.8)] flex-shrink-0" />
-                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-flame-500 transition-colors">Innovación Tecnológica</span>
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-900/80 border border-slate-800/80 group/item hover:border-flame-500/40 transition-colors">
+                    <div className="w-1.5 h-1.5 rounded-sm bg-flame-500 flex-shrink-0" />
+                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-flame-400 transition-colors">Innovación Tecnológica</span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-950/50 border border-slate-800/50 group/item hover:border-flame-500/30 transition-colors">
-                    <div className="w-1.5 h-1.5 rounded-full bg-flame-500 animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.8)] flex-shrink-0" />
-                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-flame-500 transition-colors">Sostenibilidad Ambiental</span>
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-navy-900/80 border border-slate-800/80 group/item hover:border-flame-500/40 transition-colors">
+                    <div className="w-1.5 h-1.5 rounded-sm bg-flame-500 flex-shrink-0" />
+                    <span className="text-xs font-bold text-slate-200 group-hover/item:text-flame-400 transition-colors">Sostenibilidad Ambiental</span>
                   </div>
                 </div>
               </div>
@@ -196,71 +193,58 @@ export const MissionVision = () => {
                   title: 'Responsabilidad',
                   desc: 'Más de 20 años de experiencia documentada en el sector.',
                   icon: ShieldCheck,
-                  color: 'from-gold-400 to-gold-600',
-                  glow: 'bg-gold-400/20'
                 },
                 {
                   title: 'Colaboración',
                   desc: 'Los empleados construyen relaciones sólidas en toda la compañía, saben brindar ayuda y recibir opiniones para el mejorar el desarrollo laboral.',
                   icon: Users,
-                  color: 'from-orange-500 to-flame-600',
-                  glow: 'bg-orange-500/20'
                 },
                 {
                   title: 'Enfoque en el cliente',
                   desc: 'Generamos confianza en el cliente entregando resultados óptimos. Comprendemos y sabemos las necesidades del cliente y capacitamos a nuestro personal para brindar la mejor atención posible.',
                   icon: HeartHandshake,
-                  color: 'from-flame-500 to-red-600',
-                  glow: 'bg-flame-500/20'
                 },
                 {
                   title: 'Comunicación',
                   desc: 'Trabajamos duro para ser claros, concisos y evitar errores de comunicación. Centrarse en la comunicación eficaz permite satisfacer y superar las necesidades del cliente.',
                   icon: MessageSquare,
-                  color: 'from-gold-300 to-amber-500',
-                  glow: 'bg-gold-400/20'
                 },
                 {
                   title: 'Desarrollo',
                   desc: 'La formación continua y las oportunidades de crecimiento son más que beneficios, una forma de vida. Nuestro personal comparte información, se orienta y brindan comentarios.',
                   icon: Lightbulb,
-                  color: 'from-orange-400 to-flame-500',
-                  glow: 'bg-orange-400/20'
                 },
                 {
                   title: 'Honestidad',
                   desc: 'Todos nuestros empleados aprenden a trabajar juntos a través de líneas y culturas basadas en la honestidad.',
                   icon: Scale,
-                  color: 'from-amber-500 to-orange-600',
-                  glow: 'bg-amber-500/20'
                 }
               ].map((val, idx) => {
                 const Icon = val.icon;
                 return (
                   <div
                     key={idx}
-                    className="relative p-6 sm:p-10 rounded-[2.5rem] bg-[#0a1224]/80 backdrop-blur-xl border border-slate-800/80 flex flex-col justify-between group hover:border-gold-400/50 transition-all duration-500 overflow-hidden shadow-2xl hover:-translate-y-2"
+                    className="relative p-6 sm:p-10 rounded-[2.5rem] bg-navy-900/80 backdrop-blur-xl border border-slate-700/80 flex flex-col justify-between group hover:border-flame-500/50 transition-all duration-500 overflow-hidden shadow-2xl hover:-translate-y-1"
                   >
                     {/* Abstract Number Watermark */}
-                    <div className="absolute -top-6 -right-6 text-[120px] font-black text-slate-800/20 font-heading select-none pointer-events-none group-hover:text-gold-400/10 transition-colors duration-500">
+                    <div className="absolute -top-6 -right-6 text-[120px] font-black text-slate-700/20 font-heading select-none pointer-events-none group-hover:text-flame-500/10 transition-colors duration-500">
                       0{idx + 1}
                     </div>
 
                     {/* Inner Glow */}
-                    <div className={`absolute -inset-x-10 -bottom-10 h-32 ${val.glow} blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+                    <div className="absolute -inset-x-10 -bottom-10 h-32 bg-flame-500/5 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
                     <div className="relative z-10">
-                      <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${val.color} flex items-center justify-center text-white mb-6 sm:mb-8 shadow-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 relative`}>
-                        <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-flame-500 to-orange-600 flex items-center justify-center text-white mb-6 sm:mb-8 shadow-flame-glow group-hover:scale-105 transition-transform duration-500 relative">
                         <Icon className="w-6 h-6 sm:w-8 sm:h-8 relative z-10" />
                       </div>
-                      <h4 className="text-lg sm:text-2xl font-black font-heading text-white mb-3 sm:mb-4 group-hover:text-gold-400 transition-colors">{val.title}</h4>
+                      <h4 className="text-lg sm:text-2xl font-black font-heading text-white mb-3 sm:mb-4 group-hover:text-flame-400 transition-colors">{val.title}</h4>
                       <p className="text-slate-300 text-sm leading-relaxed font-light">{val.desc}</p>
                     </div>
 
                     <div className="relative z-10 mt-6 sm:mt-8 pt-6 border-t border-slate-800/80 flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-navy-950 border border-slate-700 flex items-center justify-center group-hover:border-gold-400 transition-colors">
-                        <Sparkles className="w-3.5 h-3.5 text-gold-400" />
+                      <div className="w-8 h-8 rounded-lg bg-navy-950 border border-slate-700 flex items-center justify-center group-hover:border-flame-500/50 transition-colors">
+                        <Sparkles className="w-3.5 h-3.5 text-flame-500" />
                       </div>
                       <span className="text-[10px] text-slate-400 font-bold font-heading uppercase tracking-widest group-hover:text-white transition-colors">
                         ADN Corporativo
