@@ -443,15 +443,24 @@ export const CmsProvider = ({ children }) => {
         if (data['cysos_cms_services']) setServices(data['cysos_cms_services']);
         if (data['cysos_cms_alliances']) setAlliances(data['cysos_cms_alliances']);
         
-        // Merge Supabase news with our hardcoded INITIAL_NEWS to guarantee new items are visible
+        // Merge Supabase news with our hardcoded INITIAL_NEWS 
         if (data['cysos_cms_news']) {
           const loadedNews = data['cysos_cms_news'];
-          const mergedNews = [...INITIAL_NEWS];
-          loadedNews.forEach(n => {
-            if (!mergedNews.find(mn => mn.id === n.id)) {
-              mergedNews.push(n);
+          
+          // Start with our INITIAL_NEWS order
+          const mergedNews = INITIAL_NEWS.map(initialItem => {
+            const supabaseItem = loadedNews.find(sn => sn.id === initialItem.id);
+            // If the user modified it in Supabase (images, text), KEEP Supabase version!
+            return supabaseItem ? supabaseItem : initialItem;
+          });
+          
+          // Add any custom news the user created in Supabase that aren't in INITIAL_NEWS
+          loadedNews.forEach(sn => {
+            if (!mergedNews.find(mn => mn.id === sn.id)) {
+              mergedNews.push(sn);
             }
           });
+          
           setNews(mergedNews);
         } else {
           setNews(INITIAL_NEWS);

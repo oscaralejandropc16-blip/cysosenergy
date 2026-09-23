@@ -15,12 +15,12 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
       ? news.filter(n => (n.category || '').toLowerCase() === 'venezuela')
       : news.filter(n => (n.category || '').toLowerCase() === 'mundial');
 
-  // Lead dominant story (item 0) and secondary stories (items 1 & 2)
+  // Lead dominant story (item 0) and secondary stories (items 1 to 4)
   const leadStory = filteredNews[0] || news[0];
-  const secondaryStories = filteredNews.slice(1, 3);
+  const secondaryStories = filteredNews.slice(1, 5);
   const displaySecondary = secondaryStories.length > 0 
     ? secondaryStories 
-    : news.filter(n => n.id !== leadStory.id).slice(0, 2);
+    : news.filter(n => n.id !== leadStory.id).slice(0, 4);
 
   const handleCardClick = (item) => {
     if (onOpenArticle) {
