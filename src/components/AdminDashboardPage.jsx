@@ -86,6 +86,44 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
   const safeKpis = Array.isArray(kpis) ? kpis : [];
   const safeServices = Array.isArray(services) ? services : [];
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
+  // Reset page when tab changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeTab]);
+
+  const paginate = (array) => array.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  
+  const renderPagination = (array) => {
+    const totalPages = Math.ceil(array.length / itemsPerPage);
+    if (totalPages <= 1) return null;
+    return (
+      <div className="flex items-center justify-center gap-4 mt-8 pt-4 border-t border-white/10">
+        <button
+          type="button"
+          onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+          disabled={currentPage === 1}
+          className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-white/10 text-white disabled:opacity-50 disabled:cursor-not-allowed border border-white/10 text-xs font-bold transition-colors"
+        >
+          Anterior
+        </button>
+        <span className="text-xs text-slate-400 font-bold">
+          Página {currentPage} de {totalPages}
+        </span>
+        <button
+          type="button"
+          onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-white/10 text-white disabled:opacity-50 disabled:cursor-not-allowed border border-white/10 text-xs font-bold transition-colors"
+        >
+          Siguiente
+        </button>
+      </div>
+    );
+  };
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const res = loginAdmin(password);
@@ -413,10 +451,9 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
             </div>
 
             {/* Media Grid */}
-            <div className="flex-1 overflow-y-auto pr-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[50vh]">
-              {safeMediaLibrary
-                .filter((item) => mediaFilter === 'all' || item.type === mediaFilter)
-                .map((item) => (
+            <div className="flex-1 overflow-y-auto pr-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-[50vh]">
+                {paginate(safeMediaLibrary.filter((item) => mediaFilter === 'all' || item.type === mediaFilter)).map((item) => (
                   <div
                     key={item.id}
                     onClick={() => selectMediaItem(item.url)}
@@ -433,12 +470,14 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
 
                     <div className="relative z-10 pointer-events-none">
                       <span className="text-[9px] font-mono text-gold-400 bg-black/70 px-1.5 py-0.5 rounded">
-                        {item.type === 'video' ? '🎥 Video' : '🖼️ Imagen'}
+                        {item.type === 'video' ? 'Video' : 'Imagen'}
                       </span>
                       <p className="text-[11px] font-bold text-white truncate mt-1">{item.name}</p>
                     </div>
                   </div>
                 ))}
+              </div>
+              {renderPagination(safeMediaLibrary.filter((item) => mediaFilter === 'all' || item.type === mediaFilter))}
             </div>
 
           </div>
@@ -965,7 +1004,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 <h3 className="text-base font-extrabold font-heading text-white">Clientes Registrados en el Carrusel ({safePartners.length})</h3>
                 
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {safePartners.map((partner) => (
+                  {paginate(safePartners).map((partner) => (
                     <div key={partner.id} className="luxury-glass p-5 rounded-2xl border border-white/10 space-y-4">
                       
                       <div className="flex items-center justify-between pb-3 border-b border-slate-800">
@@ -1058,6 +1097,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                     </div>
                   ))}
                 </div>
+                {renderPagination(safePartners)}
               </div>
 
             </div>
@@ -1228,7 +1268,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
               </div>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {safeMediaItems.map((item) => (
+                {paginate(safeMediaItems).map((item) => (
                   <div key={item.id} className="luxury-glass p-4 rounded-2xl border border-white/10 space-y-3">
                     <div className="aspect-video rounded-xl overflow-hidden bg-black relative border border-white/10 shadow-md">
                       <img src={item.url} alt={item.title} className="w-full h-full object-cover" />
@@ -1299,6 +1339,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </div>
                 ))}
               </div>
+              {renderPagination(safeMediaItems)}
             </div>
           )}
 
@@ -1726,7 +1767,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {alliances.map((alliance) => (
+                {paginate(alliances).map((alliance) => (
                   <div key={alliance.id} className="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-5 rounded-[2rem] flex flex-col gap-4 shadow-xl">
                     <div className="flex items-start justify-between">
                       <div>
@@ -1757,6 +1798,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                   </div>
                 ))}
               </div>
+              {renderPagination(alliances)}
             </div>
           )}
 
@@ -1813,7 +1855,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {filteredMessages.map((msg) => (
+                  {paginate(filteredMessages).map((msg) => (
                     <div
                       key={msg.id}
                       className={`p-6 rounded-2xl border transition-all ${
@@ -1912,6 +1954,7 @@ export const AdminDashboardPage = ({ onReturnToWeb }) => {
                       </div>
                     </div>
                   ))}
+                  {renderPagination(filteredMessages)}
                 </div>
               )}
 

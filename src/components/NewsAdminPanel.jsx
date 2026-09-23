@@ -6,6 +6,38 @@ export const NewsAdminPanel = ({ openMediaPicker, triggerSaveNotification }) => 
   const { news, addNews, updateNews, deleteNews } = useCms();
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+  
+  const paginate = (array) => array.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const renderPagination = (array) => {
+    const totalPages = Math.ceil(array.length / itemsPerPage);
+    if (totalPages <= 1) return null;
+    return (
+      <div className="col-span-1 md:col-span-2 flex items-center justify-center gap-4 mt-8 pt-4 border-t border-white/10">
+        <button
+          type="button"
+          onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+          disabled={currentPage === 1}
+          className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-white/10 text-white disabled:opacity-50 disabled:cursor-not-allowed border border-white/10 text-xs font-bold transition-colors"
+        >
+          Anterior
+        </button>
+        <span className="text-xs text-slate-400 font-bold">
+          Página {currentPage} de {totalPages}
+        </span>
+        <button
+          type="button"
+          onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 rounded-xl bg-navy-900 hover:bg-white/10 text-white disabled:opacity-50 disabled:cursor-not-allowed border border-white/10 text-xs font-bold transition-colors"
+        >
+          Siguiente
+        </button>
+      </div>
+    );
+  };
   
   const [formData, setFormData] = useState({
     title: '',
@@ -145,7 +177,7 @@ export const NewsAdminPanel = ({ openMediaPicker, triggerSaveNotification }) => 
         </form>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {news?.map(item => (
+          {paginate(news || []).map(item => (
             <div key={item.id} className="bg-white/[0.02] border border-white/10 p-4 rounded-2xl flex gap-4">
               <div className="w-24 h-24 rounded-xl bg-black overflow-hidden flex-shrink-0 relative">
                 {item.mediaType === 'video' ? (
@@ -176,6 +208,7 @@ export const NewsAdminPanel = ({ openMediaPicker, triggerSaveNotification }) => 
               </div>
             </div>
           ))}
+          {renderPagination(news || [])}
         </div>
       )}
     </div>
