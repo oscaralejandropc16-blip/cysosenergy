@@ -127,7 +127,7 @@ section[id] {
 .animate-news-ticker {
   display: flex;
   width: max-content;
-  animation: newsTicker 42s linear infinite;
+  animation: newsTicker 150s linear infinite;
   will-change: transform;
 }
 

@@ -46,10 +46,10 @@ const INITIAL_MESSAGES = [
 ];
 
 const INITIAL_KPIS = [
-  { id: 'pozos', label: 'POZOS INTERVENIDOS', value: 450, prefix: '+', suffix: '', desc: 'En campos de crudo pesado y tradicional' },
-  { id: 'viscosidad', label: 'REDUCCIÓN VISCOSIDAD', value: 98.4, prefix: '', suffix: '%', desc: 'Eficiencia en transporte de hidrocarburos' },
-  { id: 'horas', label: 'HORAS SIN ACCIDENTES', value: 1250000, prefix: '+', suffix: 'hrs', desc: 'Certificación HSE de clase mundial' },
-  { id: 'bpd', label: 'BARRILES DIARIOS FLUIDIZADOS', value: 120000, prefix: '+', suffix: 'BPD', desc: 'Optimización de flujo en oleoductos' }
+  { id: 'horas_operadas', label: 'HORAS OPERADAS EN POZOS', value: 34500, prefix: '+', suffix: ' hrs', desc: 'Experiencia acumulada en operaciones de subsuelo' },
+  { id: 'pozos_exito', label: 'POZOS REALIZADOS CON ÉXITO', value: 450, prefix: '+', suffix: '', desc: 'Estimulación, limpieza y completación efectiva' },
+  { id: 'separadores', label: 'INTERVENCIONES CON SEPARADORES', value: 120, prefix: '+', suffix: '', desc: 'Trabajos ejecutados con separadores de alta presión' },
+  { id: 'hse', label: 'INCIDENTES (HSE)', value: 0, prefix: '', suffix: '', desc: 'Certificación y compromiso total con la seguridad' }
 ];
 
 const INITIAL_MEDIA = [
@@ -113,18 +113,18 @@ const INITIAL_SERVICES = [
   },
   {
     id: 'quimica',
-    category: 'División 2: Química de Producción y Optimización',
-    title: 'Reductores de Viscosidad & Desemulsionantes de Alto Rendimiento',
-    name: 'Química de Producción',
+    category: 'División 2: Química de Producción y Estimulación',
+    title: 'Suministro de Química de Estimulación y Limpieza para Pozos',
+    name: 'Química de Estimulación',
     image: '/images/cysos_quimica_lipesa.jpg',
     videoUrl: '/videos/maniobra.mp4',
     bgVideoUrl: '',
     icon: 'FlaskConical',
-    summary: 'Servicio integral de suministro e inyección de especialidades químicas diseñadas para maximizar la eficiencia operativa y proteger la infraestructura.',
+    summary: 'Servicio integral de suministro e inyección de especialidades químicas diseñadas para estimulación, limpieza de pozos y optimización de la producción de hidrocarburos.',
     items: [
-      { name: 'Optimización de Crudos Pesados', desc: 'Reductor permanente de viscosidad (en fase de hidrocarburos), desmulsificantes y rompedores rápidos tipo slug para una separación eficiente de fases, dispersantes de parafinas/asfáltenos y dispersante de crudo, reductor de fricción para mejora de flujo en tuberías.' },
-      { name: 'Estimulación y Tratamiento de Pozos', desc: 'Suministro de ácidos especializados, ácido clorhídrico, ácido acético y mezcla de HCl y HF, sistemas de limpieza con xileno, solvente mutual y humectante de sólidos, surfactantes a base de agua para tratamientos específicos.' },
-      { name: 'Protección de Activos y Acondicionamiento', desc: 'Inhibidores de corrosión e incrustación para preservar la integridad de equipos, antiespumantes y clarificantes para el control de procesos, secuestrante para la gestión de gases ácidos.' }
+      { name: 'Suministro de Ácidos y Solventes', desc: 'Provisión de ácidos especializados, ácido clorhídrico, ácido acético, mezclas de HCl y HF para la estimulación matricial efectiva de pozos petroleros.' },
+      { name: 'Sistemas de Limpieza de Pozos', desc: 'Tratamientos de alta eficiencia utilizando xileno, solvente mutual, humectantes de sólidos y surfactantes a base de agua para la remoción profunda de daño a la formación.' },
+      { name: 'Optimización de Crudos Pesados', desc: 'Reductor permanente de viscosidad, desmulsificantes, rompedores rápidos tipo slug, dispersantes de parafinas/asfáltenos y reductores de fricción para líneas de flujo.' }
     ]
   },
   {
@@ -217,6 +217,30 @@ const INITIAL_ALLIANCES = [
 ];
 
 const INITIAL_NEWS = [
+  {
+    id: 'news-opep-produccion-agosto-2026',
+    category: 'venezuela',
+    source: 'OPEP / Cysos Technical News',
+    tag: 'Producción Nacional',
+    date: '2026-09-23',
+    title: 'Producción petrolera venezolana se estabiliza en 1,2 millones de bpd durante agosto según la OPEP',
+    summary: 'El reporte mensual de la OPEP confirma un promedio de 1.200.000 barriles diarios, consolidando un incremento del 29,9% en lo que va del año 2026.',
+    content: 'De acuerdo con el más reciente informe mensual de la Organización de Países Exportadores de Petróleo (OPEP) publicado en septiembre, la producción petrolera de Venezuela se mantuvo estable durante el mes de agosto, registrando un promedio de 1,2 millones de barriles diarios (bpd). Aunque el crecimiento intermensual fue marginal, la cifra consolida un incremento sostenido de aproximadamente el 29,9% en el transcurso del año 2026, partiendo de los 924.000 bpd reportados en enero. Especialistas del sector energético destacan que sostener este nivel de extracción requiere de mayores inversiones en tecnología de levantamiento artificial e infraestructura de tratamiento químico en la Faja Petrolífera del Orinoco.',
+    mediaUrl: '/images/noticia_opep_mundial.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-riesgo-pais-venezuela-2026',
+    category: 'mundial',
+    source: 'Banca y Negocios',
+    tag: 'Finanzas & Energía',
+    date: '2026-09-22',
+    title: 'Riesgo país de Venezuela disminuye 52% impulsado por reactivación operativa y nuevos acuerdos',
+    summary: 'El indicador financiero cae a 6.037 puntos básicos tras la firma de memorandos de entendimiento con multinacionales y la expectativa de mayor flujo de divisas petroleras.',
+    content: 'Durante la tercera semana de septiembre de 2026, el indicador de riesgo país de Venezuela (EMBI) registró una contracción notable, acumulando una disminución neta de aproximadamente 52% en el transcurso del año para situarse en torno a los 6.037 puntos básicos. Analistas financieros atribuyen este comportamiento a las recientes firmas de memorandos de entendimiento entre PDVSA y grandes corporaciones internacionales (como TotalEnergies y Continental Resources), sumado a las proyecciones de incremento en las exportaciones de crudo pesado. La reincorporación gradual de bonos venezolanos en índices de liquidez internacional también ha favorecido la percepción de riesgo de los inversionistas institucionales.',
+    mediaUrl: '/images/noticia_trading_crudo.jpg',
+    mediaType: 'image'
+  },
   {
     id: 'news-continental-ayacucho-2026',
     category: 'venezuela',

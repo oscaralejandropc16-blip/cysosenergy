@@ -17,6 +17,7 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { Footer } from './components/Footer';
 import { FloatingOperationsWidget } from './components/FloatingOperationsWidget';
 import { DossierModal } from './components/DossierModal';
+import { RecentOperations } from './components/RecentOperations';
 
 // Secret paths for high security
 const isSecretAdminRoute = () => {
@@ -172,6 +173,7 @@ function MainAppContent() {
           <PartnersCarousel />
           <MissionVision />
           <Services />
+          <RecentOperations onOpenDossier={() => setIsDossierOpen(true)} />
           <ViscosityCalculator />
           <VenezuelaMap />
           <HSECommitment />

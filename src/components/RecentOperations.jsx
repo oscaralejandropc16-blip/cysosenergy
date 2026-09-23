@@ -6,6 +6,21 @@ import {
 
 const OPERATIONS_DATA = [
   {
+    id: 'op-0',
+    category: 'Estimulación y Limpieza',
+    title: 'Limpieza de Pozo con Solvente Mutual y Surfactantes',
+    client: 'OPERADORA MIXTA ORIENTE',
+    date: 'Febrero 2026',
+    location: 'Campo Quiriquire, Edo. Monagas',
+    status: 'Concluido con Éxito',
+    statusType: 'completed',
+    metricLabel: 'Separador de Alta',
+    metricValue: 'Intervención con Separador de Alta Presión',
+    description: 'Trabajo de estimulación y limpieza profunda de formación utilizando paquetes químicos especializados para remoción de daño.',
+    imageUrl: '/images/cysos_quimica_lipesa.jpg',
+    tag: 'Estimulación Química'
+  },
+  {
     id: 'op-1',
     category: 'Química EOR',
     title: 'Inyección Continua de Reductor de Viscosidad CyS-Redux en Macolla Carabobo',
@@ -82,7 +97,7 @@ const OPERATIONS_DATA = [
   }
 ];
 
-const CATEGORIES = ['Todas', 'Química EOR', 'Logística Pesada', 'Intervención de Pozos', 'Certificaciones'];
+const CATEGORIES = ['Todas', 'Estimulación y Limpieza', 'Química EOR', 'Logística Pesada', 'Intervención de Pozos', 'Certificaciones'];
 
 export const RecentOperations = ({ onOpenDossier }) => {
   const [activeFilter, setActiveFilter] = useState('Todas');
@@ -135,83 +150,90 @@ export const RecentOperations = ({ onOpenDossier }) => {
         </div>
 
         {/* Operations Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredOperations.map((op) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {filteredOperations.map((op, idx) => (
             <div
               key={op.id}
-              className="luxury-card rounded-3xl overflow-hidden border border-slate-800 hover:border-energy-cyan/50 transition-all duration-500 flex flex-col group hover:-translate-y-1.5 shadow-xl"
+              className="relative rounded-2xl overflow-hidden bg-navy-900/40 backdrop-blur-xl border border-slate-700/50 hover:border-flame-500/40 transition-all duration-500 flex flex-col group hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(249,115,22,0.15)] animate-fadeIn"
+              style={{ animationDelay: `${idx * 150}ms` }}
             >
-              {/* Image Preview Container */}
-              <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-navy-900">
+              {/* Image Preview Container (No Pills) */}
+              <div className="relative h-56 w-full overflow-hidden bg-navy-950">
                 <img
                   src={op.imageUrl}
                   alt={op.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-[0.9]"
+                  className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 filter brightness-[0.85] group-hover:brightness-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-black/30" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent opacity-90" />
                 
-                {/* Status Badge */}
-                <div className="absolute top-3 left-3">
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider backdrop-blur-md font-heading ${
-                    op.statusType === 'active'
-                      ? 'bg-emerald-950/90 text-emerald-300 border border-emerald-500/50'
-                      : op.statusType === 'completed'
-                      ? 'bg-sky-950/90 text-sky-300 border border-sky-500/50'
-                      : 'bg-amber-950/90 text-amber-300 border border-amber-500/50'
+                {/* Clean Status Indicator (No Box) */}
+                <div className="absolute top-4 left-4 flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full shadow-[0_0_8px_currentColor] animate-pulse ${
+                    op.statusType === 'active' ? 'bg-emerald-400 text-emerald-400'
+                    : op.statusType === 'completed' ? 'bg-sky-400 text-sky-400'
+                    : 'bg-flame-400 text-flame-400'
+                  }`} />
+                  <span className={`text-[10px] font-black uppercase tracking-[0.15em] font-heading drop-shadow-md ${
+                    op.statusType === 'active' ? 'text-emerald-400'
+                    : op.statusType === 'completed' ? 'text-sky-300'
+                    : 'text-flame-400'
                   }`}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
                     {op.status}
                   </span>
                 </div>
 
-                {/* Date / Location pill */}
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-white font-medium drop-shadow">
-                  <span className="bg-navy-950/80 px-2 py-0.5 rounded border border-white/10 font-heading">
+                {/* Date / Location Clean Text (No Box) */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white drop-shadow-md">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] uppercase font-bold text-slate-300 tracking-wider flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-flame-500" />
+                      {op.location.split('-')[0]}
+                    </span>
+                  </div>
+                  <span className="text-[10px] uppercase font-bold text-slate-300 tracking-widest text-right">
                     {op.date}
-                  </span>
-                  <span className="bg-navy-950/80 px-2 py-0.5 rounded border border-white/10 truncate max-w-[170px]">
-                    📍 {op.location.split('-')[0]}
                   </span>
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4 bg-navy-950/90">
-                <div className="space-y-2">
-                  <div className="text-[10px] font-black uppercase text-energy-sky tracking-wider font-heading">
+              <div className="p-6 flex-1 flex flex-col justify-between space-y-5 bg-gradient-to-b from-transparent to-navy-950/80">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-[10px] font-black uppercase text-flame-500 tracking-[0.2em] font-heading">
+                    <span className="w-3 h-px bg-flame-500" />
                     Cliente: {op.client}
                   </div>
-                  <h3 className="text-sm sm:text-base font-black font-heading text-white group-hover:text-energy-sky transition-colors leading-snug">
+                  <h3 className="text-sm sm:text-base font-black font-heading text-white group-hover:text-flame-400 transition-colors duration-300 leading-snug">
                     {op.title}
                   </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed font-light">
+                  <p className="text-xs text-slate-300 leading-relaxed font-light opacity-90 group-hover:opacity-100 transition-opacity">
                     {op.description}
                   </p>
                 </div>
 
-                {/* Metric Strip */}
-                <div className="pt-3 border-t border-slate-800/80 space-y-2">
-                  <div className="flex items-center justify-between text-xs bg-navy-900/80 px-3 py-2 rounded-xl border border-slate-800">
-                    <span className="text-[10px] uppercase font-bold text-slate-400 font-heading">
-                      {op.metricLabel}:
+                {/* Metric Strip (Clean, border-only separator) */}
+                <div className="pt-4 border-t border-slate-700/50 space-y-3">
+                  <div className="flex items-center justify-between text-xs group-hover:bg-white/5 px-2 py-1.5 -mx-2 rounded transition-colors duration-300">
+                    <span className="text-[10px] uppercase font-bold text-slate-400 font-heading tracking-wider">
+                      {op.metricLabel}
                     </span>
-                    <span className="font-extrabold text-energy-sky text-[11px] text-right">
+                    <span className="font-extrabold text-white text-[11px] text-right">
                       {op.metricValue}
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
-                    <span className="inline-flex items-center gap-1 text-emerald-400">
-                      <ShieldCheck className="w-3.5 h-3.5" />
-                      <span>Protocolo HSE Cero LTI</span>
+                  <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1">
+                    <span className="inline-flex items-center gap-1.5 text-emerald-400 font-bold uppercase tracking-wider">
+                      <ShieldCheck className="w-3 h-3" />
+                      Cero LTI
                     </span>
                     
                     <a
                       href="#formulario-cotizacion"
-                      className="text-energy-sky hover:text-white font-bold flex items-center gap-1 transition-colors"
+                      className="text-flame-500 hover:text-flame-400 font-bold flex items-center gap-1 transition-colors uppercase tracking-wider"
                     >
-                      <span>Cotizar similar</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <span>Ver Detalles</span>
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
                 </div>

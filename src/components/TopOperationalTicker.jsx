@@ -9,34 +9,41 @@ export const TopOperationalTicker = ({ onOpenDossier }) => {
   return (
     <aside 
       aria-label="Estado operativo y avisos de Cysos Energy"
-      className="w-full bg-gradient-to-r from-navy-950 via-navy-900 to-navy-950 border-b border-energy-sky/20 text-xs py-1.5 sm:py-2 px-2.5 sm:px-6 shadow-luxury select-none"
+      className="w-full relative z-50 bg-navy-950/85 backdrop-blur-xl border-b border-white/5 text-xs py-2 px-3 sm:px-6 shadow-[0_4px_30px_rgba(0,0,0,0.5)] select-none overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 text-slate-200">
+      {/* Subtle Animated Gradient Glow behind the ticker */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-flame-500/5 to-transparent opacity-50 animate-pulse" />
+
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 text-slate-200 relative z-10">
         
         {/* Left: Operational Status & Live Beacon */}
-        <div className="flex items-center gap-2 sm:gap-3 overflow-hidden text-left flex-shrink min-w-0">
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-emerald-950/80 border border-emerald-500/40 px-2 sm:px-2.5 py-0.5 rounded-md flex-shrink-0">
+        <div className="flex items-center gap-2 sm:gap-4 overflow-hidden text-left flex-shrink min-w-0">
+          
+          {/* Premium Active Status */}
+          <div className="inline-flex items-center gap-2 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-1 rounded-md flex-shrink-0 shadow-[inset_0_0_10px_rgba(16,185,129,0.1)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
             </span>
-            <span className="text-[10px] sm:text-[10px] font-black uppercase tracking-wider text-emerald-300 font-heading whitespace-nowrap">
-              <span className="hidden sm:inline">ESTADO OPERACIONAL: </span>100% ACTIVO 24/7
+            <span className="text-[10px] font-black uppercase tracking-[0.15em] text-emerald-400 font-heading whitespace-nowrap">
+              Operaciones 100% Activas
             </span>
           </div>
 
-          <span className="hidden md:inline-block text-slate-600">|</span>
+          <span className="hidden md:inline-block text-slate-600/50">|</span>
 
-          <div className="hidden md:flex items-center gap-1.5 text-[11px] text-slate-300 whitespace-nowrap">
-            <MapPin className="w-3.5 h-3.5 text-energy-sky flex-shrink-0" />
-            <span>Faja del Orinoco & Base Maturín</span>
+          {/* Premium Location */}
+          <div className="hidden md:flex items-center gap-1.5 text-[11px] text-slate-400 whitespace-nowrap font-medium">
+            <MapPin className="w-3.5 h-3.5 text-flame-500 flex-shrink-0" />
+            <span>Faja Petrolífera del Orinoco</span>
           </div>
 
-          <span className="hidden xl:inline-block text-slate-600">|</span>
+          <span className="hidden xl:inline-block text-slate-600/50">|</span>
 
-          <div className="hidden xl:flex items-center gap-1.5 text-[11px] text-slate-300 whitespace-nowrap">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-            <span className="text-slate-300">RACDA N° 2026-I • SAPI • PDVSA SI-HO-S</span>
+          {/* Premium Certifications */}
+          <div className="hidden xl:flex items-center gap-1.5 text-[11px] text-slate-400 whitespace-nowrap font-medium">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+            <span>RACDA • ISO 9001 • SI-HO-S</span>
           </div>
         </div>
 

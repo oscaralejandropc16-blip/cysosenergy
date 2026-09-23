@@ -133,9 +133,10 @@ export const Services = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/50 to-navy-950/20" />
             </div>
 
-            {/* Top Badge */}
-            <div className="relative z-10 flex flex-wrap gap-2">
-              <span className="px-3 py-1 rounded-md bg-navy-950/90 text-slate-200 text-xs font-heading font-bold uppercase border border-slate-700/80 backdrop-blur-md shadow-lg">
+            {/* Top Category Label (No Pill, Clean Text) */}
+            <div className="relative z-10 flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-flame-500 shadow-[0_0_8px_rgba(249,115,22,0.8)] animate-pulse" />
+              <span className="text-[10px] text-slate-300 font-heading font-black uppercase tracking-[0.15em] drop-shadow-md">
                 {currentDivision.category}
               </span>
             </div>

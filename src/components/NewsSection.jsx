@@ -104,7 +104,7 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
-              🇻🇪 Venezuela
+              Nacional
             </button>
             <button
               onClick={() => setActiveCategory('mundial')}
@@ -114,7 +114,7 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
-              🌍 Global
+              Global
             </button>
           </div>
         </div>
@@ -214,7 +214,6 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 pointer-events-none">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="px-3 py-1 text-xs font-heading font-bold bg-flame-600 text-white rounded-md uppercase tracking-wider shadow-md flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5" />
                         Reporte Destacado
                       </span>
                       <span className="px-2.5 py-1 text-xs font-sans font-semibold bg-slate-900/90 backdrop-blur-md border border-slate-700 rounded-md text-slate-200">
@@ -222,8 +221,12 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                       </span>
                     </div>
 
-                    <span className="px-2.5 py-1 text-xs font-sans font-semibold backdrop-blur-md rounded-md border bg-emerald-950/90 text-emerald-300 border-emerald-500/30">
-                      🇻🇪 Venezuela
+                    <span className={`px-2.5 py-1 text-xs font-sans font-semibold backdrop-blur-md rounded-md border ${
+                      (leadStory.category || '').toLowerCase() === 'mundial'
+                        ? 'bg-blue-950/90 text-blue-300 border-blue-500/30'
+                        : 'bg-emerald-950/90 text-emerald-300 border-emerald-500/30'
+                    }`}>
+                      {(leadStory.category || '').toLowerCase() === 'mundial' ? 'Global' : 'Nacional'}
                     </span>
                   </div>
 
@@ -320,7 +323,7 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                           ? 'bg-blue-950/85 text-blue-300 border-blue-500/30' 
                           : 'bg-emerald-950/85 text-emerald-300 border-emerald-500/30'
                       }`}>
-                        {isMundial ? '🌍 Global' : '🇻🇪 Nacional'}
+                        {isMundial ? 'Global' : 'Nacional'}
                       </span>
                     </div>
                   </div>

@@ -95,6 +95,7 @@ export const Hero = ({ onOpenDossier }) => {
                 muted
                 playsinline
                 preload="auto"
+                poster="/images/IMG_7549.jpg"
                 class="w-full h-full object-cover object-center filter brightness-[1.05] contrast-[1.05] saturate-[1.1] transform"
               >
                 <source src="/videos/IMG_7557.mp4" type="video/mp4" />
@@ -131,8 +132,8 @@ export const Hero = ({ onOpenDossier }) => {
             {currentHero.subtitle}
           </p>
 
-          {/* 4 Interactive Pillars Horizontal Grid - Engineering Telemetry Cards */}
-          <div className="hidden sm:grid sm:grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-3xl pt-1">
+          {/* 4 Interactive Pillars Horizontal Links - Clean Text (No Pills) */}
+          <div className="hidden sm:flex flex-wrap justify-center items-center gap-4 sm:gap-8 w-full max-w-3xl pt-2">
             {[
               { title: currentHero.pillar1 || 'Química de Producción', icon: FlaskConical, href: '#servicios' },
               { title: currentHero.pillar2 || 'Intervención de Pozos', icon: Flame, href: '#servicios' },
@@ -141,14 +142,16 @@ export const Hero = ({ onOpenDossier }) => {
             ].map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
-                <a
-                  key={idx}
-                  href={pillar.href}
-                  className="bg-navy-900/90 hover:bg-navy-850 p-2.5 sm:p-3 rounded-lg border border-slate-700/80 hover:border-flame-500/60 backdrop-blur-xl flex items-center justify-center gap-2 text-xs font-bold text-slate-200 hover:text-white transition-all duration-300 transform hover:-translate-y-0.5 shadow-md group"
-                >
-                  <Icon className="w-4 h-4 text-flame-500 group-hover:scale-110 transition-transform flex-shrink-0" />
-                  <span className="truncate">{pillar.title}</span>
-                </a>
+                <React.Fragment key={idx}>
+                  <a
+                    href={pillar.href}
+                    className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-300 hover:text-flame-400 transition-colors duration-300 group drop-shadow-md"
+                  >
+                    <Icon className="w-4 h-4 text-flame-500 group-hover:scale-110 transition-transform flex-shrink-0" />
+                    <span className="tracking-wide">{pillar.title}</span>
+                  </a>
+                  {idx < 3 && <span className="text-slate-600 font-bold">•</span>}
+                </React.Fragment>
               );
             })}
           </div>
@@ -189,21 +192,24 @@ export const Hero = ({ onOpenDossier }) => {
           {safeKpis.map((kpi) => (
             <div
               key={kpi.id}
-              className="p-3 sm:p-3.5 rounded-lg border border-slate-800 hover:border-slate-700 bg-navy-900/85 backdrop-blur-md transition-all duration-300 group shadow-md"
+              className="relative overflow-hidden p-4 sm:p-5 rounded-2xl border border-white/5 hover:border-flame-500/30 bg-navy-950/40 backdrop-blur-2xl transition-all duration-500 group shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_30px_rgba(249,115,22,0.15)] hover:-translate-y-1"
             >
-              <div className="flex items-center justify-between gap-1 mb-0.5">
+              {/* Subtle top glow */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 group-hover:via-flame-500/50 to-transparent transition-colors duration-500" />
+              
+              <div className="flex items-center justify-between gap-1 mb-1">
                 <div className="flex items-baseline font-black font-heading text-white tracking-tight overflow-hidden text-ellipsis whitespace-nowrap">
-                  <span className="text-lg sm:text-xl text-flame-500 font-extrabold">{kpi.prefix}</span>
-                  <span className="text-lg sm:text-xl font-black">
+                  <span className="text-xl sm:text-2xl text-flame-500 font-extrabold mr-0.5 drop-shadow-[0_0_8px_rgba(249,115,22,0.5)] group-hover:scale-110 transition-transform">{kpi.prefix}</span>
+                  <span className="text-xl sm:text-3xl font-black drop-shadow-lg group-hover:text-flame-50 transition-colors">
                     <AnimatedCounter targetValue={kpi.value} decimals={kpi.id === 'viscosidad' ? 1 : 0} />
                   </span>
-                  <span className="text-xs font-bold text-slate-300 ml-1">{kpi.suffix}</span>
+                  <span className="text-xs font-bold text-slate-400 ml-1">{kpi.suffix}</span>
                 </div>
               </div>
-              <div className="text-[10px] sm:text-[11px] font-bold font-heading text-slate-300 uppercase tracking-wider group-hover:text-flame-400 transition-colors">
+              <div className="text-[10px] sm:text-[11px] font-bold font-heading text-slate-400 uppercase tracking-widest group-hover:text-flame-400 transition-colors duration-300">
                 {kpi.label}
               </div>
-              <div className="text-[10px] text-slate-400 font-sans mt-0.5 line-clamp-1">
+              <div className="text-[10px] text-slate-500 font-sans mt-1.5 line-clamp-2 leading-relaxed">
                 {kpi.desc}
               </div>
             </div>
