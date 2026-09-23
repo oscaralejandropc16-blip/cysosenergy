@@ -242,6 +242,30 @@ const INITIAL_NEWS = [
     mediaType: 'image'
   },
   {
+    id: 'news-aie-deficit-global-2026',
+    category: 'mundial',
+    source: 'Bloomberg / Agencia Internacional de Energía',
+    tag: 'Mercado Global',
+    date: '2026-09-21',
+    title: 'AIE proyecta déficit petrolero hasta 2027 y alerta sobre fuerte encarecimiento logístico',
+    summary: 'La inestabilidad en rutas marítimas clave y la escasez de superpetroleros elevan los fletes, mientras el Brent se estabiliza en torno a los 100 dólares.',
+    content: 'En su informe de perspectivas energéticas de septiembre, la Agencia Internacional de la Energía (AIE) advirtió que el déficit en el suministro global de crudo podría prolongarse hasta el primer trimestre de 2027. La prolongación de la inestabilidad en el Estrecho de Ormuz y daños recientes a infraestructura logística han retrasado la normalización de los flujos. Asimismo, el mercado enfrenta un encarecimiento extremo en las tarifas de transporte marítimo debido a la escasez de superpetroleros (VLCC) disponibles, lo que añade presiones inflacionarias a los costos de importación en Europa y Asia, manteniendo la cotización del crudo Brent sostenidamente cerca de los 100 dólares por barril.',
+    mediaUrl: '/images/noticia_hormuz_tanqueros.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-ofac-licencia-52c-2026',
+    category: 'venezuela',
+    source: 'Petroguía / Reuters',
+    tag: 'Marco Regulatorio',
+    date: '2026-09-14',
+    title: 'OFAC emite nueva Licencia General 52C para operaciones de servicios petroleros en Venezuela',
+    summary: 'El Departamento del Tesoro de EE.UU. amplía el margen operativo para empresas de servicios especializados, impulsando las alianzas en la Faja del Orinoco.',
+    content: 'La Oficina de Control de Activos Extranjeros (OFAC) del Departamento del Tesoro estadounidense emitió la Licencia General 52C, la cual autoriza a ciertas empresas de servicios, logística e ingeniería a mantener y ampliar operaciones esenciales para la producción de crudo en Venezuela. Esta flexibilización, sujeta a estrictos controles de cumplimiento (compliance), tiene como objetivo principal estabilizar el bombeo en empresas mixtas y facilitar el despliegue de tecnología química y logística pesada que empresas extranjeras han acordado recientemente con PDVSA. La medida ha sido recibida positivamente por el sector industrial conexo en Anzoátegui y Monagas.',
+    mediaUrl: '/images/noticia_continental_ayacucho.jpg',
+    mediaType: 'image'
+  },
+  {
     id: 'news-continental-ayacucho-2026',
     category: 'venezuela',
     source: 'Banca y Negocios / Reuters',
@@ -418,7 +442,21 @@ export const CmsProvider = ({ children }) => {
         }
         if (data['cysos_cms_services']) setServices(data['cysos_cms_services']);
         if (data['cysos_cms_alliances']) setAlliances(data['cysos_cms_alliances']);
-        if (data['cysos_cms_news']) setNews(data['cysos_cms_news']);
+        
+        // Merge Supabase news with our hardcoded INITIAL_NEWS to guarantee new items are visible
+        if (data['cysos_cms_news']) {
+          const loadedNews = data['cysos_cms_news'];
+          const mergedNews = [...INITIAL_NEWS];
+          loadedNews.forEach(n => {
+            if (!mergedNews.find(mn => mn.id === n.id)) {
+              mergedNews.push(n);
+            }
+          });
+          setNews(mergedNews);
+        } else {
+          setNews(INITIAL_NEWS);
+        }
+        
         if (data['cysos_cms_analytics']) setVisitStats(data['cysos_cms_analytics']);
         setDbSyncStatus('success');
       } else {
