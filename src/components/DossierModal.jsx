@@ -35,13 +35,13 @@ export const DossierModal = ({ isOpen, onClose }) => {
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Main Dossier Container */}
-      <div className="relative z-10 w-full max-w-4xl bg-navy-900 border border-gold-metallic/40 rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
+      <div className="relative z-10 w-full max-w-4xl bg-navy-900 border border-slate-700/60 rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
         
         {/* Top Action Bar (hidden in print) */}
         <div className="flex items-center justify-between px-6 py-4 bg-navy-950 border-b border-slate-800 print:hidden flex-wrap gap-3">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-gold-400 animate-pulse" />
-            <span className="text-xs font-black uppercase tracking-widest text-gold-400 font-heading">
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-300 animate-pulse" />
+            <span className="text-xs font-black uppercase tracking-widest text-slate-200 font-heading">
               Dossier Técnico Corporativo 2026 • Cysos Energy
             </span>
           </div>
@@ -49,7 +49,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-xs font-heading shadow-md transition-all transform hover:scale-105"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-200 text-navy-950 font-black text-xs font-heading shadow-md transition-all transform hover:scale-105"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Imprimir / Guardar en PDF</span>
@@ -83,7 +83,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
               <div className="flex items-center gap-3 mb-2">
                 <Logo isDark={true} />
               </div>
-              <p className="text-xs font-bold text-gold-400 uppercase tracking-wider font-heading">
+              <p className="text-xs font-bold text-slate-300 uppercase tracking-wider font-heading">
                 Soluciones Integrales para la Industria Energética Petrolera
               </p>
               <p className="text-[11px] text-slate-400 mt-1">
@@ -97,7 +97,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
                 <span className="truncate">Torre CCP, Maturín, Edo. Monagas</span>
               </div>
               <div className="flex items-center sm:justify-end gap-1.5 text-slate-300">
-                <PhoneCall className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                <PhoneCall className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
                 <span>+58 412-9486249</span>
               </div>
               <div className="flex items-center sm:justify-end gap-1.5 text-slate-300">
@@ -108,9 +108,9 @@ export const DossierModal = ({ isOpen, onClose }) => {
           </div>
 
           {/* Key Metric Highlights Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-navy-950/60 p-4 rounded-2xl border border-gold-metallic/20">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-navy-950/60 p-4 rounded-2xl border border-slate-700/80">
             <div className="text-center p-2 border-r border-slate-800">
-              <div className="text-2xl font-black text-gold-400 font-heading">+450</div>
+              <div className="text-2xl font-black text-white font-heading">+450</div>
               <div className="text-[10px] uppercase font-bold text-slate-400">Pozos Intervenidos</div>
             </div>
             <div className="text-center p-2 sm:border-r border-slate-800">
@@ -129,8 +129,8 @@ export const DossierModal = ({ isOpen, onClose }) => {
 
           {/* 4 Core Divisions Grid */}
           <div className="space-y-4">
-            <h3 className="text-sm font-black uppercase tracking-widest text-gold-400 font-heading flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-gold-400" />
+            <h3 className="text-sm font-black uppercase tracking-widest text-slate-100 font-heading flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-slate-300" />
               <span>Capacidad Operativa y Divisiones Técnicas</span>
             </h3>
 
@@ -138,7 +138,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
               
               {/* Division 1 */}
               <div className="p-4 rounded-2xl bg-navy-950/90 border border-slate-800 space-y-2">
-                <div className="flex items-center gap-2 text-gold-400 font-black text-xs font-heading">
+                <div className="flex items-center gap-2 text-slate-100 font-black text-xs font-heading">
                   <FlaskConical className="w-4 h-4 text-flame-500" />
                   <span>1. Química de Producción & EOR</span>
                 </div>
@@ -149,7 +149,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
 
               {/* Division 2 */}
               <div className="p-4 rounded-2xl bg-navy-950/90 border border-slate-800 space-y-2">
-                <div className="flex items-center gap-2 text-gold-400 font-black text-xs font-heading">
+                <div className="flex items-center gap-2 text-slate-100 font-black text-xs font-heading">
                   <Truck className="w-4 h-4 text-flame-500" />
                   <span>2. Logística Pesada & Izamiento (17 Equipos)</span>
                 </div>
@@ -160,7 +160,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
 
               {/* Division 3 */}
               <div className="p-4 rounded-2xl bg-navy-950/90 border border-slate-800 space-y-2">
-                <div className="flex items-center gap-2 text-gold-400 font-black text-xs font-heading">
+                <div className="flex items-center gap-2 text-slate-100 font-black text-xs font-heading">
                   <Flame className="w-4 h-4 text-flame-500" />
                   <span>3. Intervención de Pozos & Flush By</span>
                 </div>
@@ -171,7 +171,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
 
               {/* Division 4 */}
               <div className="p-4 rounded-2xl bg-navy-950/90 border border-slate-800 space-y-2">
-                <div className="flex items-center gap-2 text-gold-400 font-black text-xs font-heading">
+                <div className="flex items-center gap-2 text-slate-100 font-black text-xs font-heading">
                   <Globe className="w-4 h-4 text-flame-500" />
                   <span>4. Procura Internacional & Construcción IPC</span>
                 </div>
@@ -185,8 +185,8 @@ export const DossierModal = ({ isOpen, onClose }) => {
 
           {/* Strategic Alliances & Contract Experience */}
           <div className="space-y-3 pt-2">
-            <h3 className="text-sm font-black uppercase tracking-widest text-gold-400 font-heading flex items-center gap-2">
-              <Award className="w-4 h-4 text-gold-400" />
+            <h3 className="text-sm font-black uppercase tracking-widest text-slate-100 font-heading flex items-center gap-2">
+              <Award className="w-4 h-4 text-slate-300" />
               <span>Contratos Vigentes y Experiencia Comprobada</span>
             </h3>
 
@@ -234,7 +234,7 @@ export const DossierModal = ({ isOpen, onClose }) => {
 
             <div className="text-center sm:text-right">
               <div className="text-white font-bold font-heading">CYSOS ENERGY C.A. • 2026</div>
-              <div className="text-gold-400">Maturín • Faja Petrolífera del Orinoco • Venezuela</div>
+              <div className="text-slate-400">Maturín • Faja Petrolífera del Orinoco • Venezuela</div>
             </div>
           </div>
 
