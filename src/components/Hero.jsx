@@ -121,7 +121,7 @@ export const Hero = ({ onOpenDossier }) => {
           {/* Main Headline - High Vitality & Maximum Contrast */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] drop-shadow-[0_2px_6px_rgba(0,0,0,1)] px-2">
             {currentHero.titlePart1} <br className="block sm:hidden" />
-            <span className="text-flame-500 drop-shadow-[0_4px_16px_rgba(249,115,22,0.5)] drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 drop-shadow-[0_4px_16px_rgba(255,255,255,0.2)] drop-shadow-[0_2px_4px_rgba(0,0,0,1)]">
               {currentHero.titleGradient}
             </span> <br className="block sm:hidden" />
             {currentHero.titlePart2}
@@ -145,9 +145,9 @@ export const Hero = ({ onOpenDossier }) => {
                 <React.Fragment key={idx}>
                   <a
                     href={pillar.href}
-                    className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-300 hover:text-flame-400 transition-colors duration-300 group drop-shadow-md"
+                    className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition-colors duration-300 group drop-shadow-md"
                   >
-                    <Icon className="w-4 h-4 text-flame-500 group-hover:scale-110 transition-transform flex-shrink-0" />
+                    <Icon className="w-4 h-4 text-slate-400 group-hover:text-flame-500 group-hover:scale-110 transition-all flex-shrink-0" />
                     <span className="tracking-wide">{pillar.title}</span>
                   </a>
                   {idx < 3 && <span className="text-slate-600 font-bold">•</span>}
@@ -157,21 +157,21 @@ export const Hero = ({ onOpenDossier }) => {
           </div>
 
           {/* Primary Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <a
               href="#formulario-cotizacion"
-              className="px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-black text-white bg-gradient-to-r from-flame-500 via-flame-600 to-orange-600 hover:from-flame-400 hover:to-orange-500 shadow-flame-glow transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 font-heading tracking-wide"
+              className="px-8 py-3 rounded-xl text-sm font-black text-navy-950 bg-white hover:bg-slate-100 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2 font-heading tracking-widest uppercase"
             >
-              <span>Solicitar Cotización Técnica</span>
+              <span>Cotización Técnica</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
             <button
               onClick={onOpenDossier}
-              className="px-5 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-bold text-slate-200 hover:text-white bg-navy-900/90 hover:bg-navy-850 border border-slate-700/80 hover:border-flame-500/50 backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 font-heading shadow-md group"
+              className="px-8 py-3 rounded-xl text-sm font-black text-white bg-navy-900/60 hover:bg-navy-800 border border-white/20 hover:border-white/40 backdrop-blur-md transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2 font-heading tracking-widest uppercase group shadow-lg"
             >
-              <FileText className="w-4 h-4 text-slate-300 group-hover:text-flame-500 transition-colors" />
-              <span>Dossier 2026 (PDF)</span>
+              <FileText className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors" />
+              <span>Dossier 2026</span>
             </button>
 
             <a
@@ -199,14 +199,14 @@ export const Hero = ({ onOpenDossier }) => {
               
               <div className="flex items-center justify-between gap-1 mb-1">
                 <div className="flex items-baseline font-black font-heading text-white tracking-tight overflow-hidden text-ellipsis whitespace-nowrap">
-                  <span className="text-xl sm:text-2xl text-flame-500 font-extrabold mr-0.5 drop-shadow-[0_0_8px_rgba(249,115,22,0.5)] group-hover:scale-110 transition-transform">{kpi.prefix}</span>
-                  <span className="text-xl sm:text-3xl font-black drop-shadow-lg group-hover:text-flame-50 transition-colors">
+                  <span className="text-xl sm:text-2xl text-slate-300 font-extrabold mr-0.5 group-hover:text-white group-hover:scale-110 transition-all">{kpi.prefix}</span>
+                  <span className="text-xl sm:text-3xl font-black drop-shadow-lg group-hover:text-white transition-colors">
                     <AnimatedCounter targetValue={kpi.value} decimals={kpi.id === 'viscosidad' ? 1 : 0} />
                   </span>
                   <span className="text-xs font-bold text-slate-400 ml-1">{kpi.suffix}</span>
                 </div>
               </div>
-              <div className="text-[10px] sm:text-[11px] font-bold font-heading text-slate-400 uppercase tracking-widest group-hover:text-flame-400 transition-colors duration-300">
+              <div className="text-[10px] sm:text-[11px] font-bold font-heading text-slate-400 uppercase tracking-widest group-hover:text-white transition-colors duration-300">
                 {kpi.label}
               </div>
               <div className="text-[10px] text-slate-500 font-sans mt-1.5 line-clamp-2 leading-relaxed">
