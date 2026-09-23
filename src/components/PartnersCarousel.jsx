@@ -350,42 +350,49 @@ export const PartnersCarousel = () => {
             <div
               key={`${partner.id}-${index}`}
               onClick={() => handleCardClick(partner)}
-              className="flex-shrink-0 group/card relative p-5 sm:p-6 rounded-3xl bg-[#0a1122]/40 backdrop-blur-3xl border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden flex items-center gap-5 sm:gap-6 w-[280px] sm:w-[420px] shadow-2xl hover:shadow-[0_0_40px_rgba(255,255,255,0.05)] select-none cursor-pointer"
+              className="flex-shrink-0 group/card relative p-5 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] bg-navy-900/70 backdrop-blur-2xl border border-energy-sky/15 hover:border-energy-cyan/40 transition-all duration-500 overflow-hidden flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-[280px] sm:w-auto sm:min-w-[480px] shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-cyan-glow select-none cursor-pointer"
             >
-              {/* Premium Sweep Gradient Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover/card:opacity-100 -translate-x-full group-hover/card:translate-x-full transition-all duration-1000 ease-in-out pointer-events-none" />
-              
-              {/* Sleek Floating Glass Logo */}
-              <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-center p-3 sm:p-4 shadow-inner group-hover/card:bg-white/5 transition-all duration-500 backdrop-blur-md overflow-hidden pointer-events-none">
+              {/* Ultra-Premium Background Hover Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-energy-cyan/0 via-transparent to-energy-cyan/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-energy-cyan/10 rounded-full blur-[50px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none transform group-hover/card:scale-150" />
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-flame-500/10 rounded-full blur-[40px] opacity-0 group-hover/card:opacity-100 transition-opacity duration-1000 pointer-events-none" />
+
+              {/* Glass Floating Logo Container */}
+              <div className="relative w-20 h-20 sm:w-32 sm:h-32 rounded-2xl sm:rounded-3xl bg-white/[0.03] border border-white/10 flex items-center justify-center p-3 sm:p-4 flex-shrink-0 shadow-2xl group-hover/card:scale-105 group-hover/card:-rotate-3 transition-transform duration-700 backdrop-blur-md overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-white rounded-3xl opacity-[0.85] group-hover/card:opacity-100 transition-opacity duration-500" />
                 {partner.logoUrl ? (
                   <img
                     src={partner.logoUrl}
                     alt={partner.name}
                     loading="lazy"
+                    decoding="async"
                     draggable={false}
-                    className="w-full h-full object-contain filter drop-shadow-lg relative z-10 scale-100 group-hover/card:scale-105 transition-transform duration-700 select-none pointer-events-none"
+                    className="w-full h-full object-contain filter drop-shadow-sm relative z-10 scale-100 group-hover/card:scale-110 transition-transform duration-700 select-none pointer-events-none"
                   />
                 ) : (
-                  <Building2 className="w-8 h-8 sm:w-10 sm:h-10 text-slate-700 relative z-10" />
+                  <Building2 className="w-10 h-10 sm:w-12 sm:h-12 text-slate-800 relative z-10" />
                 )}
               </div>
 
-              {/* Minimalist Corporate Typography */}
-              <div className="flex-1 min-w-0 relative z-10 flex flex-col justify-center pointer-events-none">
-                <div className="flex justify-between items-start w-full">
-                  <h4 className="text-sm sm:text-lg font-black font-heading text-slate-200 truncate group-hover/card:text-white transition-colors duration-500 tracking-tight">
+              {/* Text & Meta Information */}
+              <div className="flex-1 min-w-0 relative z-10 flex flex-col justify-center w-full pointer-events-none">
+                <div className="flex items-start justify-between gap-3 mb-2 w-full">
+                  <h4 className="text-base sm:text-xl font-black font-heading text-white truncate group-hover/card:text-flame-400 transition-colors duration-500 tracking-tight">
                     {partner.name}
                   </h4>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover/card:text-white transform group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 transition-all duration-300" />
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover/card:bg-flame-500 group-hover/card:border-flame-500 group-hover/card:text-white transition-all duration-500 text-slate-400 flex-shrink-0 transform group-hover/card:rotate-45 group-hover/card:scale-110 shadow-lg">
+                    <ArrowUpRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                  </div>
                 </div>
                 
-                <p className="text-[10px] sm:text-xs text-slate-400 font-medium mt-0.5 mb-3 truncate group-hover/card:text-slate-300 transition-colors duration-500">
+                <p className="text-[11px] sm:text-sm text-slate-300 font-light mb-4 tracking-wide group-hover/card:text-white transition-colors duration-500 whitespace-normal line-clamp-2 sm:line-clamp-1">
                   {partner.sub}
                 </p>
                 
-                <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/5 border border-white/10 w-fit">
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-500 group-hover/card:bg-slate-300 transition-colors duration-500" />
-                  <span className="text-[8px] sm:text-[9px] font-bold uppercase text-slate-400 tracking-[0.15em] group-hover/card:text-slate-200 transition-colors duration-500">
+                <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg bg-navy-950/80 border border-slate-700/80 group-hover/card:border-flame-500/40 transition-all duration-500 shadow-inner w-fit">
+                  <div className="w-1.5 h-1.5 rounded-sm bg-flame-500" />
+                  <span className="text-[9px] sm:text-[10px] font-bold uppercase text-slate-300 group-hover/card:text-flame-400 font-heading tracking-[0.2em] transition-colors duration-500">
                     {partner.type}
                   </span>
                 </div>
