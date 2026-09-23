@@ -166,21 +166,7 @@ export const RecentOperations = ({ onOpenDossier }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent opacity-90" />
                 
-                {/* Clean Status Indicator (No Box) */}
-                <div className="absolute top-4 left-4 flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full shadow-[0_0_8px_currentColor] animate-pulse ${
-                    op.statusType === 'active' ? 'bg-emerald-400 text-emerald-400'
-                    : op.statusType === 'completed' ? 'bg-sky-400 text-sky-400'
-                    : 'bg-flame-400 text-flame-400'
-                  }`} />
-                  <span className={`text-[10px] font-black uppercase tracking-[0.15em] font-heading drop-shadow-md ${
-                    op.statusType === 'active' ? 'text-emerald-400'
-                    : op.statusType === 'completed' ? 'text-sky-300'
-                    : 'text-flame-400'
-                  }`}>
-                    {op.status}
-                  </span>
-                </div>
+                {/* Clean Status Indicator removed due to readability and no-pill rule */}
 
                 {/* Date / Location Clean Text (No Box) */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white drop-shadow-md">
