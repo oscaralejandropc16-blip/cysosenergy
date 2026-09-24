@@ -147,15 +147,15 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
               <span className="h-px w-10 bg-gradient-to-r from-flame-500/60 to-transparent" />
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-heading tracking-tight leading-tight flex items-center min-h-[40px] sm:min-h-[50px]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-heading tracking-tight leading-tight min-h-[40px] sm:min-h-[50px]">
               {typedTitle.length <= 8 ? (
                 <span>{typedTitle}</span>
               ) : (
                 <>
-                  Sala de&nbsp;<span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-flame-400">{typedTitle.slice(8)}</span>
+                  Sala de&nbsp;<span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-flame-400 inline-block">{typedTitle.slice(8)}</span>
                 </>
               )}
-              <span className={`inline-block w-1.5 h-8 sm:h-10 ml-1 bg-flame-500 ${typedTitle.length < fullTitle.length ? '' : 'animate-pulse'}`} />
+              <span className={`inline-block w-1.5 h-8 sm:h-10 ml-2 bg-flame-500 align-middle -translate-y-1 ${typedTitle.length < fullTitle.length ? '' : 'animate-pulse'}`} />
             </h2>
             
             <p className="text-slate-300 text-sm sm:text-base max-w-2xl mt-2 leading-relaxed font-sans">
