@@ -62,24 +62,25 @@ export const Footer = () => {
   const formattedDigits = String(animatedVisits).padStart(6, '0').split('');
 
   return (
-    <footer className="relative bg-[#07152B] border-t border-slate-800/90 pt-20 pb-10 overflow-hidden font-sans">
+    <footer className="relative bg-navy-950 border-t border-slate-800/80 pt-20 pb-10 overflow-hidden font-sans mt-12">
       
       {/* Dynamic Background Glow & Top Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-energy-cyan/40 to-transparent" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-72 bg-energy-cyan/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-flame-500/30 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-72 bg-flame-500/5 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 space-y-16">
         
         {/* Main 4-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-12 border-b border-slate-800/60">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 pb-12 border-b border-slate-800/60">
           
-          {/* Col 1: Corporate Branding & RIF */}
+          {/* Col 1: Corporate Branding */}
           <div className="md:col-span-12 lg:col-span-4 space-y-6">
-            <div className="flex flex-col items-start gap-5">
-              <Logo className="h-16 w-auto" />
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-energy-cyan/10 border border-energy-cyan/30 shadow-[0_0_15px_rgba(14,165,233,0.1)]">
-                <span className="w-1.5 h-1.5 rounded-sm bg-energy-cyan animate-pulse" />
-                <span className="text-[11px] text-energy-sky font-bold uppercase tracking-widest font-heading">
+            <div className="flex flex-col items-start gap-4">
+              <Logo className="h-14 w-auto" />
+              {/* RIF without Pill */}
+              <div className="flex items-center gap-2 text-slate-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-flame-500 animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest font-heading">
                   RIF: {safeInfo.rif}
                 </span>
               </div>
@@ -89,17 +90,18 @@ export const Footer = () => {
               Empresa venezolana de ingeniería, procura, construcción y servicios petroleros especializados en optimización reológica EOR, estimulación de pozos y logística pesada de izamiento.
             </p>
 
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-navy-900/60 border border-emerald-500/30">
-              <Shield className="w-4 h-4 text-emerald-400" />
-              <span className="text-[11px] text-emerald-400 font-bold uppercase tracking-widest font-heading">
+            {/* ISO without Pill */}
+            <div className="flex items-center gap-2 text-slate-400">
+              <Shield className="w-4 h-4 text-flame-500" />
+              <span className="text-xs font-bold uppercase tracking-widest font-heading">
                 Normas ISO 9001 & SI-HO-S
               </span>
             </div>
           </div>
 
           {/* Col 2: Quick Links / Divisions */}
-          <div className="md:col-span-4 lg:col-span-3 space-y-6">
-            <h4 className="text-xs font-black text-white uppercase tracking-widest font-heading flex items-center gap-3">
+          <div className="md:col-span-4 lg:col-span-3 space-y-6 pt-2">
+            <h4 className="text-xs font-black text-white uppercase tracking-[0.2em] font-heading flex items-center gap-3">
               Divisiones
               <div className="h-px bg-slate-800 flex-1" />
             </h4>
@@ -113,8 +115,8 @@ export const Footer = () => {
                 { label: 'Galería de Operaciones', href: '#operaciones' }
               ].map((link, idx) => (
                 <li key={idx}>
-                  <a href={link.href} className="group flex items-center gap-3 text-sm text-slate-400 hover:text-energy-sky transition-all">
-                    <div className="w-1.5 h-1.5 rounded-sm bg-slate-700 group-hover:bg-energy-cyan group-hover:scale-125 transition-all" />
+                  <a href={link.href} className="group flex items-center gap-3 text-sm text-slate-400 hover:text-flame-400 transition-all">
+                    <div className="w-1.5 h-1.5 rounded-sm bg-slate-700 group-hover:bg-flame-500 group-hover:scale-125 transition-all" />
                     <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
                   </a>
                 </li>
@@ -123,134 +125,117 @@ export const Footer = () => {
           </div>
 
           {/* Col 3: Ubicación Única */}
-          <div className="md:col-span-4 lg:col-span-2 space-y-4">
-            <h4 className="text-xs font-black text-white uppercase tracking-widest font-heading flex items-center gap-3">
-              Ubicación Única
+          <div className="md:col-span-4 lg:col-span-2 space-y-6 pt-2">
+            <h4 className="text-xs font-black text-white uppercase tracking-[0.2em] font-heading flex items-center gap-3">
+              Sede Central
               <div className="h-px bg-slate-800 flex-1" />
             </h4>
-            <div className="flex flex-col gap-1.5 text-xs">
-              <span className="text-sm font-bold text-white">Sede Central</span>
-              <span className="text-energy-sky font-bold text-[11px] uppercase tracking-wide">Maturín, Edo. Monagas</span>
-              <p className="text-slate-400 font-light leading-relaxed text-[11px]">
+            <div className="flex flex-col gap-2">
+              <span className="text-flame-500 font-bold text-xs uppercase tracking-widest">Maturín, Edo. Monagas</span>
+              <p className="text-slate-400 font-light leading-relaxed text-sm">
                 {safeInfo.address}
               </p>
               <a 
                 href="https://www.google.com/maps/search/?api=1&query=Av.+Alirio+Ugarte+Pelayo,+Complejo+CCP,+Centro+Medico+Norte,+Maturin,+Monagas,+Venezuela"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 text-[11px] font-bold mt-1 group"
+                className="inline-flex items-center gap-1.5 text-slate-300 hover:text-flame-400 text-xs font-bold mt-2 group transition-colors uppercase tracking-wider"
               >
-                <span>Ver en Google Maps</span>
-                <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
+                <span>Google Maps</span>
+                <Globe2 className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform" />
               </a>
             </div>
           </div>
 
           {/* Col 4: Hotline & Direct Channels */}
-          <div className="md:col-span-4 lg:col-span-3 space-y-6">
-            <h4 className="text-xs font-black text-white uppercase tracking-widest font-heading flex items-center gap-3">
+          <div className="md:col-span-4 lg:col-span-3 space-y-6 pt-2">
+            <h4 className="text-xs font-black text-white uppercase tracking-[0.2em] font-heading flex items-center gap-3">
               Contacto 24/7
               <div className="h-px bg-slate-800 flex-1" />
             </h4>
             
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-5">
+              
               <a href={`https://wa.me/${safeInfo.phone1.replace(/\D/g,'')}`} target="_blank" rel="noopener noreferrer" 
-                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-emerald-500/10 transition-colors border border-transparent hover:border-emerald-500/20">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
-                  <Phone className="w-4 h-4" />
+                 className="group flex items-start gap-4 transition-all">
+                <div className="mt-1 flex-shrink-0 text-slate-500 group-hover:text-flame-500 transition-colors">
+                  <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Despacho Inmediato</span>
-                  <span className="block text-sm font-bold text-slate-200 group-hover:text-emerald-400 transition-colors">{safeInfo.phone1}</span>
+                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-0.5">Despacho Inmediato</span>
+                  <span className="block text-base font-bold text-slate-200 group-hover:text-flame-400 transition-colors font-heading">{safeInfo.phone1}</span>
                 </div>
               </a>
 
               <a href={`mailto:${safeInfo.email1}`} 
-                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-energy-cyan/10 transition-colors border border-transparent hover:border-energy-cyan/20">
-                <div className="w-10 h-10 rounded-xl bg-energy-cyan/10 flex items-center justify-center text-energy-sky group-hover:scale-110 group-hover:bg-energy-cyan/20 transition-all">
-                  <Mail className="w-4 h-4" />
+                 className="group flex items-start gap-4 transition-all">
+                <div className="mt-1 flex-shrink-0 text-slate-500 group-hover:text-flame-500 transition-colors">
+                  <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Gerencia & RFQ</span>
-                  <span className="block text-sm font-bold text-slate-200 group-hover:text-energy-sky transition-colors truncate">{safeInfo.email1}</span>
+                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-0.5">Gerencia & RFQ</span>
+                  <span className="block text-sm font-bold text-slate-200 group-hover:text-flame-400 transition-colors truncate font-heading">{safeInfo.email1}</span>
                 </div>
               </a>
               
               <a href="https://instagram.com/cysosenergy" target="_blank" rel="noopener noreferrer"
-                 className="group flex items-center gap-4 p-3 -ml-3 rounded-2xl hover:bg-flame-500/10 transition-colors border border-transparent hover:border-flame-500/20">
-                <div className="w-10 h-10 rounded-xl bg-flame-500/10 flex items-center justify-center text-flame-400 group-hover:scale-110 group-hover:bg-flame-500/20 transition-all">
-                  <Instagram className="w-4 h-4" />
+                 className="group flex items-start gap-4 transition-all">
+                <div className="mt-1 flex-shrink-0 text-slate-500 group-hover:text-flame-500 transition-colors">
+                  <Instagram className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Operaciones en Vivo</span>
-                  <span className="block text-sm font-bold text-slate-200 group-hover:text-flame-400 transition-colors">@cysosenergy</span>
+                  <span className="block text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-0.5">Operaciones en Vivo</span>
+                  <span className="block text-sm font-bold text-slate-200 group-hover:text-flame-400 transition-colors font-heading">@cysosenergy</span>
                 </div>
               </a>
             </div>
           </div>
         </div>
 
-        {/* SIMPLE VISITOR COUNTER */}
-        <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-navy-900/90 via-navy-850/80 to-navy-900/90 border border-slate-700/80 shadow-2xl backdrop-blur-xl relative overflow-hidden group hover:border-energy-cyan/40 transition-all duration-300">
+        {/* SIMPLE VISITOR COUNTER - Elegant Redesign */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-5 rounded-2xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm">
           
-          <div className="absolute inset-0 bg-[radial-gradient(#0ea5e9_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-80 h-32 bg-energy-cyan/10 rounded-full blur-3xl pointer-events-none" />
+          {/* Left: Counter Title */}
+          <div className="flex items-center gap-4 w-full lg:w-auto">
+            <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-flame-500 flex-shrink-0">
+              <Activity className="w-5 h-5" />
+            </div>
+            <div>
+              <h5 className="text-xs font-black uppercase tracking-widest font-heading text-white">
+                Métricas de Alcance
+              </h5>
+              <p className="text-[11px] text-slate-400 font-light mt-0.5">
+                Visitas orgánicas al portal corporativo
+              </p>
+            </div>
+          </div>
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
-            
-            {/* Left: Counter Title */}
-            <div className="flex items-center gap-4 text-left w-full lg:w-auto">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-energy-cyan/15 via-energy-blue/20 to-flame-500/15 border border-energy-sky/30 flex items-center justify-center text-energy-sky shadow-[0_0_20px_rgba(14,165,233,0.2)] flex-shrink-0">
-                <Activity className="w-6 h-6" />
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-black uppercase tracking-wider font-heading text-white">
-                    Estadísticas del Portal
+          {/* Right: Digital High-Precision Odometer Digit Reels */}
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 hidden sm:block">
+              Total Acumulado:
+            </span>
+            <div className="flex items-center gap-1">
+              {formattedDigits.map((digit, idx) => (
+                <div
+                  key={idx}
+                  className="w-6 h-8 sm:w-7 sm:h-9 rounded-md bg-slate-950 border border-slate-800 flex items-center justify-center text-flame-500 font-mono font-black text-sm sm:text-base shadow-inner relative overflow-hidden"
+                >
+                  <div className="absolute inset-x-0 top-1/2 h-px bg-slate-800/50 pointer-events-none" />
+                  <span className="relative z-10 drop-shadow-[0_0_5px_rgba(234,88,12,0.4)]">
+                    {digit}
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 font-light">
-                  Contador de visitas totales a nuestra página web
-                </p>
-              </div>
+              ))}
             </div>
-
-            {/* Center: Digital High-Precision Odometer Digit Reels */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 bg-navy-950/90 p-2.5 sm:px-4 sm:py-2.5 rounded-2xl border border-slate-700/80 shadow-inner w-full lg:w-auto justify-center">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-300 font-heading flex items-center gap-1.5">
-                <Eye className="w-3.5 h-3.5 text-energy-sky" />
-                <span>Visitas:</span>
-              </span>
-
-              {/* Digital Hardware Digit Display */}
-              <div className="flex items-center gap-1">
-                {formattedDigits.map((digit, idx) => (
-                  <div
-                    key={idx}
-                    className="w-7 h-9 sm:w-8 sm:h-10 rounded-lg bg-gradient-to-b from-slate-900 via-navy-900 to-navy-950 border border-slate-700/80 flex items-center justify-center text-energy-sky font-mono font-black text-sm sm:text-base shadow-[inset_0_1px_2px_rgba(255,255,255,0.1),0_2px_6px_rgba(0,0,0,0.8)] relative overflow-hidden"
-                  >
-                    <div className="absolute inset-x-0 top-1/2 h-[1px] bg-black/40 pointer-events-none" />
-                    <span className="relative z-10 drop-shadow-[0_0_8px_rgba(14,165,233,0.6)]">
-                      {digit}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
           </div>
         </div>
 
         {/* Bottom Legal Bar */}
-        <div className="pt-2 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-slate-500 font-medium text-center md:text-left">
-            © {currentYear} <span className="text-slate-300 font-bold">CYSOS ENERGY, C.A.</span> Todos los derechos reservados.
+            © {currentYear} <span className="text-slate-400 font-bold uppercase tracking-wide font-heading">CYSOS ENERGY, C.A.</span> Todos los derechos reservados.
           </p>
-
-          {/* Legal / Copyright only (No admin links) */}
-          <div className="flex items-center gap-6">
-            {/* The admin panel access is exclusively via keyboard shortcut (Ctrl+Shift+A) or secret URL */}
-          </div>
         </div>
 
       </div>
