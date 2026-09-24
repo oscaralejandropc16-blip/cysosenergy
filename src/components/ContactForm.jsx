@@ -100,100 +100,20 @@ export const ContactForm = () => {
           </p>
         </div>
 
-        {/* 3 HIGH-IMPACT EXECUTIVE CHANNEL PODS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 relative z-20">
+        {/* BENTO DASHBOARD LAYOUT */}
+        <div className="grid lg:grid-cols-12 gap-5 sm:gap-6 relative z-20">
           
-          {/* Pod 1: WhatsApp */}
-          {/* Pod 1: WhatsApp */}
-          <a
-            href="https://wa.me/584129486249"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative p-5 sm:p-6 rounded-2xl luxury-glass border border-slate-800/80 hover:border-emerald-500/50 hover:bg-slate-800/50 transition-all overflow-hidden flex flex-col justify-between"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:scale-110 transition-transform">
-                <MessageSquare className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <h4 className="text-[10px] uppercase font-black tracking-widest text-emerald-400 font-heading">Despacho & Operaciones</h4>
-                </div>
-                <div className="text-lg font-bold text-white tracking-wide font-heading">0412-9486249</div>
-              </div>
-            </div>
-            <div className="relative z-10 mt-4 flex items-center justify-between text-xs text-slate-400 font-medium">
-              <span className="group-hover:text-emerald-400 transition-colors">Chat Directo</span>
-              <ArrowRight className="w-4 h-4 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
-            </div>
-          </a>
-
-          {/* Pod 2: Email */}
-          <a
-            href="mailto:gerencia@cysosenergy.com"
-            className="group relative p-5 sm:p-6 rounded-2xl luxury-glass border border-slate-800/80 hover:border-flame-500/50 hover:bg-slate-800/50 transition-all overflow-hidden flex flex-col justify-between"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-flame-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-flame-500 shadow-[0_0_15px_rgba(249,115,22,0.15)] group-hover:scale-110 transition-transform">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <h4 className="text-[10px] uppercase font-black tracking-widest text-flame-400 font-heading">Correo Corporativo</h4>
-                </div>
-                <div className="text-base sm:text-lg font-bold text-white tracking-wide truncate font-heading">gerencia@cysosenergy.com</div>
-              </div>
-            </div>
-            <div className="relative z-10 mt-4 flex items-center justify-between text-xs text-slate-400 font-medium">
-              <span className="group-hover:text-flame-400 transition-colors">Enviar Solicitud</span>
-              <ArrowRight className="w-4 h-4 group-hover:text-flame-400 group-hover:translate-x-1 transition-all" />
-            </div>
-          </a>
-
-          {/* Pod 3: Instagram */}
-          <a
-            href="https://instagram.com/cysosenergy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative p-5 sm:p-6 rounded-2xl luxury-glass border border-slate-800/80 hover:border-pink-500/50 hover:bg-slate-800/50 transition-all overflow-hidden flex flex-col justify-between"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative z-10 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.15)] group-hover:scale-110 transition-transform">
-                <Instagram className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <h4 className="text-[10px] uppercase font-black tracking-widest text-pink-400 font-heading">Perfil Oficial</h4>
-                </div>
-                <div className="text-lg font-bold text-white tracking-wide font-heading">@cysosenergy</div>
-              </div>
-            </div>
-            <div className="relative z-10 mt-4 flex items-center justify-between text-xs text-slate-400 font-medium">
-              <span className="group-hover:text-pink-400 transition-colors">Ver Novedades</span>
-              <ArrowRight className="w-4 h-4 group-hover:text-pink-400 group-hover:translate-x-1 transition-all" />
-            </div>
-          </a>
-
-        </div>
-
-        {/* SIDE-BY-SIDE LAYOUT: FORM & MAP */}
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-10 items-stretch">
-          
-          {/* LEFT: MODERN UNIFIED TECHNICAL QUOTATION FORM */}
-          <div id="formulario-cotizacion" className="w-full scroll-mt-28">
-            <div className="luxury-glass p-6 sm:p-10 rounded-3xl border border-slate-800/90 shadow-2xl relative h-full">
+          {/* LEFT PANEL: MAIN CONTACT FORM (Takes 5 columns) */}
+          <div className="lg:col-span-5 w-full flex flex-col">
+            <div id="formulario-cotizacion" className="luxury-glass p-6 sm:p-8 rounded-3xl border border-slate-800/90 shadow-2xl relative flex-1 scroll-mt-28 flex flex-col justify-center">
               
               {/* Form Top Title */}
-              <div className="text-center sm:text-left space-y-2 mb-8 pb-6 border-b border-slate-800/80">
-                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">
-                  Cotización & Propuesta Técnica
+              <div className="text-center sm:text-left space-y-2 mb-6 pb-5 border-b border-slate-800/80">
+                <h3 className="text-xl sm:text-2xl font-black font-heading text-white">
+                  Cotización & Propuesta
                 </h3>
-                <p className="text-sm text-slate-400 font-light">
-                  Nuestros ingenieros comerciales le contactarán en menos de 24 horas con una propuesta adaptada a su yacimiento.
+                <p className="text-[13px] text-slate-400 font-light">
+                  Nuestros ingenieros comerciales le contactarán en menos de 24 horas con una propuesta.
                 </p>
               </div>
 
@@ -204,9 +124,9 @@ export const ContactForm = () => {
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-xl font-black text-white font-heading">¡Requerimiento Recibido!</h4>
+                    <h4 className="text-xl font-black text-white font-heading">¡Recibido!</h4>
                     <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed font-light">
-                      Su solicitud ha sido registrada bajo el ticket <strong className="text-flame-400 font-mono">#{createdId}</strong>.
+                      Su ticket es el <strong className="text-flame-400 font-mono">#{createdId}</strong>.
                     </p>
                   </div>
                   <button
@@ -217,7 +137,7 @@ export const ContactForm = () => {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5 relative">
+                <form onSubmit={handleSubmit} className="space-y-4 relative flex-1 flex flex-col">
                   
                   <style>{`
                     .modern-glass-input {
@@ -232,39 +152,35 @@ export const ContactForm = () => {
                     }
                   `}</style>
 
-                  {/* 2-Column Grid for Personal Data */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    
-                    {/* Name */}
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <User className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                      </div>
-                      <input type="text" name="name" required placeholder="Nombre y Cargo *" value={formData.name} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                  {/* Name */}
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <User className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                     </div>
+                    <input type="text" name="name" required placeholder="Nombre y Cargo *" value={formData.name} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3 pl-11 pr-4 text-[13px] font-medium text-white placeholder-slate-500 outline-none" />
+                  </div>
 
-                    {/* Company */}
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <Building2 className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                      </div>
-                      <input type="text" name="company" required placeholder="Empresa / Consorcio *" value={formData.company} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                  {/* Company */}
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Building2 className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                     </div>
+                    <input type="text" name="company" required placeholder="Empresa / Consorcio *" value={formData.company} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3 pl-11 pr-4 text-[13px] font-medium text-white placeholder-slate-500 outline-none" />
+                  </div>
 
-                    {/* Email */}
+                  {/* 2-Column for Email & Phone */}
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="relative group">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <Mail className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                       </div>
-                      <input type="email" name="email" required placeholder="Correo Corporativo *" value={formData.email} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                      <input type="email" name="email" required placeholder="Correo *" value={formData.email} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3 pl-11 pr-3 text-[13px] font-medium text-white placeholder-slate-500 outline-none" />
                     </div>
-
-                    {/* Phone */}
                     <div className="relative group">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <Phone className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                       </div>
-                      <input type="tel" name="phone" required placeholder="Teléfono / WhatsApp *" value={formData.phone} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                      <input type="tel" name="phone" required placeholder="Teléfono *" value={formData.phone} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3 pl-11 pr-3 text-[13px] font-medium text-white placeholder-slate-500 outline-none" />
                     </div>
                   </div>
 
@@ -273,24 +189,24 @@ export const ContactForm = () => {
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                       <Activity className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                     </div>
-                    <select name="service" value={formData.service} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none appearance-none cursor-pointer">
-                      <option value="Química de Producción EOR" className="bg-slate-900">Especialidad: Química de Producción EOR</option>
-                      <option value="Well Testing & Aforo de Pozos" className="bg-slate-900">Especialidad: Well Testing & Aforo</option>
-                      <option value="Intervención de Pozos & Flush By" className="bg-slate-900">Especialidad: Intervención de Pozos (Flush By / Pulling)</option>
-                      <option value="Logística Pesada & Grúas 110T" className="bg-slate-900">Especialidad: Logística Pesada & Izamiento</option>
+                    <select name="service" value={formData.service} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3 pl-11 pr-4 text-[13px] font-medium text-white placeholder-slate-500 outline-none appearance-none cursor-pointer">
+                      <option value="Química de Producción EOR" className="bg-slate-900">Química de Producción EOR</option>
+                      <option value="Well Testing & Aforo de Pozos" className="bg-slate-900">Well Testing & Aforo</option>
+                      <option value="Intervención de Pozos & Flush By" className="bg-slate-900">Intervención (Flush By / Pulling)</option>
+                      <option value="Logística Pesada & Grúas 110T" className="bg-slate-900">Logística Pesada & Izamiento</option>
                     </select>
                   </div>
 
                   {/* Message Details */}
-                  <div className="relative group">
-                    <div className="absolute top-4 left-4 pointer-events-none">
+                  <div className="relative group flex-1 min-h-[100px]">
+                    <div className="absolute top-3.5 left-4 pointer-events-none">
                       <FileText className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                     </div>
-                    <textarea name="details" rows={4} placeholder="Detalles del requerimiento (tipo de crudo, caudal, condiciones del pozo)..." value={formData.details} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-4 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 leading-relaxed outline-none resize-none"></textarea>
+                    <textarea name="details" placeholder="Detalles del requerimiento (tipo de crudo, caudal, etc)..." value={formData.details} onChange={handleChange} className="w-full h-full modern-glass-input rounded-xl py-3 pl-11 pr-4 text-[13px] font-medium text-white placeholder-slate-500 leading-relaxed outline-none resize-none"></textarea>
                   </div>
 
                   {/* Submit Action */}
-                  <button type="submit" disabled={loading} className="group relative w-full py-4 rounded-xl text-sm font-black uppercase tracking-widest text-white bg-gradient-to-r from-flame-600 to-orange-500 hover:from-flame-500 hover:to-orange-400 transition-all shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2 overflow-hidden">
+                  <button type="submit" disabled={loading} className="group relative w-full py-3.5 mt-2 rounded-xl text-sm font-black uppercase tracking-widest text-white bg-gradient-to-r from-flame-600 to-orange-500 hover:from-flame-500 hover:to-orange-400 transition-all shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2 overflow-hidden shrink-0">
                     <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] skew-x-[-30deg] group-hover:animate-[shimmer-sweep_2s_infinite]" />
                     {loading ? (
                       <span className="flex items-center gap-2 relative z-10">
@@ -305,30 +221,90 @@ export const ContactForm = () => {
                     )}
                   </button>
                   
-                  {/* Micro Footer Trust Badges */}
-                  <div className="flex items-center justify-center gap-6 mt-4 opacity-70">
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                      <ShieldCheck className="w-3.5 h-3.5" /> Confidencialidad
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                      <Clock className="w-3.5 h-3.5" /> Respuesta 24H
-                    </div>
-                  </div>
-
                 </form>
               )}
             </div>
           </div>
 
-          {/* RIGHT: INTERACTIVE OPERATIONAL RADAR & GOOGLE MAPS SHOWCASE */}
-          <div className="w-full h-full">
-            <OperationalMapShowcase
-              mapViewMode={mapViewMode}
-              setMapViewMode={setMapViewMode}
-              currentHub={currentHub}
-            />
-          </div>
+          {/* RIGHT PANEL: MAP & COMMUNICATION PODS (Takes 7 columns) */}
+          <div className="lg:col-span-7 flex flex-col gap-5 sm:gap-6">
+            
+            {/* TOP: Radar Map Showcase */}
+            <div className="w-full flex-1 min-h-[300px]">
+              <OperationalMapShowcase
+                mapViewMode={mapViewMode}
+                setMapViewMode={setMapViewMode}
+                currentHub={currentHub}
+                hideInfoCard={true}
+              />
+            </div>
 
+            {/* BOTTOM: 3 High-Impact Executive Channel Pods */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 shrink-0">
+              
+              {/* Pod 1: WhatsApp */}
+              <a
+                href="https://wa.me/584129486249"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4 rounded-2xl luxury-glass border border-slate-800/80 hover:border-emerald-500/50 hover:bg-slate-800/50 transition-all overflow-hidden flex flex-col justify-between min-h-[140px]"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:scale-110 transition-transform mb-3">
+                    <MessageSquare className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-[9px] uppercase font-black tracking-widest text-emerald-400 font-heading mb-0.5">Operaciones</h4>
+                  <div className="text-sm font-bold text-white tracking-wide font-heading">0412-9486249</div>
+                </div>
+                <div className="relative z-10 mt-3 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                  <span className="group-hover:text-emerald-400 transition-colors">Chat Directo</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+                </div>
+              </a>
+
+              {/* Pod 2: Email */}
+              <a
+                href="mailto:gerencia@cysosenergy.com"
+                className="group relative p-4 rounded-2xl luxury-glass border border-slate-800/80 hover:border-flame-500/50 hover:bg-slate-800/50 transition-all overflow-hidden flex flex-col justify-between min-h-[140px]"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-flame-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-flame-500 shadow-[0_0_15px_rgba(249,115,22,0.15)] group-hover:scale-110 transition-transform mb-3">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-[9px] uppercase font-black tracking-widest text-flame-400 font-heading mb-0.5">Gerencia</h4>
+                  <div className="text-sm font-bold text-white tracking-wide truncate font-heading">gerencia@cysosenergy.com</div>
+                </div>
+                <div className="relative z-10 mt-3 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                  <span className="group-hover:text-flame-400 transition-colors">Enviar Correo</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:text-flame-400 group-hover:translate-x-1 transition-all" />
+                </div>
+              </a>
+
+              {/* Pod 3: Instagram */}
+              <a
+                href="https://instagram.com/cysosenergy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-4 rounded-2xl luxury-glass border border-slate-800/80 hover:border-pink-500/50 hover:bg-slate-800/50 transition-all overflow-hidden flex flex-col justify-between min-h-[140px]"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.15)] group-hover:scale-110 transition-transform mb-3">
+                    <Instagram className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-[9px] uppercase font-black tracking-widest text-pink-400 font-heading mb-0.5">Red Social</h4>
+                  <div className="text-sm font-bold text-white tracking-wide font-heading">@cysosenergy</div>
+                </div>
+                <div className="relative z-10 mt-3 flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                  <span className="group-hover:text-pink-400 transition-colors">Ir al Perfil</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:text-pink-400 group-hover:translate-x-1 transition-all" />
+                </div>
+              </a>
+
+            </div>
+          </div>
         </div>
 
       </div>

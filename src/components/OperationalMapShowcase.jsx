@@ -4,7 +4,8 @@ import { Navigation, Compass, Map as MapIcon, Globe, ExternalLink, ArrowRight, B
 export const OperationalMapShowcase = ({
   mapViewMode,
   setMapViewMode,
-  currentHub
+  currentHub,
+  hideInfoCard = false
 }) => {
   const defaultHub = {
     name: 'Sede Central & Corporativa',
@@ -157,59 +158,61 @@ export const OperationalMapShowcase = ({
         </div>
 
         {/* Bottom: Selected Hub Technical Info Card (Premium Design - No Yellow) */}
-        <div className="w-full space-y-4">
-          <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-800 space-y-4 relative shadow-xl">
-            
-            {/* Header Area */}
-            <div className="flex items-start justify-between border-b border-slate-800/80 pb-4">
-              <div className="space-y-1.5">
-                <span className="px-2.5 py-0.5 rounded-md bg-flame-500/10 text-flame-400 text-[10px] font-black uppercase tracking-wider border border-flame-500/20 font-heading flex items-center gap-1.5 w-fit">
-                  <span className="w-1.5 h-1.5 rounded-full bg-flame-400 animate-pulse" />
-                  {hub.status}
-                </span>
-                <h4 className="text-lg sm:text-xl font-black font-heading text-white pt-1">
-                  {hub.name}
-                </h4>
-                <span className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
-                  <Globe className="w-3.5 h-3.5 text-slate-500" />
-                  {hub.state}
-                </span>
-              </div>
-
-              <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-flame-400 flex-shrink-0 shadow-inner hidden sm:flex">
-                <Building2 className="w-5 h-5" />
-              </div>
-            </div>
-
-            {/* Location & Registry List */}
-            <div className="space-y-4 text-xs pt-2">
-              <div className="flex items-start gap-3 text-slate-300">
-                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0 mt-0.5">
-                  <MapPin className="w-3.5 h-3.5" />
+        {!hideInfoCard && (
+          <div className="w-full space-y-4">
+            <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-800 space-y-4 relative shadow-xl">
+              
+              {/* Header Area */}
+              <div className="flex items-start justify-between border-b border-slate-800/80 pb-4">
+                <div className="space-y-1.5">
+                  <span className="px-2.5 py-0.5 rounded-md bg-flame-500/10 text-flame-400 text-[10px] font-black uppercase tracking-wider border border-flame-500/20 font-heading flex items-center gap-1.5 w-fit">
+                    <span className="w-1.5 h-1.5 rounded-full bg-flame-400 animate-pulse" />
+                    {hub.status}
+                  </span>
+                  <h4 className="text-lg sm:text-xl font-black font-heading text-white pt-1">
+                    {hub.name}
+                  </h4>
+                  <span className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-slate-500" />
+                    {hub.state}
+                  </span>
                 </div>
-                <span className="leading-relaxed font-sans">{hub.address}</span>
-              </div>
 
-              <div className="flex items-center gap-3 text-slate-300">
-                <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
-                  <ShieldCheck className="w-3.5 h-3.5" />
+                <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-flame-400 flex-shrink-0 shadow-inner hidden sm:flex">
+                  <Building2 className="w-5 h-5" />
                 </div>
-                <span className="text-emerald-400 font-bold font-mono tracking-wide">
-                  RIF: {hub.rif || 'J-40031863-7'}
-                </span>
               </div>
-            </div>
 
-            {/* Technical Focus */}
-            <div className="pt-3 border-t border-slate-800">
-              <p className="text-[11px] text-slate-400 font-light leading-relaxed">
-                <strong className="text-slate-300 font-semibold font-heading mr-1">Instalación Principal:</strong>
-                {hub.focus}
-              </p>
-            </div>
+              {/* Location & Registry List */}
+              <div className="space-y-4 text-xs pt-2">
+                <div className="flex items-start gap-3 text-slate-300">
+                  <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0 mt-0.5">
+                    <MapPin className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="leading-relaxed font-sans">{hub.address}</span>
+                </div>
 
+                <div className="flex items-center gap-3 text-slate-300">
+                  <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-emerald-400 font-bold font-mono tracking-wide">
+                    RIF: {hub.rif || 'J-40031863-7'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Technical Focus */}
+              <div className="pt-3 border-t border-slate-800">
+                <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+                  <strong className="text-slate-300 font-semibold font-heading mr-1">Instalación Principal:</strong>
+                  {hub.focus}
+                </p>
+              </div>
+
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
     </div>
