@@ -62,7 +62,7 @@ export const Footer = () => {
   const formattedDigits = String(animatedVisits).padStart(6, '0').split('');
 
   return (
-    <footer className="relative bg-navy-950 border-t border-slate-900 pt-16 pb-8 font-sans mt-12">
+    <footer className="relative bg-navy-950 border-t border-slate-900 pt-16 pb-24 font-sans mt-12">
       
       {/* Subtle top glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-flame-500/20 to-transparent" />
@@ -138,16 +138,16 @@ export const Footer = () => {
         </div>
 
         {/* Minimal Bottom Bar */}
-        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[11px] text-slate-500 font-medium">
-            © {currentYear} <span className="text-slate-400 font-bold uppercase tracking-wider">CYSOS ENERGY, C.A.</span>
+        <div className="pt-8 pb-10 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <p className="text-xs text-slate-400 font-medium tracking-wide">
+            © {currentYear} <span className="text-white font-bold uppercase tracking-widest">CYSOS ENERGY, C.A.</span>
           </p>
           
           {/* Ultra-subtle Visitor Counter */}
-          <div className="flex items-center gap-2.5 text-[10px] text-slate-500 font-mono tracking-[0.2em] uppercase">
-            <Activity className="w-3 h-3 text-flame-500/70" />
+          <div className="flex items-center gap-3 text-xs text-slate-400 font-mono tracking-[0.2em] uppercase">
+            <Activity className="w-4 h-4 text-flame-500" />
             <span>Visitas:</span>
-            <span className="text-slate-300 font-bold">{String(animatedVisits).padStart(6, '0')}</span>
+            <span className="text-white font-bold">{String(animatedVisits).padStart(6, '0')}</span>
           </div>
         </div>
 
