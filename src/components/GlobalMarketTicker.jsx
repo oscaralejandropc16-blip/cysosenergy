@@ -81,7 +81,7 @@ export const GlobalMarketTicker = () => {
   }, []);
 
   const TickerItems = () => (
-    <div className="flex items-center gap-6 px-6">
+    <div className="flex items-center gap-6 px-6 flex-shrink-0 whitespace-nowrap min-w-max">
       <div className="flex items-center gap-2 flex-shrink-0">
         <div className={`w-2 h-2 rounded-full ${blink ? 'bg-emerald-400 animate-ping' : 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]'}`} />
         <span className="font-heading font-black text-slate-300 tracking-wider">MERCADOS EN VIVO</span>
@@ -144,7 +144,7 @@ export const GlobalMarketTicker = () => {
           .ticker-track {
             display: flex;
             width: max-content;
-            animation: wallstreet-scroll 25s linear infinite;
+            animation: wallstreet-scroll 35s linear infinite;
           }
           .ticker-track:hover {
             animation-play-state: paused;
@@ -153,6 +153,8 @@ export const GlobalMarketTicker = () => {
       </style>
       
       <div className="ticker-track">
+        <TickerItems />
+        <TickerItems />
         <TickerItems />
         <TickerItems />
       </div>
