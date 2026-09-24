@@ -69,11 +69,11 @@ export const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        {/* Main Grid: 3 Clean Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 pb-12 border-b border-slate-800/50">
+        {/* Main Section: 2 Clean Areas */}
+        <div className="flex flex-col md:flex-row justify-between gap-12 lg:gap-16 pb-12 border-b border-slate-800/50">
           
           {/* Brand & Identity */}
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-sm">
             <Logo className="h-12 w-auto" />
             <p className="text-sm text-slate-400 font-light leading-relaxed pr-4">
               Ingeniería, procura, construcción y servicios petroleros especializados en optimización reológica EOR y logística pesada.
@@ -88,16 +88,17 @@ export const Footer = () => {
           </div>
 
           {/* Minimal Links */}
-          <div className="space-y-6">
+          <div className="space-y-6 md:min-w-[250px]">
             <h4 className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em] font-heading">
-              Operaciones
+              Accesos Rápidos
             </h4>
             <ul className="space-y-3">
               {[
                 { label: 'Química de Producción EOR', href: '#servicios' },
                 { label: 'Intervención de Pozos & Flush By', href: '#servicios' },
                 { label: 'Logística Pesada & Grúas', href: '#servicios' },
-                { label: 'Galería de Operaciones', href: '#operaciones' }
+                { label: 'Galería de Operaciones', href: '#operaciones' },
+                { label: 'Subir al Inicio', href: '#hero' }
               ].map((link, idx) => (
                 <li key={idx}>
                   <a href={link.href} className="text-sm text-slate-400 hover:text-flame-400 transition-colors">
@@ -106,34 +107,6 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Minimal Contact */}
-          <div className="space-y-6">
-            <h4 className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em] font-heading">
-              Sede & Contacto
-            </h4>
-            <div className="space-y-4 text-sm text-slate-400">
-              <p className="font-light leading-relaxed">
-                <span className="block text-slate-300 font-medium mb-1">Complejo CCP, Centro Médico Norte.</span>
-                Maturín, Estado Monagas, Venezuela.
-              </p>
-              
-              <div className="flex flex-col gap-3 pt-2">
-                <a href={`https://wa.me/${safeInfo.phone1.replace(/\D/g,'')}`} target="_blank" rel="noopener noreferrer" className="hover:text-flame-400 transition-colors inline-flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-slate-500" />
-                  <span className="font-heading font-bold">{safeInfo.phone1}</span>
-                </a>
-                <a href={`mailto:${safeInfo.email1}`} className="hover:text-flame-400 transition-colors inline-flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-slate-500" />
-                  <span className="font-heading font-bold">{safeInfo.email1}</span>
-                </a>
-                <a href="https://instagram.com/cysosenergy" target="_blank" rel="noopener noreferrer" className="hover:text-flame-400 transition-colors inline-flex items-center gap-2.5">
-                  <Instagram className="w-4 h-4 text-slate-500" />
-                  <span className="font-heading font-bold">@cysosenergy</span>
-                </a>
-              </div>
-            </div>
           </div>
         </div>
 
