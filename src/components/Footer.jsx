@@ -69,39 +69,59 @@ export const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        {/* Main Section: 2 Clean Areas */}
-        <div className="flex flex-col md:flex-row justify-between gap-12 lg:gap-16 pb-12 border-b border-slate-800/50">
+        {/* Main Grid: 3 Balanced Columns to prevent wasted space */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-slate-800/50">
           
           {/* Brand & Identity */}
-          <div className="space-y-6 max-w-sm">
-            <Logo className="h-12 w-auto" />
-            <p className="text-sm text-slate-400 font-light leading-relaxed pr-4">
-              Ingeniería, procura, construcción y servicios petroleros especializados en optimización reológica EOR y logística pesada.
+          <div className="space-y-4 text-center md:text-left">
+            <Logo className="h-10 w-auto mx-auto md:mx-0" />
+            <p className="text-xs text-slate-400 font-light leading-relaxed">
+              Ingeniería, procura, construcción y servicios petroleros especializados.
             </p>
-            <div className="flex flex-col gap-2 text-xs text-slate-500 font-medium tracking-wide">
+            <div className="flex flex-col md:flex-row items-center gap-3 text-[10px] text-slate-500 font-medium tracking-wide">
               <span>RIF: {safeInfo.rif}</span>
+              <span className="hidden md:block w-1 h-1 rounded-full bg-slate-700" />
               <span className="flex items-center gap-1.5">
-                <Shield className="w-3.5 h-3.5 text-flame-500/70" />
-                Normas ISO 9001 & SI-HO-S
+                <Shield className="w-3 h-3 text-flame-500/70" />
+                ISO 9001 & SI-HO-S
               </span>
             </div>
           </div>
 
-          {/* Minimal Links */}
-          <div className="space-y-6 md:min-w-[250px]">
+          {/* Center: Visitor Counter (Perfectly balances the middle empty space) */}
+          <div className="flex flex-col items-center justify-center space-y-3 py-4 md:py-0">
+             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest font-heading flex items-center gap-2">
+               <span className="w-1.5 h-1.5 rounded-full bg-flame-500 animate-pulse" />
+               Métricas de Visitas
+             </span>
+             
+             <div className="flex items-center gap-1 font-mono text-xl font-black text-flame-400">
+               {formattedDigits.map((digit, idx) => (
+                 <span 
+                   key={idx} 
+                   className="bg-slate-900/80 px-2.5 py-1.5 rounded-md border border-slate-700/50 shadow-inner flex items-center justify-center min-w-[28px]"
+                 >
+                   {digit}
+                 </span>
+               ))}
+             </div>
+          </div>
+
+          {/* Right: Minimal Links */}
+          <div className="space-y-4 text-center md:text-right flex flex-col items-center md:items-end">
             <h4 className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em] font-heading">
               Accesos Rápidos
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               {[
-                { label: 'Química de Producción EOR', href: '#servicios' },
-                { label: 'Intervención de Pozos & Flush By', href: '#servicios' },
-                { label: 'Logística Pesada & Grúas', href: '#servicios' },
+                { label: 'Química de Producción', href: '#servicios' },
+                { label: 'Intervención de Pozos', href: '#servicios' },
+                { label: 'Logística Pesada', href: '#servicios' },
                 { label: 'Galería de Operaciones', href: '#operaciones' },
-                { label: 'Subir al Inicio', href: '#hero' }
+                { label: 'Subir al Inicio', href: '#hero' },
               ].map((link, idx) => (
                 <li key={idx}>
-                  <a href={link.href} className="text-sm text-slate-400 hover:text-flame-400 transition-colors">
+                  <a href={link.href} className="text-xs text-slate-400 hover:text-flame-400 transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -111,31 +131,10 @@ export const Footer = () => {
         </div>
 
         {/* Minimal Bottom Bar */}
-        <div className="pt-8 pb-10 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-          <p className="text-xs text-slate-400 font-medium tracking-wide">
-            © {currentYear} <span className="text-white font-bold uppercase tracking-widest">CYSOS ENERGY, C.A.</span>
+        <div className="pt-6 flex justify-center md:justify-start">
+          <p className="text-[10px] text-slate-500 font-medium tracking-wide">
+            © {currentYear} <span className="text-slate-300 font-bold uppercase">CYSOS ENERGY, C.A.</span>
           </p>
-          
-          {/* Highly Visible Visitor Counter for Owner */}
-          <div className="flex items-center gap-4 bg-slate-900/60 border border-slate-700/60 px-5 py-2.5 rounded-xl shadow-[0_0_15px_rgba(0,0,0,0.3)] backdrop-blur-md">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-flame-500 animate-pulse" />
-              <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest font-heading">
-                Visitas Totales
-              </span>
-            </div>
-            <div className="h-6 w-px bg-slate-700/50" />
-            <div className="flex items-center gap-1 font-mono text-base sm:text-lg font-black text-flame-400">
-              {formattedDigits.map((digit, idx) => (
-                <span 
-                  key={idx} 
-                  className="bg-slate-950 px-2 py-1 rounded-md border border-slate-800 shadow-inner flex items-center justify-center min-w-[24px]"
-                >
-                  {digit}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
 
       </div>
