@@ -38,11 +38,13 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
     }
   };
 
-  // Live petroleum benchmarks for the animated ticker tape
+  // Live petroleum benchmarks and official exchange rates for the animated ticker tape
   const marketTickers = [
     { label: 'BRENT', price: '$84.45 USD', change: '+1.8%', isUp: true },
     { label: 'WTI', price: '$80.10 USD', change: '+1.3%', isUp: true },
     { label: 'MEREY 16', price: '$68.90 USD', change: '+2.4%', isUp: true },
+    { label: 'USD BCV', price: 'Bs. 36,80', change: '+0.1%', isUp: true },
+    { label: 'EUR BCV', price: 'Bs. 40,25', change: '+0.2%', isUp: true },
     { label: 'CESTA OPEP', price: '$86.20 USD', change: '+0.7%', isUp: true },
     { label: 'PRODUCCIÓN VE', price: '940.000 BPD', change: '+4.2%', isUp: true },
     { label: 'META 2026', price: '1.300.000 BPD', change: 'En curso', isUp: true },

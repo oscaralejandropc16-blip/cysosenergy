@@ -9,6 +9,38 @@ const WhatsAppIcon = ({ size = 24 }) => (
   </svg>
 );
 
+// Live Crude Widget (Simula actualización en tiempo real como la bolsa de valores)
+const LiveCrudeWidget = () => {
+  const [blink, setBlink] = useState(false);
+  const [price, setPrice] = useState(84.45);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBlink(true);
+      // Fluctuation to simulate live market
+      setPrice(prev => {
+        const change = (Math.random() - 0.5) * 0.10;
+        return Number((prev + change).toFixed(2));
+      });
+      setTimeout(() => setBlink(false), 500);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="hidden xl:flex items-center gap-2 bg-navy-950/80 border border-slate-700/80 px-3 py-1.5 rounded-lg mr-1 shadow-inner" title="Mercado Internacional de Crudo (Live)">
+      <span className="flex h-2 w-2 relative mr-0.5">
+        <span className={`absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ${blink ? 'animate-ping scale-150' : 'animate-pulse'}`}></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      <span className="text-[10px] font-bold text-slate-400 tracking-widest uppercase font-heading">BRENT</span>
+      <span className={`text-[12px] font-black font-mono transition-colors duration-300 ${blink ? 'text-emerald-400' : 'text-white'}`}>
+        ${price.toFixed(2)}
+      </span>
+    </div>
+  );
+};
+
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -121,6 +153,9 @@ export const Navbar = () => {
               <WhatsAppIcon size={18} />
             </a>
           </div>
+
+          {/* Live Crude Widget - Desktop */}
+          <LiveCrudeWidget />
 
           {/* Teléfono - solo desktop */}
           <div className="hidden lg:flex items-center gap-3">
