@@ -18,6 +18,7 @@ import { Footer } from './components/Footer';
 import { FloatingOperationsWidget } from './components/FloatingOperationsWidget';
 import { DossierModal } from './components/DossierModal';
 import { RecentOperations } from './components/RecentOperations';
+import { GlobalMarketTicker } from './components/GlobalMarketTicker';
 
 // Secret paths for high security
 const isSecretAdminRoute = () => {
@@ -164,10 +165,13 @@ function MainAppContent() {
 
   return (
     <>
-      <header className="absolute top-0 left-0 right-0 w-full z-50 pointer-events-none">
+      <header className="absolute top-0 left-0 right-0 w-full z-[60]">
+        <GlobalMarketTicker />
+      </header>
+      <header className="absolute top-[36px] left-0 right-0 w-full z-50 pointer-events-none">
         <Navbar onOpenDossier={() => setIsDossierOpen(true)} />
       </header>
-      <div className="min-h-screen bg-navy-950 text-slate-100 font-sans selection:bg-flame-500 selection:text-white">
+      <div className="min-h-screen bg-navy-950 text-slate-100 font-sans selection:bg-flame-500 selection:text-white pt-[36px]">
         <main>
           <Hero onOpenDossier={() => setIsDossierOpen(true)} />
           <PartnersCarousel />
