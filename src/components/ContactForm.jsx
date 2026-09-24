@@ -58,13 +58,6 @@ export const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if (parseInt(captchaAnswer) !== captchaParams.num1 + captchaParams.num2) {
-      setCaptchaError(true);
-      return;
-    }
-    setCaptchaError(false);
-
     setLoading(true);
 
     setTimeout(() => {
@@ -81,8 +74,6 @@ export const ContactForm = () => {
         location: 'Sede Central & Base Maturín (Monagas, Venezuela)',
         message: ''
       });
-      setCaptchaParams({ num1: Math.floor(Math.random() * 10) + 1, num2: Math.floor(Math.random() * 10) + 1 });
-      setCaptchaAnswer('');
     }, 500);
   };
 
@@ -230,331 +221,138 @@ export const ContactForm = () => {
 
         {/* MODERN UNIFIED TECHNICAL QUOTATION FORM */}
         <div id="formulario-cotizacion" className="max-w-4xl mx-auto scroll-mt-28">
-          <div className="luxury-glass p-6 sm:p-10 md:p-12 rounded-3xl border border-slate-800/90 shadow-2xl relative">
+          <div className="luxury-glass p-6 sm:p-10 rounded-3xl border border-slate-800/90 shadow-2xl relative">
             
             {/* Form Top Title */}
-            <div className="text-center max-w-2xl mx-auto space-y-2 mb-8 sm:mb-10 pb-6 sm:pb-8 border-b border-slate-800/80">
-              <span className="text-xs font-black uppercase tracking-wider text-gold-400 font-heading">
-                Requerimiento Técnico Formal
-              </span>
+            <div className="text-center max-w-2xl mx-auto space-y-2 mb-8 pb-6 border-b border-slate-800/80">
               <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">
                 Solicite Propuesta Técnica & Cotización
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 font-light">
-                Complete el formulario a continuación y nuestros ingenieros le enviarán un pliego formal adaptado a su yacimiento.
+              <p className="text-sm text-slate-400 font-light">
+                Nuestros ingenieros comerciales le contactarán en menos de 24 horas con una propuesta adaptada a su yacimiento.
               </p>
             </div>
 
             {/* SUCCESS CONFIRMATION MODAL */}
             {submitted ? (
-              <div className="py-12 px-6 rounded-2xl bg-navy-900 border border-emerald-500/40 text-center space-y-5 animate-fadeIn">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-emerald-glow">
+              <div className="py-12 px-6 rounded-2xl bg-slate-900 border border-emerald-500/40 text-center space-y-5">
+                <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-
                 <div className="space-y-2">
-                  <h4 className="text-2xl font-black text-white font-heading">¡Requerimiento Técnico Recibido!</h4>
-                  <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed font-light">
-                    Su solicitud ha sido registrada en el sistema de despacho bajo el ticket <strong className="text-gold-400 font-sans tracking-wide">#{createdId}</strong>. Nuestro equipo de ingenieros de campo le contactará en menos de 24 horas.
+                  <h4 className="text-xl font-black text-white font-heading">¡Requerimiento Recibido!</h4>
+                  <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed font-light">
+                    Su solicitud ha sido registrada bajo el ticket <strong className="text-flame-400 font-mono">#{createdId}</strong>.
                   </p>
                 </div>
-
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold border border-slate-700 transition-colors font-heading"
+                  className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-colors font-heading"
                 >
                   Enviar otra solicitud
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8 relative">
+              <form onSubmit={handleSubmit} className="space-y-5 relative">
                 
                 <style>{`
-                  @keyframes fadeInUp {
-                    from { opacity: 0; transform: translateY(20px); }
-                    to { opacity: 1; transform: translateY(0); }
-                  }
-                  .animate-stagger-1 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both; }
-                  .animate-stagger-2 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both; }
-                  .animate-stagger-3 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both; }
-                  .animate-stagger-4 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both; }
-                  .animate-stagger-5 { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both; }
-                  
-                  .input-glow-wrapper {
-                    position: relative;
-                    border-radius: 12px;
-                  }
-                  .input-glow-wrapper::before {
-                    content: '';
-                    position: absolute;
-                    inset: -2px;
-                    border-radius: 14px;
-                    background: linear-gradient(135deg, rgba(251,191,36,0.5), rgba(249,115,22,0.5));
-                    z-index: -1;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                  }
-                  .input-glow-wrapper:focus-within::before {
-                    opacity: 1;
-                    animation: pulse-border 2s infinite;
-                  }
-                  @keyframes pulse-border {
-                    0%, 100% { opacity: 0.8; }
-                    50% { opacity: 0.4; }
-                  }
-                  
                   .modern-glass-input {
                     background: rgba(15, 23, 42, 0.6);
-                    backdrop-filter: blur(12px);
                     border: 1px solid rgba(255, 255, 255, 0.08);
                     transition: all 0.3s ease;
                   }
                   .modern-glass-input:focus {
-                    background: rgba(15, 23, 42, 0.8);
-                    border-color: rgba(251, 191, 36, 0.4);
-                    box-shadow: 0 0 20px rgba(251, 191, 36, 0.1);
+                    background: rgba(15, 23, 42, 0.9);
+                    border-color: rgba(234, 88, 12, 0.5);
+                    box-shadow: 0 0 15px rgba(234, 88, 12, 0.15);
                   }
                 `}</style>
 
-                {/* Step 1: Service Selection */}
-                <div className="space-y-3 animate-stagger-1">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-md bg-slate-800 text-flame-400 text-xs font-black font-heading tracking-wide border border-slate-700">1</span>
-                    <label className="text-sm font-black text-white block font-heading tracking-wide">
-                      Seleccione la Especialidad
-                    </label>
+                {/* 2-Column Grid for Personal Data */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  
+                  {/* Name */}
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <User className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                    </div>
+                    <input type="text" name="name" required placeholder="Nombre y Cargo *" value={formData.name} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                    {[
-                      { id: 'Química de Producción EOR', label: 'Química EOR', icon: Beaker },
-                      { id: 'Well Testing & Aforo de Pozos', label: 'Well Testing', icon: Activity },
-                      { id: 'Intervención de Pozos & Flush By', label: 'Flush By / Pulling', icon: Wrench },
-                      { id: 'Logística Pesada & Grúas 110T', label: 'Logística Pesada', icon: Truck }
-                    ].map((srv) => {
-                      const Icon = srv.icon;
-                      const isSelected = formData.service === srv.id;
-                      return (
-                        <button
-                          key={srv.id}
-                          type="button"
-                          onClick={() => handleSelectService(srv.id)}
-                          className={`group relative p-4 rounded-xl flex flex-col items-center justify-center gap-3 transition-all duration-300 ${
-                            isSelected
-                              ? 'bg-gradient-to-br from-flame-500/20 to-amber-500/20 border-flame-500/50 shadow-[0_0_20px_rgba(249,115,22,0.2)]'
-                              : 'bg-navy-900/50 border-slate-800 hover:border-slate-600 hover:bg-navy-800/80'
-                          } border`}
-                        >
-                          <div className={`p-2.5 rounded-lg transition-colors duration-300 ${
-                            isSelected ? 'bg-gradient-to-br from-flame-500 to-amber-500 text-white shadow-md' : 'bg-slate-800 text-slate-400 group-hover:text-gold-400'
-                          }`}>
-                            <Icon className="w-5 h-5" />
-                          </div>
-                          <span className={`text-[11px] sm:text-xs font-black text-center font-heading transition-colors ${
-                            isSelected ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
-                          }`}>
-                            {srv.label}
-                          </span>
-                          
-                          {/* Active Indicator Dot */}
-                          {isSelected && (
-                            <div className="absolute top-2 right-2 w-2 h-2 rounded-sm bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                          )}
-                        </button>
-                      );
-                    })}
+
+                  {/* Company */}
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Building2 className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                    </div>
+                    <input type="text" name="company" required placeholder="Empresa / Consorcio *" value={formData.company} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                  </div>
+
+                  {/* Email */}
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Mail className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                    </div>
+                    <input type="email" name="email" required placeholder="Correo Corporativo *" value={formData.email} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                  </div>
+
+                  {/* Phone */}
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Phone className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                    </div>
+                    <input type="tel" name="phone" required placeholder="Teléfono / WhatsApp *" value={formData.phone} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
                   </div>
                 </div>
 
-                {/* Step 2: Contact Info Grid */}
-                <div className="space-y-4 pt-4 border-t border-slate-800/60 animate-stagger-2">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-md bg-slate-800 text-flame-400 text-xs font-black font-heading tracking-wide border border-slate-700">2</span>
-                    <label className="text-sm font-black text-white block font-heading tracking-wide">
-                      Información del Solicitante
-                    </label>
+                {/* Service Dropdown */}
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Activity className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                   </div>
-
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div className="input-glow-wrapper group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <User className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                      </div>
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        placeholder="Nombre y Cargo *"
-                        value={formData.name}
-                        onChange={handleChange}
-                        className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500/80 outline-none"
-                      />
-                    </div>
-
-                    <div className="input-glow-wrapper group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <Building2 className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                      </div>
-                      <input
-                        type="text"
-                        name="company"
-                        required
-                        placeholder="Empresa / Consorcio *"
-                        value={formData.company}
-                        onChange={handleChange}
-                        className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500/80 outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div className="input-glow-wrapper group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <Mail className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                      </div>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        placeholder="Correo Corporativo *"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500/80 outline-none"
-                      />
-                    </div>
-
-                    <div className="input-glow-wrapper group">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <Phone className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                      </div>
-                      <input
-                        type="tel"
-                        name="phone"
-                        required
-                        placeholder="Teléfono / WhatsApp *"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500/80 outline-none"
-                      />
-                    </div>
-                  </div>
+                  <select name="service" value={formData.service} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none appearance-none cursor-pointer">
+                    <option value="Química de Producción EOR" className="bg-slate-900">Especialidad: Química de Producción EOR</option>
+                    <option value="Well Testing & Aforo de Pozos" className="bg-slate-900">Especialidad: Well Testing & Aforo</option>
+                    <option value="Intervención de Pozos & Flush By" className="bg-slate-900">Especialidad: Intervención de Pozos (Flush By / Pulling)</option>
+                    <option value="Logística Pesada & Grúas 110T" className="bg-slate-900">Especialidad: Logística Pesada & Izamiento</option>
+                  </select>
                 </div>
 
-                {/* Step 3: Location & Details */}
-                <div className="space-y-4 pt-4 border-t border-slate-800/60 animate-stagger-3">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-md bg-slate-800 text-flame-400 text-xs font-black font-heading tracking-wide border border-slate-700">3</span>
-                    <label className="text-sm font-black text-white block font-heading tracking-wide">
-                      Requerimiento Técnico
-                    </label>
+                {/* Message Details */}
+                <div className="relative group">
+                  <div className="absolute top-4 left-4 pointer-events-none">
+                    <FileText className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                   </div>
-
-                  {/* Operational Hub Indicator */}
-                  <div className="p-3.5 rounded-xl bg-navy-900/90 border border-slate-700/60 flex items-center justify-between gap-3 flex-wrap">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-300 font-sans">
-                      <MapPin className="w-4 h-4 text-flame-500 flex-shrink-0" />
-                      <span>{currentHub.address}</span>
-                    </div>
-                  </div>
-
-                  <div className="input-glow-wrapper group">
-                    <div className="absolute top-4 left-4 pointer-events-none">
-                      <FileText className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                    </div>
-                    <textarea
-                      name="details"
-                      rows={4}
-                      placeholder="Describa la condición del pozo, tipo de crudo (°API), caudal BPD, requerimientos específicos..."
-                      value={formData.details}
-                      onChange={handleChange}
-                      className="w-full modern-glass-input rounded-xl py-4 pl-11 pr-4 text-sm font-medium text-slate-200 placeholder-slate-500/80 leading-relaxed outline-none resize-none"
-                    ></textarea>
-                  </div>
-                </div>
-
-                {/* Step 4: Security CAPTCHA */}
-                <div className="space-y-4 pt-4 border-t border-slate-800/60 animate-stagger-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-md bg-slate-800 text-flame-400 text-xs font-black font-heading tracking-wide border border-slate-700">4</span>
-                    <label className="text-sm font-black text-white block font-heading tracking-wide">
-                      Verificación de Seguridad
-                    </label>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="flex items-center justify-center px-6 py-3.5 bg-navy-900/80 rounded-xl border border-slate-700/50">
-                      <span className="text-lg font-black text-flame-400 font-heading tracking-wider">
-                        ¿Cuánto es {captchaParams.num1} + {captchaParams.num2}?
-                      </span>
-                    </div>
-                    
-                    <div className="input-glow-wrapper group flex-1">
-                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <ShieldCheck className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                      </div>
-                      <input
-                        type="number"
-                        required
-                        placeholder="Ingrese el resultado *"
-                        value={captchaAnswer}
-                        onChange={(e) => {
-                          setCaptchaAnswer(e.target.value);
-                          setCaptchaError(false);
-                        }}
-                        className={`w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-bold tracking-wide outline-none transition-colors ${captchaError ? 'border-red-500/50 text-red-400 focus:border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'text-white'}`}
-                      />
-                    </div>
-                  </div>
-                  {captchaError && (
-                    <p className="text-xs text-red-400 font-bold mt-1 ml-1 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-sm bg-red-500 animate-pulse"></span>
-                      Respuesta incorrecta. Por favor, intente de nuevo.
-                    </p>
-                  )}
+                  <textarea name="details" rows={4} placeholder="Detalles del requerimiento (tipo de crudo, caudal, condiciones del pozo)..." value={formData.details} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-4 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 leading-relaxed outline-none resize-none"></textarea>
                 </div>
 
                 {/* Submit Action */}
-                <div className="pt-6 animate-stagger-5">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="group relative w-full py-4 rounded-xl text-[13px] font-black uppercase tracking-wider text-white bg-gradient-to-r from-flame-500 via-orange-600 to-flame-600 hover:from-flame-400 hover:to-orange-500 overflow-hidden transition-all shadow-[0_10px_20px_-10px_rgba(249,115,22,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(249,115,22,0.8)] hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none font-heading flex items-center justify-center gap-2"
-                  >
-                    {/* Sweep highlight animation */}
-                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] skew-x-[-30deg] group-hover:translate-x-[150%] transition-transform duration-700 ease-out" />
-                    
-                    {loading ? (
-                      <span className="flex items-center gap-2 relative z-10">
-                        <span className="w-4 h-4 border-2 border-white/80 border-t-transparent rounded-full animate-spin" />
-                        <span>Procesando...</span>
-                      </span>
-                    ) : (
-                      <>
-                        <span className="relative z-10 font-bold">Enviar Requerimiento Oficial</span>
-                        <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
-                      </>
-                    )}
-                  </button>
-                  
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-6">
-                    <div className="flex items-center gap-2.5 text-xs font-bold text-slate-300 font-heading tracking-wider uppercase">
-                      <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 shadow-[0_0_10px_rgba(52,211,153,0.15)]">
-                        <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                      </div>
-                      <span className="mt-0.5">Confidencialidad Total</span>
-                    </div>
-                    
-                    <div className="flex items-center gap-2.5 text-xs font-bold text-slate-300 font-heading tracking-wider uppercase">
-                      <div className="w-7 h-7 rounded-lg bg-flame-500/10 flex items-center justify-center border border-flame-500/20 shadow-[0_0_10px_rgba(249,115,22,0.15)]">
-                        <Clock className="w-4 h-4 text-flame-400" />
-                      </div>
-                      <span className="mt-0.5">Respuesta &lt; 24 Horas</span>
-                    </div>
+                <button type="submit" disabled={loading} className="group relative w-full py-4 rounded-xl text-sm font-black uppercase tracking-widest text-white bg-gradient-to-r from-flame-600 to-orange-500 hover:from-flame-500 hover:to-orange-400 transition-all shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2 overflow-hidden">
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] skew-x-[-30deg] group-hover:animate-[shimmer-sweep_2s_infinite]" />
+                  {loading ? (
+                    <span className="flex items-center gap-2 relative z-10">
+                      <span className="w-4 h-4 border-2 border-white/80 border-t-transparent rounded-full animate-spin" />
+                      <span>Procesando...</span>
+                    </span>
+                  ) : (
+                    <>
+                      <span className="relative z-10">Enviar Requerimiento</span>
+                      <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
+                </button>
+                
+                {/* Micro Footer Trust Badges */}
+                <div className="flex items-center justify-center gap-6 mt-4 opacity-70">
+                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <ShieldCheck className="w-3.5 h-3.5" /> Confidencialidad
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <Clock className="w-3.5 h-3.5" /> Respuesta 24H
                   </div>
                 </div>
 
               </form>
             )}
-
           </div>
         </div>
 
