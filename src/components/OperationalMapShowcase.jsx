@@ -53,7 +53,7 @@ export const OperationalMapShowcase = ({
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              <Compass className="w-3.5 h-3.5 text-gold-400" />
+              <Compass className="w-3.5 h-3.5 text-slate-300" />
               <span>Radar Vectorial</span>
             </button>
 
@@ -91,203 +91,154 @@ export const OperationalMapShowcase = ({
                 src={`https://maps.google.com/maps?q=${hub.embedMapQuery}&t=k&z=17&ie=UTF8&iwloc=&output=embed`}
                 className="w-full h-full filter contrast-105 brightness-95 rounded-xl"
               />
-              <div className="absolute top-3 left-3 bg-navy-950/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700 text-[11px] font-bold text-white flex items-center gap-2">
+              <div className="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700 text-[11px] font-bold text-white flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>GPS Oficial: Complejo CCP, Maturín</span>
               </div>
             </div>
           ) : (
-            /* HIGH-PRECISION VECTOR RADAR MAP OF VENEZUELA WITH SINGLE MATURIN HQ BEACON */
-            <div className="relative w-full h-full flex items-center justify-center">
+            /* HIGH-TECH ABSTRACT RADAR (Corporate & Premium) */
+            <div className="relative w-full h-full flex items-center justify-center bg-[#060B14] overflow-hidden rounded-xl border border-slate-800/60 shadow-inner">
               
-              {/* Grid Lines */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:2.5rem_2.5rem] opacity-20 pointer-events-none" />
+              {/* Radar Grid Pattern */}
+              <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30" />
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
 
-              {/* Accurate Silhouette of Venezuela */}
-              <svg
-                viewBox="0 0 800 600"
-                className="w-full h-full filter drop-shadow-[0_8px_24px_rgba(0,0,0,0.5)] relative z-10 select-none"
+              {/* Concentric Radar Circles */}
+              <div className="absolute w-[800px] h-[800px] rounded-full border border-slate-800/40" />
+              <div className="absolute w-[600px] h-[600px] rounded-full border border-slate-700/40" />
+              <div className="absolute w-[400px] h-[400px] rounded-full border border-slate-600/40" />
+              <div className="absolute w-[200px] h-[200px] rounded-full border border-slate-500/40 border-dashed animate-[spin_40s_linear_infinite]" />
+              
+              {/* Radar Sweep Line */}
+              <div className="absolute w-[400px] h-[400px] rounded-full overflow-hidden origin-center">
+                <div className="absolute top-1/2 right-1/2 w-[400px] h-[400px] origin-bottom-right bg-gradient-to-tr from-flame-500/0 via-flame-500/10 to-flame-500/40 animate-[spin_4s_linear_infinite]" />
+              </div>
+              
+              {/* Crosshairs */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-full h-[1px] bg-slate-800/60" />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="h-full w-[1px] bg-slate-800/60" />
+              </div>
+
+              {/* Sede Beacon in Center */}
+              <div 
+                className="absolute flex items-center justify-center cursor-pointer group"
+                onClick={() => window.open(hub.googleMapsUrl, '_blank')}
+                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
               >
-                <defs>
-                  <linearGradient id="vzla-clean-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1E293B" stopOpacity="0.85" />
-                    <stop offset="100%" stopColor="#0B132B" stopOpacity="0.95" />
-                  </linearGradient>
+                {/* Ping effects */}
+                <div className="absolute w-24 h-24 rounded-full border border-flame-500/30 animate-ping opacity-75" />
+                <div className="absolute w-12 h-12 rounded-full bg-flame-500/20 animate-pulse" />
+                
+                {/* Core Dot */}
+                <div className="w-4 h-4 rounded-full bg-flame-500 shadow-[0_0_15px_rgba(234,88,12,0.8)] border-2 border-white relative z-10 group-hover:scale-125 transition-transform duration-300" />
+                
+                {/* Tech Data Tag */}
+                <div className="absolute left-6 top-6 bg-slate-900/95 backdrop-blur-md border border-slate-700 px-3.5 py-2 rounded-lg shadow-2xl flex flex-col min-w-max pointer-events-none opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 z-20">
+                  <span className="text-[10px] font-heading font-black text-flame-400 uppercase tracking-wider mb-0.5">Centro de Control</span>
+                  <span className="text-xs font-sans font-bold text-white">Maturín, VEN</span>
+                  <span className="text-[9px] font-mono text-slate-400 mt-1 flex items-center gap-1">
+                    <Navigation className="w-3 h-3 text-slate-500" />
+                    9.7456° N, 63.1832° W
+                  </span>
+                </div>
+              </div>
 
-                  <radialGradient id="maturin-glow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#EA580C" stopOpacity="0.8" />
-                    <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
-                  </radialGradient>
-                </defs>
-
-                {/* Accurate Venezuela Geographic Contour Path */}
-                <path
-                  d="M 120 180 
-                     C 135 150, 160 130, 190 125 
-                     C 210 120, 230 140, 240 160 
-                     C 255 130, 280 100, 300 120 
-                     C 320 135, 340 150, 370 145 
-                     C 410 140, 450 135, 490 140 
-                     C 530 145, 570 135, 600 140 
-                     C 630 145, 660 160, 680 185 
-                     C 700 210, 720 230, 710 260 
-                     C 700 290, 680 320, 650 360 
-                     C 620 400, 590 440, 570 480 
-                     C 550 520, 520 560, 480 570 
-                     C 440 580, 400 550, 370 510 
-                     C 340 470, 320 430, 290 390 
-                     C 260 350, 230 320, 190 280 
-                     C 150 240, 110 210, 120 180 Z"
-                  fill="url(#vzla-clean-gradient)"
-                  stroke="#D97706"
-                  strokeWidth="2"
-                  strokeDasharray="4 2"
-                />
-
-                {/* Orinoco River Energy Line */}
-                <path
-                  d="M 370 510 Q 500 370 680 260"
-                  stroke="#38BDF8"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
-                  opacity="0.4"
-                />
-
-                {/* SINGLE PRECISE BEACON IN MATURIN (x: 592, y: 216) */}
-                <g
-                  onClick={() => window.open(hub.googleMapsUrl, '_blank')}
-                  className="cursor-pointer group"
-                >
-                  {/* Expanding Radar Wave */}
-                  <circle cx="592" cy="216" r="45" fill="url(#maturin-glow)">
-                    <animate attributeName="r" values="20;55;20" dur="3s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite" />
-                  </circle>
-
-                  <circle cx="592" cy="216" r="28" fill="none" stroke="#F59E0B" strokeWidth="1.5" strokeDasharray="3 3">
-                    <animate attributeName="r" values="15;38;15" dur="2.5s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.9;0.2;0.9" dur="2.5s" repeatCount="indefinite" />
-                  </circle>
-
-                  {/* Outer Pin Body */}
-                  <circle
-                    cx="592"
-                    cy="216"
-                    r="14"
-                    fill="#EA580C"
-                    stroke="#FFFFFF"
-                    strokeWidth="3"
-                    className="transition-transform duration-200 group-hover:scale-110 shadow-lg"
-                  />
-
-                  {/* Core Center Dot */}
-                  <circle cx="592" cy="216" r="5" fill="#FFFFFF" />
-
-                  {/* Label Tag on Map */}
-                  <rect
-                    x="614"
-                    y="200"
-                    width="170"
-                    height="32"
-                    rx="8"
-                    fill="#0A192F"
-                    stroke="#38BDF8"
-                    strokeWidth="1.5"
-                    opacity="0.95"
-                    className="shadow-xl"
-                  />
-                  <text
-                    x="624"
-                    y="221"
-                    fill="#38BDF8"
-                    fontSize="12"
-                    fontFamily="system-ui, sans-serif"
-                    fontWeight="bold"
-                    className="select-none font-heading"
-                  >
-                    📍 Sede Central • Maturín
-                  </text>
-                </g>
-              </svg>
-
-              <div className="absolute bottom-3 left-4 text-[11px] text-slate-400 font-sans tracking-wide flex items-center gap-2 bg-navy-900/90 px-3 py-1.5 rounded-xl border border-slate-800">
+              {/* Bottom Info Ribbon */}
+              <div className="absolute bottom-3 left-4 text-[11px] text-slate-400 font-sans tracking-wide flex items-center gap-2 bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-800 shadow-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Toque la baliza para abrir la ubicación exacta en Google Maps</span>
+                <span>Toque la baliza central para abrir en Google Maps</span>
               </div>
             </div>
           )}
         </div>
 
-        {/* Right: Selected Hub Technical Info Card */}
+        {/* Right: Selected Hub Technical Info Card (Premium Design - No Yellow) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="p-6 rounded-2xl bg-navy-900/95 border border-slate-800 space-y-4 relative">
+          <div className="p-6 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-800 space-y-5 relative shadow-xl">
             
-            <div className="flex items-start justify-between">
-              <div className="space-y-1">
-                <span className="px-2.5 py-0.5 rounded-md bg-flame-500/10 text-flame-400 text-[11px] font-black uppercase tracking-wider border border-flame-500/20 font-heading flex items-center gap-1.5 w-fit">
+            {/* Header Area */}
+            <div className="flex items-start justify-between border-b border-slate-800/80 pb-4">
+              <div className="space-y-1.5">
+                <span className="px-2.5 py-0.5 rounded-md bg-flame-500/10 text-flame-400 text-[10px] font-black uppercase tracking-wider border border-flame-500/20 font-heading flex items-center gap-1.5 w-fit">
                   <span className="w-1.5 h-1.5 rounded-full bg-flame-400 animate-pulse" />
                   {hub.status}
                 </span>
-                <h4 className="text-lg sm:text-xl font-black font-heading text-white pt-1">
+                <h4 className="text-lg sm:text-xl lg:text-2xl font-black font-heading text-white pt-1">
                   {hub.name}
                 </h4>
-                <span className="text-xs text-gold-400 font-bold block">{hub.state}</span>
+                <span className="text-xs text-slate-400 font-medium block flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-slate-500" />
+                  {hub.state}
+                </span>
               </div>
 
-              <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-gold-400 flex-shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-flame-400 flex-shrink-0 shadow-inner">
                 <Building2 className="w-5 h-5" />
               </div>
             </div>
 
-            <div className="space-y-2.5 text-xs">
-              <div className="flex items-start gap-2.5 text-slate-300">
-                <MapPin className="w-4 h-4 text-flame-500 flex-shrink-0 mt-0.5" />
-                <span className="leading-relaxed font-light">{hub.address}</span>
+            {/* Contact & Location List */}
+            <div className="space-y-4 text-xs pt-2">
+              <div className="flex items-start gap-3.5 text-slate-300">
+                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <span className="leading-relaxed font-sans pt-1">{hub.address}</span>
               </div>
 
-              <div className="flex items-center gap-2.5 text-slate-300">
-                <Phone className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <a href={`tel:+584129486249`} className="text-white font-medium hover:text-gold-400 transition-colors font-sans tracking-wide">
+              <div className="flex items-center gap-3.5 text-slate-300">
+                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <a href={`tel:+584129486249`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
                   {hub.phone}
                 </a>
               </div>
 
-              <div className="flex items-center gap-2.5 text-slate-300">
-                <Mail className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <a href={`mailto:${hub.email}`} className="text-gold-400 font-sans tracking-wide font-medium hover:underline">
+              <div className="flex items-center gap-3.5 text-slate-300">
+                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <a href={`mailto:${hub.email}`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
                   {hub.email}
                 </a>
               </div>
 
-              <div className="flex items-center gap-2.5 text-slate-300 pt-1">
-                <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <div className="flex items-center gap-3.5 text-slate-300">
+                <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
                 <span className="text-emerald-400 font-bold font-mono text-[11px] tracking-wide">
                   RIF: {hub.rif || 'J-40031863-7'}
                 </span>
               </div>
             </div>
 
-            <div className="pt-3 border-t border-slate-800">
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-black block mb-1 font-heading">
-                Instalación Principal:
+            {/* Technical Focus */}
+            <div className="pt-4 border-t border-slate-800 mt-2">
+              <span className="text-[10px] uppercase tracking-widest text-slate-500 font-black block mb-2 font-heading">
+                Instalación Principal
               </span>
               <p className="text-xs text-slate-300 font-light leading-relaxed">
                 {hub.focus}
               </p>
             </div>
 
-            {/* Direct Google Maps Button */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            {/* Action Buttons */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
               <a
                 href={hub.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 flex items-center justify-center gap-2 transition-colors font-heading"
+                className="py-2.5 px-4 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 flex items-center justify-center gap-2 transition-colors font-heading group"
               >
-                <Globe className="w-4 h-4 text-emerald-400" />
-                <span>Ver en Google Maps</span>
-                <ExternalLink className="w-3 h-3 text-slate-400" />
+                <Globe className="w-4 h-4 text-slate-400 group-hover:text-emerald-400 transition-colors" />
+                <span>Google Maps</span>
+                <ExternalLink className="w-3 h-3 text-slate-500" />
               </a>
 
               <button
@@ -296,10 +247,10 @@ export const OperationalMapShowcase = ({
                   const formElement = document.getElementById('formulario-cotizacion');
                   if (formElement) formElement.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-flame-500 via-orange-600 to-amber-500 hover:from-flame-600 hover:to-amber-600 text-white font-black text-xs shadow-md flex items-center justify-center gap-2 transition-all font-heading"
+                className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-flame-600 via-flame-500 to-orange-500 hover:from-flame-500 hover:to-orange-400 text-white font-black text-xs shadow-lg shadow-flame-500/20 hover:shadow-flame-500/40 flex items-center justify-center gap-2 transition-all font-heading group"
               >
                 <span>Cotizar Proyecto</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
 
@@ -310,3 +261,5 @@ export const OperationalMapShowcase = ({
     </div>
   );
 };
+
+export default OperationalMapShowcase;
