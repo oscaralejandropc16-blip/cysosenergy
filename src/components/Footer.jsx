@@ -116,11 +116,25 @@ export const Footer = () => {
             © {currentYear} <span className="text-white font-bold uppercase tracking-widest">CYSOS ENERGY, C.A.</span>
           </p>
           
-          {/* Ultra-subtle Visitor Counter */}
-          <div className="flex items-center gap-3 text-xs text-slate-400 font-mono tracking-[0.2em] uppercase">
-            <Activity className="w-4 h-4 text-flame-500" />
-            <span>Visitas:</span>
-            <span className="text-white font-bold">{String(animatedVisits).padStart(6, '0')}</span>
+          {/* Highly Visible Visitor Counter for Owner */}
+          <div className="flex items-center gap-4 bg-slate-900/60 border border-slate-700/60 px-5 py-2.5 rounded-xl shadow-[0_0_15px_rgba(0,0,0,0.3)] backdrop-blur-md">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-flame-500 animate-pulse" />
+              <span className="text-[11px] font-black text-slate-300 uppercase tracking-widest font-heading">
+                Visitas Totales
+              </span>
+            </div>
+            <div className="h-6 w-px bg-slate-700/50" />
+            <div className="flex items-center gap-1 font-mono text-base sm:text-lg font-black text-flame-400">
+              {formattedDigits.map((digit, idx) => (
+                <span 
+                  key={idx} 
+                  className="bg-slate-950 px-2 py-1 rounded-md border border-slate-800 shadow-inner flex items-center justify-center min-w-[24px]"
+                >
+                  {digit}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
