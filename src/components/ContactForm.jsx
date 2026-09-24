@@ -192,7 +192,7 @@ export const ContactForm = () => {
                   </div>
 
                   {/* 2-Column for Email & Phone */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="relative group">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <Mail className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
