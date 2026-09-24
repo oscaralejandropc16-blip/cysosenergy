@@ -181,44 +181,22 @@ export const OperationalMapShowcase = ({
               </div>
             </div>
 
-            {/* Contact & Location List - 2 Columns on sm */}
-            <div className="grid sm:grid-cols-2 gap-4 text-xs pt-2">
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 text-slate-300">
-                  <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
-                    <MapPin className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="leading-relaxed font-sans">{hub.address}</span>
+            {/* Location & Registry List */}
+            <div className="space-y-4 text-xs pt-2">
+              <div className="flex items-start gap-3 text-slate-300">
+                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0 mt-0.5">
+                  <MapPin className="w-3.5 h-3.5" />
                 </div>
-
-                <div className="flex items-center gap-3 text-slate-300">
-                  <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                  </div>
-                  <span className="text-emerald-400 font-bold font-mono tracking-wide">
-                    RIF: {hub.rif || 'J-40031863-7'}
-                  </span>
-                </div>
+                <span className="leading-relaxed font-sans">{hub.address}</span>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-slate-300">
-                  <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
-                    <Phone className="w-3.5 h-3.5" />
-                  </div>
-                  <a href={`tel:+584129486249`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
-                    {hub.phone}
-                  </a>
+              <div className="flex items-center gap-3 text-slate-300">
+                <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
+                  <ShieldCheck className="w-3.5 h-3.5" />
                 </div>
-
-                <div className="flex items-center gap-3 text-slate-300">
-                  <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
-                    <Mail className="w-3.5 h-3.5" />
-                  </div>
-                  <a href={`mailto:${hub.email}`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
-                    {hub.email}
-                  </a>
-                </div>
+                <span className="text-emerald-400 font-bold font-mono tracking-wide">
+                  RIF: {hub.rif || 'J-40031863-7'}
+                </span>
               </div>
             </div>
 
