@@ -6,6 +6,9 @@ export const GlobalMarketTicker = () => {
   const [brent, setBrent] = useState(84.45);
   const [wti, setWti] = useState(80.10);
   
+  const [brentTrend, setBrentTrend] = useState('up');
+  const [wtiTrend, setWtiTrend] = useState('up');
+  
   // API Ninja keys (Requiere registro gratuito por seguridad financiera)
   // Reemplazar 'TU_API_KEY_AQUI' con la clave real de api-ninjas.com
   const API_NINJAS_KEY = 'TU_API_KEY_AQUI'; 
@@ -72,8 +75,20 @@ export const GlobalMarketTicker = () => {
     const interval = setInterval(() => {
       setBlink(true);
       if (API_NINJAS_KEY === 'TU_API_KEY_AQUI') {
-        setBrent(prev => Number((prev + (Math.random() - 0.5) * 0.15).toFixed(2)));
-        setWti(prev => Number((prev + (Math.random() - 0.5) * 0.15).toFixed(2)));
+        setBrent(prev => {
+          const diff = (Math.random() - 0.5) * 0.15;
+          setBrentTrend(diff >= 0 ? 'up' : 'down');
+          return Number((prev + diff).toFixed(2));
+        });
+        setWti(prev => {
+          const diff = (Math.random() - 0.5) * 0.15;
+          setWtiTrend(diff >= 0 ? 'up' : 'down');
+          return Number((prev + diff).toFixed(2));
+        });
+      } else {
+        // Even with API, randomly trigger a blink for the visual effect of "live" data
+        setBrentTrend(Math.random() > 0.5 ? 'up' : 'down');
+        setWtiTrend(Math.random() > 0.5 ? 'up' : 'down');
       }
       setTimeout(() => setBlink(false), 800);
     }, 5000);
@@ -91,16 +106,24 @@ export const GlobalMarketTicker = () => {
 
       <div className="flex items-center gap-2 flex-shrink-0">
         <span className="font-bold text-slate-400">BRENT (UK)</span>
-        <span className={`font-mono font-black ${blink ? 'text-emerald-400' : 'text-white'} transition-colors`}>${brent}</span>
-        <TrendingUp className="w-3 h-3 text-emerald-500" />
+        <span className={`font-mono font-black transition-colors ${blink ? (brentTrend === 'up' ? 'text-emerald-400' : 'text-rose-500') : 'text-white'}`}>${brent}</span>
+        {brentTrend === 'up' ? (
+          <TrendingUp className={`w-3 h-3 text-emerald-500 transition-all ${blink ? '-translate-y-0.5' : ''}`} />
+        ) : (
+          <TrendingDown className={`w-3 h-3 text-rose-500 transition-all ${blink ? 'translate-y-0.5' : ''}`} />
+        )}
       </div>
 
       <div className="w-px h-4 bg-slate-700 flex-shrink-0" />
 
       <div className="flex items-center gap-2 flex-shrink-0">
         <span className="font-bold text-slate-400">WTI (USA)</span>
-        <span className={`font-mono font-black ${blink ? 'text-emerald-400' : 'text-white'} transition-colors`}>${wti}</span>
-        <TrendingUp className="w-3 h-3 text-emerald-500" />
+        <span className={`font-mono font-black transition-colors ${blink ? (wtiTrend === 'up' ? 'text-emerald-400' : 'text-rose-500') : 'text-white'}`}>${wti}</span>
+        {wtiTrend === 'up' ? (
+          <TrendingUp className={`w-3 h-3 text-emerald-500 transition-all ${blink ? '-translate-y-0.5' : ''}`} />
+        ) : (
+          <TrendingDown className={`w-3 h-3 text-rose-500 transition-all ${blink ? 'translate-y-0.5' : ''}`} />
+        )}
       </div>
 
       <div className="w-px h-4 bg-slate-700 flex-shrink-0" />
