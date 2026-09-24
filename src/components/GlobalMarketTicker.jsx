@@ -11,7 +11,7 @@ export const GlobalMarketTicker = () => {
   
   // API Ninja keys (Requiere registro gratuito por seguridad financiera)
   // Reemplazar 'TU_API_KEY_AQUI' con la clave real de api-ninjas.com
-  const API_NINJAS_KEY = 'TU_API_KEY_AQUI'; 
+  const API_NINJAS_KEY = 'zEpNoe8ZEVv9s7vkWZsHZiuC2a83Mt8wH4MeEcyl'; 
   
   // Real-time BCV rates
   const [usdBcv, setUsdBcv] = useState('...');

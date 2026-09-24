@@ -15,7 +15,7 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
   const [wti, setWti] = useState('94.36');
   
   // Clave API para mercados petroleros (Requiere cuenta gratuita en api-ninjas.com)
-  const API_NINJAS_KEY = 'TU_API_KEY_AQUI';
+  const API_NINJAS_KEY = 'zEpNoe8ZEVv9s7vkWZsHZiuC2a83Mt8wH4MeEcyl';
 
   useEffect(() => {
     const fetchRates = async () => {
