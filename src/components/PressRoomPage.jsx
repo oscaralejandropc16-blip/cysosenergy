@@ -175,7 +175,7 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
-              🇻🇪 Petróleo Venezuela ({countVenezuela})
+              Petróleo Venezuela ({countVenezuela})
             </button>
 
             <button
@@ -186,7 +186,7 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
                   : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
               }`}
             >
-              🌍 Mercado OPEP+ & Mundo ({countMundial})
+              Mercado OPEP+ & Mundo ({countMundial})
             </button>
           </nav>
 
