@@ -3,8 +3,8 @@ import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
 
 export const GlobalMarketTicker = () => {
   const [blink, setBlink] = useState(false);
-  const [brent, setBrent] = useState(84.45);
-  const [wti, setWti] = useState(80.10);
+  const [brent, setBrent] = useState(106.75);
+  const [wti, setWti] = useState(94.36);
   
   const [brentTrend, setBrentTrend] = useState('up');
   const [wtiTrend, setWtiTrend] = useState('up');
@@ -146,7 +146,7 @@ export const GlobalMarketTicker = () => {
 
       <div className="flex items-center gap-2 flex-shrink-0">
         <span className="font-bold text-slate-400">CESTA OPEP</span>
-        <span className="font-mono font-black text-white">$86.20</span>
+        <span className="font-mono font-black text-white">$104.50</span>
       </div>
       
       <div className="w-px h-4 bg-slate-700 flex-shrink-0" />

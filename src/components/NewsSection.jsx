@@ -11,8 +11,8 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
   const [eurBcv, setEurBcv] = useState('974,06');
   
   // Oil rates
-  const [brent, setBrent] = useState('84.45');
-  const [wti, setWti] = useState('80.10');
+  const [brent, setBrent] = useState('106.75');
+  const [wti, setWti] = useState('94.36');
   
   // Clave API para mercados petroleros (Requiere cuenta gratuita en api-ninjas.com)
   const API_NINJAS_KEY = 'TU_API_KEY_AQUI';
@@ -95,10 +95,10 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
   const marketTickers = [
     { label: 'BRENT', price: `$${brent} USD`, change: 'EN VIVO', isUp: true },
     { label: 'WTI', price: `$${wti} USD`, change: 'EN VIVO', isUp: true },
-    { label: 'MEREY 16', price: '$68.90 USD', change: '+2.4%', isUp: true },
+    { label: 'MEREY 16', price: '$85.90 USD', change: '+2.4%', isUp: true },
     { label: 'USD BCV', price: `Bs. ${usdBcv}`, change: 'OFICIAL', isUp: true },
     { label: 'EUR BCV', price: `Bs. ${eurBcv}`, change: 'OFICIAL', isUp: true },
-    { label: 'CESTA OPEP', price: '$86.20 USD', change: '+0.7%', isUp: true },
+    { label: 'CESTA OPEP', price: '$104.50 USD', change: '+0.7%', isUp: true },
     { label: 'PRODUCCIÓN VE', price: '940.000 BPD', change: '+4.2%', isUp: true },
     { label: 'META 2026', price: '1.300.000 BPD', change: 'En curso', isUp: true },
   ];
