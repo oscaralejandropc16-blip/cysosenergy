@@ -152,7 +152,7 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                 <span>{typedTitle}</span>
               ) : (
                 <>
-                  Sala de&nbsp;<span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-flame-400 inline-block">{typedTitle.slice(8)}</span>
+                  Sala de&nbsp;<span className="text-flame-400">{typedTitle.slice(8)}</span>
                 </>
               )}
               <span className={`inline-block w-1.5 h-8 sm:h-10 ml-2 bg-flame-500 align-middle -translate-y-1 ${typedTitle.length < fullTitle.length ? '' : 'animate-pulse'}`} />
