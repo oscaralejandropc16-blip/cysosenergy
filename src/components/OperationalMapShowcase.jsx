@@ -72,10 +72,10 @@ export const OperationalMapShowcase = ({
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+      <div className="flex flex-col gap-6 sm:gap-8">
         
-        {/* Left: Vector Radar Map OR Live Google Maps Satellite Embed */}
-        <div className="lg:col-span-7 relative aspect-[16/10] bg-navy-950/90 rounded-2xl border border-slate-800/90 p-2 sm:p-4 flex items-center justify-center overflow-hidden shadow-inner">
+        {/* Top: Vector Radar Map OR Live Google Maps Satellite Embed */}
+        <div className="relative aspect-[16/10] sm:aspect-[21/9] lg:aspect-[16/10] bg-navy-950/90 rounded-2xl border border-slate-800/90 p-2 flex items-center justify-center overflow-hidden shadow-inner">
           
           {mapViewMode === 'satellite' ? (
             /* LIVE GOOGLE MAPS EMBED */
@@ -148,7 +148,7 @@ export const OperationalMapShowcase = ({
               </div>
 
               {/* Bottom Info Ribbon */}
-              <div className="absolute bottom-3 left-4 text-[11px] text-slate-400 font-sans tracking-wide flex items-center gap-2 bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-800 shadow-md">
+              <div className="absolute bottom-3 left-4 text-[11px] text-slate-400 font-sans tracking-wide flex items-center gap-2 bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-800 shadow-md hidden sm:flex">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Toque la baliza central para abrir en Google Maps</span>
               </div>
@@ -156,9 +156,9 @@ export const OperationalMapShowcase = ({
           )}
         </div>
 
-        {/* Right: Selected Hub Technical Info Card (Premium Design - No Yellow) */}
-        <div className="lg:col-span-5 space-y-4">
-          <div className="p-6 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-800 space-y-5 relative shadow-xl">
+        {/* Bottom: Selected Hub Technical Info Card (Premium Design - No Yellow) */}
+        <div className="w-full space-y-4">
+          <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-800 space-y-4 relative shadow-xl">
             
             {/* Header Area */}
             <div className="flex items-start justify-between border-b border-slate-800/80 pb-4">
@@ -167,91 +167,67 @@ export const OperationalMapShowcase = ({
                   <span className="w-1.5 h-1.5 rounded-full bg-flame-400 animate-pulse" />
                   {hub.status}
                 </span>
-                <h4 className="text-lg sm:text-xl lg:text-2xl font-black font-heading text-white pt-1">
+                <h4 className="text-lg sm:text-xl font-black font-heading text-white pt-1">
                   {hub.name}
                 </h4>
-                <span className="text-xs text-slate-400 font-medium block flex items-center gap-1.5">
+                <span className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
                   <Globe className="w-3.5 h-3.5 text-slate-500" />
                   {hub.state}
                 </span>
               </div>
 
-              <div className="w-11 h-11 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-flame-400 flex-shrink-0 shadow-inner">
+              <div className="w-10 h-10 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-flame-400 flex-shrink-0 shadow-inner hidden sm:flex">
                 <Building2 className="w-5 h-5" />
               </div>
             </div>
 
-            {/* Contact & Location List */}
-            <div className="space-y-4 text-xs pt-2">
-              <div className="flex items-start gap-3.5 text-slate-300">
-                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
-                  <MapPin className="w-4 h-4" />
+            {/* Contact & Location List - 2 Columns on sm */}
+            <div className="grid sm:grid-cols-2 gap-4 text-xs pt-2">
+              <div className="space-y-4">
+                <div className="flex items-start gap-3 text-slate-300">
+                  <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
+                    <MapPin className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="leading-relaxed font-sans">{hub.address}</span>
                 </div>
-                <span className="leading-relaxed font-sans pt-1">{hub.address}</span>
+
+                <div className="flex items-center gap-3 text-slate-300">
+                  <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-emerald-400 font-bold font-mono tracking-wide">
+                    RIF: {hub.rif || 'J-40031863-7'}
+                  </span>
+                </div>
               </div>
 
-              <div className="flex items-center gap-3.5 text-slate-300">
-                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
-                  <Phone className="w-4 h-4" />
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-slate-300">
+                  <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
+                    <Phone className="w-3.5 h-3.5" />
+                  </div>
+                  <a href={`tel:+584129486249`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
+                    {hub.phone}
+                  </a>
                 </div>
-                <a href={`tel:+584129486249`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
-                  {hub.phone}
-                </a>
-              </div>
 
-              <div className="flex items-center gap-3.5 text-slate-300">
-                <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
-                  <Mail className="w-4 h-4" />
+                <div className="flex items-center gap-3 text-slate-300">
+                  <div className="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 text-flame-400 flex-shrink-0">
+                    <Mail className="w-3.5 h-3.5" />
+                  </div>
+                  <a href={`mailto:${hub.email}`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
+                    {hub.email}
+                  </a>
                 </div>
-                <a href={`mailto:${hub.email}`} className="text-white font-semibold hover:text-flame-400 transition-colors font-sans tracking-wide">
-                  {hub.email}
-                </a>
-              </div>
-
-              <div className="flex items-center gap-3.5 text-slate-300">
-                <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex-shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <span className="text-emerald-400 font-bold font-mono text-[11px] tracking-wide">
-                  RIF: {hub.rif || 'J-40031863-7'}
-                </span>
               </div>
             </div>
 
             {/* Technical Focus */}
-            <div className="pt-4 border-t border-slate-800 mt-2">
-              <span className="text-[10px] uppercase tracking-widest text-slate-500 font-black block mb-2 font-heading">
-                Instalación Principal
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
+            <div className="pt-3 border-t border-slate-800">
+              <p className="text-[11px] text-slate-400 font-light leading-relaxed">
+                <strong className="text-slate-300 font-semibold font-heading mr-1">Instalación Principal:</strong>
                 {hub.focus}
               </p>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3">
-              <a
-                href={hub.googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-2.5 px-4 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 flex items-center justify-center gap-2 transition-colors font-heading group"
-              >
-                <Globe className="w-4 h-4 text-slate-400 group-hover:text-emerald-400 transition-colors" />
-                <span>Google Maps</span>
-                <ExternalLink className="w-3 h-3 text-slate-500" />
-              </a>
-
-              <button
-                type="button"
-                onClick={() => {
-                  const formElement = document.getElementById('formulario-cotizacion');
-                  if (formElement) formElement.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="py-2.5 px-4 rounded-xl bg-gradient-to-r from-flame-600 via-flame-500 to-orange-500 hover:from-flame-500 hover:to-orange-400 text-white font-black text-xs shadow-lg shadow-flame-500/20 hover:shadow-flame-500/40 flex items-center justify-center gap-2 transition-all font-heading group"
-              >
-                <span>Cotizar Proyecto</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
             </div>
 
           </div>

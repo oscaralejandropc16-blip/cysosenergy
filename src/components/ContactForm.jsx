@@ -219,149 +219,156 @@ export const ContactForm = () => {
 
         </div>
 
-        {/* MODERN UNIFIED TECHNICAL QUOTATION FORM */}
-        <div id="formulario-cotizacion" className="max-w-4xl mx-auto scroll-mt-28">
-          <div className="luxury-glass p-6 sm:p-10 rounded-3xl border border-slate-800/90 shadow-2xl relative">
-            
-            {/* Form Top Title */}
-            <div className="text-center max-w-2xl mx-auto space-y-2 mb-8 pb-6 border-b border-slate-800/80">
-              <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">
-                Solicite Propuesta Técnica & Cotización
-              </h3>
-              <p className="text-sm text-slate-400 font-light">
-                Nuestros ingenieros comerciales le contactarán en menos de 24 horas con una propuesta adaptada a su yacimiento.
-              </p>
-            </div>
-
-            {/* SUCCESS CONFIRMATION MODAL */}
-            {submitted ? (
-              <div className="py-12 px-6 rounded-2xl bg-slate-900 border border-emerald-500/40 text-center space-y-5">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <div className="space-y-2">
-                  <h4 className="text-xl font-black text-white font-heading">¡Requerimiento Recibido!</h4>
-                  <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed font-light">
-                    Su solicitud ha sido registrada bajo el ticket <strong className="text-flame-400 font-mono">#{createdId}</strong>.
-                  </p>
-                </div>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-colors font-heading"
-                >
-                  Enviar otra solicitud
-                </button>
+        {/* SIDE-BY-SIDE LAYOUT: FORM & MAP */}
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-10 items-stretch">
+          
+          {/* LEFT: MODERN UNIFIED TECHNICAL QUOTATION FORM */}
+          <div id="formulario-cotizacion" className="w-full scroll-mt-28">
+            <div className="luxury-glass p-6 sm:p-10 rounded-3xl border border-slate-800/90 shadow-2xl relative h-full">
+              
+              {/* Form Top Title */}
+              <div className="text-center sm:text-left space-y-2 mb-8 pb-6 border-b border-slate-800/80">
+                <h3 className="text-2xl sm:text-3xl font-black font-heading text-white">
+                  Cotización & Propuesta Técnica
+                </h3>
+                <p className="text-sm text-slate-400 font-light">
+                  Nuestros ingenieros comerciales le contactarán en menos de 24 horas con una propuesta adaptada a su yacimiento.
+                </p>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5 relative">
-                
-                <style>{`
-                  .modern-glass-input {
-                    background: rgba(15, 23, 42, 0.6);
-                    border: 1px solid rgba(255, 255, 255, 0.08);
-                    transition: all 0.3s ease;
-                  }
-                  .modern-glass-input:focus {
-                    background: rgba(15, 23, 42, 0.9);
-                    border-color: rgba(234, 88, 12, 0.5);
-                    box-shadow: 0 0 15px rgba(234, 88, 12, 0.15);
-                  }
-                `}</style>
 
-                {/* 2-Column Grid for Personal Data */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* SUCCESS CONFIRMATION MODAL */}
+              {submitted ? (
+                <div className="py-12 px-6 rounded-2xl bg-slate-900 border border-emerald-500/40 text-center space-y-5">
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-xl font-black text-white font-heading">¡Requerimiento Recibido!</h4>
+                    <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed font-light">
+                      Su solicitud ha sido registrada bajo el ticket <strong className="text-flame-400 font-mono">#{createdId}</strong>.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-colors font-heading"
+                  >
+                    Enviar otra solicitud
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5 relative">
                   
-                  {/* Name */}
+                  <style>{`
+                    .modern-glass-input {
+                      background: rgba(15, 23, 42, 0.6);
+                      border: 1px solid rgba(255, 255, 255, 0.08);
+                      transition: all 0.3s ease;
+                    }
+                    .modern-glass-input:focus {
+                      background: rgba(15, 23, 42, 0.9);
+                      border-color: rgba(234, 88, 12, 0.5);
+                      box-shadow: 0 0 15px rgba(234, 88, 12, 0.15);
+                    }
+                  `}</style>
+
+                  {/* 2-Column Grid for Personal Data */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    
+                    {/* Name */}
+                    <div className="relative group">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <User className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                      </div>
+                      <input type="text" name="name" required placeholder="Nombre y Cargo *" value={formData.name} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                    </div>
+
+                    {/* Company */}
+                    <div className="relative group">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Building2 className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                      </div>
+                      <input type="text" name="company" required placeholder="Empresa / Consorcio *" value={formData.company} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                    </div>
+
+                    {/* Email */}
+                    <div className="relative group">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Mail className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                      </div>
+                      <input type="email" name="email" required placeholder="Correo Corporativo *" value={formData.email} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                    </div>
+
+                    {/* Phone */}
+                    <div className="relative group">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Phone className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                      </div>
+                      <input type="tel" name="phone" required placeholder="Teléfono / WhatsApp *" value={formData.phone} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                    </div>
+                  </div>
+
+                  {/* Service Dropdown */}
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <User className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                      <Activity className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                     </div>
-                    <input type="text" name="name" required placeholder="Nombre y Cargo *" value={formData.name} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                    <select name="service" value={formData.service} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none appearance-none cursor-pointer">
+                      <option value="Química de Producción EOR" className="bg-slate-900">Especialidad: Química de Producción EOR</option>
+                      <option value="Well Testing & Aforo de Pozos" className="bg-slate-900">Especialidad: Well Testing & Aforo</option>
+                      <option value="Intervención de Pozos & Flush By" className="bg-slate-900">Especialidad: Intervención de Pozos (Flush By / Pulling)</option>
+                      <option value="Logística Pesada & Grúas 110T" className="bg-slate-900">Especialidad: Logística Pesada & Izamiento</option>
+                    </select>
                   </div>
 
-                  {/* Company */}
+                  {/* Message Details */}
                   <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Building2 className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                    <div className="absolute top-4 left-4 pointer-events-none">
+                      <FileText className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
                     </div>
-                    <input type="text" name="company" required placeholder="Empresa / Consorcio *" value={formData.company} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
+                    <textarea name="details" rows={4} placeholder="Detalles del requerimiento (tipo de crudo, caudal, condiciones del pozo)..." value={formData.details} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-4 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 leading-relaxed outline-none resize-none"></textarea>
                   </div>
 
-                  {/* Email */}
-                  <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Mail className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                  {/* Submit Action */}
+                  <button type="submit" disabled={loading} className="group relative w-full py-4 rounded-xl text-sm font-black uppercase tracking-widest text-white bg-gradient-to-r from-flame-600 to-orange-500 hover:from-flame-500 hover:to-orange-400 transition-all shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2 overflow-hidden">
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] skew-x-[-30deg] group-hover:animate-[shimmer-sweep_2s_infinite]" />
+                    {loading ? (
+                      <span className="flex items-center gap-2 relative z-10">
+                        <span className="w-4 h-4 border-2 border-white/80 border-t-transparent rounded-full animate-spin" />
+                        <span>Procesando...</span>
+                      </span>
+                    ) : (
+                      <>
+                        <span className="relative z-10">Enviar Requerimiento</span>
+                        <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                  
+                  {/* Micro Footer Trust Badges */}
+                  <div className="flex items-center justify-center gap-6 mt-4 opacity-70">
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                      <ShieldCheck className="w-3.5 h-3.5" /> Confidencialidad
                     </div>
-                    <input type="email" name="email" required placeholder="Correo Corporativo *" value={formData.email} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
-                  </div>
-
-                  {/* Phone */}
-                  <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Phone className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                      <Clock className="w-3.5 h-3.5" /> Respuesta 24H
                     </div>
-                    <input type="tel" name="phone" required placeholder="Teléfono / WhatsApp *" value={formData.phone} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none" />
                   </div>
-                </div>
 
-                {/* Service Dropdown */}
-                <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Activity className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                  </div>
-                  <select name="service" value={formData.service} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-3.5 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 outline-none appearance-none cursor-pointer">
-                    <option value="Química de Producción EOR" className="bg-slate-900">Especialidad: Química de Producción EOR</option>
-                    <option value="Well Testing & Aforo de Pozos" className="bg-slate-900">Especialidad: Well Testing & Aforo</option>
-                    <option value="Intervención de Pozos & Flush By" className="bg-slate-900">Especialidad: Intervención de Pozos (Flush By / Pulling)</option>
-                    <option value="Logística Pesada & Grúas 110T" className="bg-slate-900">Especialidad: Logística Pesada & Izamiento</option>
-                  </select>
-                </div>
-
-                {/* Message Details */}
-                <div className="relative group">
-                  <div className="absolute top-4 left-4 pointer-events-none">
-                    <FileText className="w-4 h-4 text-slate-500 group-focus-within:text-flame-400 transition-colors" />
-                  </div>
-                  <textarea name="details" rows={4} placeholder="Detalles del requerimiento (tipo de crudo, caudal, condiciones del pozo)..." value={formData.details} onChange={handleChange} className="w-full modern-glass-input rounded-xl py-4 pl-11 pr-4 text-sm font-medium text-white placeholder-slate-500 leading-relaxed outline-none resize-none"></textarea>
-                </div>
-
-                {/* Submit Action */}
-                <button type="submit" disabled={loading} className="group relative w-full py-4 rounded-xl text-sm font-black uppercase tracking-widest text-white bg-gradient-to-r from-flame-600 to-orange-500 hover:from-flame-500 hover:to-orange-400 transition-all shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] hover:-translate-y-0.5 disabled:opacity-50 flex items-center justify-center gap-2 overflow-hidden">
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] skew-x-[-30deg] group-hover:animate-[shimmer-sweep_2s_infinite]" />
-                  {loading ? (
-                    <span className="flex items-center gap-2 relative z-10">
-                      <span className="w-4 h-4 border-2 border-white/80 border-t-transparent rounded-full animate-spin" />
-                      <span>Procesando...</span>
-                    </span>
-                  ) : (
-                    <>
-                      <span className="relative z-10">Enviar Requerimiento</span>
-                      <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </button>
-                
-                {/* Micro Footer Trust Badges */}
-                <div className="flex items-center justify-center gap-6 mt-4 opacity-70">
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    <ShieldCheck className="w-3.5 h-3.5" /> Confidencialidad
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    <Clock className="w-3.5 h-3.5" /> Respuesta 24H
-                  </div>
-                </div>
-
-              </form>
-            )}
+                </form>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* INTERACTIVE OPERATIONAL RADAR & GOOGLE MAPS SHOWCASE */}
-        <OperationalMapShowcase
-          mapViewMode={mapViewMode}
-          setMapViewMode={setMapViewMode}
-          currentHub={currentHub}
-        />
+          {/* RIGHT: INTERACTIVE OPERATIONAL RADAR & GOOGLE MAPS SHOWCASE */}
+          <div className="w-full h-full">
+            <OperationalMapShowcase
+              mapViewMode={mapViewMode}
+              setMapViewMode={setMapViewMode}
+              currentHub={currentHub}
+            />
+          </div>
+
+        </div>
 
       </div>
     </section>
