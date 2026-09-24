@@ -85,18 +85,43 @@ export const ContactForm = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12 sm:space-y-16">
         
-        {/* Section Header - Modern Geometric Editorial (No Pills) */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <p className="text-xs font-bold uppercase text-slate-300 tracking-[0.25em] font-heading">
-            Centro de Operaciones & Requerimientos Técnicos
-          </p>
+        {/* Section Header - High Tech Command Center Style */}
+        <div className="text-center max-w-4xl mx-auto space-y-4 relative">
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading text-white tracking-tight">
-            Canales de Contacto & <span className="text-flame-500">Cotizaciones</span>
+          {/* Animated Live Badge */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-900/80 border border-slate-700/80 backdrop-blur-sm relative overflow-hidden group shadow-lg mb-2">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-flame-500/20 to-transparent -translate-x-[150%] skew-x-[-30deg] animate-[shimmer-sweep_3s_infinite]" />
+            <span className="relative flex h-2 w-2 z-10">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-flame-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-flame-500"></span>
+            </span>
+            <span className="text-[10px] sm:text-xs font-bold uppercase text-slate-300 tracking-[0.25em] font-heading relative z-10">
+              Centro de Operaciones & Requerimientos
+            </span>
+          </div>
+          
+          {/* Main Title with Glow and Reveal */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight leading-tight relative z-10">
+            Canales de Contacto & <br className="hidden sm:block" />
+            <span className="relative inline-block mt-2 sm:mt-1">
+              {/* Outer Glow */}
+              <span className="absolute -inset-2 bg-flame-500/30 blur-2xl rounded-full opacity-50 animate-pulse"></span>
+              {/* Inner Gradient Text */}
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-flame-400 to-orange-500 drop-shadow-sm">
+                Cotizaciones
+              </span>
+            </span>
           </h2>
           
-          <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed font-sans">
-            Respuesta inmediata 24/7 para empresas operadoras, consorcios mixtos y proyectos en cuencas venezolanas.
+          {/* Animated Tech Divider */}
+          <div className="flex items-center justify-center gap-4 py-4 opacity-80">
+            <div className="h-[1px] w-16 md:w-24 bg-gradient-to-r from-transparent to-slate-600"></div>
+            <div className="w-1.5 h-1.5 rotate-45 bg-flame-500 shadow-[0_0_8px_rgba(234,88,12,0.8)] animate-pulse"></div>
+            <div className="h-[1px] w-16 md:w-24 bg-gradient-to-l from-transparent to-slate-600"></div>
+          </div>
+
+          <p className="text-slate-400 text-sm md:text-base leading-relaxed font-sans max-w-2xl mx-auto font-light">
+            Respuesta inmediata <strong className="text-white font-semibold tracking-wide">24/7</strong> para empresas operadoras, consorcios mixtos y proyectos en cuencas venezolanas.
           </p>
         </div>
 
