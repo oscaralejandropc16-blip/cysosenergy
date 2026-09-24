@@ -45,7 +45,7 @@ export const GlobalMarketTicker = () => {
 
         <div className="flex items-center gap-2 flex-shrink-0">
           <span className="font-bold text-slate-400">USD BCV</span>
-          <span className="font-mono font-black text-white">Bs. 36,80</span>
+          <span className="font-mono font-black text-white">Bs. 854,46</span>
           <span className="text-[10px] text-emerald-400 bg-emerald-400/10 px-1 rounded">+0.1%</span>
         </div>
 
@@ -53,7 +53,7 @@ export const GlobalMarketTicker = () => {
 
         <div className="flex items-center gap-2 flex-shrink-0">
           <span className="font-bold text-slate-400">EUR BCV</span>
-          <span className="font-mono font-black text-white">Bs. 40,25</span>
+          <span className="font-mono font-black text-white">Bs. 974,06</span>
           <span className="text-[10px] text-emerald-400 bg-emerald-400/10 px-1 rounded">+0.2%</span>
         </div>
 
