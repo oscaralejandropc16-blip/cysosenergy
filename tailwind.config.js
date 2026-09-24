@@ -51,6 +51,14 @@ export default {
         'cyan-glow': '0 0 35px -5px rgba(14, 165, 233, 0.35)',
         'sapphire-glow': '0 0 45px -5px rgba(37, 99, 235, 0.25)',
         'flame-glow': '0 0 35px -5px rgba(249, 115, 22, 0.35)',
+      },
+      keyframes: {
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' },
+        }
+      },
+      animation: {
+        shimmer: 'shimmer 1.5s infinite',
       }
     },
   },
