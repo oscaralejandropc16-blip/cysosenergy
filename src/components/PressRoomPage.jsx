@@ -100,7 +100,7 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
           <div className="flex items-center gap-3">
             <span className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-heading font-bold tracking-wider">
               <span className="w-2 h-2 rounded-sm bg-red-500 animate-pulse" />
-              CNN STYLE • EN DIRECTO
+              NOTICIAS EN DIRECTO
             </span>
 
             {onOpenDossier && (
