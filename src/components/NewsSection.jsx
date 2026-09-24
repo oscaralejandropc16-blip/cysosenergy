@@ -5,6 +5,32 @@ import { Calendar, Clock, ArrowRight, TrendingUp, Radio, Newspaper, Sparkles, Ar
 export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
   const { news = [] } = useCms();
   const [activeCategory, setActiveCategory] = useState('all');
+  
+  // Real-time BCV rates
+  const [usdBcv, setUsdBcv] = useState('854,46');
+  const [eurBcv, setEurBcv] = useState('974,06');
+  
+  useEffect(() => {
+    const fetchRates = async () => {
+      try {
+        const [usdRes, eurRes] = await Promise.all([
+          fetch('https://ve.dolarapi.com/v1/dolares/oficial'),
+          fetch('https://ve.dolarapi.com/v1/euros/oficial')
+        ]);
+        if (usdRes.ok) {
+          const usdData = await usdRes.json();
+          setUsdBcv(usdData.promedio.toFixed(2).replace('.', ','));
+        }
+        if (eurRes.ok) {
+          const eurData = await eurRes.json();
+          setEurBcv(eurData.promedio.toFixed(2).replace('.', ','));
+        }
+      } catch (error) {
+        console.error('Error fetching BCV rates:', error);
+      }
+    };
+    fetchRates();
+  }, []);
 
   if (!news || news.length === 0) return null;
 
@@ -43,8 +69,8 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
     { label: 'BRENT', price: '$84.45 USD', change: '+1.8%', isUp: true },
     { label: 'WTI', price: '$80.10 USD', change: '+1.3%', isUp: true },
     { label: 'MEREY 16', price: '$68.90 USD', change: '+2.4%', isUp: true },
-    { label: 'USD BCV', price: 'Bs. 854,46', change: '+0.1%', isUp: true },
-    { label: 'EUR BCV', price: 'Bs. 974,06', change: '+0.2%', isUp: true },
+    { label: 'USD BCV', price: `Bs. ${usdBcv}`, change: 'OFICIAL', isUp: true },
+    { label: 'EUR BCV', price: `Bs. ${eurBcv}`, change: 'OFICIAL', isUp: true },
     { label: 'CESTA OPEP', price: '$86.20 USD', change: '+0.7%', isUp: true },
     { label: 'PRODUCCIÓN VE', price: '940.000 BPD', change: '+4.2%', isUp: true },
     { label: 'META 2026', price: '1.300.000 BPD', change: 'En curso', isUp: true },
