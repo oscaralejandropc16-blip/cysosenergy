@@ -36,8 +36,8 @@ export const OperationalMapShowcase = ({
             <h3 className="text-base sm:text-lg font-black font-heading text-white">
               Ubicación Georreferenciada • Sede Corporativa
             </h3>
-            <span className="text-xs text-slate-400 font-light">
-              Av. Alirio Ugarte Pelayo, Complejo CCP, Centro Médico Norte, piso 1. Oficina 01-18 Maturín, Edo. Monagas
+            <span className="text-xs text-slate-400 font-light block mt-0.5">
+              Centro de Mando & Operaciones
             </span>
           </div>
         </div>
