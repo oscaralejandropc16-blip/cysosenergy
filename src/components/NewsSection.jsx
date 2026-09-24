@@ -447,8 +447,19 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
         </div>
 
         {/* BOTTOM NEWSROOM DISPATCH STRIP & CTA */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 text-center md:text-left">
+        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-[#0a1128] border border-slate-800 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden group">
+          
+          {/* Newspaper Print Pattern & Watermark */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+          <div className="absolute -right-10 -bottom-24 opacity-[0.02] pointer-events-none transform -rotate-6 select-none font-serif text-[180px] font-black leading-none text-white whitespace-nowrap group-hover:scale-105 transition-transform duration-1000 tracking-tighter">
+            THE PRESS
+          </div>
+          <div className="absolute -left-20 -top-20 opacity-[0.02] pointer-events-none transform -rotate-12 select-none font-serif text-[140px] font-black leading-none text-white whitespace-nowrap group-hover:-translate-x-4 transition-transform duration-1000 tracking-tighter">
+            OIL & GAS
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/80 to-transparent pointer-events-none" />
+
+          <div className="flex items-center gap-4 text-center md:text-left relative z-10">
             <div className="w-12 h-12 rounded-xl bg-flame-500/10 border border-flame-500/20 flex items-center justify-center text-flame-400 flex-shrink-0 hidden sm:flex">
               <Newspaper className="w-6 h-6" />
             </div>
@@ -456,18 +467,33 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
               <h4 className="text-base sm:text-lg font-bold text-white font-heading">
                 Centro de Documentación & Sala de Prensa Completa
               </h4>
-              <p className="text-slate-400 text-xs sm:text-sm font-sans mt-0.5">
+              <p className="text-slate-400 text-xs sm:text-sm font-sans mt-0.5 max-w-xl">
                 Consulte nuestro catálogo de reportes petroleros, notas de campo y análisis de mercado con buscador y filtros por categoría.
               </p>
             </div>
           </div>
 
+          <style>
+            {`
+              @keyframes shimmer-sweep {
+                0% { transform: translateX(-150%) skewX(-15deg); }
+                100% { transform: translateX(150%) skewX(-15deg); }
+              }
+              .btn-shimmer-effect:hover .shimmer-layer {
+                animation: shimmer-sweep 2s infinite;
+              }
+            `}
+          </style>
+
           <button
             onClick={handleOpenPressRoom}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-flame-600 via-flame-500 to-orange-500 hover:from-flame-500 hover:to-orange-400 text-white font-heading font-bold text-sm sm:text-base tracking-wide shadow-xl shadow-flame-500/25 hover:shadow-flame-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer group flex-shrink-0 w-full sm:w-auto"
+            className="btn-shimmer-effect relative overflow-hidden inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-flame-600 via-flame-500 to-orange-500 hover:from-flame-500 hover:to-orange-400 text-white font-heading font-bold text-sm sm:text-base tracking-wide shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] hover:-translate-y-1 active:translate-y-0 transition-all cursor-pointer group flex-shrink-0 w-full sm:w-auto z-10"
           >
-            <span>Saber más • Explorar Sala de Prensa Completa</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
+            {/* Shimmer Sweep Animation */}
+            <div className="shimmer-layer absolute top-0 bottom-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full pointer-events-none" />
+            
+            <span className="relative z-10">Saber más • Explorar Sala de Prensa Completa</span>
+            <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200" />
           </button>
         </div>
 
