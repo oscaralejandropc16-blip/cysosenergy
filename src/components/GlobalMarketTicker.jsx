@@ -6,13 +6,18 @@ export const GlobalMarketTicker = () => {
   const [brent, setBrent] = useState(84.45);
   const [wti, setWti] = useState(80.10);
   
+  // API Ninja keys (Requiere registro gratuito por seguridad financiera)
+  // Reemplazar 'TU_API_KEY_AQUI' con la clave real de api-ninjas.com
+  const API_NINJAS_KEY = 'TU_API_KEY_AQUI'; 
+  
   // Real-time BCV rates
   const [usdBcv, setUsdBcv] = useState('...');
   const [eurBcv, setEurBcv] = useState('...');
   
-  // Fetch real BCV rates on mount
+  // Fetch real BCV and Oil rates on mount
   useEffect(() => {
     const fetchRates = async () => {
+      // 1. Fetch BCV (Abierto, sin CORS)
       try {
         const [usdRes, eurRes] = await Promise.all([
           fetch('https://ve.dolarapi.com/v1/dolares/oficial'),
@@ -29,6 +34,31 @@ export const GlobalMarketTicker = () => {
       } catch (error) {
         console.error('Error fetching BCV rates:', error);
       }
+
+      // 2. Fetch Brent & WTI (Requiere Auth Key)
+      if (API_NINJAS_KEY !== 'TU_API_KEY_AQUI') {
+        try {
+          const [brentRes, wtiRes] = await Promise.all([
+            fetch('https://api.api-ninjas.com/v1/commodityprice?name=brent_crude_oil', {
+              headers: { 'X-Api-Key': API_NINJAS_KEY }
+            }),
+            fetch('https://api.api-ninjas.com/v1/commodityprice?name=wti_crude_oil', {
+              headers: { 'X-Api-Key': API_NINJAS_KEY }
+            })
+          ]);
+          
+          if (brentRes.ok) {
+            const brentData = await brentRes.json();
+            setBrent(brentData.price);
+          }
+          if (wtiRes.ok) {
+            const wtiData = await wtiRes.json();
+            setWti(wtiData.price);
+          }
+        } catch (error) {
+          console.error('Error fetching Oil rates:', error);
+        }
+      }
     };
     fetchRates();
     
@@ -37,12 +67,14 @@ export const GlobalMarketTicker = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Simulate fast-moving oil market
+  // Simulate fast-moving oil market ONLY IF no real API key is provided
   useEffect(() => {
     const interval = setInterval(() => {
       setBlink(true);
-      setBrent(prev => Number((prev + (Math.random() - 0.5) * 0.15).toFixed(2)));
-      setWti(prev => Number((prev + (Math.random() - 0.5) * 0.15).toFixed(2)));
+      if (API_NINJAS_KEY === 'TU_API_KEY_AQUI') {
+        setBrent(prev => Number((prev + (Math.random() - 0.5) * 0.15).toFixed(2)));
+        setWti(prev => Number((prev + (Math.random() - 0.5) * 0.15).toFixed(2)));
+      }
       setTimeout(() => setBlink(false), 800);
     }, 5000);
     return () => clearInterval(interval);

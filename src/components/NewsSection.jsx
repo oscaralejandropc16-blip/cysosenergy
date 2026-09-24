@@ -10,6 +10,13 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
   const [usdBcv, setUsdBcv] = useState('854,46');
   const [eurBcv, setEurBcv] = useState('974,06');
   
+  // Oil rates
+  const [brent, setBrent] = useState('84.45');
+  const [wti, setWti] = useState('80.10');
+  
+  // Clave API para mercados petroleros (Requiere cuenta gratuita en api-ninjas.com)
+  const API_NINJAS_KEY = 'TU_API_KEY_AQUI';
+
   useEffect(() => {
     const fetchRates = async () => {
       try {
@@ -27,6 +34,26 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
         }
       } catch (error) {
         console.error('Error fetching BCV rates:', error);
+      }
+
+      // Fetch Crude Oil si la API key está configurada
+      if (API_NINJAS_KEY !== 'TU_API_KEY_AQUI') {
+        try {
+          const [brentRes, wtiRes] = await Promise.all([
+            fetch('https://api.api-ninjas.com/v1/commodityprice?name=brent_crude_oil', { headers: { 'X-Api-Key': API_NINJAS_KEY } }),
+            fetch('https://api.api-ninjas.com/v1/commodityprice?name=wti_crude_oil', { headers: { 'X-Api-Key': API_NINJAS_KEY } })
+          ]);
+          if (brentRes.ok) {
+            const data = await brentRes.json();
+            setBrent(data.price.toFixed(2));
+          }
+          if (wtiRes.ok) {
+            const data = await wtiRes.json();
+            setWti(data.price.toFixed(2));
+          }
+        } catch (error) {
+          console.error('Error fetching Oil rates:', error);
+        }
       }
     };
     fetchRates();
@@ -66,8 +93,8 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
 
   // Live petroleum benchmarks and official exchange rates for the animated ticker tape
   const marketTickers = [
-    { label: 'BRENT', price: '$84.45 USD', change: '+1.8%', isUp: true },
-    { label: 'WTI', price: '$80.10 USD', change: '+1.3%', isUp: true },
+    { label: 'BRENT', price: `$${brent} USD`, change: 'EN VIVO', isUp: true },
+    { label: 'WTI', price: `$${wti} USD`, change: 'EN VIVO', isUp: true },
     { label: 'MEREY 16', price: '$68.90 USD', change: '+2.4%', isUp: true },
     { label: 'USD BCV', price: `Bs. ${usdBcv}`, change: 'OFICIAL', isUp: true },
     { label: 'EUR BCV', price: `Bs. ${eurBcv}`, change: 'OFICIAL', isUp: true },
