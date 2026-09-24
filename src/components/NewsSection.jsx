@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
 import { Calendar, Clock, ArrowRight, TrendingUp, Radio, Newspaper, Sparkles, ArrowUpRight } from 'lucide-react';
 
