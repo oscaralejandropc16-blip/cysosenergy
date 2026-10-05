@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
 import { useHalloween } from '../context/HalloweenContext';
-import { HalloweenToggle } from './HalloweenToggle';
 
 export const GlobalMarketTicker = () => {
   const { isHalloween } = useHalloween();
@@ -190,16 +189,14 @@ export const GlobalMarketTicker = () => {
         `}
       </style>
       
-      <div className="ticker-track flex-1">
-        <TickerItems />
-        <TickerItems />
-        <TickerItems />
-        <TickerItems />
-      </div>
-
-      {/* Persistent Halloween Toggle Button in Ticker Bar */}
-      <div className="relative z-20 px-3 pl-4 flex-shrink-0 hidden md:flex items-center border-l border-white/10 bg-slate-950/80 backdrop-blur-md">
-        <HalloweenToggle compact={true} />
+      {/* Constrained Ticker Window */}
+      <div className="overflow-hidden w-full relative">
+        <div className="ticker-track">
+          <TickerItems />
+          <TickerItems />
+          <TickerItems />
+          <TickerItems />
+        </div>
       </div>
     </div>
   );

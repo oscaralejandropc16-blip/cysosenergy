@@ -4,7 +4,6 @@ import { Logo } from './Logo';
 import { PhoneCall, ChevronRight, Send, Instagram, Linkedin } from 'lucide-react';
 import { useHalloween } from '../context/HalloweenContext';
 import { CardSpiderWeb } from './CardSpiderWeb';
-import { HalloweenToggle } from './HalloweenToggle';
 
 const WhatsAppIcon = ({ size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -13,6 +12,7 @@ const WhatsAppIcon = ({ size = 24 }) => (
 );
 
 export const Navbar = () => {
+  const { isHalloween } = useHalloween();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -62,7 +62,8 @@ export const Navbar = () => {
       <div
         className="cysos-nav-bar"
         style={{
-          maxWidth: '1200px',
+          maxWidth: '1380px',
+          width: '100%',
           margin: '0 auto',
           background: 'rgba(14, 36, 66, 0.85)',
           backdropFilter: 'blur(24px)',
@@ -70,11 +71,11 @@ export const Navbar = () => {
           border: '1px solid rgba(56, 189, 248, 0.22)',
           borderRadius: '14px',
           boxShadow: '0 20px 45px -10px rgba(10, 25, 47, 0.75), 0 0 25px rgba(14, 165, 233, 0.1)',
-          padding: '8px 12px 8px 24px',
+          padding: '8px 16px 8px 24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '16px',
+          gap: '12px',
           pointerEvents: 'auto',
           position: 'relative',
           zIndex: 50,
@@ -98,7 +99,9 @@ export const Navbar = () => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '6px',
+            flexShrink: 1,
+            minWidth: 0,
           }}
         >
           {navLinks.map((link) => (
@@ -112,9 +115,9 @@ export const Navbar = () => {
           ))}
         </nav>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
           {/* Redes Sociales - Desktop */}
-          <div className="cysos-social-desktop" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '4px' }}>
+          <div className="cysos-social-desktop" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '2px' }}>
             <a href="https://instagram.com/cysosenergy" target="_blank" rel="noreferrer" className="cysos-social-icon" aria-label="Instagram">
               <Instagram size={18} />
             </a>
@@ -127,7 +130,7 @@ export const Navbar = () => {
           </div>
 
           {/* Teléfono - solo desktop */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="cysos-tel-wrapper hidden lg:flex items-center gap-3">
             <a
               href="tel:+584129486249"
               className="cysos-tel"
@@ -141,6 +144,7 @@ export const Navbar = () => {
                 fontWeight: 600,
                 fontFamily: "'Inter', sans-serif",
                 transition: 'all 0.3s ease',
+                whiteSpace: 'nowrap',
               }}
             >
               <div className="cysos-pulse-dot"></div>
@@ -148,18 +152,20 @@ export const Navbar = () => {
             </a>
           </div>
 
-          {/* Halloween Theme Toggle (Desktop) */}
-          <div className="hidden xl:flex items-center">
-            <HalloweenToggle compact={true} />
-          </div>
-
-          {/* CTA Button */}
+          {/* CTA Button Principal */}
           <a
             href="#contacto"
-            className="cysos-cta btn-modern"
+            className={`cysos-cta btn-modern ${isHalloween ? 'halloween-cta-glow' : ''}`}
+            style={{
+              flexShrink: 0,
+              whiteSpace: 'nowrap',
+            }}
           >
             <Send size={16} className="btn-icon" />
             <span>Cotizar Proyecto</span>
+            {isHalloween && (
+              <span className="text-sm ml-0.5 inline-block animate-pulse" title="Halloween 2026">🎃</span>
+            )}
           </a>
 
           {/* Hamburguesa móvil */}
@@ -229,11 +235,6 @@ export const Navbar = () => {
         </div>
 
         <div className="mobile-menu-footer" style={{ transitionDelay: '0.3s' }}>
-          {/* Halloween Toggle (Mobile) */}
-          <div className="flex justify-center mb-4">
-            <HalloweenToggle />
-          </div>
-
           {/* Redes Sociales Móvil */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '16px' }}>
             <a href="https://instagram.com/cysosenergy" target="_blank" rel="noreferrer" className="mobile-social-icon">
@@ -483,21 +484,31 @@ export const Navbar = () => {
           box-shadow: 0 10px 20px -10px rgba(249, 115, 22, 0.5);
         }
 
+        .halloween-cta-glow {
+          box-shadow: 0 0 20px rgba(249, 115, 22, 0.7), 0 0 10px rgba(168, 85, 247, 0.5) !important;
+          border: 1px solid rgba(251, 146, 60, 0.5) !important;
+        }
+
         @media (min-width: 1024px) {
           .cysos-nav-desktop { display: flex !important; }
           .cysos-hamburger   { display: none !important; }
-          .cysos-cta         { display: flex !important; }
-          .cysos-tel         { display: flex !important; }
+          .cysos-cta         { display: flex !important; flex-shrink: 0 !important; }
+          .cysos-tel-wrapper { display: flex !important; }
         }
-        @media (max-width: 1279px) and (min-width: 1024px) {
-          .cysos-tel { display: none !important; }
+        @media (max-width: 1366px) and (min-width: 1024px) {
+          .cysos-social-desktop { display: none !important; }
+          .cysos-link { padding: 6px 10px !important; font-size: 13.5px !important; }
+        }
+        @media (max-width: 1180px) and (min-width: 1024px) {
+          .cysos-tel-wrapper { display: none !important; }
+          .cysos-link { padding: 5px 8px !important; font-size: 12.5px !important; }
         }
         @media (max-width: 1023px) {
           .cysos-nav-desktop { display: none !important; }
           .cysos-social-desktop { display: none !important; }
+          .cysos-tel-wrapper { display: none !important; }
           .cysos-hamburger   { display: flex !important; }
           .cysos-cta         { display: none !important; }
-          .cysos-tel         { display: none !important; }
         }
       `}</style>
     </div>

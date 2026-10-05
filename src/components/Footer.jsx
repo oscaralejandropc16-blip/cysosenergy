@@ -170,12 +170,12 @@ export const Footer = () => {
         )}
 
         {/* Minimal Bottom Bar */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
-          <p className="text-[10px] text-slate-500 font-medium tracking-wide flex items-center gap-2">
-            © {currentYear} <span className="text-slate-300 font-bold uppercase hover:text-flame-400 transition-colors cursor-default">CYSOS ENERGY, C.A.</span>
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10 border-t border-slate-800/60 mt-4">
+          <p className="text-[11px] text-slate-500 font-medium tracking-wide flex items-center gap-2">
+            © {currentYear} <span className="text-slate-300 font-bold uppercase hover:text-flame-400 transition-colors cursor-default">CYSOS ENERGY, C.A.</span> • RIF: J-40816942-5
           </p>
           <div className="flex items-center gap-3">
-            <HalloweenToggle compact={true} />
+            <HalloweenToggle />
           </div>
         </div>
 
