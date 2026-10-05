@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Logo } from './Logo';
 import { PhoneCall, ChevronRight, Send, Instagram, Linkedin } from 'lucide-react';
+import { useHalloween } from '../context/HalloweenContext';
+import { CardSpiderWeb } from './CardSpiderWeb';
+import { HalloweenToggle } from './HalloweenToggle';
 
 const WhatsAppIcon = ({ size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -80,6 +83,7 @@ export const Navbar = () => {
           opacity: scrolled ? 0.96 : 1,
         }}
       >
+        <CardSpiderWeb position="top-right" size="w-14 h-14" opacity="opacity-40" />
         {/* Logo */}
         <a
           href="#inicio"
@@ -142,6 +146,11 @@ export const Navbar = () => {
               <div className="cysos-pulse-dot"></div>
               <span>0412-9486249</span>
             </a>
+          </div>
+
+          {/* Halloween Theme Toggle (Desktop) */}
+          <div className="hidden xl:flex items-center">
+            <HalloweenToggle compact={true} />
           </div>
 
           {/* CTA Button */}
@@ -220,6 +229,11 @@ export const Navbar = () => {
         </div>
 
         <div className="mobile-menu-footer" style={{ transitionDelay: '0.3s' }}>
+          {/* Halloween Toggle (Mobile) */}
+          <div className="flex justify-center mb-4">
+            <HalloweenToggle />
+          </div>
+
           {/* Redes Sociales Móvil */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '16px' }}>
             <a href="https://instagram.com/cysosenergy" target="_blank" rel="noreferrer" className="mobile-social-icon">

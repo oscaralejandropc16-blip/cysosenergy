@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useCms } from '../context/CmsContext';
+import { useHalloween } from '../context/HalloweenContext';
+import { CardSpiderWeb } from './CardSpiderWeb';
 import { Activity, FlaskConical, Truck, Globe, Flame, ShieldCheck, ArrowRight, Settings, ChevronDown, FileText } from 'lucide-react';
 
 // Robust Animated Counter Component triggering smooth counting up from 0
@@ -60,6 +62,7 @@ const AnimatedCounter = ({ targetValue, decimals = 0, duration = 2000 }) => {
 
 export const Hero = ({ onOpenDossier }) => {
   const { kpis, heroContent } = useCms();
+  const { isHalloween } = useHalloween();
   const currentHero = heroContent || {
     videoUrl: '/videos/IMG_7557.mp4',
     posterUrl: '/images/IMG_7549.jpg',
@@ -117,6 +120,17 @@ export const Hero = ({ onOpenDossier }) => {
           
           {/* Gentle localized text shadow cushion behind headline for crystal-clear readability without dimming the video */}
           <div className="absolute -inset-4 sm:-inset-6 bg-black/25 rounded-3xl blur-xl pointer-events-none -z-10" />
+
+          {/* Halloween Season Festive Banner */}
+          {isHalloween && (
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-600/40 via-purple-700/40 to-orange-600/40 border border-orange-500/60 shadow-[0_0_25px_rgba(255,107,0,0.5)] backdrop-blur-md mb-2 animate-pulse">
+              <span className="text-base animate-bounce">🎃</span>
+              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-orange-200 font-heading">
+                Edición Especial Halloween 2026 • Operaciones Sin Paradas De Terror
+              </span>
+              <span className="text-base">🦇</span>
+            </div>
+          )}
 
           {/* Main Headline - High Vitality & Maximum Contrast */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] drop-shadow-[0_2px_6px_rgba(0,0,0,1)] px-2">
@@ -194,6 +208,7 @@ export const Hero = ({ onOpenDossier }) => {
               key={kpi.id}
               className="relative overflow-hidden p-4 sm:p-5 rounded-2xl border border-white/5 hover:border-flame-500/30 bg-navy-950/40 backdrop-blur-2xl transition-all duration-500 group shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_30px_rgba(249,115,22,0.15)] hover:-translate-y-1"
             >
+              <CardSpiderWeb position="top-right" size="w-10 h-10" opacity="opacity-35" />
               {/* Subtle top glow */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 group-hover:via-flame-500/50 to-transparent transition-colors duration-500" />
               

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
+import { useHalloween } from '../context/HalloweenContext';
+import { CardSpiderWeb } from './CardSpiderWeb';
+import { HalloweenToggle } from './HalloweenToggle';
 import { Logo } from './Logo';
 import { 
   Calendar, Tag, Globe, ArrowLeft, Share2, ExternalLink, 
@@ -8,6 +11,7 @@ import {
 
 export const ArticleDetailPage = ({ articleId, onReturnToPressRoom, onReturnToHome, onOpenArticle, onOpenDossier }) => {
   const { news = [] } = useCms();
+  const { isHalloween } = useHalloween();
   const [copied, setCopied] = useState(false);
 
   // Scroll to top whenever article changes
@@ -78,6 +82,8 @@ export const ArticleDetailPage = ({ articleId, onReturnToPressRoom, onReturnToHo
           </div>
 
           <div className="flex items-center gap-3">
+            <HalloweenToggle compact={true} />
+
             <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-heading font-bold">
               <span className="w-1.5 h-1.5 rounded-sm bg-emerald-400 animate-pulse" />
               REPORTE VERIFICADO
@@ -101,6 +107,7 @@ export const ArticleDetailPage = ({ articleId, onReturnToPressRoom, onReturnToHo
         <div className="absolute top-20 left-1/3 w-[600px] h-[500px] bg-energy-cyan/5 rounded-3xl blur-[160px] pointer-events-none" />
 
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
+          <CardSpiderWeb position="top-right" size="w-16 h-16" opacity="opacity-40" />
           
           {/* Breadcrumb Navigation */}
           <nav className="flex items-center gap-2 text-xs font-sans font-medium text-slate-400 flex-wrap">

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
+import { useHalloween } from '../context/HalloweenContext';
+import { CardSpiderWeb } from './CardSpiderWeb';
+import { HalloweenToggle } from './HalloweenToggle';
 import { Logo } from './Logo';
 import { 
   Calendar, Tag, Globe, ChevronRight, Newspaper, 
@@ -9,6 +12,7 @@ import {
 
 export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) => {
   const { news = [] } = useCms();
+  const { isHalloween } = useHalloween();
   const [activeTab, setActiveTab] = useState('all'); // 'all', 'venezuela', 'mundial'
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -100,9 +104,15 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-red-950/80 border border-red-500/40 text-red-400 text-xs font-heading font-bold tracking-wider">
-              <span className="w-2 h-2 rounded-sm bg-red-500 animate-pulse" />
-              NOTICIAS EN DIRECTO
+            <HalloweenToggle compact={true} />
+
+            <span className={`hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-heading font-bold tracking-wider ${
+              isHalloween
+                ? 'bg-orange-950/80 border border-orange-500/40 text-orange-400'
+                : 'bg-red-950/80 border border-red-500/40 text-red-400'
+            }`}>
+              <span className={`w-2 h-2 rounded-sm ${isHalloween ? 'bg-orange-500 animate-bounce' : 'bg-red-500 animate-pulse'}`} />
+              {isHalloween ? 'SALA DE PRENSA HALLOWEEN 🎃' : 'NOTICIAS EN DIRECTO'}
             </span>
 
             {onOpenDossier && (
@@ -117,17 +127,23 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
         </div>
 
         {/* CNN-STYLE RED BREAKING NEWS TICKER */}
-        <div className="bg-[#CC0000] text-white overflow-hidden border-t border-red-700 shadow-md">
+        <div className={`text-white overflow-hidden border-t shadow-md transition-colors duration-500 ${
+          isHalloween ? 'bg-gradient-to-r from-orange-700 via-purple-800 to-orange-700 border-orange-600' : 'bg-[#CC0000] border-red-700'
+        }`}>
           <div className="max-w-7xl mx-auto flex items-stretch">
-            <div className="bg-[#990000] px-4 py-2 flex items-center gap-2 font-heading font-black text-xs uppercase tracking-wider flex-shrink-0 z-10 shadow-lg">
+            <div className={`px-4 py-2 flex items-center gap-2 font-heading font-black text-xs uppercase tracking-wider flex-shrink-0 z-10 shadow-lg ${
+              isHalloween ? 'bg-orange-900/90 text-orange-200' : 'bg-[#990000]'
+            }`}>
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-85" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
               </span>
-              <span>ÚLTIMA HORA</span>
+              <span>{isHalloween ? '🎃 ALERTA HALLOWEEN' : 'ÚLTIMA HORA'}</span>
             </div>
 
-            <div className="overflow-hidden relative flex items-center py-2 px-3 flex-grow bg-[#CC0000]">
+            <div className={`overflow-hidden relative flex items-center py-2 px-3 flex-grow ${
+              isHalloween ? 'bg-orange-950/60' : 'bg-[#CC0000]'
+            }`}>
               <div className="animate-news-ticker flex items-center gap-8 whitespace-nowrap text-xs font-sans font-medium text-white">
                 {breakingAlerts.map((alert, idx) => (
                   <div key={`ticker-a-${idx}`} className="inline-flex items-center gap-2">
@@ -265,8 +281,9 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
               {leadStory && (
                 <article
                   onClick={() => handleCardClick(leadStory)}
-                  className="lg:col-span-8 group bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-red-500/50 transition-all duration-300 cursor-pointer shadow-2xl"
+                  className="lg:col-span-8 group bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-red-500/50 transition-all duration-300 cursor-pointer shadow-2xl relative"
                 >
+                  <CardSpiderWeb position="top-right" size="w-16 h-16" opacity="opacity-50" />
                   {/* Big Cinematic Photo */}
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-900">
                     <img

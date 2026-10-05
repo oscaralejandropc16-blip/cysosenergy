@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { PhoneCall, X, Send, ShieldAlert, Sparkles, MessageSquare, Clock, MapPin, User, Building } from 'lucide-react';
+import { useHalloween } from '../context/HalloweenContext';
+import { CardSpiderWeb } from './CardSpiderWeb';
 
 const WhatsAppIcon = ({ size = 20, className = '' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -16,6 +18,7 @@ const SERVICES_OPTIONS = [
 ];
 
 export const FloatingOperationsWidget = () => {
+  const { isHalloween } = useHalloween();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(SERVICES_OPTIONS[0].label);
   const [companyName, setCompanyName] = useState('');
@@ -40,7 +43,8 @@ export const FloatingOperationsWidget = () => {
     <div className="fixed bottom-6 left-6 z-30 font-sans">
       {/* Expanded Interactive Card */}
       {isOpen && (
-        <div className="mb-3 w-[calc(100vw-3rem)] sm:w-96 bg-navy-900/95 border border-slate-700/80 rounded-2xl p-5 shadow-2xl backdrop-blur-2xl animate-fadeIn text-white">
+        <div className="mb-3 w-[calc(100vw-3rem)] sm:w-96 bg-navy-900/95 border border-slate-700/80 rounded-2xl p-5 shadow-2xl backdrop-blur-2xl animate-fadeIn text-white relative overflow-hidden">
+          <CardSpiderWeb position="top-right" size="w-14 h-14" opacity="opacity-40" />
           
           {/* Header */}
           <div className="flex items-start justify-between pb-3 border-b border-slate-800">
@@ -158,17 +162,27 @@ export const FloatingOperationsWidget = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Abrir mesa operativa WhatsApp"
-        className="group relative flex items-center gap-2.5 bg-navy-900/95 hover:bg-navy-850 text-white px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-2xl border border-slate-700/80 hover:border-emerald-500/50 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 backdrop-blur-xl"
+        className={`group relative flex items-center gap-2.5 bg-navy-900/95 hover:bg-navy-850 text-white px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl shadow-2xl border transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 backdrop-blur-xl ${
+          isHalloween
+            ? 'border-orange-500/50 hover:border-orange-400 shadow-[0_0_15px_rgba(255,107,0,0.3)]'
+            : 'border-slate-700/80 hover:border-emerald-500/50'
+        }`}
       >
+        {isHalloween && (
+          <span className="absolute -top-2.5 -right-2 text-sm animate-bounce drop-shadow-[0_0_8px_#ff7700]">
+            🎃
+          </span>
+        )}
+
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isHalloween ? 'bg-orange-400' : 'bg-emerald-400'}`}></span>
+          <span className={`relative inline-flex rounded-full h-2 w-2 ${isHalloween ? 'bg-orange-500' : 'bg-emerald-500'}`}></span>
         </span>
         
         <WhatsAppIcon size={18} className="text-emerald-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0" />
         
         <span className="font-heading font-bold text-xs uppercase tracking-wider hidden sm:inline text-slate-200 group-hover:text-white">
-          {isOpen ? 'Cerrar Despacho' : 'Guardia 24/7'}
+          {isOpen ? 'Cerrar Despacho' : isHalloween ? 'Guardia 24/7 🦇' : 'Guardia 24/7'}
         </span>
       </button>
     </div>
