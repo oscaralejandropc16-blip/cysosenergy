@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useCms } from '../context/CmsContext';
-import { useHalloween } from '../context/HalloweenContext';
 import { CardSpiderWeb } from './CardSpiderWeb';
 import { Activity, FlaskConical, Truck, Globe, Flame, ShieldCheck, ArrowRight, Settings, ChevronDown, FileText } from 'lucide-react';
 
@@ -62,7 +61,6 @@ const AnimatedCounter = ({ targetValue, decimals = 0, duration = 2000 }) => {
 
 export const Hero = ({ onOpenDossier }) => {
   const { kpis, heroContent } = useCms();
-  const { isHalloween } = useHalloween();
   const currentHero = heroContent || {
     videoUrl: '/videos/IMG_7557.mp4',
     posterUrl: '/images/IMG_7549.jpg',
@@ -120,17 +118,6 @@ export const Hero = ({ onOpenDossier }) => {
           
           {/* Gentle localized text shadow cushion behind headline for crystal-clear readability without dimming the video */}
           <div className="absolute -inset-4 sm:-inset-6 bg-black/25 rounded-3xl blur-xl pointer-events-none -z-10" />
-
-          {/* Halloween Season Festive Banner */}
-          {isHalloween && (
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-600/40 via-purple-700/40 to-orange-600/40 border border-orange-500/60 shadow-[0_0_25px_rgba(255,107,0,0.5)] backdrop-blur-md mb-2 animate-pulse">
-              <span className="text-base animate-bounce">🎃</span>
-              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-orange-200 font-heading">
-                Edición Especial Halloween 2026 • Operaciones Sin Paradas De Terror
-              </span>
-              <span className="text-base">🦇</span>
-            </div>
-          )}
 
           {/* Main Headline - High Vitality & Maximum Contrast */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight leading-[1.15] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] drop-shadow-[0_2px_6px_rgba(0,0,0,1)] px-2">
