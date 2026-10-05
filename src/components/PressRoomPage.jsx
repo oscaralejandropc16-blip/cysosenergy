@@ -65,11 +65,13 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
   };
 
   const breakingAlerts = [
-    'Continental Resources acuerda desarrollo del Bloque Ayacucho 2 en la Faja del Orinoco',
-    'PDVSA proyecta cerrar 2026 en 1.3M bpd y avanzar a 1.5M en 2027',
-    'Brent supera los $100 ante tensiones en el Estrecho de Ormuz',
-    'TotalEnergies formaliza memorando para cooperación estratégica en hidrocarburos',
-    'Repsol asume control operativo de Petroquiriquire para triplicar extracción en Monagas'
+    'Reliance Industries y PDVSA consolidan suministro a gran escala de crudo Merey 16',
+    'Comité de Monitoreo OPEP+ ratifica disciplina de cuotas y descarta aumentos de bombeo',
+    'Shell, BP y PDVSA concluyen estudios batimétricos para el gasoducto submarino del Proyecto Dragón',
+    'Fletes marítimos de supertanqueros VLCC repuntan 28% ante primas de riesgo geopolítico',
+    'Campaña de reactivación en Tomoporo y Mene Grande incorpora 38.000 bpd con electrosumergibles',
+    'Cuenca Pérmica en EE.UU. supera los 6,4 millones de bpd con laterales extendidos de 3 millas',
+    'Márgenes de refinación de diesel tocan máximos por escasez de crudos pesados para conversión profunda'
   ];
 
   return (

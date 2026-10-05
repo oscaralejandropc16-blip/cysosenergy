@@ -216,7 +216,91 @@ const INITIAL_ALLIANCES = [
   }
 ];
 
-const INITIAL_NEWS = [
+const INITIAL_NEWS = [
+  {
+    id: 'news-reliance-pdvsa-merey-suministro-2026',
+    category: 'venezuela',
+    source: 'Reuters / S&P Global Commodity Insights',
+    tag: 'Comercio & Exportación',
+    date: '2026-10-05',
+    title: 'Reliance Industries y PDVSA consolidan contrato de suministro de crudo Merey 16 para refinerías en Jamnagar',
+    summary: 'El conglomerado indio asegura despachos regulares en buques VLCC, afianzando un esquema de intercambio comercial por diluyentes y nafta pesada para la Faja del Orinoco.',
+    content: 'El conglomerado energético indio Reliance Industries y Petróleos de Venezuela (PDVSA) formalizaron un acuerdo ampliado de suministro de crudo extrapesado diluido Merey 16 destinado al complejo refinador de Jamnagar en el estado de Gujarat, la mayor refinería del mundo. El convenio prevé la movilización bimestral de cargamentos de hasta 2 millones de barriles en supertanqueros tipo VLCC (Very Large Crude Carrier), garantizando un flujo estable de exportación y divisas para la industria venezolana. Como parte de la estructura comercial, se contempla el suministro recíproco de nafta pesada de reformado y diluyentes químicos de alto grado API, indispensables para reducir la viscosidad del crudo en las macollas de extracción de la División Carabobo y facilitar su tránsito por oleoductos hasta el Complejo Criogénico de Jose.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_reliance_petroleo.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-opep-comite-monitoreo-cuotas-octubre-2026',
+    category: 'mundial',
+    source: 'Bloomberg / OPEP Media Viena',
+    tag: 'OPEP+ & Geopolítica',
+    date: '2026-10-05',
+    title: 'Comité de Monitoreo OPEP+ ratifica disciplina de cuotas y descarta aumentos de producción ante volatilidad global',
+    summary: 'El panel ministerial reafirma su estrategia de defensa del piso de precios y evalúa el cumplimiento de recortes voluntarios ante las oscilaciones del Brent en torno a los $98.',
+    content: 'En su más reciente sesión telemática de monitoreo ministerial (JMMC), la alianza OPEP+ ratificó de forma unánime su política de contención de oferta y cumplimiento riguroso de las cuotas asignadas, desestimando cualquier incremento prematuro en el bombeo colectivo de cara al cierre de 2026 y primer trimestre de 2027. Los delegados enfatizaron que la combinación de incertidumbre en las tasas de interés globales y la inestabilidad en rutas neurálgicas de navegación aconsejan mantener la cautela operativa. La decisión apuntala los precios del barril Brent en la franja de los 95 a 102 dólares y fortalece la demanda por crudos pesados con destino a plantas de conversión profunda, blindando las cuotas fiscales de los países exportadores participantes.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_opep_viena.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-proyecto-dragon-shell-bp-gas-2026',
+    category: 'venezuela',
+    source: 'World Energy Trade / Upstream Online',
+    tag: 'Gas Costa Afuera',
+    date: '2026-10-04',
+    title: 'Proyecto Dragón y Manakin-Cocuina: Shell, BP y PDVSA concluyen estudios batimétricos para el gasoducto submarino',
+    summary: 'Avanzan los trabajos de ingeniería de detalle y procura para conectar los megacampos de gas no asociado de la Plataforma Deltana con la infraestructura de licuefacción en Trinidad.',
+    content: 'Las operadoras energéticas Shell y BP, en estrecha coordinación técnica con el Ministerio de Petróleo y PDVSA Gas, dieron por concluida la campaña de levantamiento geofísico y batimétrico de fondo marino para el tendido del gasoducto de 18 pulgadas que enlazará el Campo Dragón (al norte de Sucre) y el yacimiento transfronterizo Manakin-Cocuina con la plataforma Hibiscus en aguas trinitenses. El proyecto, proyectado para alcanzar un flujo inicial de 350 millones de pies cúbicos diarios (MMSCFD), se perfila como la piedra angular para transformar a Venezuela en un nodo exportador de Gas Natural Licuado (GNL) hacia los mercados del Caribe, Europa y el Cono Sur, incentivando inversiones masivas en compresión y separación criogénica.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_gas_dragon.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-fletes-maritimos-tanqueros-vlcc-2026',
+    category: 'mundial',
+    source: 'Lloyd\'s List / Financial Times',
+    tag: 'Logística Marítima',
+    date: '2026-10-04',
+    title: 'Fletes marítimos de buques VLCC repuntan 28% tras nuevas primas de riesgo en el Mar Rojo y Golfo de Adén',
+    summary: 'El desvío prolongado de superpetroleros por el Cabo de Buena Esperanza incrementa los días de navegación en 14 jornadas y tensiona los costos de entrega en Europa y Asia.',
+    content: 'El mercado spot del fletamento marítimo de hidrocarburos experimentó una fuerte aceleración durante los primeros días de octubre de 2026. Según reportes del Baltic Exchange en Londres, las tarifas de buques tipo VLCC en la ruta Golfo Pérsico-Lejano Oriente superaron la cota de los Worldscale 78 (equivalente a más de $82.000 diarios), impulsadas por las persistentes restricciones de paso en el Estrecho de Bab el-Mandeb y la necesidad de circunnavegar el continente africano. Esta dinámica añade una prima de costo directo a los crudos del Medio Oriente, incentivando a los compradores atlánticos a buscar cargamentos de crudos pesados y medios más cercanos en el hemisferio occidental, tales como Venezuela, Brasil y el Golfo de México.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_terminal_jose.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-reactivacion-tomoporo-zulia-pozox-2026',
+    category: 'venezuela',
+    source: 'Petroguía / Cysos Technical News',
+    tag: 'Operaciones de Campo',
+    date: '2026-10-03',
+    title: 'Campaña de reacondicionamiento en Tomoporo y Mene Grande reactiva 45 pozos con levantamiento electrosumergible',
+    summary: 'El despliegue de unidades de coiled tubing, bombas de cavidad progresiva y aditivos químicos para control de arena restablece 38.000 bpd en campos maduros de Occidente.',
+    content: 'Equipos multidisciplinarios de servicios petroleros y cuadrillas de PDVSA culminaron con éxito la primera fase del plan de reactivación intensiva de yacimientos en los campos Tomoporo, Ceuta y Mene Grande, ubicados en la cuenca del Lago de Maracaibo. Las maniobras operativas incluyeron la limpieza de fondo con tubería continua (coiled tubing), reemplazo de bombas electrosumergibles (BES) de alta confiabilidad y la inyección en cabeza de pozo de inhibidores de corrosión y dispersantes de asfaltenos de última formulación. Estas labores permitieron incorporar de manera expedita más de 38.000 barriles netos de crudo liviano y mediano a las estaciones de flujo de la costa oriental del lago, optimizando las mezclas de exportación.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_pozos_reactivacion.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-cuenca-permica-shale-record-2026',
+    category: 'mundial',
+    source: 'Oil & Gas Journal / Energy Intelligence',
+    tag: 'Tecnología & Perforación',
+    date: '2026-10-03',
+    title: 'Cuenca Pérmica en EE.UU. supera los 6,4 millones de bpd apoyada en laterales extendidos de 3 millas',
+    summary: 'La adopción de perforación direccional rotatoria continua y completaciones simultáneas mitiga la inflación de costos y sostiene la oferta en Texas y Nuevo México.',
+    content: 'La producción de petróleo no convencional en la prolífica Cuenca Pérmica alcanzó un nuevo récord histórico al superar los 6,42 millones de barriles diarios en el inicio del cuarto trimestre de 2026, según datos oficiales de la Administración de Información Energética de EE.UU. (EIA). La clave del incremento reside en el perfeccionamiento de laterales horizontales que superan los 16.000 pies de longitud (3 millas de recorrido en lutitas) y el uso de fluidos de fracturamiento con surfactantes de nanotecnología que elevan la tasa de recuperación inicial (IP) hasta en un 22%. Sin embargo, los analistas señalan que la elevada relación gas-petróleo (GOR) en pozos antiguos obliga a las empresas a canalizar fuertes inversiones en plantas de procesamiento de gas y ductos de evacuación.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_permian_drilling.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-refinacion-crack-spreads-crudo-pesado-2026',
+    category: 'mundial',
+    source: 'Argus Media / Platts',
+    tag: 'Refinación & Mercados',
+    date: '2026-10-02',
+    title: 'Márgenes de refinación de diesel y combustibles marinos tocan máximos por déficit de crudos pesados',
+    summary: 'Las unidades de coquización retardada en refinerías del Golfo de México y Europa cotizan con premios históricos el crudo extrapesado con alto rendimiento en destilados.',
+    content: 'Las pizarras de márgenes de refinación (crack spreads 3:2:1) en las costas del Golfo de México y el centro de refinación ARA (Ámsterdam-Rotterdam-Amberes) escalaron a niveles de $28,40 por barril, motivadas por la escasez estructural de crudos pesados de alto azufre ideales para la síntesis de diesel de ultra bajo azufre (ULSD) y búnker marítimo VLSFO. La capacidad ociosa en unidades de coquización (delayed coking) y plantas de hidrotratamiento en complejos modernos ha disparado el apetito por corrientes como el Merey 16 venezolano, Maya mexicano y Canadian Western Select (WCS), estrechando los diferenciales frente al crudo WTI a sus mínimos en más de tres años.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_refineria_conversion.jpg',
+    mediaType: 'image'
+  },
   {
     id: 'news-brent-volatilidad-octubre-2026',
     category: 'mundial',
