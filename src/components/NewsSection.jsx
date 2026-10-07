@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
-import { useHalloween } from '../context/HalloweenContext';
-import { CardSpiderWeb } from './CardSpiderWeb';
 import { Calendar, Clock, ArrowRight, TrendingUp, Radio, Newspaper, Sparkles, ArrowUpRight } from 'lucide-react';
 
 export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
   const { news = [] } = useCms();
-  const { isHalloween } = useHalloween();
   const [activeCategory, setActiveCategory] = useState('all');
   
   // Real-time BCV rates
@@ -280,7 +277,6 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                 onClick={() => handleCardClick(leadStory)}
                 className="group relative flex flex-col h-full bg-slate-950/90 rounded-2xl overflow-hidden border border-slate-800 hover:border-flame-500/50 transition-all duration-500 shadow-2xl hover:shadow-flame-500/10 cursor-pointer"
               >
-                <CardSpiderWeb position="top-right" size="w-16 h-16" opacity="opacity-50" />
                 {/* Big Cinematic Image Container */}
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-slate-900">
                   <img
@@ -389,7 +385,6 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
                   onClick={() => handleCardClick(item)}
                   className="group relative flex flex-col sm:flex-row lg:flex-col xl:flex-row bg-slate-950/90 rounded-xl overflow-hidden border border-slate-800 hover:border-flame-500/40 transition-all duration-300 shadow-xl hover:shadow-flame-500/10 cursor-pointer flex-1"
                 >
-                  <CardSpiderWeb position="top-right" size="w-10 h-10" opacity="opacity-35" />
                   {/* Thumbnail Container */}
                   <div className="relative sm:w-2/5 lg:w-full xl:w-2/5 aspect-video sm:aspect-auto lg:aspect-video xl:aspect-auto overflow-hidden bg-slate-900 flex-shrink-0 min-h-[140px]">
                     <img

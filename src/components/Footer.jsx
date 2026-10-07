@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useCms } from '../context/CmsContext';
-import { useHalloween } from '../context/HalloweenContext';
-import { HalloweenToggle } from './HalloweenToggle';
 import { Logo } from './Logo';
 import { 
   Phone, Mail, Instagram, Shield, 
@@ -10,7 +8,6 @@ import {
 
 export const Footer = () => {
   const { companyInfo, visitStats } = useCms();
-  const { isHalloween } = useHalloween();
   const currentYear = new Date().getFullYear();
 
   // Ensure default values are used if companyInfo is empty or missing fields
@@ -158,25 +155,11 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Halloween Festive Bottom Banner */}
-        {isHalloween && (
-          <div className="pt-6 pb-2 text-center relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-950/40 border border-orange-500/30 text-orange-300 text-xs font-heading shadow-[0_0_15px_rgba(255,107,0,0.2)]">
-              <span className="animate-bounce">🎃</span>
-              <span>¡Feliz Temporada de Halloween 2026 de parte de CYSOS ENERGY! • Operaciones Seguras Sin Sustos</span>
-              <span>🦇</span>
-            </div>
-          </div>
-        )}
-
         {/* Minimal Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10 border-t border-slate-800/60 mt-4">
+        <div className="pt-6 flex justify-center md:justify-start relative z-10 border-t border-slate-800/60 mt-4">
           <p className="text-[11px] text-slate-500 font-medium tracking-wide flex items-center gap-2">
             © {currentYear} <span className="text-slate-300 font-bold uppercase hover:text-flame-400 transition-colors cursor-default">CYSOS ENERGY, C.A.</span> • RIF: J-40816942-5
           </p>
-          <div className="flex items-center gap-3">
-            <HalloweenToggle />
-          </div>
         </div>
 
       </div>

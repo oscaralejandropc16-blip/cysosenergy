@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { CmsProvider, useCms } from './context/CmsContext';
-import { HalloweenProvider } from './context/HalloweenContext';
-import { HalloweenAtmosphere } from './components/HalloweenAtmosphere';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { PartnersCarousel } from './components/PartnersCarousel';
@@ -138,7 +136,6 @@ function MainAppContent() {
   if (currentRoute === 'articulo') {
     return (
       <>
-        <HalloweenAtmosphere />
         <ArticleDetailPage
           articleId={currentArticleId}
           onReturnToPressRoom={handleOpenPressRoom}
@@ -155,7 +152,6 @@ function MainAppContent() {
   if (currentRoute === 'sala-de-prensa') {
     return (
       <>
-        <HalloweenAtmosphere />
         <PressRoomPage 
           onReturnToHome={handleReturnFromPressRoom} 
           onOpenArticle={handleOpenArticle}
@@ -169,7 +165,6 @@ function MainAppContent() {
 
   return (
     <>
-      <HalloweenAtmosphere />
       <header className="absolute top-0 left-0 right-0 w-full z-[60]">
         <GlobalMarketTicker />
       </header>
@@ -203,11 +198,9 @@ function MainAppContent() {
 
 export function App() {
   return (
-    <HalloweenProvider>
-      <CmsProvider>
-        <MainAppContent />
-      </CmsProvider>
-    </HalloweenProvider>
+    <CmsProvider>
+      <MainAppContent />
+    </CmsProvider>
   );
 }
 

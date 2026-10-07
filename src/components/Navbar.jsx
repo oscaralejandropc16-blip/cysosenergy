@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Logo } from './Logo';
 import { PhoneCall, ChevronRight, Send, Instagram, Linkedin } from 'lucide-react';
-import { useHalloween } from '../context/HalloweenContext';
-import { CardSpiderWeb } from './CardSpiderWeb';
 
 const WhatsAppIcon = ({ size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -12,7 +10,6 @@ const WhatsAppIcon = ({ size = 24 }) => (
 );
 
 export const Navbar = () => {
-  const { isHalloween } = useHalloween();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -84,7 +81,6 @@ export const Navbar = () => {
           opacity: scrolled ? 0.96 : 1,
         }}
       >
-        <CardSpiderWeb position="top-right" size="w-14 h-14" opacity="opacity-40" />
         {/* Logo */}
         <a
           href="#inicio"
@@ -155,7 +151,7 @@ export const Navbar = () => {
           {/* CTA Button Principal */}
           <a
             href="#contacto"
-            className={`cysos-cta btn-modern ${isHalloween ? 'halloween-cta-glow' : ''}`}
+            className="cysos-cta btn-modern"
             style={{
               flexShrink: 0,
               whiteSpace: 'nowrap',
@@ -163,9 +159,6 @@ export const Navbar = () => {
           >
             <Send size={16} className="btn-icon" />
             <span>Cotizar Proyecto</span>
-            {isHalloween && (
-              <span className="text-sm ml-0.5 inline-block animate-pulse" title="Halloween 2026">🎃</span>
-            )}
           </a>
 
           {/* Hamburguesa móvil */}
@@ -482,11 +475,6 @@ export const Navbar = () => {
           font-weight: 700;
           font-family: 'Outfit', sans-serif;
           box-shadow: 0 10px 20px -10px rgba(249, 115, 22, 0.5);
-        }
-
-        .halloween-cta-glow {
-          box-shadow: 0 0 20px rgba(249, 115, 22, 0.7), 0 0 10px rgba(168, 85, 247, 0.5) !important;
-          border: 1px solid rgba(251, 146, 60, 0.5) !important;
         }
 
         @media (min-width: 1024px) {

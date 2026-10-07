@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useCms } from '../context/CmsContext';
-import { CardSpiderWeb } from './CardSpiderWeb';
 import { Activity, FlaskConical, Truck, Globe, Flame, ShieldCheck, ArrowRight, Settings, ChevronDown, FileText } from 'lucide-react';
 
 // Robust Animated Counter Component triggering smooth counting up from 0
@@ -195,7 +194,6 @@ export const Hero = ({ onOpenDossier }) => {
               key={kpi.id}
               className="relative overflow-hidden p-4 sm:p-5 rounded-2xl border border-white/5 hover:border-flame-500/30 bg-navy-950/40 backdrop-blur-2xl transition-all duration-500 group shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_30px_rgba(249,115,22,0.15)] hover:-translate-y-1"
             >
-              <CardSpiderWeb position="top-right" size="w-10 h-10" opacity="opacity-35" />
               {/* Subtle top glow */}
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 group-hover:via-flame-500/50 to-transparent transition-colors duration-500" />
               

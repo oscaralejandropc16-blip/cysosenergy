@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
-import { useHalloween } from '../context/HalloweenContext';
 
 export const GlobalMarketTicker = () => {
-  const { isHalloween } = useHalloween();
   const [blink, setBlink] = useState(false);
   const [brent, setBrent] = useState(106.75);
   const [wti, setWti] = useState(94.36);
@@ -82,19 +80,8 @@ export const GlobalMarketTicker = () => {
 
   const TickerItems = () => (
     <div className="flex items-center gap-6 px-6 flex-shrink-0 whitespace-nowrap min-w-max">
-      {/* Halloween Festive Badge */}
-      {isHalloween && (
-        <>
-          <div className="flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-orange-500/20 to-purple-500/20 border border-orange-500/40 text-orange-300 font-extrabold text-[11px] shadow-[0_0_10px_rgba(255,107,0,0.3)]">
-            <span className="text-xs animate-bounce">🎃</span>
-            <span className="font-heading tracking-wide">EDICIÓN HALLOWEEN 2026: OPERACIONES SIN SUSTOS</span>
-          </div>
-          <div className="w-px h-4 bg-orange-500/30 flex-shrink-0" />
-        </>
-      )}
-
       <div className="flex items-center gap-2 flex-shrink-0">
-        <div className={`w-2 h-2 rounded-full ${blink ? (isHalloween ? 'bg-orange-400 animate-ping' : 'bg-emerald-400 animate-ping') : (isHalloween ? 'bg-orange-500 shadow-[0_0_8px_rgba(255,107,0,0.8)]' : 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]')}`} />
+        <div className={`w-2 h-2 rounded-full ${blink ? 'bg-emerald-400 animate-ping' : 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]'}`} />
         <span className="font-heading font-black text-slate-300 tracking-wider">MERCADOS EN VIVO</span>
       </div>
 
@@ -127,7 +114,7 @@ export const GlobalMarketTicker = () => {
       <div className="flex items-center gap-2 flex-shrink-0">
         <span className="font-bold text-slate-400">USD BCV</span>
         <span className="font-mono font-black text-white">Bs. {usdBcv}</span>
-        <span className={`text-[10px] px-1 rounded border ${isHalloween ? 'text-orange-400 bg-orange-400/10 border-orange-500/30' : 'text-emerald-400 bg-emerald-400/10 border-emerald-500/20'}`}>OFICIAL</span>
+        <span className="text-[10px] text-emerald-400 bg-emerald-400/10 px-1 rounded border border-emerald-500/20">OFICIAL</span>
       </div>
 
       <div className="w-px h-4 bg-slate-700 flex-shrink-0" />
@@ -135,7 +122,7 @@ export const GlobalMarketTicker = () => {
       <div className="flex items-center gap-2 flex-shrink-0">
         <span className="font-bold text-slate-400">EUR BCV</span>
         <span className="font-mono font-black text-white">Bs. {eurBcv}</span>
-        <span className={`text-[10px] px-1 rounded border ${isHalloween ? 'text-orange-400 bg-orange-400/10 border-orange-500/30' : 'text-emerald-400 bg-emerald-400/10 border-emerald-500/20'}`}>OFICIAL</span>
+        <span className="text-[10px] text-emerald-400 bg-emerald-400/10 px-1 rounded border border-emerald-500/20">OFICIAL</span>
       </div>
 
       <div className="w-px h-4 bg-slate-700 flex-shrink-0" />
@@ -146,31 +133,13 @@ export const GlobalMarketTicker = () => {
       </div>
       
       <div className="w-px h-4 bg-slate-700 flex-shrink-0" />
-
-      {isHalloween && (
-        <>
-          <div className="flex items-center gap-2 flex-shrink-0 text-purple-300 font-semibold">
-            <span>🦇</span>
-            <span>QUÍMICA EOR: DISOLVIENDO ASFALTENOS MONSTRUOSOS</span>
-          </div>
-          <div className="w-px h-4 bg-purple-500/30 flex-shrink-0" />
-        </>
-      )}
     </div>
   );
 
   return (
-    <div className={`w-full backdrop-blur-md border-b text-xs py-1.5 shadow-lg overflow-hidden relative z-[60] flex items-center justify-between transition-colors duration-500 ${
-      isHalloween 
-        ? 'bg-[#0a0512]/95 border-orange-500/30 shadow-[0_4px_20px_rgba(255,107,0,0.15)]' 
-        : 'bg-navy-950/95 border-white/10'
-    }`}>
+    <div className="w-full bg-navy-950/95 backdrop-blur-md border-b border-white/10 text-xs py-1.5 shadow-lg overflow-hidden relative z-[60] flex items-center justify-between">
       {/* Subtle Glow */}
-      <div className={`absolute inset-0 pointer-events-none ${
-        isHalloween 
-          ? 'bg-gradient-to-r from-orange-500/10 via-purple-500/5 to-orange-500/10' 
-          : 'bg-gradient-to-r from-emerald-500/5 via-transparent to-emerald-500/5'
-      }`} />
+      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-transparent to-emerald-500/5 pointer-events-none" />
       
       <style>
         {`

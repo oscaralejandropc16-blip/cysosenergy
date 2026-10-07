@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useCms } from '../context/CmsContext';
-import { useHalloween } from '../context/HalloweenContext';
-import { CardSpiderWeb } from './CardSpiderWeb';
 import { 
   Flame, Zap, Activity, ArrowUpRight, CheckCircle2, X, PhoneCall, 
   FlaskConical, Truck, Globe, Award, ShieldCheck, Play, Sparkles, 
@@ -11,7 +9,6 @@ import {
 
 export const Services = () => {
   const { mediaItems = [], services = [] } = useCms();
-  const { isHalloween } = useHalloween();
   const [selectedService, setSelectedService] = useState(null);
   const [activeTab, setActiveTab] = useState('intervencion');
   const [activeVideoModal, setActiveVideoModal] = useState(null);
@@ -108,8 +105,7 @@ export const Services = () => {
         </div>
 
         {/* Active Division Showcase Card - Industrial Slate Glass */}
-        <div className="luxury-glass rounded-[2.5rem] border border-slate-700/80 overflow-hidden shadow-2xl grid lg:grid-cols-12 items-stretch bg-navy-900/80 relative">
-          <CardSpiderWeb position="top-right" size="w-20 h-20" opacity="opacity-50" />
+        <div className="luxury-glass rounded-[2.5rem] border border-slate-700/80 overflow-hidden shadow-2xl grid lg:grid-cols-12 items-stretch bg-navy-900/80">
           
           {/* Left Side: Photographic/Video Showcase & Highlights */}
           <div className="lg:col-span-5 relative min-h-[280px] sm:min-h-[380px] p-6 sm:p-8 flex flex-col justify-between overflow-hidden">
