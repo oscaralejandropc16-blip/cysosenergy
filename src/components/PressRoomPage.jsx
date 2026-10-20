@@ -65,13 +65,13 @@ export const PressRoomPage = ({ onReturnToHome, onOpenArticle, onOpenDossier }) 
   };
 
   const breakingAlerts = [
-    'Reliance Industries y PDVSA consolidan suministro a gran escala de crudo Merey 16',
-    'Comité de Monitoreo OPEP+ ratifica disciplina de cuotas y descarta aumentos de bombeo',
-    'Shell, BP y PDVSA concluyen estudios batimétricos para el gasoducto submarino del Proyecto Dragón',
-    'Fletes marítimos de supertanqueros VLCC repuntan 28% ante primas de riesgo geopolítico',
-    'Campaña de reactivación en Tomoporo y Mene Grande incorpora 38.000 bpd con electrosumergibles',
-    'Cuenca Pérmica en EE.UU. supera los 6,4 millones de bpd con laterales extendidos de 3 millas',
-    'Márgenes de refinación de diesel tocan máximos por escasez de crudos pesados para conversión profunda'
+    'PDVSA y Repsol formalizan plan de reactivación de 120 pozos en Barúa Motatán con inversión de $450 millones',
+    'OPEP+ evalúa blindar cuotas de bombeo hasta mediados de 2027 ante tensiones geopolíticas y presión en inventarios',
+    'Terminal Jose supera 1,18 millones de bpd despachados en supertanqueros VLCC con crudo Merey 16',
+    'Shell, BP y PDVSA inician procura de tuberías submarinas para el gasoducto transfronterizo del Campo Dragón',
+    'Refinerías de Asia y Europa pagan primas históricas por crudos pesados ante déficit crítico de diésel y búnker marítimo',
+    'Brent supera los $94 tras contracción de inventarios en Cushing y mayor prima en fletes de navegación',
+    'Faja Petrolífera del Orinoco reduce 38% el uso de diluyente con nanoreductores químicos en Macolla Carabobo 2'
   ];
 
   return (

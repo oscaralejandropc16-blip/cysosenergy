@@ -116,16 +116,17 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
     { label: 'USD BCV', price: `Bs. ${usdBcv}`, change: 'OFICIAL', isUp: true },
     { label: 'EUR BCV', price: `Bs. ${eurBcv}`, change: 'OFICIAL', isUp: true },
     { label: 'CESTA OPEP', price: '$104.50 USD', change: '+0.7%', isUp: true },
-    { label: 'PRODUCCIÓN VE', price: '940.000 BPD', change: '+4.2%', isUp: true },
+    { label: 'PRODUCCIÓN VE', price: '1.200.000 BPD', change: '+29.9% YTD', isUp: true },
     { label: 'META 2026', price: '1.300.000 BPD', change: 'En curso', isUp: true },
   ];
 
   const breakingAlerts = [
-    'Continental Resources acuerda desarrollo del Bloque Ayacucho 2 en la Faja del Orinoco',
-    'PDVSA proyecta cerrar 2026 en 1.3M bpd y avanzar a 1.5M en 2027',
-    'TotalEnergies formaliza memorando para cooperación estratégica en hidrocarburos',
-    'Repsol asume control operativo de Petroquiriquire para triplicar extracción en Monagas',
-    'Eni formaliza Contrato Productivo de Hidrocarburos por 25 años en Junín 5'
+    'PDVSA y Repsol formalizan plan de reactivación de 120 pozos en Barúa Motatán con inversión de $450M',
+    'OPEP+ evalúa blindar cuotas de bombeo hasta mediados de 2027 ante tensiones geopolíticas e inventarios bajos',
+    'Terminal Jose supera 1,18 millones de bpd despachados en supertanqueros VLCC con crudo Merey 16',
+    'Shell, BP y PDVSA inician procura de tuberías submarinas para el gasoducto transfronterizo del Campo Dragón',
+    'Refinerías de Asia y Europa pagan primas históricas por crudos pesados ante déficit crítico de diésel',
+    'Faja Petrolífera del Orinoco reduce 38% el uso de diluyente con nanoreductores químicos en Macolla Carabobo 2'
   ];
 
   return (
