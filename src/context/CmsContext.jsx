@@ -218,6 +218,90 @@ const INITIAL_ALLIANCES = [
 
 const INITIAL_NEWS = [
   {
+    id: 'news-produccion-venezuela-1-25m-bpd-nov-2026',
+    category: 'venezuela',
+    source: 'Ministerio de Petróleo / Argus Media / PDVSA Prensa',
+    tag: 'Producción & Empresas Mixtas',
+    date: '2026-11-18',
+    title: 'Venezuela consolida extracción en 1,24 millones de bpd impulsada por reactivación de pozos en Zulia y Faja del Orinoco',
+    summary: 'El bombeo nacional alcanza su nivel más alto desde 2018 gracias a las campañas de completación en Petroindependencia, Petroboscán y el despliegue de bombas electrosumergibles en la cuenca occidental.',
+    content: 'El Ministerio del Poder Popular de Petróleo y Petróleos de Venezuela (PDVSA) confirmaron que el volumen promedio de extracción de crudo en territorio venezolano superó los 1.242.000 barriles diarios durante la primera quincena de noviembre de 2026. Este incremento sostenido responde al éxito operativo de los planes conjuntos ejecutados con socias internacionales como Chevron, Repsol y Maurel & Prom. En la división Occidente (Lago de Maracaibo), la conexión de nuevos pozos con sistemas BES (Bombeo Electrosumergible) y el uso de taladros de reacondicionamiento (Workover) sumaron más de 45.000 bpd de crudo liviano y mediano. Paralelamente, en la Faja Petrolífera del Orinoco "Hugo Chávez", las macollas de los bloques Carabobo y Junín registraron un flujo estable mediante inyección de aditivos químicos desmulsificantes y reductores de viscosidad, garantizando la alimentación continua de los mejoradores y terminales de embarque.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_produccion_venezuela_nov2026.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-opep-plus-acuerdo-viena-noviembre-2026',
+    category: 'mundial',
+    source: 'OPEP Media Viena / Bloomberg Energy / Reuters',
+    tag: 'OPEP+ & Geopolítica',
+    date: '2026-11-17',
+    title: 'OPEP+ ratifica en Viena la extensión de recortes voluntarios de 2,2 millones de bpd hasta mediados de 2027',
+    summary: 'Los 22 países de la coalición petrolera coordinan una estrategia unificada para salvaguardar el valor de la cesta internacional ante la desaceleración estacional y el control estricto de inventarios.',
+    content: 'Tras una extensa deliberación en la sede central de la Organización de Países Exportadores de Petróleo (OPEP) en Viena, los ministros de energía del bloque OPEP+ acordaron de manera unánime aplazar el inicio de los incrementos graduales de bombeo hasta junio de 2027. La declaración ministerial subrayó que la disciplina colectiva ha demostrado ser el ancla más eficaz frente a la especulación financiera y la fluctuación de inventarios comerciales en los países consumidores de la OCDE. El secretario general del organismo resaltó que el cumplimiento de las cuotas asignadas alcanzó un 103% en el último mes, proyectando que la brecha estructural de oferta frente a la demanda energética en economías emergentes de Asia mantendrá al barril de crudo Brent en una banda de equilibrio técnico de $92-$98 por barril.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_opep_viena_nov2026.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-campo-dragon-acuerdo-trinidad-shell-nov-2026',
+    category: 'venezuela',
+    source: 'Upstream Online / Ministry of Energy Trinidad / PDVSA Gas',
+    tag: 'Gas Offshore & Campo Dragón',
+    date: '2026-11-16',
+    title: 'PDVSA, Shell y NGC firman contrato de tendido para el gasoducto submarino del Campo Dragón hacia Trinidad',
+    summary: 'Concluye la fase de ingeniería de detalle para la interconexión submarina de 90 kilómetros, proyectando el inicio de inyección de 400 millones de pies cúbicos diarios de gas natural para el mercado caribeño y europeo.',
+    content: 'En Puerto España, delegaciones ministeriales de Venezuela y Trinidad y Tobago, junto a directivos globales de Shell y la National Gas Company (NGC), rubricaron el acuerdo definitivo de ingeniería, procura y construcción (IPC) para el tendido marino del gasoducto transfronterizo del Campo Dragón. El proyecto, ubicado en el cinturón de gas costa afuera de la Península de Paria, contempla la colocación de ductos de aleación marina de 18 pulgadas a profundidades de hasta 130 metros, enlazando los pozos submarinos con la plataforma costa afuera Hibiscus. Esta infraestructura permitirá exportar 400 millones de pies cúbicos de gas no asociado por día hacia las plantas de licuefacción de Atlantic LNG en Point Fortin, transformando a la región oriental en un centro neurálgico de suministro de gas natural licuado (GNL) con bajas emisiones de carbono.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_gas_offshore_dragon_nov2026.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-vlcc-fletes-maritimos-estabilidad-nov-2026',
+    category: 'mundial',
+    source: 'Clarksons Research / Lloyd\'s List / Maritime Executive',
+    tag: 'Transporte Marítimo & VLCC',
+    date: '2026-11-15',
+    title: 'Fletes de supertanqueros VLCC tocan niveles récord de $115.000 diarios ante desvío de rutas petroleras globales',
+    summary: 'La congestión en los corredores del Mar Rojo y la preferencia por travesías prolongadas vía Buena Esperanza disparan la demanda por buques de crudo de gran calado hacia Asia y el Atlántico.',
+    content: 'El índice Baltic Dirty Tanker registró una subida semanal del 14%, llevando las tarifas diarias de alquiler por tiempo (TCE) para buques supertanqueros VLCC (Very Large Crude Carrier) por encima de los 115.000 dólares en las rutas de Medio Oriente a Asia y de América hacia el Golfo de México. El informe semanal de Clarksons Research atribuye esta alza vertiginosa al incremento en los días de navegación por barril transportado, derivado de la persistencia de riesgos bélicos en pasos estrechos de navegación y de la masiva redistribución de flujos de crudo pesado venezolano, brasileño y del Golfo estadounidense con destino a megacomplejos refinadores en India y Singapur. Los armadores navales reportan una ocupación del 98% de la flota mundial de tanqueros de doble casco para el resto del año.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_supertanker_vlcc_nov2026.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-crp-amuay-cardon-expansion-nafta-nov-2026',
+    category: 'venezuela',
+    source: 'Petroguía / Argus Media / S&P Global',
+    tag: 'Refinación & Crudos Pesados',
+    date: '2026-11-14',
+    title: 'Centro de Refinación Paraguaná (CRP) eleva procesamiento a 310.000 bpd con arranque de unidad catalítica en Cardón',
+    summary: 'La reactivación de compresores y torres de craqueo catalítico fluido (FCC) en la Península de Paraguaná estabiliza la entrega de nafta de alto octanaje, diésel automotriz y componentes para diluyentes en la Faja.',
+    content: 'Ingenieros y técnicos de refinación completaron con éxito las pruebas operativas y el arranque térmico de la unidad de Craqueo Catalítico Fluido (FCC) de la Refinería Cardón, componente neurálgico del Centro de Refinación Paraguaná (CRP) en el estado Falcón. Con esta maniobra, la capacidad conjunta procesada entre Amuay y Cardón se incrementó a 310.000 barriles de crudo diarios, consolidando una producción diaria de más de 85.000 barriles de gasolina y 70.000 barriles de diésel de ultra bajo azufre. Fuentes técnicas destacaron que la estabilización de los trenes de destilación atmosférica y de vacío permitirá además suministrar corrientes internas de naftas pesadas indispensables como diluyente para el acondicionamiento y bombeo del crudo Merey 16 en la Faja Petrolífera del Orinoco.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_refineria_crp_nov2026.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-crack-spread-diesel-record-nov-2026',
+    category: 'mundial',
+    source: 'Energy Intelligence / Financial Times / ICIS',
+    tag: 'Refinación & Crack Spreads',
+    date: '2026-11-12',
+    title: 'Déficit de destilados medios en Europa y Asia eleva el crack spread del diésel a $34 por barril',
+    summary: 'La intensa demanda industrial previa a la temporada invernal y las restricciones en refinerías de alta conversión premian las cotizaciones de los crudos ricos en gasoil y combustibles industriales.',
+    content: 'Los márgenes de refinación (crack spreads) para la conversión de crudo en destilados medios —particularmente diésel para transporte de carga pesada y combustible para aviación Jet A-1— escalaron hasta los 34,20 dólares por barril en los centros neurálgicos de Rotterdam y Singapur. La escasez de inventarios en depósitos europeos, combinada con paradas programadas de mantenimiento en varias refinerías del Mediterráneo, ha generado una tensión evidente entre la oferta disponible y la demanda estacional de calefacción y transporte. Analistas de Energy Intelligence destacan que esta coyuntura ha acentuado la demanda global por crudos pesados y medianos con alto rendimiento de corte de destilados, abriendo ventanas comerciales altamente lucrativas para exportadores de hidrocarburos de América Latina.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_crack_spread_refineria_nov2026.jpg',
+    mediaType: 'image'
+  },
+  {
+    id: 'news-exportaciones-reliance-india-merey-nov-2026',
+    category: 'venezuela',
+    source: 'The Hindu BusinessLine / Reuters / PDVSA Comercio',
+    tag: 'Exportación & Crudo Merey 16',
+    date: '2026-11-10',
+    title: 'India eleva importaciones de crudo venezolano a 180.000 bpd con nuevos contratos de entrega para Reliance e Indian Oil',
+    summary: 'Las megarefinerías de Jamnagar y Paradip reciben cargamentos regulares de crudo Merey 16 desde los terminales marítimos de Jose, consolidando a la India como el principal destino de crudo venezolano en Asia.',
+    content: 'Los principales conglomerados refinadores de la India, liderados por Reliance Industries Limited (RIL) y la estatal Indian Oil Corporation (IOC), formalizaron nuevos acuerdos comerciales a término con Petróleos de Venezuela para la adquisición sostenida de cargamentos de crudo Merey 16 (16° API). Durante el presente mes, el volumen despachado hacia puertos del subcontinente indio promedió los 180.000 barriles por día, transportados a través de superpetroleros fletados bajo estrictos estándares internacionales de navegación y trazabilidad de pagos. Ejecutivos de refinación en Jamnagar subrayaron que el crudo pesado venezolano ofrece una sinergia operativa insuperable para sus unidades de coquización retardada (Delayed Coking) e hidrocraqueo, permitiendo obtener altos rendimientos de gasoil y productos petroquímicos de alto valor agregado.',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_reliance_terminal_nov2026.jpg',
+    mediaType: 'image'
+  },
+  {
     id: 'news-repsol-pdvsa-barua-motatan-2026',
     category: 'venezuela',
     source: 'Reuters / Petroguía / PDVSA Prensa',

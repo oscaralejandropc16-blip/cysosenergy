@@ -116,17 +116,18 @@ export const NewsSection = ({ onOpenFullPressRoom, onOpenArticle }) => {
     { label: 'USD BCV', price: `Bs. ${usdBcv}`, change: 'OFICIAL', isUp: true },
     { label: 'EUR BCV', price: `Bs. ${eurBcv}`, change: 'OFICIAL', isUp: true },
     { label: 'CESTA OPEP', price: '$104.50 USD', change: '+0.7%', isUp: true },
-    { label: 'PRODUCCIÓN VE', price: '1.200.000 BPD', change: '+29.9% YTD', isUp: true },
+    { label: 'PRODUCCIÓN VE', price: '1.242.000 BPD', change: '+32.1% YTD', isUp: true },
     { label: 'META 2026', price: '1.300.000 BPD', change: 'En curso', isUp: true },
   ];
 
   const breakingAlerts = [
-    'PDVSA y Repsol formalizan plan de reactivación de 120 pozos en Barúa Motatán con inversión de $450M',
-    'OPEP+ evalúa blindar cuotas de bombeo hasta mediados de 2027 ante tensiones geopolíticas e inventarios bajos',
-    'Terminal Jose supera 1,18 millones de bpd despachados en supertanqueros VLCC con crudo Merey 16',
-    'Shell, BP y PDVSA inician procura de tuberías submarinas para el gasoducto transfronterizo del Campo Dragón',
-    'Refinerías de Asia y Europa pagan primas históricas por crudos pesados ante déficit crítico de diésel',
-    'Faja Petrolífera del Orinoco reduce 38% el uso de diluyente con nanoreductores químicos en Macolla Carabobo 2'
+    'Venezuela consolida producción en 1,24 millones de bpd impulsada por Petroindependencia y pozos en Zulia',
+    'OPEP+ ratifica en Viena la extensión de recortes voluntarios de 2,2 millones de bpd hasta mediados de 2027',
+    'PDVSA, Shell y NGC firman contrato de tendido para el gasoducto submarino del Campo Dragón hacia Trinidad',
+    'Fletes de supertanqueros VLCC tocan niveles récord de $115.000 diarios ante desvío de rutas globales',
+    'Centro de Refinación Paraguaná (CRP) eleva procesamiento a 310.000 bpd con arranque de unidad catalítica en Cardón',
+    'Déficit de destilados medios en Europa y Asia eleva el crack spread del diésel a $34 por barril',
+    'India eleva importaciones de crudo venezolano Merey 16 a 180.000 bpd para refinerías de Reliance e Indian Oil'
   ];
 
   return (
