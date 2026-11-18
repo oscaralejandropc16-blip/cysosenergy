@@ -226,7 +226,7 @@ const INITIAL_NEWS = [
     title: 'Venezuela consolida extracción en 1,24 millones de bpd impulsada por reactivación de pozos en Zulia y Faja del Orinoco',
     summary: 'El bombeo nacional alcanza su nivel más alto desde 2018 gracias a las campañas de completación en Petroindependencia, Petroboscán y el despliegue de bombas electrosumergibles en la cuenca occidental.',
     content: 'El Ministerio del Poder Popular de Petróleo y Petróleos de Venezuela (PDVSA) confirmaron que el volumen promedio de extracción de crudo en territorio venezolano superó los 1.242.000 barriles diarios durante la primera quincena de noviembre de 2026. Este incremento sostenido responde al éxito operativo de los planes conjuntos ejecutados con socias internacionales como Chevron, Repsol y Maurel & Prom. En la división Occidente (Lago de Maracaibo), la conexión de nuevos pozos con sistemas BES (Bombeo Electrosumergible) y el uso de taladros de reacondicionamiento (Workover) sumaron más de 45.000 bpd de crudo liviano y mediano. Paralelamente, en la Faja Petrolífera del Orinoco "Hugo Chávez", las macollas de los bloques Carabobo y Junín registraron un flujo estable mediante inyección de aditivos químicos desmulsificantes y reductores de viscosidad, garantizando la alimentación continua de los mejoradores y terminales de embarque.',
-    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_produccion_venezuela_nov2026.jpg',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_pdvsa_produccion_real.jpg',
     mediaType: 'image'
   },
   {
@@ -250,7 +250,7 @@ const INITIAL_NEWS = [
     title: 'PDVSA, Shell y NGC firman contrato de tendido para el gasoducto submarino del Campo Dragón hacia Trinidad',
     summary: 'Concluye la fase de ingeniería de detalle para la interconexión submarina de 90 kilómetros, proyectando el inicio de inyección de 400 millones de pies cúbicos diarios de gas natural para el mercado caribeño y europeo.',
     content: 'En Puerto España, delegaciones ministeriales de Venezuela y Trinidad y Tobago, junto a directivos globales de Shell y la National Gas Company (NGC), rubricaron el acuerdo definitivo de ingeniería, procura y construcción (IPC) para el tendido marino del gasoducto transfronterizo del Campo Dragón. El proyecto, ubicado en el cinturón de gas costa afuera de la Península de Paria, contempla la colocación de ductos de aleación marina de 18 pulgadas a profundidades de hasta 130 metros, enlazando los pozos submarinos con la plataforma costa afuera Hibiscus. Esta infraestructura permitirá exportar 400 millones de pies cúbicos de gas no asociado por día hacia las plantas de licuefacción de Atlantic LNG en Point Fortin, transformando a la región oriental en un centro neurálgico de suministro de gas natural licuado (GNL) con bajas emisiones de carbono.',
-    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_gas_offshore_dragon_nov2026.jpg',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_shell_pdvsa_dragon_real.jpg',
     mediaType: 'image'
   },
   {
@@ -274,7 +274,7 @@ const INITIAL_NEWS = [
     title: 'Centro de Refinación Paraguaná (CRP) eleva procesamiento a 310.000 bpd con arranque de unidad catalítica en Cardón',
     summary: 'La reactivación de compresores y torres de craqueo catalítico fluido (FCC) en la Península de Paraguaná estabiliza la entrega de nafta de alto octanaje, diésel automotriz y componentes para diluyentes en la Faja.',
     content: 'Ingenieros y técnicos de refinación completaron con éxito las pruebas operativas y el arranque térmico de la unidad de Craqueo Catalítico Fluido (FCC) de la Refinería Cardón, componente neurálgico del Centro de Refinación Paraguaná (CRP) en el estado Falcón. Con esta maniobra, la capacidad conjunta procesada entre Amuay y Cardón se incrementó a 310.000 barriles de crudo diarios, consolidando una producción diaria de más de 85.000 barriles de gasolina y 70.000 barriles de diésel de ultra bajo azufre. Fuentes técnicas destacaron que la estabilización de los trenes de destilación atmosférica y de vacío permitirá además suministrar corrientes internas de naftas pesadas indispensables como diluyente para el acondicionamiento y bombeo del crudo Merey 16 en la Faja Petrolífera del Orinoco.',
-    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_refineria_crp_nov2026.jpg',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_pdvsa_refineria_real.jpg',
     mediaType: 'image'
   },
   {
@@ -358,7 +358,7 @@ const INITIAL_NEWS = [
     title: 'Shell, BP y PDVSA inician fase de procura de tuberías submarinas para el gasoducto transfronterizo del Campo Dragón',
     summary: 'Tras la aprobación de los estudios de impacto ambiental y batimetría, se emitieron las primeras órdenes de compra para ductos de 18 pulgadas que transportarán 350 MMSCFD de gas no asociado hacia Trinidad.',
     content: 'El consorcio integrado por Shell, BP y PDVSA Gas dio inicio formal al proceso de licitación y procura internacional de aceros especiales y tuberías submarinas de 18 pulgadas con recubrimiento de hormigón para el tendido del gasoducto del Campo Dragón, ubicado en el norte del estado Sucre. La obra interconectará el megayacimiento marino de la Plataforma Deltana con la plataforma costa afuera Hibiscus, operada por Shell en aguas de Trinidad y Tobago. Este avance estratégico marca la cuenta regresiva para la inyección de 350 millones de pies cúbicos diarios de gas venezolano a las plantas de licuefacción de Atlantic LNG, posicionando a la región caribeña como polo de exportación energética hacia Europa y América Latina.',
-    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_gas_dragon_offshore_2026.jpg',
+    mediaUrl: 'https://rdfprgvlwemgoeqlmcna.supabase.co/storage/v1/object/public/media/noticia_shell_offshore_plataforma_real.jpg',
     mediaType: 'image'
   },
   {
