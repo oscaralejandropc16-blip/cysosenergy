@@ -4,7 +4,7 @@ import { useCms } from '../context/CmsContext';
 import { 
   Flame, Zap, Activity, ArrowUpRight, CheckCircle2, X, PhoneCall, 
   FlaskConical, Truck, Globe, Award, ShieldCheck, Play, Sparkles, 
-  LayoutGrid, ChevronRight, CheckCircle, Sparkle, Gauge
+  LayoutGrid, ChevronRight, CheckCircle, Sparkle, Gauge, Sliders
 } from 'lucide-react';
 
 export const Services = () => {
@@ -177,6 +177,16 @@ export const Services = () => {
                 </div>
                 <span className="tracking-wide">Ver Registro Operativo en Video</span>
               </button>
+
+              {activeTab === 'quimica' && (
+                <a
+                  href="#simulador-eor"
+                  className="w-full mt-2.5 px-4 py-2.5 rounded-2xl bg-navy-950/80 hover:bg-navy-900 text-slate-200 hover:text-white text-xs font-bold flex items-center justify-center gap-2 border border-slate-700/80 hover:border-flame-500/50 transition-all font-heading shadow-md"
+                >
+                  <Sliders className="w-3.5 h-3.5 text-flame-500" />
+                  <span>Abrir Simulador Reológico EOR</span>
+                </a>
+              )}
             </div>
           </div>
 

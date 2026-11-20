@@ -13,6 +13,7 @@ import { ContactForm } from './components/ContactForm';
 import { AdminDashboardPage } from './components/AdminDashboardPage';
 import { PressRoomPage } from './components/PressRoomPage';
 import { ArticleDetailPage } from './components/ArticleDetailPage';
+import { SimulatorPage } from './components/SimulatorPage';
 import { ScrollToTop } from './components/ScrollToTop';
 import { Footer } from './components/Footer';
 import { FloatingOperationsWidget } from './components/FloatingOperationsWidget';
@@ -41,6 +42,17 @@ const isPressRoomRoute = () => {
   );
 };
 
+const isSimulatorRoute = () => {
+  const hash = window.location.hash.toLowerCase();
+  const path = window.location.pathname.toLowerCase();
+  return (
+    hash === '#simulador-eor' || 
+    hash === '#simulador' || 
+    hash === '#calculadora' ||
+    path.includes('/simulador-eor')
+  );
+};
+
 const getArticleIdFromUrl = () => {
   const hash = window.location.hash;
   if (hash.startsWith('#noticia/')) {
@@ -57,6 +69,7 @@ function MainAppContent() {
   const [currentArticleId, setCurrentArticleId] = useState(() => getArticleIdFromUrl());
   const [currentRoute, setCurrentRoute] = useState(() => {
     if (isSecretAdminRoute()) return 'admin';
+    if (isSimulatorRoute()) return 'simulador';
     const artId = getArticleIdFromUrl();
     if (artId) return 'articulo';
     if (isPressRoomRoute()) return 'sala-de-prensa';
@@ -70,6 +83,8 @@ function MainAppContent() {
       if (isSecretAdminRoute()) {
         setCurrentRoute('admin');
         setIsAdminOpen(true);
+      } else if (isSimulatorRoute()) {
+        setCurrentRoute('simulador');
       } else if (artId) {
         setCurrentArticleId(artId);
         setCurrentRoute('articulo');
@@ -133,6 +148,18 @@ function MainAppContent() {
     return <AdminDashboardPage onReturnToWeb={handleReturnToWeb} />;
   }
 
+  if (currentRoute === 'simulador') {
+    return (
+      <>
+        <SimulatorPage 
+          onReturnToHome={handleReturnToHome} 
+          onOpenDossier={() => setIsDossierOpen(true)} 
+        />
+        <DossierModal isOpen={isDossierOpen} onClose={() => setIsDossierOpen(false)} />
+      </>
+    );
+  }
+
   if (currentRoute === 'articulo') {
     return (
       <>
@@ -175,10 +202,9 @@ function MainAppContent() {
         <main>
           <Hero onOpenDossier={() => setIsDossierOpen(true)} />
           <PartnersCarousel />
-          <MissionVision />
-          <Services />
           <RecentOperations onOpenDossier={() => setIsDossierOpen(true)} />
-          <ViscosityCalculator />
+          <Services />
+          <MissionVision />
           <VenezuelaMap />
           <HSECommitment />
           <NewsSection 

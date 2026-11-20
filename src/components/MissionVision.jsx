@@ -190,33 +190,33 @@ export const MissionVision = () => {
             <div className="grid md:grid-cols-3 gap-6 sm:gap-8 animate-fadeIn">
               {[
                 {
-                  title: 'Responsabilidad',
-                  desc: 'Más de 20 años de experiencia documentada en el sector.',
+                  title: 'Responsabilidad Operativa',
+                  desc: 'Más de 20 años de solvencia técnica documentada en campos petroleros.',
                   icon: ShieldCheck,
                 },
                 {
-                  title: 'Colaboración',
-                  desc: 'Los empleados construyen relaciones sólidas en toda la compañía, saben brindar ayuda y recibir opiniones para el mejorar el desarrollo laboral.',
+                  title: 'Trabajo en Equipo',
+                  desc: 'Sinergia multidisciplinaria entre cuadrillas de campo y gerencia técnica.',
                   icon: Users,
                 },
                 {
-                  title: 'Enfoque en el cliente',
-                  desc: 'Generamos confianza en el cliente entregando resultados óptimos. Comprendemos y sabemos las necesidades del cliente y capacitamos a nuestro personal para brindar la mejor atención posible.',
+                  title: 'Enfoque en Resultados',
+                  desc: 'Soluciones directas a los cuellos de botella de producción de nuestros clientes.',
                   icon: HeartHandshake,
                 },
                 {
-                  title: 'Comunicación',
-                  desc: 'Trabajamos duro para ser claros, concisos y evitar errores de comunicación. Centrarse en la comunicación eficaz permite satisfacer y superar las necesidades del cliente.',
+                  title: 'Comunicación Eficaz',
+                  desc: 'Reportes técnicos claros, concisos y trazabilidad operativa en tiempo real.',
                   icon: MessageSquare,
                 },
                 {
-                  title: 'Desarrollo',
-                  desc: 'La formación continua y las oportunidades de crecimiento son más que beneficios, una forma de vida. Nuestro personal comparte información, se orienta y brindan comentarios.',
+                  title: 'Capacitación Continua',
+                  desc: 'Personal certificado en normativas internacionales API, ISO y HAZMAT.',
                   icon: Lightbulb,
                 },
                 {
-                  title: 'Honestidad',
-                  desc: 'Todos nuestros empleados aprenden a trabajar juntos a través de líneas y culturas basadas en la honestidad.',
+                  title: 'Ética y Transparencia',
+                  desc: 'Relaciones comerciales sólidas basadas en la confianza y cumplimiento riguroso.',
                   icon: Scale,
                 }
               ].map((val, idx) => {

@@ -132,55 +132,34 @@ export const Hero = ({ onOpenDossier }) => {
             {currentHero.subtitle}
           </p>
 
-          {/* 4 Interactive Pillars Horizontal Links - Clean Text (No Pills) */}
-          <div className="hidden sm:flex flex-wrap justify-center items-center gap-4 sm:gap-8 w-full max-w-3xl pt-2">
-            {[
-              { title: currentHero.pillar1 || 'Química de Producción', icon: FlaskConical, href: '#servicios' },
-              { title: currentHero.pillar2 || 'Intervención de Pozos', icon: Flame, href: '#servicios' },
-              { title: currentHero.pillar3 || 'Logística Pesada', icon: Truck, href: '#servicios' },
-              { title: currentHero.pillar4 || 'Ingeniería Procura', icon: Globe, href: '#servicios' }
-            ].map((pillar, idx) => {
-              const Icon = pillar.icon;
-              return (
-                <React.Fragment key={idx}>
-                  <a
-                    href={pillar.href}
-                    className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-300 hover:text-flame-400 transition-colors duration-300 group drop-shadow-md"
-                  >
-                    <Icon className="w-4 h-4 text-flame-500 group-hover:scale-110 transition-transform flex-shrink-0" />
-                    <span className="tracking-wide">{pillar.title}</span>
-                  </a>
-                  {idx < 3 && <span className="text-slate-600 font-bold">•</span>}
-                </React.Fragment>
-              );
-            })}
-          </div>
-
-          {/* Primary Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+          {/* Primary Action Buttons - Clean & Focused */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
             <a
               href="#formulario-cotizacion"
-              className="px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-black text-white bg-gradient-to-r from-flame-500 via-flame-600 to-orange-600 hover:from-flame-400 hover:to-orange-500 shadow-flame-glow transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 font-heading tracking-wide"
+              className="px-7 py-3.5 rounded-xl text-sm font-black text-white bg-gradient-to-r from-flame-500 via-flame-600 to-orange-600 hover:from-flame-400 hover:to-orange-500 shadow-flame-glow transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2.5 font-heading tracking-wide"
             >
               <span>Solicitar Cotización Técnica</span>
               <ArrowRight className="w-4 h-4" />
             </a>
 
+            <a
+              href="#obras"
+              className="px-6 py-3.5 rounded-xl text-sm font-bold text-white bg-navy-900/90 hover:bg-navy-800 border border-slate-600 hover:border-flame-500/70 backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2.5 font-heading shadow-lg group"
+            >
+              <div className="w-2.5 h-2.5 rounded-full bg-flame-500 animate-pulse" />
+              <span>Ver Obras y Operaciones en Campo</span>
+            </a>
+          </div>
+
+          {/* Discreet Secondary Document Link */}
+          <div className="pt-2">
             <button
               onClick={onOpenDossier}
-              className="px-5 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-bold text-slate-200 hover:text-white bg-navy-900/90 hover:bg-navy-850 border border-slate-700/80 hover:border-flame-500/50 backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 font-heading shadow-md group"
+              className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white transition-colors duration-200 drop-shadow-md group cursor-pointer"
             >
-              <FileText className="w-4 h-4 text-slate-300 group-hover:text-flame-500 transition-colors" />
-              <span>Dossier 2026 (PDF)</span>
+              <FileText className="w-3.5 h-3.5 text-flame-400 group-hover:scale-110 transition-transform" />
+              <span>¿Requiere información institucional? <span className="underline underline-offset-4 font-semibold text-white group-hover:text-flame-400">Descargar Dossier 2026 (PDF)</span></span>
             </button>
-
-            <a
-              href="#calculadora"
-              className="px-5 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-bold text-slate-200 hover:text-white bg-navy-900/90 hover:bg-navy-850 border border-slate-700/80 hover:border-flame-500/50 backdrop-blur-md transition-all duration-300 flex items-center gap-2 font-heading group"
-            >
-              <Settings className="w-4 h-4 text-slate-300 group-hover:text-flame-500 transition-colors" />
-              <span>Simulador EOR</span>
-            </a>
           </div>
 
         </div>

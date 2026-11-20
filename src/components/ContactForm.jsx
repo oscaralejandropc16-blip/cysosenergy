@@ -79,6 +79,7 @@ export const ContactForm = () => {
 
   return (
     <section id="contacto" className="py-20 md:py-24 relative bg-navy-950 border-t border-slate-800/80 overflow-hidden">
+      <div id="formulario-cotizacion" className="absolute -top-24 left-0" />
       
       {/* Subtle Ambient Light */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-gold-metallic/5 rounded-full blur-[180px] pointer-events-none" />

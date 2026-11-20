@@ -9,8 +9,29 @@ import {
   Building2, 
   FileCheck2, 
   ArrowUpRight,
-  MoveHorizontal 
+  MoveHorizontal,
+  Calendar
 } from 'lucide-react';
+
+const getPartnerPeriod = (client) => {
+  if (!client) return 'Vigente';
+  if (client.period) return client.period;
+  if (client.date) return client.date;
+  if (client.year) return client.year;
+  
+  const match = client.contract?.match(/Periodo:\s*([^.]+)/i);
+  if (match) return match[1].trim();
+
+  const yearMatch = client.contract?.match(/\b(201\d|202\d)\b/);
+  if (yearMatch) return yearMatch[0];
+
+  return '2024 - 2025';
+};
+
+const getCleanContractText = (contract) => {
+  if (!contract) return '';
+  return contract.replace(/\s*Periodo:\s*[^.]+\.?/i, '').trim();
+};
 
 export const PartnersCarousel = () => {
   const { partners } = useCms();
@@ -479,18 +500,22 @@ export const PartnersCarousel = () => {
               </div>
               
               <p className="text-sm text-slate-200 leading-relaxed font-light pl-1 pt-1 border-t border-slate-800/80">
-                {selectedClient.contract}
+                {getCleanContractText(selectedClient.contract)}
               </p>
 
               {/* Operational Metadata Badges */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2">
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-navy-900/80 border border-white/5 text-[11px] text-slate-300">
+                  <Calendar className="w-3.5 h-3.5 text-flame-400 flex-shrink-0" />
+                  <span>Período: <strong className="text-white font-bold">{getPartnerPeriod(selectedClient)}</strong></span>
+                </div>
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-navy-900/80 border border-white/5 text-[11px] text-slate-300">
                   <div className="w-1.5 h-1.5 rounded-sm bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] flex-shrink-0" />
-                  <span>Estatus: <strong className="text-white font-bold">Contrato Ejecutado / Vigente</strong></span>
+                  <span>Estatus: <strong className="text-white font-bold">{selectedClient.status || 'Contrato Ejecutado / Vigente'}</strong></span>
                 </div>
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-navy-900/80 border border-white/5 text-[11px] text-slate-300">
                   <div className="w-1.5 h-1.5 rounded-sm bg-energy-cyan shadow-[0_0_8px_rgba(14,165,233,0.8)] flex-shrink-0" />
-                  <span>Estándar: <strong className="text-white font-bold">Homologación PDVSA</strong></span>
+                  <span>Estándar: <strong className="text-white font-bold">{selectedClient.standard || 'Homologación PDVSA'}</strong></span>
                 </div>
               </div>
             </div>

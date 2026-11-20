@@ -34,12 +34,11 @@ export const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
-    { name: 'Misión', href: '#mision-vision' },
+    { name: 'Obras en Campo', href: '#obras' },
     { name: 'Servicios', href: '#servicios' },
-    { name: 'Simulador EOR', href: '#calculadora' },
+    { name: 'Simulador EOR', href: '#simulador-eor' },
     { name: 'Cuencas', href: '#cobertura' },
-    { name: 'HSE', href: '#hse' },
-    { name: 'Sala de Prensa', href: '#sala-de-prensa' },
+    { name: 'Prensa', href: '#sala-de-prensa' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
